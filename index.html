@@ -1,16 +1,43 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>replit</title>
-  <link href="style.css" rel="stylesheet" type="text/css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZWAP! Landing Page</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
-
 <body>
-  Hello world
+  <header>
+    <button id="connectBtn">CONNECT WALLET</button>
+    <img id="bang" src="Zwap_bang_3d.PNG" alt="Bang Symbol">
+    <div id="bangMenu" class="dropdown-menu">
+      <button class="menu-btn" id="learnBtn">LEARN</button>
+      <button class="menu-btn" id="earnBtn">EARN</button>
+      <button class="menu-btn" id="contactBtn">CONTACT</button>
+    </div>
+  </header>
+
+  <main>
+    <img src="Zwap_logo_full.png" alt="ZWAP! Logo" class="logo">
+    <h1>WELCOME TO ZWAP!</h1>
+    <p>EARN <span class="gold">$XHI</span> THROUGH WELLNESS, CREATIVITY, AND PLAY.</p>
+    <button id="startButton">START</button>
+  </main>
+
+  <footer>
+    <div class="footer-columns">
+      <div class="footer-col" id="swapCol">SWAP</div>
+      <div class="footer-col" id="moveCol">MOVE</div>
+      <div class="footer-col" id="playCol">PLAY</div>
+      <div class="footer-col" id="shopCol">SHOP</div>
+    </div>
+    <div class="footer-info">
+      <img src="xoclon-inc-logo.png" alt="XOCLON Logo" class="mini-logo">
+      <p>© 2025 XOCLON INC. — All rights reserved • <a href="https://xoclon.online" target="_blank">xoclon.online</a></p>
+    </div>
+  </footer>
+
   <script src="script.js"></script>
 </body>
-
 </html>

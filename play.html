@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZWAP! Game Launcher</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<style>
+.game-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+gap: 2rem;
+padding: 2rem 1rem;
+justify-items: center;
+align-items: center;
+}
+
+.game-block {
+background: rgba(0, 0, 0, 0.7);
+border: 2px solid #00BFFF;
+border-radius: 12px;
+padding: 1rem;
+width: 150px;
+height: 150px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+text-align: center;
+box-shadow: 0 0 15px #00BFFF, 0 0 30px #FF00FF;
+cursor: pointer;
+transition: transform 0.3s ease;
+}
+
+.game-block:hover {
+transform: scale(1.05);
+}
+
+.game-icon {
+width: 60px;
+height: 60px;
+object-fit: contain;
+filter: drop-shadow(0 0 10px #00BFFF) drop-shadow(0 0 20px #FF00FF);
+transition: transform 0.3s ease;
+margin-bottom: 0.3rem;
+}
+
+.game-block:hover .game-icon {
+transform: scale(1.1);
+}
+
+/* Specific style for Build icon to make it more prominent */
+.game-block img[alt="Build"] {
+width: 70px;
+height: 70px;
+filter: drop-shadow(0 0 20px #00BFFF) drop-shadow(0 0 40px #FF00FF);
+}
+
+h1 {
+margin-top: 2rem;
+margin-bottom: 0.5rem;
+}
+
+main p {
+margin-bottom: 2rem;
+}
+</style>
+</head>
+<body>
+<header>
+<button id="connectBtn">CONNECT WALLET</button>
+<img id="bang" src="Zwap_bang_3d.PNG" alt="Bang Symbol">
+<div id="bangMenu" class="dropdown-menu">
+<button class="menu-btn" id="learnBtn">LEARN</button>
+<button class="menu-btn" id="earnBtn">EARN</button>
+<button class="menu-btn" id="contactBtn">CONTACT</button>
+</div>
+</header>
+
+<main>
+<h1>Choose Your Game</h1>
+<p>Select a game to play and earn <span class="gold">$XHI</span>.</p>
+
+<div class="game-grid">
+<div class="game-block" onclick="window.location.href='cube.html'">
+<img src="Cube.PNG" alt="Cube" class="game-icon">
+<p>Cube</p>
+</div>
+<div class="game-block" onclick="comingSoon()">
+<img src="Trivia.PNG" alt="Trivia" class="game-icon">
+<p>Trivia</p>
+</div>
+<div class="game-block" onclick="comingSoon()">
+<img src="Build.PNG" alt="Build" class="game-icon">
+<p>Build</p>
+</div>
+<div class="game-block" onclick="comingSoon()">
+<img src="Spin.PNG" alt="Spin" class="game-icon">
+<p>Spin</p>
+</div>
+</div>
+</main>
+
+<footer>
+<div class="footer-columns">
+<div class="footer-col" id="swapCol">SWAP</div>
+<div class="footer-col" id="moveCol">MOVE</div>
+<div class="footer-col" id="playCol">PLAY</div>
+<div class="footer-col" id="shopCol">SHOP</div>
+</div>
+<div class="footer-info">
+<img src="xoclon-inc-logo.png" alt="XOCLON Logo" class="mini-logo">
+<p>© 2025 XOCLON INC. — All rights reserved • <a href="https://xoclon.online" target="_blank">xoclon.online</a></p>
+</div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+function comingSoon() {
+Swal.fire({
+title: 'COMING SOON',
+text: 'This game will be available soon!',
+background: '#111',
+color: '#fff',
+showCloseButton: true,
+showConfirmButton: false,
+});
+}
+</script>
+</body>
+</html>
