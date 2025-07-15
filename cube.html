@@ -93,6 +93,57 @@ filter: drop-shadow(0 0 20px #00BFFF) drop-shadow(0 0 40px #FF00FF);
 
 <script src="script.js"></script>
 <script>
+// Cube game logic
+let currentRound = 1;
+const maxRounds = 5;
+
+document.addEventListener("DOMContentLoaded", () => {
+  const rotateButton = document.getElementById('rotateButton');
+  const cubeRound = document.getElementById('cubeRound');
+  const cubeStatus = document.getElementById('cubeStatus');
+
+  if (rotateButton) {
+    rotateButton.onclick = () => {
+      try {
+        if (currentRound <= maxRounds) {
+          cubeStatus.textContent = `Rotating cube... Round ${currentRound} completed!`;
+          currentRound++;
+          
+          if (currentRound <= maxRounds) {
+            cubeRound.textContent = `Round: ${currentRound} / ${maxRounds}`;
+          } else {
+            cubeRound.textContent = `Game Complete!`;
+            cubeStatus.textContent = `Congratulations! You earned $XHI tokens!`;
+            rotateButton.textContent = "PLAY AGAIN";
+            rotateButton.onclick = () => {
+              currentRound = 1;
+              cubeRound.textContent = `Round: ${currentRound} / ${maxRounds}`;
+              cubeStatus.textContent = "";
+              rotateButton.textContent = "ROTATE CUBE";
+              rotateButton.onclick = arguments.callee.caller;
+            };
+          }
+        }
+      } catch (error) {
+        console.error('Cube game error:', error);
+        cubeStatus.textContent = "Error occurred. Please try again.";
+      }
+    };
+  }
+});
+</script>
+</body>
+</html>
+<div class="footer-info">
+<a href="https://xoclon.online" target="_blank">
+<img src="xoclon-inc-logo.png" alt="XOCLON Logo" class="mini-logo">
+</a>
+<p>© 2025 XOCLON INC. — All rights reserved • <a href="https://xoclon.online" target="_blank">xoclon.online</a></p>
+</div>
+</footer>
+
+<script src="script.js"></script>
+<script>
 let currentRound = 1;
 const totalRounds = 5;
 

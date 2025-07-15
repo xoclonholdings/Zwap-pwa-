@@ -31,19 +31,27 @@ customClass: { popup: 'swal2-popup' }
 
 const connectBtn = document.getElementById('connectBtn');
 if (connectBtn) {
-connectBtn.onclick = () => {
+connectBtn.onclick = async () => {
+try {
 // Basic wallet connect simulation
 if (typeof window.ethereum !== 'undefined') {
-window.ethereum.request({ method: 'eth_requestAccounts' })
-.then(accounts => {
+try {
+const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
 showModal('WALLET CONNECTED', `<p>Connected to wallet: ${accounts[0].substring(0,6)}...${accounts[0].substring(38)}</p>`);
-})
-.catch(error => {
-console.log('Wallet connection error:', error);
-showModal('WALLET CONNECTION', '<p>Please install MetaMask or another Web3 wallet to connect.</p>');
-});
+} catch (error) {
+console.error('Wallet connection error:', error);
+if (error.code === 4001) {
+showModal('WALLET CONNECTION', '<p>Connection rejected by user.</p>');
+} else {
+showModal('WALLET CONNECTION', '<p>Failed to connect wallet. Please try again.</p>');
+}
+}
 } else {
 showModal('WALLET CONNECTION', '<p>Please install MetaMask or another Web3 wallet to connect.</p>');
+}
+} catch (error) {
+console.error('Unexpected error:', error);
+showModal('ERROR', '<p>An unexpected error occurred. Please refresh and try again.</p>');
 }
 };
 }
