@@ -39,6 +39,7 @@ window.ethereum.request({ method: 'eth_requestAccounts' })
 showModal('WALLET CONNECTED', `<p>Connected to wallet: ${accounts[0].substring(0,6)}...${accounts[0].substring(38)}</p>`);
 })
 .catch(error => {
+console.log('Wallet connection error:', error);
 showModal('WALLET CONNECTION', '<p>Please install MetaMask or another Web3 wallet to connect.</p>');
 });
 } else {
@@ -93,7 +94,9 @@ showModal('CONTACT US', `
 
 const startBtn = document.getElementById('startButton');
 if (startBtn) {
-startBtn.onclick = () => {
+startBtn.onclick = (e) => {
+e.preventDefault();
+console.log('Start button clicked'); // Debug log
 showModal('CHOOSE AN ACTION', `
 <div style="display:flex; flex-direction:column; gap:1rem; max-width:300px; margin:auto;">
 <button class="large-btn" onclick="window.location.href='move.html'">MOVE</button>
@@ -105,7 +108,7 @@ showModal('CHOOSE AN ACTION', `
 };
 }
 
-function shopComingSoon() {
+window.shopComingSoon = function() {
 Swal.fire({
 title: 'COMING SOON',
 text: 'Shop marketplace coming soon for $XHI holders!',
