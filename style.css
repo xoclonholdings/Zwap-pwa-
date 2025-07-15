@@ -46,7 +46,7 @@ header {
   padding: 0.5rem 1rem;
 }
 
-#connectBtn {
+#connectBtn, #creditBtn {
   background: none;
   color: white;
   font-size: 1rem;
@@ -60,7 +60,7 @@ header {
   transition: all 0.3s ease;
 }
 
-#connectBtn:hover {
+#connectBtn:hover, #creditBtn:hover {
   background: rgba(0, 123, 255, 0.1);
   box-shadow: 0 0 20px #00BFFF, 0 0 40px #FF00FF;
 }

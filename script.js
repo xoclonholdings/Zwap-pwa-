@@ -25,7 +25,25 @@ customClass: { popup: 'swal2-popup' }
 const connectBtn = document.getElementById('connectBtn');
 if (connectBtn) {
 connectBtn.onclick = () => {
-showModal('CONNECT WALLET', '<p>WalletConnect integration coming soon!</p>');
+// Basic wallet connect simulation
+if (typeof window.ethereum !== 'undefined') {
+window.ethereum.request({ method: 'eth_requestAccounts' })
+.then(accounts => {
+showModal('WALLET CONNECTED', `<p>Connected to wallet: ${accounts[0].substring(0,6)}...${accounts[0].substring(38)}</p>`);
+})
+.catch(error => {
+showModal('WALLET CONNECTION', '<p>Please install MetaMask or another Web3 wallet to connect.</p>');
+});
+} else {
+showModal('WALLET CONNECTION', '<p>Please install MetaMask or another Web3 wallet to connect.</p>');
+}
+};
+}
+
+const creditBtn = document.getElementById('creditBtn');
+if (creditBtn) {
+creditBtn.onclick = () => {
+window.location.href = 'Credit.html';
 };
 }
 
@@ -70,14 +88,25 @@ const startBtn = document.getElementById('startButton');
 if (startBtn) {
 startBtn.onclick = () => {
 showModal('CHOOSE AN ACTION', `
-<ul style="list-style:none; padding:0; text-align:left; max-width:300px; margin:auto;">
-<li><strong>SWAP</strong> — Instantly exchange <span class="gold">$XHI</span> for other assets</li>
-<li><strong>MOVE</strong> — Walk or dance to earn rewards</li>
-<li><a href="play.html" style="color:#FFD700; text-decoration:none;"><strong>PLAY</strong></a> — Faucet games, earn daily <span class="gold">$XHI</span></li>
-<li><strong>SHOP</strong> — Marketplace coming soon for <span class="gold">$XHI</span> holders</li>
-</ul>
+<div style="display:flex; flex-direction:column; gap:1rem; max-width:300px; margin:auto;">
+<button class="large-btn" onclick="window.location.href='move.html'">MOVE</button>
+<button class="large-btn" onclick="window.location.href='play.html'">PLAY</button>
+<button class="large-btn" onclick="window.location.href='Swap.html'">SWAP</button>
+<button class="large-btn" onclick="shopComingSoon()">SHOP</button>
+</div>
 `);
 };
+}
+
+function shopComingSoon() {
+Swal.fire({
+title: 'COMING SOON',
+text: 'Shop marketplace coming soon for $XHI holders!',
+background: '#111',
+color: '#fff',
+showCloseButton: true,
+showConfirmButton: false,
+});
 }
 
 const miniPopups = {
