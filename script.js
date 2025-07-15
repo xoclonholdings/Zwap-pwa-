@@ -10,6 +10,13 @@ menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
 };
 }
 
+const homeBtn = document.getElementById('homeBtn');
+if (homeBtn) {
+homeBtn.onclick = () => {
+window.location.href = 'index.html';
+};
+}
+
 function showModal(title, htmlContent) {
 Swal.fire({
 title: `<span style="font-family:'Orbitron'">${title}</span>`,
