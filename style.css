@@ -349,112 +349,143 @@ p {
 
 .swal2-popup {
   font-family: 'Orbitron', sans-serif !important;
-  background: linear-gradient(145deg, #0a0a0a, #1a1a1a) !important;
+  background: linear-gradient(145deg, #1a1a1a, #2a2a2a) !important;
   border: 2px solid #00BFFF !important;
   border-radius: 20px !important;
-  box-shadow: 0 0 30px #00BFFF, 0 0 50px #FF00FF, inset 0 0 20px rgba(0, 191, 255, 0.1) !important;
-  color: #fff !important;
+  box-shadow: 0 0 30px rgba(0, 191, 255, 0.5), 0 0 60px rgba(255, 0, 255, 0.3) !important;
+  color: #ffffff !important;
+  padding: 2rem !important;
 }
 
 .swal2-title {
   color: #00BFFF !important;
-  text-shadow: 0 0 15px #00BFFF !important;
+  font-size: 1.8rem !important;
   font-weight: 700 !important;
-  letter-spacing: 2px !important;
+  text-shadow: 0 0 10px #00BFFF !important;
   margin-bottom: 1.5rem !important;
 }
 
 .swal2-html-container {
-  color: #CCCCCC !important;
+  color: #cccccc !important;
   font-size: 1.1rem !important;
   line-height: 1.6 !important;
+  margin-bottom: 1.5rem !important;
+}
+
+.swal2-html-container p {
+  margin: 0.8rem 0 !important;
+  color: #cccccc !important;
 }
 
 .swal2-close {
-  color: #FF6B35 !important;
+  background: none !important;
+  color: #00BFFF !important;
   font-size: 2rem !important;
   font-weight: bold !important;
-  background: none !important;
   border: none !important;
+  width: 40px !important;
+  height: 40px !important;
+  right: 15px !important;
+  top: 15px !important;
   transition: all 0.3s ease !important;
 }
 
 .swal2-close:hover {
-  color: #FFD700 !important;
-  transform: scale(1.2) !important;
-  text-shadow: 0 0 10px #FFD700 !important;
-}
-
-.wallet-option {
-  transition: all 0.3s ease;
-  font-family: 'Orbitron', sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  border-radius: 12px !important;
-  font-weight: 700 !important;
-  text-shadow: 0 0 8px rgba(255, 255, 255, 0.8) !important;
-  position: relative !important;
-  overflow: hidden !important;
-}
-
-.wallet-option:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 25px rgba(255, 255, 255, 0.4), 0 0 40px rgba(0, 191, 255, 0.3) !important;
-  filter: brightness(1.2) !important;
-}
-
-.wallet-option::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: left 0.5s ease;
-}
-
-.wallet-option:hover::before {
-  left: 100%;
+  color: #FF00FF !important;
+  transform: scale(1.1) !important;
 }
 
 .large-btn {
-  padding: 1.2rem 3rem !important;
-  font-size: 1.4rem !important;
-  font-weight: 800 !important;
+  padding: 1rem 2rem !important;
+  font-size: 1.2rem !important;
+  font-weight: 700 !important;
   letter-spacing: 1px !important;
-  border-radius: 16px !important;
-  background: linear-gradient(145deg, #007BFF, #00BFFF) !important;
+  border-radius: 12px !important;
+  background: linear-gradient(145deg, #00BFFF, #0099CC) !important;
   color: white !important;
   border: 2px solid #00BFFF !important;
-  box-shadow: 0 0 25px #00BFFF, 0 0 45px #FF00FF, inset 0 0 10px #0056b3 !important;
+  box-shadow: 0 0 15px rgba(0, 191, 255, 0.5) !important;
   cursor: pointer !important;
   transition: all 0.3s ease !important;
+  margin: 0.5rem !important;
   font-family: 'Orbitron', sans-serif !important;
-  text-transform: uppercase !important;
-  position: relative !important;
-  overflow: hidden !important;
 }
 
 .large-btn:hover {
   transform: scale(1.05) !important;
-  box-shadow: 0 0 35px #00BFFF, 0 0 55px #FF00FF, inset 0 0 15px #003366 !important;
-  filter: brightness(1.2) !important;
+  box-shadow: 0 0 25px rgba(0, 191, 255, 0.8) !important;
+  background: linear-gradient(145deg, #0099CC, #00BFFF) !important;
 }
 
-.large-btn::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-  transition: left 0.5s ease;
+.wallet-option {
+  transition: all 0.3s ease !important;
+  font-family: 'Orbitron', sans-serif !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+  font-size: 1.1rem !important;
+  font-weight: 600 !important;
+  margin: 0.5rem 0 !important;
+  border-radius: 15px !important;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5) !important;
 }
 
-.large-btn:hover::before {
-  left: 100%;
+.wallet-option:hover {
+  transform: scale(1.02) !important;
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.3) !important;
+  filter: brightness(1.1) !important;
+}
+
+/* Form styling for contact modal */
+.swal2-html-container input,
+.swal2-html-container textarea {
+  background: rgba(0, 0, 0, 0.5) !important;
+  border: 2px solid #00BFFF !important;
+  border-radius: 10px !important;
+  color: #ffffff !important;
+  padding: 0.8rem !important;
+  font-family: 'Orbitron', sans-serif !important;
+  font-size: 1rem !important;
+  margin: 0.5rem 0 !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.swal2-html-container input:focus,
+.swal2-html-container textarea:focus {
+  outline: none !important;
+  border-color: #FF00FF !important;
+  box-shadow: 0 0 10px rgba(255, 0, 255, 0.5) !important;
+}
+
+.swal2-html-container input::placeholder,
+.swal2-html-container textarea::placeholder {
+  color: #888888 !important;
+}
+
+/* Link styling */
+.swal2-html-container a {
+  color: #00BFFF !important;
+  text-decoration: none !important;
+  font-weight: 600 !important;
+  transition: all 0.3s ease !important;
+}
+
+.swal2-html-container a:hover {
+  color: #FF00FF !important;
+  text-shadow: 0 0 5px #FF00FF !important;
+}
+
+/* Gold and special text styling */
+.gold {
+  color: #FFD700 !important;
+  font-weight: bold !important;
+  text-shadow: 0 0 8px #FFD700 !important;
+}
+
+.z-points {
+  color: #FF6B35 !important;
+  font-weight: bold !important;
+  text-shadow: 0 0 8px #FF6B35 !important;
 }
 
 /* Custom modal animations */
