@@ -211,15 +211,15 @@ p {
 }
 
 .earn-btn {
-  color: #0099CC;
+  color: #FF00FF;
   text-shadow: 
-    0 0 10px #0099CC,
-    0 0 20px #0099CC,
-    0 0 30px #0099CC,
-    2px 2px 4px rgba(0, 153, 204, 0.8),
+    0 0 10px #FF00FF,
+    0 0 20px #FF00FF,
+    0 0 30px #FF00FF,
+    2px 2px 4px rgba(255, 0, 255, 0.8),
     -2px -2px 4px rgba(0, 0, 0, 0.9),
-    inset 0 0 10px rgba(0, 153, 204, 0.3);
-  filter: drop-shadow(0 4px 8px rgba(0, 153, 204, 0.4));
+    inset 0 0 10px rgba(255, 0, 255, 0.3);
+  filter: drop-shadow(0 4px 8px rgba(255, 0, 255, 0.4));
 }
 
 .shop-btn {
@@ -235,15 +235,15 @@ p {
 }
 
 .save-btn {
-  color: #FF00FF;
+  color: #0099CC;
   text-shadow: 
-    0 0 10px #FF00FF,
-    0 0 20px #FF00FF,
-    0 0 30px #FF00FF,
-    2px 2px 4px rgba(255, 0, 255, 0.8),
+    0 0 10px #0099CC,
+    0 0 20px #0099CC,
+    0 0 30px #0099CC,
+    2px 2px 4px rgba(0, 153, 204, 0.8),
     -2px -2px 4px rgba(0, 0, 0, 0.9),
-    inset 0 0 10px rgba(255, 0, 255, 0.3);
-  filter: drop-shadow(0 4px 8px rgba(255, 0, 255, 0.4));
+    inset 0 0 10px rgba(0, 153, 204, 0.3);
+  filter: drop-shadow(0 4px 8px rgba(0, 153, 204, 0.4));
 }
 
 .action-btn:hover {
@@ -270,11 +270,11 @@ p {
     2px -2px 0 #000000,
     -2px 2px 0 #000000,
     2px 2px 0 #000000,
-    0 0 15px #0099CC,
-    0 0 25px #0099CC,
-    0 0 35px #0099CC,
-    0 0 45px #0099CC;
-  filter: drop-shadow(0 6px 12px rgba(0, 153, 204, 0.6));
+    0 0 15px #FF00FF,
+    0 0 25px #FF00FF,
+    0 0 35px #FF00FF,
+    0 0 45px #FF00FF;
+  filter: drop-shadow(0 6px 12px rgba(255, 0, 255, 0.6));
 }
 
 .shop-btn:hover {
@@ -296,11 +296,11 @@ p {
     2px -2px 0 #000000,
     -2px 2px 0 #000000,
     2px 2px 0 #000000,
-    0 0 15px #FF00FF,
-    0 0 25px #FF00FF,
-    0 0 35px #FF00FF,
-    0 0 45px #FF00FF;
-  filter: drop-shadow(0 6px 12px rgba(255, 0, 255, 0.6));
+    0 0 15px #0099CC,
+    0 0 25px #0099CC,
+    0 0 35px #0099CC,
+    0 0 45px #0099CC;
+  filter: drop-shadow(0 6px 12px rgba(0, 153, 204, 0.6));
 }
 
 .action-btn.info-shown {
@@ -398,9 +398,9 @@ p {
 }
 
 .z-points {
-  color: #FF6B35;
+  color: #FF00FF;
   font-weight: bold;
-  text-shadow: 0 0 8px #FF6B35;
+  text-shadow: 0 0 8px #FF00FF;
 }
 
 #gameStatus {
