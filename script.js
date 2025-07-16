@@ -63,14 +63,17 @@ const result = await Swal.fire({
 title: '<span style="font-family:\'Orbitron\'">SELECT WALLET</span>',
 html: `
 <div style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem;">
-<button class="wallet-option" data-wallet="metamask" style="background: linear-gradient(145deg, #f6851b, #e2761b); border: 2px solid #f6851b; padding: 1rem; border-radius: 10px; color: white; font-weight: bold; cursor: pointer;">
-🦊 MetaMask
+<button class="wallet-option" data-wallet="metamask" style="background: linear-gradient(145deg, #f6851b, #e2761b); border: 2px solid #f6851b; padding: 1rem; border-radius: 10px; color: white; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+<img src="https://upload.wikimedia.org/wikipedia/commons/3/36/MetaMask_Fox.svg" alt="MetaMask" style="width: 24px; height: 24px;">
+MetaMask
 </button>
-<button class="wallet-option" data-wallet="walletconnect" style="background: linear-gradient(145deg, #3b99fc, #1e88e5); border: 2px solid #3b99fc; padding: 1rem; border-radius: 10px; color: white; font-weight: bold; cursor: pointer;">
-📱 WalletConnect
+<button class="wallet-option" data-wallet="walletconnect" style="background: linear-gradient(145deg, #3b99fc, #1e88e5); border: 2px solid #3b99fc; padding: 1rem; border-radius: 10px; color: white; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+<img src="https://walletconnect.com/static/favicon-32x32.png" alt="WalletConnect" style="width: 24px; height: 24px;">
+WalletConnect
 </button>
-<button class="wallet-option" data-wallet="coinbase" style="background: linear-gradient(145deg, #0052ff, #0041cc); border: 2px solid #0052ff; padding: 1rem; border-radius: 10px; color: white; font-weight: bold; cursor: pointer;">
-🏪 Coinbase Wallet
+<button class="wallet-option" data-wallet="coinbase" style="background: linear-gradient(145deg, #0052ff, #0041cc); border: 2px solid #0052ff; padding: 1rem; border-radius: 10px; color: white; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+<img src="https://www.coinbase.com/favicon.ico" alt="Coinbase" style="width: 24px; height: 24px;">
+Coinbase Wallet
 </button>
 </div>
 `,
