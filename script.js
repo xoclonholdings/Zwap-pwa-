@@ -56,12 +56,17 @@ showModal('ERROR', '<p>An unexpected error occurred. Please refresh and try agai
 };
 }
 
-const creditBtn = document.getElementById('creditBtn');
-if (creditBtn) {
-creditBtn.onclick = () => {
-window.location.href = 'Credit.html';
-};
+// Simulate balance updates (replace with real data in production)
+function updateBalances(xhi = 0.00, zPoints = 0) {
+  const xhiElement = document.getElementById('xhiBalance');
+  const zElement = document.getElementById('zBalance');
+
+  if (xhiElement) xhiElement.textContent = xhi.toFixed(2);
+  if (zElement) zElement.textContent = zPoints.toLocaleString();
 }
+
+// Initialize balances
+updateBalances();
 
 const learnBtn = document.getElementById('learnBtn');
 if (learnBtn) {
@@ -129,21 +134,21 @@ document.querySelectorAll('.action-btn').forEach(btn => {
     e.preventDefault();
     const btnId = btn.id;
     const page = btn.dataset.page;
-    
+
     if (!buttonStates[btnId]) {
       // First tap - show info
       buttonStates[btnId] = true;
       btn.classList.add('info-shown');
-      
+
       const info = actionInfo[btnId];
       showModal(info.title, `<p>${info.content}</p><p style="margin-top:1rem; color:#FFD700; font-size:0.9rem;">Tap ${btn.textContent} again to continue</p>`);
-      
+
       // Reset state after 5 seconds
       setTimeout(() => {
         buttonStates[btnId] = false;
         btn.classList.remove('info-shown');
       }, 5000);
-      
+
     } else {
       // Second tap - navigate to page
       if (btnId === 'shopBtn') {

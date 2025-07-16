@@ -9,9 +9,18 @@
 </head>
 <body>
   <header>
-    <div style="display: flex; gap: 1rem;">
+    <div class="header-left">
       <button id="connectBtn">CONNECT WALLET</button>
-      <button id="creditBtn">CREDIT BUILD</button>
+    </div>
+    <div class="balance-display">
+      <div class="balance-item">
+        <span class="balance-label">XHI</span>
+        <span class="balance-value" id="xhiBalance">0.00</span>
+      </div>
+      <div class="balance-item">
+        <span class="balance-label">Z PTS</span>
+        <span class="balance-value" id="zBalance">0</span>
+      </div>
     </div>
     <img id="bang" src="Zwap_bang_3d.PNG" alt="Bang Symbol">
     <div id="bangMenu" class="dropdown-menu">
@@ -25,13 +34,13 @@
   <main>
     <img src="Zwap_logo_full.png" alt="ZWAP! Logo" class="logo">
     <h1>WELCOME TO ZWAP!</h1>
-    <p>EARN <span class="gold">$XHI</span> THROUGH WELLNESS, CREATIVITY, AND PLAY.</p>
+    <p>EARN <span class="gold">$XHI</span> AND <span class="z-points">Z POINTS</span> THROUGH WELLNESS, CREATIVITY, AND PLAY.</p>
     
     <div class="main-actions">
-      <button class="action-btn" id="moveBtn" data-page="move.html">MOVE</button>
-      <button class="action-btn" id="playBtn" data-page="play.html">PLAY</button>
-      <button class="action-btn" id="swapBtn" data-page="Swap.html">SWAP</button>
-      <button class="action-btn" id="shopBtn" data-page="#">SHOP</button>
+      <button class="action-btn swap-btn" id="swapBtn" data-page="Swap.html">SWAP</button>
+      <button class="action-btn earn-btn" id="earnBtn" data-page="play.html">EARN</button>
+      <button class="action-btn shop-btn" id="shopBtn" data-page="#">SHOP</button>
+      <button class="action-btn save-btn" id="saveBtn" data-page="#">SAVE</button>
     </div>
   </main>
 
