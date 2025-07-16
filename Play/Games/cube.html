@@ -11,12 +11,12 @@
     .game-container {
       position: relative;
       width: 100%;
-      min-height: calc(100vh - 200px);
+      min-height: calc(100vh - 160px);
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      padding: 2rem 1rem;
+      justify-content: flex-start;
+      padding: 1rem 1rem 2rem 1rem;
       z-index: 1;
     }
 
@@ -182,27 +182,26 @@
     .wallet-connected { color: #00ff00; }
     .wallet-disconnected { color: #ff6666; }
 
-    .instructions {
-      position: fixed;
-      bottom: 120px;
-      left: 1rem;
-      padding: 1rem;
-      background: rgba(0, 0, 0, 0.9);
+    .control-btn {
+      width: 40px;
+      height: 40px;
+      background: rgba(0, 0, 0, 0.8);
       border: 2px solid #00BFFF;
-      border-radius: 10px;
-      font-size: 0.8rem;
-      max-width: 280px;
-      z-index: 10;
-    }
-
-    .instructions h4 {
+      border-radius: 50%;
       color: #00BFFF;
-      margin-bottom: 0.5rem;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 15px rgba(0, 191, 255, 0.3);
     }
 
-    .instructions p {
-      margin: 0.3rem 0;
-      color: #CCCCCC;
+    .control-btn:hover {
+      background: rgba(0, 191, 255, 0.1);
+      box-shadow: 0 0 20px rgba(0, 191, 255, 0.5);
+      transform: scale(1.1);
     }
 
     .message {
@@ -255,10 +254,10 @@
         height: 60px;
       }
       
-      .instructions {
-        position: static;
-        margin-top: 1rem;
-        max-width: 100%;
+      .control-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
       }
     }
   </style>
@@ -285,8 +284,12 @@
       <div id="wallet-address" style="display: none;"></div>
     </div>
 
-    <!-- Game Title -->
-    <h1 class="game-title">XHI CUBE</h1>
+    <!-- Game Title with Controls -->
+    <div style="display: flex; align-items: center; justify-content: center; gap: 1rem; margin-bottom: 1rem;">
+      <button class="control-btn" id="volumeBtn" title="Toggle Volume">🔊</button>
+      <h1 class="game-title">CUBE</h1>
+      <button class="control-btn" id="instructionsBtn" title="Show Instructions">❓</button>
+    </div>
 
     <!-- 3D Cube Display -->
     <div class="cube-display">
@@ -384,14 +387,7 @@
       </button>
     </div>
 
-    <!-- Instructions -->
-    <div class="instructions">
-      <h4>HOW TO PLAY:</h4>
-      <p>• Connect wallet in ZWAP app</p>
-      <p>• Tap joystick to rotate cube</p>
-      <p>• Complete 5 rounds to earn XHI</p>
-      <p>• 4 moves per round maximum</p>
-    </div>
+    
 
     <!-- Message overlay -->
     <div class="message" id="message"></div>
@@ -538,6 +534,34 @@
         };
       }
     };
+
+    // Volume and Instructions controls
+    let volumeEnabled = true;
+    
+    document.getElementById('volumeBtn').addEventListener('click', function() {
+      volumeEnabled = !volumeEnabled;
+      this.textContent = volumeEnabled ? '🔊' : '🔇';
+      this.title = volumeEnabled ? 'Mute Volume' : 'Unmute Volume';
+    });
+    
+    document.getElementById('instructionsBtn').addEventListener('click', function() {
+      Swal.fire({
+        title: 'HOW TO PLAY',
+        html: `
+          <div style="text-align: left; color: #CCCCCC;">
+            <p>• Connect wallet in ZWAP app</p>
+            <p>• Tap joystick to rotate cube</p>
+            <p>• Complete 5 rounds to earn XHI</p>
+            <p>• 4 moves per round maximum</p>
+          </div>
+        `,
+        background: '#111',
+        color: '#fff',
+        showCloseButton: true,
+        showConfirmButton: false,
+        customClass: { popup: 'swal2-popup' }
+      });
+    });
 
     // Test button for development (remove in production)
     document.addEventListener('keydown', function (e) {
