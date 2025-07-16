@@ -77,11 +77,21 @@ header {
   letter-spacing: 1px;
 }
 
+.balance-label.xhi {
+  color: #FFD700;
+  text-shadow: 0 0 8px #FFD700;
+}
+
+.balance-label.zpts {
+  color: #9d4edd;
+  text-shadow: 0 0 8px #9d4edd;
+}
+
 .balance-value {
   font-size: 1.1rem;
   font-weight: 800;
-  color: #FFD700;
-  text-shadow: 0 0 8px #FFD700;
+  color: #FFFFFF;
+  text-shadow: 0 0 8px #FFFFFF;
 }
 
 #connectBtn {
