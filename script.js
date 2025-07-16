@@ -261,6 +261,9 @@ const actionInfo = {
 
 // Handle action button clicks
 document.querySelectorAll('.action-btn').forEach(btn => {
+  // Skip EARN button as it has its own dedicated handler
+  if (btn.id === 'earnBtn') return;
+  
   btn.onclick = (e) => {
     e.preventDefault();
     const btnId = btn.id;
