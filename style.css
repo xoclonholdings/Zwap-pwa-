@@ -205,9 +205,9 @@ p {
 }
 
 .earn-btn {
-  background: linear-gradient(145deg, #28a745, #20c997);
-  border-color: #20c997;
-  box-shadow: 0 0 25px #20c997, 0 0 45px #28a745, inset 0 0 10px #1e7e34;
+  background: linear-gradient(145deg, #007BFF, #0099CC);
+  border-color: #0099CC;
+  box-shadow: 0 0 25px #0099CC, 0 0 45px #007BFF, inset 0 0 10px #0056b3;
 }
 
 .shop-btn {
@@ -217,9 +217,9 @@ p {
 }
 
 .save-btn {
-  background: linear-gradient(145deg, #fd7e14, #ff8500);
-  border-color: #ff8500;
-  box-shadow: 0 0 25px #ff8500, 0 0 45px #fd7e14, inset 0 0 10px #e8590c;
+  background: linear-gradient(145deg, #FF00FF, #CC00CC);
+  border-color: #FF00FF;
+  box-shadow: 0 0 25px #FF00FF, 0 0 45px #CC00CC, inset 0 0 10px #990099;
 }
 
 .action-btn:hover {
@@ -232,7 +232,7 @@ p {
 }
 
 .earn-btn:hover {
-  box-shadow: 0 0 35px #20c997, 0 0 55px #28a745, inset 0 0 15px #155724;
+  box-shadow: 0 0 35px #0099CC, 0 0 55px #007BFF, inset 0 0 15px #003366;
 }
 
 .shop-btn:hover {
@@ -240,7 +240,7 @@ p {
 }
 
 .save-btn:hover {
-  box-shadow: 0 0 35px #ff8500, 0 0 55px #fd7e14, inset 0 0 15px #d63384;
+  box-shadow: 0 0 35px #FF00FF, 0 0 55px #CC00CC, inset 0 0 15px #660066;
 }
 
 .action-btn.info-shown {
