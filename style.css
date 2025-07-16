@@ -125,11 +125,20 @@ p {
   font-size: 1rem;
 }
 
-#startButton {
+.main-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.action-btn {
   background: linear-gradient(145deg, #007BFF, #00BFFF);
   border: 2px solid #00BFFF;
-  padding: 1.2rem 3rem;
-  font-size: 1.4rem;
+  padding: 1.5rem 2rem;
+  font-size: 1.3rem;
   font-weight: 800;
   letter-spacing: 1px;
   cursor: pointer;
@@ -137,14 +146,26 @@ p {
   border-radius: 16px;
   box-shadow: 0 0 25px #00BFFF, 0 0 45px #FF00FF, inset 0 0 10px #0056b3;
   transition: all 0.3s ease;
-  width: 70%;
-  max-width: 340px;
-  margin-top: 1.5rem;
+  position: relative;
+  overflow: hidden;
 }
 
-#startButton:hover {
+.action-btn:hover {
   background: #0056b3;
   box-shadow: 0 0 35px #00BFFF, 0 0 55px #FF00FF, inset 0 0 15px #003366;
+  transform: scale(1.05);
+}
+
+.action-btn.info-shown {
+  background: linear-gradient(145deg, #28a745, #20c997);
+  border-color: #20c997;
+}
+
+@media (max-width: 600px) {
+  .main-actions {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
 }
 
 .large-btn {

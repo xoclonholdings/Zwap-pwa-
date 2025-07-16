@@ -100,21 +100,60 @@ showModal('CONTACT US', `
 };
 }
 
-const startBtn = document.getElementById('startButton');
-if (startBtn) {
-startBtn.onclick = (e) => {
-e.preventDefault();
-console.log('Start button clicked'); // Debug log
-showModal('CHOOSE AN ACTION', `
-<div style="display:flex; flex-direction:column; gap:1rem; max-width:300px; margin:auto;">
-<button class="large-btn" onclick="window.location.href='move.html'">MOVE</button>
-<button class="large-btn" onclick="window.location.href='play.html'">PLAY</button>
-<button class="large-btn" onclick="window.location.href='Swap.html'">SWAP</button>
-<button class="large-btn" onclick="shopComingSoon()">SHOP</button>
-</div>
-`);
+// Track which buttons have shown info
+const buttonStates = {};
+
+// Action button descriptions
+const actionInfo = {
+  moveBtn: {
+    title: 'MOVE TO EARN',
+    content: 'Walk or dance to earn <span class="gold">$XHI</span> rewards through movement-based activities.'
+  },
+  playBtn: {
+    title: 'PLAY TO EARN',
+    content: 'Play faucet games to earn daily <span class="gold">$XHI</span> rewards. Choose from Cube, Trivia, Build, and Spin games.'
+  },
+  swapBtn: {
+    title: 'SWAP TOKENS',
+    content: 'Instantly exchange <span class="gold">$XHI</span> for other assets in our decentralized swap platform.'
+  },
+  shopBtn: {
+    title: 'SHOP MARKETPLACE',
+    content: 'Shop marketplace coming soon for <span class="gold">$XHI</span> holders. Buy exclusive items and NFTs.'
+  }
 };
-}
+
+// Handle action button clicks
+document.querySelectorAll('.action-btn').forEach(btn => {
+  btn.onclick = (e) => {
+    e.preventDefault();
+    const btnId = btn.id;
+    const page = btn.dataset.page;
+    
+    if (!buttonStates[btnId]) {
+      // First tap - show info
+      buttonStates[btnId] = true;
+      btn.classList.add('info-shown');
+      
+      const info = actionInfo[btnId];
+      showModal(info.title, `<p>${info.content}</p><p style="margin-top:1rem; color:#FFD700; font-size:0.9rem;">Tap ${btn.textContent} again to continue</p>`);
+      
+      // Reset state after 5 seconds
+      setTimeout(() => {
+        buttonStates[btnId] = false;
+        btn.classList.remove('info-shown');
+      }, 5000);
+      
+    } else {
+      // Second tap - navigate to page
+      if (btnId === 'shopBtn') {
+        shopComingSoon();
+      } else if (page && page !== '#') {
+        window.location.href = page;
+      }
+    }
+  };
+});
 
 window.shopComingSoon = function() {
 Swal.fire({
