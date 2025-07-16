@@ -29,31 +29,162 @@ customClass: { popup: 'swal2-popup' }
 });
 }
 
+// Global variables for wallet connection
+let walletProvider = null;
+let connectedAccount = null;
+
 const connectBtn = document.getElementById('connectBtn');
 if (connectBtn) {
 connectBtn.onclick = async () => {
 try {
-// Basic wallet connect simulation
-if (typeof window.ethereum !== 'undefined') {
-try {
-const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-showModal('WALLET CONNECTED', `<p>Connected to wallet: ${accounts[0].substring(0,6)}...${accounts[0].substring(38)}</p>`);
+await connectWallet();
 } catch (error) {
 console.error('Wallet connection error:', error);
-if (error.code === 4001) {
-showModal('WALLET CONNECTION', '<p>Connection rejected by user.</p>');
-} else {
-showModal('WALLET CONNECTION', '<p>Failed to connect wallet. Please try again.</p>');
-}
-}
-} else {
-showModal('WALLET CONNECTION', '<p>Please install MetaMask or another Web3 wallet to connect.</p>');
-}
-} catch (error) {
-console.error('Unexpected error:', error);
-showModal('ERROR', '<p>An unexpected error occurred. Please refresh and try again.</p>');
+showModal('WALLET CONNECTION ERROR', '<p>Failed to connect wallet. Please try again.</p>');
 }
 };
+}
+
+async function connectWallet() {
+try {
+// Show wallet selection modal
+const result = await Swal.fire({
+title: '<span style="font-family:\'Orbitron\'">SELECT WALLET</span>',
+html: `
+<div style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem;">
+<button class="wallet-option" data-wallet="metamask" style="background: linear-gradient(145deg, #f6851b, #e2761b); border: 2px solid #f6851b; padding: 1rem; border-radius: 10px; color: white; font-weight: bold; cursor: pointer;">
+🦊 MetaMask
+</button>
+<button class="wallet-option" data-wallet="walletconnect" style="background: linear-gradient(145deg, #3b99fc, #1e88e5); border: 2px solid #3b99fc; padding: 1rem; border-radius: 10px; color: white; font-weight: bold; cursor: pointer;">
+📱 WalletConnect
+</button>
+<button class="wallet-option" data-wallet="coinbase" style="background: linear-gradient(145deg, #0052ff, #0041cc); border: 2px solid #0052ff; padding: 1rem; border-radius: 10px; color: white; font-weight: bold; cursor: pointer;">
+🏪 Coinbase Wallet
+</button>
+</div>
+`,
+background: '#111',
+color: '#fff',
+showCloseButton: true,
+showConfirmButton: false,
+customClass: { popup: 'swal2-popup' },
+didOpen: () => {
+// Add click handlers for wallet options
+document.querySelectorAll('.wallet-option').forEach(btn => {
+btn.addEventListener('click', async (e) => {
+const walletType = e.target.dataset.wallet;
+Swal.close();
+await handleWalletConnection(walletType);
+});
+});
+}
+});
+} catch (error) {
+console.error('Error showing wallet selection:', error);
+}
+}
+
+async function handleWalletConnection(walletType) {
+try {
+showModal('CONNECTING...', '<p>Connecting to your wallet...</p>');
+
+let accounts = [];
+let provider = null;
+
+switch (walletType) {
+case 'metamask':
+if (typeof window.ethereum !== 'undefined') {
+try {
+accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+provider = window.ethereum;
+connectedAccount = accounts[0];
+walletProvider = provider;
+} catch (error) {
+throw new Error('MetaMask connection rejected or failed');
+}
+} else {
+throw new Error('MetaMask not installed. Please install MetaMask extension.');
+}
+break;
+
+case 'walletconnect':
+try {
+// Initialize WalletConnect provider
+const WalletConnectProvider = window.WalletConnectProvider.default;
+provider = new WalletConnectProvider({
+infuraId: "your-infura-id", // You'll need to get a free Infura ID
+chainId: 1,
+rpc: {
+1: "https://mainnet.infura.io/v3/your-infura-id",
+137: "https://polygon-rpc.com/",
+56: "https://bsc-dataseed.binance.org/"
+}
+});
+
+await provider.enable();
+accounts = provider.accounts;
+connectedAccount = accounts[0];
+walletProvider = provider;
+} catch (error) {
+throw new Error('WalletConnect connection failed');
+}
+break;
+
+case 'coinbase':
+if (typeof window.ethereum !== 'undefined' && window.ethereum.isCoinbaseWallet) {
+try {
+accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+provider = window.ethereum;
+connectedAccount = accounts[0];
+walletProvider = provider;
+} catch (error) {
+throw new Error('Coinbase Wallet connection rejected or failed');
+}
+} else {
+throw new Error('Coinbase Wallet not detected. Please install Coinbase Wallet.');
+}
+break;
+
+default:
+throw new Error('Unknown wallet type');
+}
+
+if (accounts.length > 0) {
+// Update connect button text
+const connectBtn = document.getElementById('connectBtn');
+if (connectBtn) {
+connectBtn.textContent = `${accounts[0].substring(0,6)}...${accounts[0].substring(38)}`;
+connectBtn.style.background = 'linear-gradient(145deg, #00ff00, #00cc00)';
+}
+
+// Update balance display with mock data (replace with real blockchain calls)
+updateBalances(1.2345, 150);
+
+// Notify cube game if on game page
+if (typeof window.ZwapCubeGame !== 'undefined') {
+window.ZwapCubeGame.initializeWallet({
+address: accounts[0],
+balance: 1.2345,
+isPremium: false,
+walletType: walletType
+});
+}
+
+showModal('WALLET CONNECTED', `
+<div style="text-align: center;">
+<p style="color: #00ff00; font-weight: bold;">✅ Successfully Connected!</p>
+<p>Wallet: ${accounts[0].substring(0,8)}...${accounts[0].substring(36)}</p>
+<p style="font-size: 0.9rem; color: #ccc;">Wallet Type: ${walletType.charAt(0).toUpperCase() + walletType.slice(1)}</p>
+</div>
+`);
+} else {
+throw new Error('No accounts found');
+}
+
+} catch (error) {
+console.error('Wallet connection error:', error);
+showModal('CONNECTION FAILED', `<p style="color: #ff6666;">${error.message}</p>`);
+}
 }
 
 // Simulate balance updates (replace with real data in production)

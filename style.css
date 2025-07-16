@@ -252,16 +252,16 @@ p {
   .balance-display {
     gap: 1rem;
   }
-  
+
   .balance-item {
     min-width: 70px;
     padding: 0.4rem 0.8rem;
   }
-  
+
   .balance-label {
     font-size: 0.6rem;
   }
-  
+
   .balance-value {
     font-size: 1rem;
   }
@@ -272,12 +272,12 @@ p {
     grid-template-columns: 1fr;
     gap: 1rem;
   }
-  
+
   header {
     flex-wrap: wrap;
     gap: 0.5rem;
   }
-  
+
   .balance-display {
     order: 3;
     width: 100%;
@@ -348,9 +348,17 @@ p {
 }
 
 .swal2-popup {
-  width: 90% !important;
-  max-width: 500px !important;
-  backdrop-filter: blur(8px);
-  border: 1px solid #00BFFF;
-  border-radius: 10px;
+  font-family: 'Orbitron', sans-serif !important;
+}
+
+.wallet-option {
+  transition: all 0.3s ease;
+  font-family: 'Orbitron', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.wallet-option:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
 }
