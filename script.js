@@ -79,9 +79,9 @@ const earnBtn = document.getElementById('earnBtn');
 if (earnBtn) {
 earnBtn.onclick = () => {
 showModal('EARN <span class="gold">$XHI</span>', `
-<p>Play faucet games or move to earn <span class="gold">$XHI</span> rewards.</p>
+<p>Choose how you want to earn <span class="gold">$XHI</span> rewards:</p>
 <div style="display:flex; justify-content:center; gap:1rem; margin-top:1rem;">
-<button class="large-btn">MOVE</button>
+<button class="large-btn" onclick="window.location.href='move.html'">MOVE</button>
 <button class="large-btn" onclick="window.location.href='play.html'">PLAY</button>
 </div>
 `);
