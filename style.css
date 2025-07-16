@@ -185,6 +185,38 @@ p {
   font-size: 1rem;
 }
 
+.tagline {
+  font-family: 'Orbitron', 'Courier New', monospace;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #00BFFF;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 
+    0 0 10px #00BFFF,
+    0 0 20px #00BFFF,
+    0 0 30px #00BFFF;
+  background: linear-gradient(90deg, #00BFFF 0%, #FFD700 50%, #00BFFF 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: techGlow 3s ease-in-out infinite alternate;
+  line-height: 1.4;
+  margin: 1.5rem 0;
+}
+
+@keyframes techGlow {
+  0% {
+    background-position: 0% 50%;
+    filter: brightness(1);
+  }
+  100% {
+    background-position: 100% 50%;
+    filter: brightness(1.2);
+  }
+}
+
 .main-actions {
   display: grid;
   grid-template-columns: 1fr 1fr;
