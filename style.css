@@ -384,14 +384,12 @@ p {
 .mini-logo {
   width: 80px;
   margin: 0 auto 0.5rem auto;
-  filter: drop-shadow(0 0 20px #00BFFF) drop-shadow(0 0 30px #FF00FF);
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .mini-logo:hover {
   transform: scale(1.1);
-  filter: drop-shadow(0 0 30px #00BFFF) drop-shadow(0 0 40px #FF00FF);
 }
 
 .gold {
