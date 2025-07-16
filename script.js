@@ -216,7 +216,28 @@ updateBalances();
 const learnBtn = document.getElementById('learnBtn');
 if (learnBtn) {
 learnBtn.onclick = () => {
-showModal('ABOUT US', '<p>ZWAP! is your ecosystem for wellness, creativity, and gaming.<br/><a href="#" style="color:#FFD700;">Download Whitepaper 📄</a></p>');
+showModal('ABOUT ZWAP!', `
+<div style="text-align: left; line-height: 1.8;">
+<p><strong>ZWAP!</strong> is a revolutionary ecosystem that combines wellness, creativity, and gaming to reward your daily activities.</p>
+
+<p><strong>🎯 Our Mission:</strong><br/>
+We believe everyone should be rewarded for living an active, creative lifestyle. ZWAP! transforms your daily wellness activities into earning opportunities through blockchain technology.</p>
+
+<p><strong>💰 Earn $XHI by:</strong><br/>
+• Walking, dancing, and staying active<br/>
+• Playing engaging mini-games<br/>
+• Participating in creative challenges<br/>
+• Building your credit score<br/>
+• Shopping in our marketplace</p>
+
+<p><strong>🔗 Blockchain Integration:</strong><br/>
+Built on secure blockchain infrastructure, ensuring transparent and fair rewards distribution. Your $XHI tokens can be swapped, saved, or used across our platform.</p>
+
+<p style="text-align: center; margin-top: 1.5rem;">
+<a href="#" style="color:#FFD700; font-weight: bold;">📄 Download Whitepaper</a>
+</p>
+</div>
+`);
 };
 }
 
@@ -236,16 +257,33 @@ showModal('EARN <span class="gold">$XHI</span>', `
 const contactBtn = document.getElementById('contactBtn');
 if (contactBtn) {
 contactBtn.onclick = () => {
-showModal('CONTACT US', `
-<form>
-<input type="email" placeholder="Your Email" style="width:100%;padding:0.5rem;margin-bottom:0.5rem;">
-<textarea placeholder="Message" style="width:100%;padding:0.5rem;margin-bottom:0.5rem;"></textarea>
-</form>
-<p>
-<a href="https://x.com/xoclonholdings" target="_blank" style="color:#00BFFF;margin-right:10px;">X</a>
-<a href="https://github.com/xoclonholdings" target="_blank" style="color:#00BFFF;margin-right:10px;">GitHub</a>
-<a href="https://t.me/xhi_coin" target="_blank" style="color:#00BFFF;">Telegram</a>
+showModal('GET IN TOUCH', `
+<div style="text-align: left;">
+<p style="margin-bottom: 1.5rem; text-align: center; color: #CCCCCC;">
+We'd love to hear from you! Whether you have questions, feedback, or partnership inquiries, our team is here to help.
 </p>
+
+<form style="margin-bottom: 2rem;">
+<input type="email" placeholder="Your Email Address" style="width:100%;padding:0.8rem;margin-bottom:1rem;border-radius:8px;">
+<textarea placeholder="Tell us what's on your mind..." rows="4" style="width:100%;padding:0.8rem;margin-bottom:1rem;border-radius:8px;resize:vertical;"></textarea>
+<button type="submit" style="width:100%;padding:0.8rem;background:#00BFFF;color:white;border:none;border-radius:8px;font-weight:bold;cursor:pointer;">Send Message</button>
+</form>
+
+<div style="text-align: center;">
+<p style="margin-bottom: 1rem; color: #CCCCCC; font-weight: bold;">Connect with us on social media:</p>
+<div style="display: flex; justify-content: center; gap: 2rem; align-items: center;">
+<a href="https://x.com/xoclonholdings" target="_blank" style="color:#00BFFF; text-decoration:none; font-weight:bold;">
+🐦 Follow us on X
+</a>
+<a href="https://github.com/xoclonholdings" target="_blank" style="color:#00BFFF; text-decoration:none; font-weight:bold;">
+💻 GitHub Repository
+</a>
+<a href="https://t.me/xhi_coin" target="_blank" style="color:#00BFFF; text-decoration:none; font-weight:bold;">
+💬 Join Telegram
+</a>
+</div>
+</div>
+</div>
 `);
 };
 }
@@ -257,19 +295,107 @@ const buttonStates = {};
 const actionInfo = {
   moveBtn: {
     title: 'MOVE TO EARN',
-    content: 'Walk or dance to earn <span class="gold">$XHI</span> rewards through movement-based activities.'
+    content: `
+    <div style="text-align: left; line-height: 1.6;">
+    <p><strong>Transform your daily movement into <span class="gold">$XHI</span> rewards!</strong></p>
+    
+    <p><strong>🚶‍♀️ Walk-to-Earn:</strong><br/>
+    Connect your fitness tracker or use your phone's built-in step counter to earn rewards for every step you take. Whether you're walking to work, hiking trails, or just moving around your home - every step counts!</p>
+    
+    <p><strong>💃 Dance-to-Earn:</strong><br/>
+    Join our dance challenges and earn <span class="gold">$XHI</span> by showcasing your moves! From structured routines to freestyle sessions, get your groove on and get rewarded.</p>
+    
+    <p><strong>🏃‍♂️ Fitness Activities:</strong><br/>
+    Running, cycling, yoga, swimming - track any fitness activity and earn proportional rewards based on duration and intensity.</p>
+    
+    <p style="color: #FFD700; font-weight: bold; text-align: center; margin-top: 1rem;">
+    Start moving today and watch your <span class="gold">$XHI</span> balance grow!
+    </p>
+    </div>
+    `
   },
   playBtn: {
     title: 'PLAY TO EARN',
-    content: 'Play faucet games to earn daily <span class="gold">$XHI</span> rewards. Choose from Cube, Trivia, Build, and Spin games.'
+    content: `
+    <div style="text-align: left; line-height: 1.6;">
+    <p><strong>Dive into our gaming ecosystem and earn <span class="gold">$XHI</span> while having fun!</strong></p>
+    
+    <p><strong>🎮 Available Games:</strong></p>
+    <ul style="margin-left: 1rem;">
+    <li><strong>Cube:</strong> Test your spatial reasoning with our 3D puzzle cube game</li>
+    <li><strong>Trivia:</strong> Challenge your knowledge across various topics</li>
+    <li><strong>Build:</strong> Create and construct in our virtual building environment</li>
+    <li><strong>Spin:</strong> Try your luck with our reward wheel</li>
+    </ul>
+    
+    <p><strong>💰 Earning Mechanics:</strong><br/>
+    Each game offers daily earning opportunities with skill-based and luck-based rewards. Complete challenges, achieve high scores, and participate in tournaments to maximize your <span class="gold">$XHI</span> earnings.</p>
+    
+    <p><strong>🎯 Fair Play:</strong><br/>
+    All games use blockchain verification to ensure fair play and transparent reward distribution.</p>
+    
+    <p style="color: #FFD700; font-weight: bold; text-align: center; margin-top: 1rem;">
+    Connect your wallet and start earning up to 0.015 <span class="gold">$XHI</span> per game session!
+    </p>
+    </div>
+    `
   },
   swapBtn: {
-    title: 'SWAP TOKENS',
-    content: 'Instantly exchange <span class="gold">$XHI</span> for other assets in our decentralized swap platform.'
+    title: 'DECENTRALIZED SWAP',
+    content: `
+    <div style="text-align: left; line-height: 1.6;">
+    <p><strong>Exchange your <span class="gold">$XHI</span> tokens with our secure, decentralized swap platform!</strong></p>
+    
+    <p><strong>🔄 Supported Exchanges:</strong><br/>
+    Swap <span class="gold">$XHI</span> for major cryptocurrencies including ETH, BTC, USDC, and other popular tokens. Real-time pricing ensures you always get fair market rates.</p>
+    
+    <p><strong>⚡ Lightning Fast:</strong><br/>
+    Our optimized smart contracts provide near-instant swaps with minimal gas fees. No lengthy waiting periods or complex procedures.</p>
+    
+    <p><strong>🔐 Secure & Trustless:</strong><br/>
+    Built on proven blockchain technology with audited smart contracts. Your funds never leave your control during the swap process.</p>
+    
+    <p><strong>📊 Advanced Features:</strong><br/>
+    • Real-time price charts and market data<br/>
+    • Slippage protection and MEV resistance<br/>
+    • Limit orders and price alerts<br/>
+    • Liquidity mining opportunities</p>
+    
+    <p style="color: #FFD700; font-weight: bold; text-align: center; margin-top: 1rem;">
+    Trade with confidence on our decentralized exchange!
+    </p>
+    </div>
+    `
   },
   shopBtn: {
-    title: 'SHOP MARKETPLACE',
-    content: 'Shop marketplace coming soon for <span class="gold">$XHI</span> holders. Buy exclusive items and NFTs.'
+    title: 'EXCLUSIVE MARKETPLACE',
+    content: `
+    <div style="text-align: left; line-height: 1.6;">
+    <p><strong>Spend your <span class="gold">$XHI</span> tokens in our exclusive marketplace!</strong></p>
+    
+    <p><strong>🛍️ Coming Soon:</strong><br/>
+    Our marketplace will feature exclusive items, NFTs, and digital goods available only to <span class="gold">$XHI</span> holders.</p>
+    
+    <p><strong>🎨 Planned Categories:</strong></p>
+    <ul style="margin-left: 1rem;">
+    <li><strong>Digital Art & NFTs:</strong> Exclusive artwork and collectibles</li>
+    <li><strong>Gaming Assets:</strong> Special items, skins, and power-ups</li>
+    <li><strong>Wellness Products:</strong> Fitness gear, supplements, and health tools</li>
+    <li><strong>Virtual Real Estate:</strong> Digital land and metaverse properties</li>
+    <li><strong>Creator Tools:</strong> Software, templates, and creative resources</li>
+    </ul>
+    
+    <p><strong>💎 Member Benefits:</strong><br/>
+    <span class="gold">$XHI</span> holders will receive exclusive discounts, early access to limited editions, and special member-only items.</p>
+    
+    <p><strong>🤝 Creator Economy:</strong><br/>
+    Artists and creators can list their work and earn <span class="gold">$XHI</span> through sales, with low platform fees supporting the creative community.</p>
+    
+    <p style="color: #FFD700; font-weight: bold; text-align: center; margin-top: 1rem;">
+    Start earning <span class="gold">$XHI</span> now to be ready for marketplace launch!
+    </p>
+    </div>
+    `
   }
 };
 

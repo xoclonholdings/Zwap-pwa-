@@ -412,7 +412,7 @@ p {
 }
 
 .swal2-popup {
-  font-family: 'Orbitron', sans-serif !important;
+  font-family: 'Inter', 'Segoe UI', 'Roboto', sans-serif !important;
   background: linear-gradient(145deg, #1a1a1a, #2a2a2a) !important;
   border: 2px solid #00BFFF !important;
   border-radius: 20px !important;
@@ -507,7 +507,7 @@ p {
   border-radius: 10px !important;
   color: #ffffff !important;
   padding: 0.8rem !important;
-  font-family: 'Orbitron', sans-serif !important;
+  font-family: 'Inter', 'Segoe UI', 'Roboto', sans-serif !important;
   font-size: 1rem !important;
   margin: 0.5rem 0 !important;
   width: 100% !important;
