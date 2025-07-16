@@ -239,9 +239,9 @@ showModal('CONTACT US', `
 <textarea placeholder="Message" style="width:100%;padding:0.5rem;margin-bottom:0.5rem;"></textarea>
 </form>
 <p>
-<a href="#" style="color:#00BFFF;margin-right:10px;">X</a>
-<a href="#" style="color:#00BFFF;margin-right:10px;">GitHub</a>
-<a href="#" style="color:#00BFFF;">Telegram</a>
+<a href="https://x.com/xoclonholdings" target="_blank" style="color:#00BFFF;margin-right:10px;">X</a>
+<a href="https://github.com/xoclonholdings" target="_blank" style="color:#00BFFF;margin-right:10px;">GitHub</a>
+<a href="https://t.me/xhi_coin" target="_blank" style="color:#00BFFF;">Telegram</a>
 </p>
 `);
 };
