@@ -19,13 +19,24 @@ window.location.href = 'index.html';
 
 function showModal(title, htmlContent) {
 Swal.fire({
-title: `<span style="font-family:'Orbitron'">${title}</span>`,
+title: title,
 html: htmlContent,
-background: '#111',
+background: 'transparent',
 color: '#fff',
 showCloseButton: true,
 showConfirmButton: false,
-customClass: { popup: 'swal2-popup' }
+customClass: { 
+  popup: 'swal2-popup',
+  title: 'swal2-title',
+  htmlContainer: 'swal2-html-container',
+  closeButton: 'swal2-close'
+},
+backdrop: true,
+allowOutsideClick: true,
+allowEscapeKey: true,
+showClass: {
+  popup: 'swal2-show'
+}
 });
 }
 
