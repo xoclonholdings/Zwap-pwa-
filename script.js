@@ -346,8 +346,8 @@ const actionInfo = {
     <div style="text-align: left; line-height: 1.6;">
     <p><strong>Exchange your <span class="gold">$XHI</span> tokens with our secure, decentralized swap platform!</strong></p>
     
-    <p><strong>🔄 Supported Exchanges:</strong><br/>
-    Swap <span class="gold">$XHI</span> for major cryptocurrencies including ETH, BTC, USDC, and other popular tokens. Real-time pricing ensures you always get fair market rates.</p>
+    <p><strong>🔄 Supported Trading Pairs:</strong><br/>
+    Swap <span class="gold">$XHI</span> with POL, BTC, ETH, USDT, and SOL. Real-time pricing ensures you always get fair market rates for these premium cryptocurrency pairs.</p>
     
     <p><strong>⚡ Lightning Fast:</strong><br/>
     Our optimized smart contracts provide near-instant swaps with minimal gas fees. No lengthy waiting periods or complex procedures.</p>
@@ -361,9 +361,11 @@ const actionInfo = {
     • Limit orders and price alerts<br/>
     • Liquidity mining opportunities</p>
     
-    <p style="color: #FFD700; font-weight: bold; text-align: center; margin-top: 1rem;">
-    Trade with confidence on our decentralized exchange!
-    </p>
+    <div style="text-align: right; margin-top: 2rem;">
+    <button onclick="window.location.href='Swap.html'" style="background: linear-gradient(145deg, #00BFFF, #0099CC); border: none; color: white; padding: 0.8rem 1.5rem; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 1rem;">
+    SWAP →
+    </button>
+    </div>
     </div>
     `
   },
@@ -415,7 +417,7 @@ document.querySelectorAll('.action-btn').forEach(btn => {
       btn.classList.add('info-shown');
 
       const info = actionInfo[btnId];
-      showModal(info.title, `<p>${info.content}</p><p style="margin-top:1rem; color:#FFD700; font-size:0.9rem;">Tap ${btn.textContent} again to continue</p>`);
+      showModal(info.title, info.content);
 
       // Reset state after 5 seconds
       setTimeout(() => {
