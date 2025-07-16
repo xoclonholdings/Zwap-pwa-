@@ -90,8 +90,8 @@ header {
 .balance-value {
   font-size: 1.1rem;
   font-weight: 800;
-  color: #FFFFFF;
-  text-shadow: 0 0 8px #FFFFFF;
+  color: #C0C0C0;
+  text-shadow: 0 0 8px #C0C0C0;
 }
 
 #connectBtn {
