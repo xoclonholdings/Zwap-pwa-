@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -226,34 +225,34 @@
       .game-title {
         font-size: 2rem;
       }
-      
+
       .cube-display {
         width: 150px;
         height: 150px;
         margin: 1rem auto;
       }
-      
+
       .cube-face {
         width: 150px;
         height: 150px;
       }
-      
+
       .cube-face.front { transform: translateZ(75px); }
       .cube-face.back { transform: rotateY(180deg) translateZ(75px); }
       .cube-face.left { transform: rotateY(-90deg) translateZ(75px); }
       .cube-face.right { transform: rotateY(90deg) translateZ(75px); }
       .cube-face.top { transform: rotateX(90deg) translateZ(75px); }
       .cube-face.bottom { transform: rotateX(-90deg) translateZ(75px); }
-      
+
       .game-controls {
         gap: 1rem;
       }
-      
+
       .joystick {
         width: 60px;
         height: 60px;
       }
-      
+
       .control-btn {
         width: 35px;
         height: 35px;
@@ -387,7 +386,7 @@
       </button>
     </div>
 
-    
+
 
     <!-- Message overlay -->
     <div class="message" id="message"></div>
@@ -459,8 +458,16 @@
         } else {
           // Game complete
           gameState.playing = false;
-          document.getElementById('play-button').textContent = 'GAME COMPLETE';
+          document.getElementById('play-button').textContent = 'PLAY AGAIN';
+          document.getElementById('play-button').disabled = false;
           document.getElementById('joystick').classList.add('disabled');
+
+          // Record result in leaderboard
+          if (window.parent && window.parent.zwapLeaderboard) {
+            const totalScore = gameState.round * 1000 + (gameState.moves * 100);
+            window.parent.zwapLeaderboard.recordGameResult('cube', totalScore, gameState.xhiEarned);
+          }
+
           showMessage(`Game complete! Total earned: ${gameState.xhiEarned.toFixed(4)} XHI`);
         }
       }
@@ -531,13 +538,13 @@
 
     // Volume and Instructions controls
     let volumeEnabled = true;
-    
+
     document.getElementById('volumeBtn').addEventListener('click', function() {
       volumeEnabled = !volumeEnabled;
       this.textContent = volumeEnabled ? '🔊' : '🔇';
       this.title = volumeEnabled ? 'Mute Volume' : 'Unmute Volume';
     });
-    
+
     document.getElementById('instructionsBtn').addEventListener('click', function() {
       Swal.fire({
         title: 'HOW TO PLAY',
