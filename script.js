@@ -216,7 +216,7 @@ updateBalances();
 const learnBtn = document.getElementById('learnBtn');
 if (learnBtn) {
 learnBtn.onclick = () => {
-showModal('ENTERPRISE ECOSYSTEM OVERVIEW', `
+showModal('LEARN ABOUT ZWAP!', `
 <div style="text-align: left; line-height: 1.8;">
 <p><strong>ZWAP!</strong> represents the next generation of decentralized reward infrastructure, seamlessly integrating wellness optimization, creative expression, and gamified earning mechanisms.</p>
 
