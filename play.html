@@ -51,8 +51,8 @@ margin-bottom: 0.3rem;
 transform: scale(1.1);
 }
 
-/* Specific style for Build icon to make it more prominent */
-.game-block img[alt="Build"] {
+/* Specific style for BlockCraft icon to make it more prominent */
+.game-block img[alt="BlockCraft"] {
 width: 70px;
 height: 70px;
 filter: drop-shadow(0 0 20px #00BFFF) drop-shadow(0 0 40px #FF00FF);
@@ -70,7 +70,19 @@ margin-bottom: 2rem;
 </head>
 <body>
 <header>
+<div class="header-left">
 <button id="connectBtn">CONNECT WALLET</button>
+</div>
+<div class="balance-display drop-animation">
+<div class="balance-item">
+<span class="balance-label gold">XHI</span>
+<span class="balance-value" id="xhiBalance">0.00</span>
+</div>
+<div class="balance-item">
+<span class="balance-label zpts">Z PTS</span>
+<span class="balance-value" id="zBalance">0</span>
+</div>
+</div>
 <img id="bang" src="Zwap_bang_3d.PNG" alt="Bang Symbol">
 <div id="bangMenu" class="dropdown-menu">
 <button class="menu-btn" id="homeBtn">HOME</button>
@@ -107,8 +119,8 @@ margin-bottom: 2rem;
 <p>Trivia</p>
 </div>
 <div class="game-block" onclick="comingSoon()">
-<img src="Build.PNG" alt="Build" class="game-icon">
-<p>Build</p>
+<img src="BlockCraft.PNG" alt="BlockCraft" class="game-icon">
+<p>BlockCraft</p>
 </div>
 <div class="game-block" onclick="comingSoon()">
 <img src="Spin.PNG" alt="Spin" class="game-icon">
