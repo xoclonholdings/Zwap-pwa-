@@ -216,32 +216,75 @@ updateBalances();
 const learnBtn = document.getElementById('learnBtn');
 if (learnBtn) {
 learnBtn.onclick = () => {
-showModal('LEARN ABOUT ZWAP!', `
-<div style="text-align: left; line-height: 1.8;">
-<p><strong>ZWAP!</strong> represents the next generation of decentralized reward infrastructure, seamlessly integrating wellness optimization, creative expression, and gamified earning mechanisms.</p>
-
-<p><strong>🎯 Strategic Vision:</strong><br/>
-We are pioneering a paradigm shift in incentive-based lifestyle optimization. Our platform leverages advanced blockchain architecture to transform everyday wellness activities into quantifiable value creation opportunities.</p>
-
-<p><strong>💰 Revenue Generation Streams:</strong><br/>
-• Kinetic Energy Monetization (Movement-to-Earn Protocol)<br/>
-• Gamified Cognitive Engagement Rewards<br/>
-• Creative Content Monetization Framework<br/>
-• Credit Optimization Incentive Programs<br/>
-• Exclusive Marketplace Access Rights</p>
-
-<p><strong>🔗 Distributed Ledger Technology:</strong><br/>
-Our enterprise-grade blockchain infrastructure ensures complete transparency, immutable transaction records, and decentralized governance. Smart contract automation guarantees fair and immediate reward distribution across all ecosystem participants.</p>
-
-<p><strong>📊 Platform Analytics:</strong><br/>
-Real-time performance metrics, advanced earning optimization algorithms, and institutional-grade security protocols position ZWAP! as the premier choice for forward-thinking individuals seeking to maximize their lifestyle ROI.</p>
-
-<p style="text-align: center; margin-top: 1.5rem;">
-<a href="#" style="color:#FFD700; font-weight: bold;">📄 Access Technical Documentation</a>
-</p>
-</div>
-`);
+showLearnModal();
 };
+}
+
+function showLearnModal() {
+const learnContent = [
+{
+title: 'WHAT IS ZWAP?',
+content: '<p><strong>ZWAP!</strong> represents the next generation of decentralized reward infrastructure, seamlessly integrating wellness optimization, creative expression, and gamified earning mechanisms.</p>'
+},
+{
+title: 'STRATEGIC VISION',
+content: '<p><strong>🎯 Strategic Vision:</strong><br/>We are pioneering a paradigm shift in incentive-based lifestyle optimization. Our platform leverages advanced blockchain architecture to transform everyday wellness activities into quantifiable value creation opportunities.</p>'
+},
+{
+title: 'REVENUE GENERATION',
+content: '<p><strong>💰 Revenue Generation Streams:</strong><br/>• Kinetic Energy Monetization (Movement-to-Earn Protocol)<br/>• Gamified Cognitive Engagement Rewards<br/>• Creative Content Monetization Framework<br/>• Credit Optimization Incentive Programs<br/>• Exclusive Marketplace Access Rights</p>'
+},
+{
+title: 'BLOCKCHAIN TECHNOLOGY',
+content: '<p><strong>🔗 Distributed Ledger Technology:</strong><br/>Our enterprise-grade blockchain infrastructure ensures complete transparency, immutable transaction records, and decentralized governance. Smart contract automation guarantees fair and immediate reward distribution across all ecosystem participants.</p>'
+},
+{
+title: 'PLATFORM ANALYTICS',
+content: '<p><strong>📊 Platform Analytics:</strong><br/>Real-time performance metrics, advanced earning optimization algorithms, and institutional-grade security protocols position ZWAP! as the premier choice for forward-thinking individuals seeking to maximize their lifestyle ROI.</p><p style="text-align: center; margin-top: 1.5rem;"><a href="#" style="color:#FFD700; font-weight: bold;">📄 Access Technical Documentation</a></p>'
+}
+];
+
+showPaginatedModal(learnContent, 0);
+}
+
+function showPaginatedModal(content, currentIndex) {
+const current = content[currentIndex];
+const isLast = currentIndex === content.length - 1;
+
+Swal.fire({
+title: current.title,
+html: `
+<div style="text-align: left; line-height: 1.8;">
+${current.content}
+</div>
+<div style="text-align: center; margin-top: 2rem;">
+${!isLast ? '<button class="large-btn" onclick="nextPage()">NEXT →</button>' : ''}
+</div>
+`,
+background: 'transparent',
+color: '#fff',
+showCloseButton: true,
+showConfirmButton: false,
+customClass: { 
+popup: 'swal2-popup',
+title: 'swal2-title',
+htmlContainer: 'swal2-html-container',
+closeButton: 'swal2-close'
+},
+backdrop: true,
+allowOutsideClick: true,
+allowEscapeKey: true,
+showClass: {
+popup: 'swal2-show'
+},
+didOpen: () => {
+window.nextPage = () => {
+if (currentIndex < content.length - 1) {
+showPaginatedModal(content, currentIndex + 1);
+}
+};
+}
+});
 }
 
 const earnBtn = document.getElementById('earnBtn');
@@ -271,54 +314,71 @@ window.location.href = 'leaderboard.html';
 }
 
 function showZPointsOverview() {
-showModal('INTRODUCING Z POINTS', `
+const zPointsContent = [
+{
+title: 'INTRODUCING Z POINTS',
+content: '<p style="text-align: center; color: #B8B8B8; font-size: 1.3rem; font-weight: bold; margin-bottom: 1.5rem;">Your Gateway to Premium ZWAP! Benefits</p><p><strong style="color: #B8B8B8;">🎯 What are Z Points?</strong><br/>Z Points are your achievement currency within the ZWAP! ecosystem. Unlike <span class="gold">$XHI</span> tokens, Z Points represent your engagement level and unlock exclusive platform privileges.</p>'
+},
+{
+title: 'PREMIUM BENEFITS',
+content: '<p><strong style="color: #B8B8B8;">💎 Premium Membership Benefits:</strong><br/>• Remove faucet cooldowns for instant gameplay<br/>• Increase credit-building multipliers (earn credit faster)<br/>• Early access to marketplace discounts and premium features<br/>• Priority customer support and exclusive content</p>'
+},
+{
+title: 'EARNING Z POINTS',
+content: '<p><strong style="color: #B8B8B8;">🔄 How to Earn Z Points:</strong><br/>• Daily login streaks (Day 1: +2, Day 2: +4, Day 5: +10)<br/>• Completing games and challenges<br/>• Referring active users to the platform<br/>• Maintaining consistent engagement across MOVE and PLAY</p>'
+},
+{
+title: 'LEADERBOARD SYSTEM',
+content: '<p><strong style="color: #B8B8B8;">🏆 Leaderboard Integration:</strong><br/>Track your Z Points ranking against other users, view your achievement progress, and compete for additional rewards through our comprehensive leaderboard system.</p>'
+}
+];
+
+showZPointsPaginatedModal(zPointsContent, 0);
+}
+
+function showZPointsPaginatedModal(content, currentIndex) {
+const current = content[currentIndex];
+const isLast = currentIndex === content.length - 1;
+
+Swal.fire({
+title: current.title,
+html: `
 <div style="text-align: left; line-height: 1.8;">
-<p style="text-align: center; color: #B8B8B8; font-size: 1.3rem; font-weight: bold; margin-bottom: 1.5rem;">Your Gateway to Premium ZWAP! Benefits</p>
-
-<p><strong style="color: #B8B8B8;">🎯 What are Z Points?</strong><br/>
-Z Points are your achievement currency within the ZWAP! ecosystem. Unlike <span class="gold">$XHI</span> tokens, Z Points represent your engagement level and unlock exclusive platform privileges.</p>
-
-<p><strong style="color: #B8B8B8;">💎 Premium Membership Benefits:</strong><br/>
-• Remove faucet cooldowns for instant gameplay<br/>
-• Increase credit-building multipliers (earn credit faster)<br/>
-• Early access to marketplace discounts and premium features<br/>
-• Priority customer support and exclusive content</p>
-
-<p><strong style="color: #B8B8B8;">🔄 How to Earn Z Points:</strong><br/>
-• Daily login streaks (Day 1: +2, Day 2: +4, Day 5: +10)<br/>
-• Completing games and challenges<br/>
-• Referring active users to the platform<br/>
-• Maintaining consistent engagement across MOVE and PLAY</p>
-
-<p><strong style="color: #B8B8B8;">🏆 Leaderboard Integration:</strong><br/>
-Track your Z Points ranking against other users, view your achievement progress, and compete for additional rewards.</p>
-
+${current.content}
+</div>
 <div style="text-align: center; margin-top: 2rem;">
-<button class="large-btn" onclick="proceedToLeaderboard()">VIEW LEADERBOARD</button>
+${!isLast ? '<button class="large-btn" onclick="nextZPointsPage()">NEXT →</button>' : '<button class="large-btn" onclick="proceedToLeaderboard()">VIEW LEADERBOARD</button>'}
 </div>
-</div>
-`, true, 'z-points-modal', 'z-points-backdrop');
+`,
+background: 'transparent',
+color: '#fff',
+showCloseButton: true,
+showConfirmButton: false,
+customClass: { 
+popup: 'swal2-popup',
+title: 'swal2-title',
+htmlContainer: 'swal2-html-container',
+closeButton: 'swal2-close'
+},
+backdrop: true,
+allowOutsideClick: true,
+allowEscapeKey: true,
+showClass: {
+popup: 'swal2-show'
+},
+didOpen: () => {
+window.nextZPointsPage = () => {
+if (currentIndex < content.length - 1) {
+showZPointsPaginatedModal(content, currentIndex + 1);
 }
-
-function proceedToLeaderboard() {
-// Mark that user has seen Z Points overview
+};
+window.proceedToLeaderboard = () => {
 localStorage.setItem('zwapZPointsOverviewSeen', 'true');
-// Close modal and navigate to leaderboard
 Swal.close();
-window.location.href = 'leaderboard.html';wards through our comprehensive leaderboard system.</p>
-
-<p style="text-align: center; margin-top: 2rem;">
-<button onclick="proceedToLeaderboard()" style="background: linear-gradient(135deg, #B8B8B8, #A0A0A0); border: none; color: white; padding: 1rem 2rem; border-radius: 12px; font-weight: bold; cursor: pointer; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px;">
-VIEW LEADERBOARD →
-</button>
-</p>
-</div>
-`);
-}
-
-function proceedToLeaderboard() {
-localStorage.setItem('zwapZPointsOverviewSeen', 'true');
 window.location.href = 'leaderboard.html';
+};
+}
+});
 }
 
 const contactBtn = document.getElementById('contactBtn');
