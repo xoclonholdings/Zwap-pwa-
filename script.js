@@ -215,17 +215,33 @@ updateBalances();
 
 const learnBtn = document.getElementById('learnBtn');
 if (learnBtn) {
-  learnBtn.onclick = () => {
-    showModal('DISCOVER <span class="gold">$XHI</span> ECOSYSTEM', `
-      <div style="text-align: left; color: #e8e8e8; line-height: 1.8;">
-        <p><span class="gold">$XHI</span> represents the next evolution in utility-driven digital assets, powering a comprehensive ecosystem designed for the modern wellness economy.</p>
-        <p><strong>Infrastructure Excellence:</strong> Built on Polygon's industry-leading Layer 2 solution, delivering institutional-grade security with consumer-friendly transaction costs.</p>
-        <p><strong>Holistic Value Creation:</strong> Generate rewards through verified wellness activities, innovative creative challenges, and skill-based gaming experiences.</p>
-        <p><strong>Premium Utility:</strong> Access exclusive features, marketplace opportunities, and yield-generating staking mechanisms designed for long-term value appreciation.</p>
-        <p><strong>Strategic Vision:</strong> Join a pioneering community that's redefining the intersection of digital wellness, creativity, and financial empowerment.</p>
-      </div>
-    `);
-  };
+learnBtn.onclick = () => {
+showModal('ENTERPRISE ECOSYSTEM OVERVIEW', `
+<div style="text-align: left; line-height: 1.8;">
+<p><strong>ZWAP!</strong> represents the next generation of decentralized reward infrastructure, seamlessly integrating wellness optimization, creative expression, and gamified earning mechanisms.</p>
+
+<p><strong>🎯 Strategic Vision:</strong><br/>
+We are pioneering a paradigm shift in incentive-based lifestyle optimization. Our platform leverages advanced blockchain architecture to transform everyday wellness activities into quantifiable value creation opportunities.</p>
+
+<p><strong>💰 Revenue Generation Streams:</strong><br/>
+• Kinetic Energy Monetization (Movement-to-Earn Protocol)<br/>
+• Gamified Cognitive Engagement Rewards<br/>
+• Creative Content Monetization Framework<br/>
+• Credit Optimization Incentive Programs<br/>
+• Exclusive Marketplace Access Rights</p>
+
+<p><strong>🔗 Distributed Ledger Technology:</strong><br/>
+Our enterprise-grade blockchain infrastructure ensures complete transparency, immutable transaction records, and decentralized governance. Smart contract automation guarantees fair and immediate reward distribution across all ecosystem participants.</p>
+
+<p><strong>📊 Platform Analytics:</strong><br/>
+Real-time performance metrics, advanced earning optimization algorithms, and institutional-grade security protocols position ZWAP! as the premier choice for forward-thinking individuals seeking to maximize their lifestyle ROI.</p>
+
+<p style="text-align: center; margin-top: 1.5rem;">
+<a href="#" style="color:#FFD700; font-weight: bold;">📄 Access Technical Documentation</a>
+</p>
+</div>
+`);
+};
 }
 
 const earnBtn = document.getElementById('earnBtn');
@@ -243,17 +259,36 @@ showModal('EARN <span class="gold">$XHI</span>', `
 
 const contactBtn = document.getElementById('contactBtn');
 if (contactBtn) {
-  contactBtn.onclick = () => {
-    showModal('ENTERPRISE PARTNERSHIPS', `
-      <div style="text-align: left; color: #e8e8e8; line-height: 1.8;">
-        <p><strong>Strategic Engagement Channels:</strong></p>
-        <p>🌐 <strong>Executive Communications:</strong> <a href="https://x.com/xoclonholdings" target="_blank" style="color: #00BFFF; font-weight: 600;">@xoclonholdings</a></p>
-        <p>📡 <strong>Real-time Support:</strong> <a href="https://t.me/xhi_coin" target="_blank" style="color: #00BFFF; font-weight: 600;">@xhi_coin</a></p>
-        <p>⚡ <strong>Technical Innovation Hub:</strong> <a href="https://github.com/xoclonholdings" target="_blank" style="color: #00BFFF; font-weight: 600;">@xoclonholdings</a></p>
-        <p style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(0, 191, 255, 0.3);">Our dedicated partnership team is ready to discuss integration opportunities, strategic collaborations, and custom enterprise solutions within the <span class="gold">$XHI</span> ecosystem.</p>
-      </div>
-    `);
-  };
+contactBtn.onclick = () => {
+showModal('ENTERPRISE RELATIONS', `
+<div style="text-align: left;">
+<p style="margin-bottom: 1.5rem; text-align: center; color: #CCCCCC;">
+Connect with our executive team for strategic partnerships, institutional inquiries, and enterprise-level integration opportunities.
+</p>
+
+<form style="margin-bottom: 2rem;">
+<input type="email" placeholder="Corporate Email Address" style="width:100%;padding:0.8rem;margin-bottom:1rem;border-radius:8px;">
+<textarea placeholder="Describe your enterprise requirements and partnership objectives..." rows="4" style="width:100%;padding:0.8rem;margin-bottom:1rem;border-radius:8px;resize:vertical;"></textarea>
+<button type="submit" style="width:100%;padding:0.8rem;background:#00BFFF;color:white;border:none;border-radius:8px;font-weight:bold;cursor:pointer;">SUBMIT INQUIRY</button>
+</form>
+
+<div style="text-align: center;">
+<p style="margin-bottom: 1rem; color: #CCCCCC; font-weight: bold;">Professional Network Channels:</p>
+<div style="display: flex; justify-content: center; gap: 2rem; align-items: center;">
+<a href="https://x.com/xoclonholdings" target="_blank" style="color:#00BFFF; text-decoration:none; font-weight:bold;">
+🔗 Corporate Updates
+</a>
+<a href="https://github.com/xoclonholdings" target="_blank" style="color:#00BFFF; text-decoration:none; font-weight:bold;">
+💻 Technical Repository
+</a>
+<a href="https://t.me/xhi_coin" target="_blank" style="color:#00BFFF; text-decoration:none; font-weight:bold;">
+📱 Executive Communications
+</a>
+</div>
+</div>
+</div>
+`);
+};
 }
 
 // Track which buttons have shown info
