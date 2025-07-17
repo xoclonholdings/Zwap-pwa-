@@ -1,0 +1,101 @@
+You are scaffolding a Zed Lite™ onboarding module for a mobile-first crypto app called Zwap!.
+
+
+
+Here’s exactly what you need to generate for me:
+
+💼 Framework / Environment:
+
+React.js (modern functional components)
+
+Use WalletConnect SDK for wallet authentication
+
+Style spec:
+
+Mobile-first, dark theme (black background, gold accent colors)
+
+Font: Orbitron, monospace
+
+Large CTA buttons
+
+Emoji icons allowed inline for now
+
+📝 User Flow (as written logic, not just wireframe):
+
+
+
+1️⃣ On first load:
+
+Display this greeting text prominently:
+
+"Welcome to Zwap! Before we jump in… What would you like to do today?"
+2️⃣ Present 3 large buttons:
+
+Swap 💱: “Exchange tokens securely and easily.”
+
+Earn 🎯: “Claim free XHI through faucet rewards.”
+
+Shop 🛍️: “Browse and shop offers using your crypto.”
+
+
+
+3️⃣ Next step for any button tapped:
+
+Check if user’s wallet is connected via WalletConnect SDK.
+
+
+
+4️⃣ If wallet is NOT connected:
+
+Display modal prompt:
+
+"You’ll need a wallet to continue. Let’s get you connected or help you set one up."
+Provide 4 wallet connection options as buttons:
+
+Connect MetaMask
+
+Connect Trust Wallet
+
+Connect Speed Wallet
+
+“Help me create a wallet” (for beginners — link stub)
+
+
+
+5️⃣ Once wallet is connected:
+
+If Swap was selected → route to /swap view.
+
+If Earn was selected → route to /earn view.
+
+If Shop was selected → route to /shop view.
+
+
+
+6️⃣ Idle timeout detection:
+
+If user idle for 30 seconds after onboarding starts, show gentle reminder banner:
+
+"Need help? You can:
+🔹 Swap tokens
+🔹 Earn XHI
+🔹 Shop exclusive offers"
+
+
+🔒 Privacy principles:
+
+Do NOT include any analytics or tracking hooks.
+
+No cookies or persistent tracking in this onboarding module.
+
+✅ Output requirement:
+
+Deliver this as a single, self-contained React functional component file named:
+
+ZedLiteOnboarding.jsx.
+
+Wallet connection logic should stub out actual API keys and routing for now — focus on correct UI scaffolding and state handling.
+
+🎯 The goal is for this component to drop seamlessly into a React / WalletConnect mobile web app with dark theme UI.
+
+🔥 Claude: Output clean, modern, production-quality code ready for developer integration. No placeholder lorem ipsum text. All copy must match exactly as specified above.
