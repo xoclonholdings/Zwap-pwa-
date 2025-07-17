@@ -133,7 +133,7 @@ class ZEDCopilot {
     style.textContent = `
       #zed-button {
         position: fixed;
-        bottom: 20px;
+        bottom: 90px;
         right: 20px;
         width: 60px;
         height: 60px;
@@ -195,30 +195,30 @@ class ZEDCopilot {
 
       #zed-modal {
         position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.9);
+        top: 20px;
+        right: 20px;
+        width: 350px;
+        height: 500px;
+        background: transparent;
         z-index: 10001;
         display: none;
-        align-items: center;
-        justify-content: center;
-        backdrop-filter: blur(10px);
+        pointer-events: none;
       }
 
       .zed-container {
         background: linear-gradient(135deg, #000, #1a1a1a);
         border: 2px solid #FFD700;
         border-radius: 15px;
-        width: 90%;
-        max-width: 500px;
-        max-height: 80vh;
+        width: 100%;
+        height: 100%;
         display: flex;
         flex-direction: column;
         font-family: 'Orbitron', monospace;
         color: #fff;
         overflow: hidden;
+        pointer-events: all;
+        box-shadow: 0 0 30px rgba(255, 215, 0, 0.3), 0 0 60px rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(15px);
       }
 
       .zed-header {
@@ -266,7 +266,8 @@ class ZEDCopilot {
         flex: 1;
         padding: 1rem;
         overflow-y: auto;
-        max-height: 300px;
+        max-height: 200px;
+        min-height: 200px;
       }
 
       .zed-message {
@@ -380,9 +381,11 @@ class ZEDCopilot {
       }
 
       @media (max-width: 768px) {
-        .zed-container {
-          width: 95%;
-          max-height: 90vh;
+        #zed-modal {
+          top: 10px;
+          right: 10px;
+          width: 300px;
+          height: 450px;
         }
         
         .zed-quick-actions {
@@ -391,6 +394,16 @@ class ZEDCopilot {
         
         .zed-quick-actions button {
           text-align: center;
+        }
+      }
+
+      @media (max-width: 480px) {
+        #zed-modal {
+          top: 10px;
+          right: 10px;
+          left: 10px;
+          width: auto;
+          height: 400px;
         }
       }
     `;
@@ -460,9 +473,13 @@ class ZEDCopilot {
     if (this.isActive) {
       this.closeInterface();
     } else {
-      modal.style.display = 'flex';
+      modal.style.display = 'block';
       this.isActive = true;
-      document.getElementById('zed-input').focus();
+      // Small delay to ensure modal is rendered before focusing
+      setTimeout(() => {
+        const input = document.getElementById('zed-input');
+        if (input) input.focus();
+      }, 100);
     }
   }
 
