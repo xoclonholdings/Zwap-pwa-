@@ -257,6 +257,56 @@ showModal('EARN <span class="gold">$XHI</span>', `
 };
 }
 
+const leaderboardBtn = document.getElementById('leaderboardBtn');
+if (leaderboardBtn) {
+leaderboardBtn.onclick = () => {
+// Check if user has seen Z Points overview before
+const hasSeenZPointsOverview = localStorage.getItem('zwapZPointsOverviewSeen');
+if (!hasSeenZPointsOverview) {
+showZPointsOverview();
+} else {
+window.location.href = 'leaderboard.html';
+}
+};
+}
+
+function showZPointsOverview() {
+showModal('INTRODUCING Z POINTS', `
+<div style="text-align: left; line-height: 1.8;">
+<p style="text-align: center; color: #B8B8B8; font-size: 1.3rem; font-weight: bold; margin-bottom: 1.5rem;">Your Gateway to Premium ZWAP! Benefits</p>
+
+<p><strong style="color: #B8B8B8;">🎯 What are Z Points?</strong><br/>
+Z Points are your achievement currency within the ZWAP! ecosystem. Unlike <span class="gold">$XHI</span> tokens, Z Points represent your engagement level and unlock exclusive platform privileges.</p>
+
+<p><strong style="color: #B8B8B8;">💎 Premium Membership Benefits:</strong><br/>
+• Remove faucet cooldowns for instant gameplay<br/>
+• Increase credit-building multipliers (earn credit faster)<br/>
+• Early access to marketplace discounts and premium features<br/>
+• Priority customer support and exclusive content</p>
+
+<p><strong style="color: #B8B8B8;">🔄 How to Earn Z Points:</strong><br/>
+• Daily login streaks (Day 1: +2, Day 2: +4, Day 5: +10)<br/>
+• Completing games and challenges<br/>
+• Referring active users to the platform<br/>
+• Maintaining consistent engagement across MOVE and PLAY</p>
+
+<p><strong style="color: #B8B8B8;">🏆 Leaderboard Integration:</strong><br/>
+Track your Z Points ranking against other users, view your achievement progress, and compete for additional rewards through our comprehensive leaderboard system.</p>
+
+<p style="text-align: center; margin-top: 2rem;">
+<button onclick="proceedToLeaderboard()" style="background: linear-gradient(135deg, #B8B8B8, #A0A0A0); border: none; color: white; padding: 1rem 2rem; border-radius: 12px; font-weight: bold; cursor: pointer; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px;">
+VIEW LEADERBOARD →
+</button>
+</p>
+</div>
+`);
+}
+
+function proceedToLeaderboard() {
+localStorage.setItem('zwapZPointsOverviewSeen', 'true');
+window.location.href = 'leaderboard.html';
+}
+
 const contactBtn = document.getElementById('contactBtn');
 if (contactBtn) {
 contactBtn.onclick = () => {
