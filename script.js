@@ -215,30 +215,17 @@ updateBalances();
 
 const learnBtn = document.getElementById('learnBtn');
 if (learnBtn) {
-learnBtn.onclick = () => {
-showModal('ABOUT ZWAP!', `
-<div style="text-align: left; line-height: 1.8;">
-<p><strong>ZWAP!</strong> is a revolutionary ecosystem that combines wellness, creativity, and gaming to reward your daily activities.</p>
-
-<p><strong>🎯 Our Mission:</strong><br/>
-We believe everyone should be rewarded for living an active, creative lifestyle. ZWAP! transforms your daily wellness activities into earning opportunities through blockchain technology.</p>
-
-<p><strong>💰 Earn $XHI by:</strong><br/>
-• Walking, dancing, and staying active<br/>
-• Playing engaging mini-games<br/>
-• Participating in creative challenges<br/>
-• Building your credit score<br/>
-• Shopping in our marketplace</p>
-
-<p><strong>🔗 Blockchain Integration:</strong><br/>
-Built on secure blockchain infrastructure, ensuring transparent and fair rewards distribution. Your $XHI tokens can be swapped, saved, or used across our platform.</p>
-
-<p style="text-align: center; margin-top: 1.5rem;">
-<a href="#" style="color:#FFD700; font-weight: bold;">📄 Download Whitepaper</a>
-</p>
-</div>
-`);
-};
+  learnBtn.onclick = () => {
+    showModal('DISCOVER <span class="gold">$XHI</span> ECOSYSTEM', `
+      <div style="text-align: left; color: #e8e8e8; line-height: 1.8;">
+        <p><span class="gold">$XHI</span> represents the next evolution in utility-driven digital assets, powering a comprehensive ecosystem designed for the modern wellness economy.</p>
+        <p><strong>Infrastructure Excellence:</strong> Built on Polygon's industry-leading Layer 2 solution, delivering institutional-grade security with consumer-friendly transaction costs.</p>
+        <p><strong>Holistic Value Creation:</strong> Generate rewards through verified wellness activities, innovative creative challenges, and skill-based gaming experiences.</p>
+        <p><strong>Premium Utility:</strong> Access exclusive features, marketplace opportunities, and yield-generating staking mechanisms designed for long-term value appreciation.</p>
+        <p><strong>Strategic Vision:</strong> Join a pioneering community that's redefining the intersection of digital wellness, creativity, and financial empowerment.</p>
+      </div>
+    `);
+  };
 }
 
 const earnBtn = document.getElementById('earnBtn');
@@ -256,36 +243,17 @@ showModal('EARN <span class="gold">$XHI</span>', `
 
 const contactBtn = document.getElementById('contactBtn');
 if (contactBtn) {
-contactBtn.onclick = () => {
-showModal('GET IN TOUCH', `
-<div style="text-align: left;">
-<p style="margin-bottom: 1.5rem; text-align: center; color: #CCCCCC;">
-We'd love to hear from you! Whether you have questions, feedback, or partnership inquiries, our team is here to help.
-</p>
-
-<form style="margin-bottom: 2rem;">
-<input type="email" placeholder="Your Email Address" style="width:100%;padding:0.8rem;margin-bottom:1rem;border-radius:8px;">
-<textarea placeholder="Tell us what's on your mind..." rows="4" style="width:100%;padding:0.8rem;margin-bottom:1rem;border-radius:8px;resize:vertical;"></textarea>
-<button type="submit" style="width:100%;padding:0.8rem;background:#00BFFF;color:white;border:none;border-radius:8px;font-weight:bold;cursor:pointer;">Send Message</button>
-</form>
-
-<div style="text-align: center;">
-<p style="margin-bottom: 1rem; color: #CCCCCC; font-weight: bold;">Connect with us on social media:</p>
-<div style="display: flex; justify-content: center; gap: 2rem; align-items: center;">
-<a href="https://x.com/xoclonholdings" target="_blank" style="color:#00BFFF; text-decoration:none; font-weight:bold;">
-🐦 Follow us on X
-</a>
-<a href="https://github.com/xoclonholdings" target="_blank" style="color:#00BFFF; text-decoration:none; font-weight:bold;">
-💻 GitHub Repository
-</a>
-<a href="https://t.me/xhi_coin" target="_blank" style="color:#00BFFF; text-decoration:none; font-weight:bold;">
-💬 Join Telegram
-</a>
-</div>
-</div>
-</div>
-`);
-};
+  contactBtn.onclick = () => {
+    showModal('ENTERPRISE PARTNERSHIPS', `
+      <div style="text-align: left; color: #e8e8e8; line-height: 1.8;">
+        <p><strong>Strategic Engagement Channels:</strong></p>
+        <p>🌐 <strong>Executive Communications:</strong> <a href="https://x.com/xoclonholdings" target="_blank" style="color: #00BFFF; font-weight: 600;">@xoclonholdings</a></p>
+        <p>📡 <strong>Real-time Support:</strong> <a href="https://t.me/xhi_coin" target="_blank" style="color: #00BFFF; font-weight: 600;">@xhi_coin</a></p>
+        <p>⚡ <strong>Technical Innovation Hub:</strong> <a href="https://github.com/xoclonholdings" target="_blank" style="color: #00BFFF; font-weight: 600;">@xoclonholdings</a></p>
+        <p style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(0, 191, 255, 0.3);">Our dedicated partnership team is ready to discuss integration opportunities, strategic collaborations, and custom enterprise solutions within the <span class="gold">$XHI</span> ecosystem.</p>
+      </div>
+    `);
+  };
 }
 
 // Track which buttons have shown info
@@ -298,16 +266,16 @@ const actionInfo = {
     content: `
     <div style="text-align: left; line-height: 1.6;">
     <p><strong>Transform your daily movement into <span class="gold">$XHI</span> rewards!</strong></p>
-    
+
     <p><strong>🚶‍♀️ Walk-to-Earn:</strong><br/>
     Connect your fitness tracker or use your phone's built-in step counter to earn rewards for every step you take. Whether you're walking to work, hiking trails, or just moving around your home - every step counts!</p>
-    
+
     <p><strong>💃 Dance-to-Earn:</strong><br/>
     Join our dance challenges and earn <span class="gold">$XHI</span> by showcasing your moves! From structured routines to freestyle sessions, get your groove on and get rewarded.</p>
-    
+
     <p><strong>🏃‍♂️ Fitness Activities:</strong><br/>
     Running, cycling, yoga, swimming - track any fitness activity and earn proportional rewards based on duration and intensity.</p>
-    
+
     <p style="color: #FFD700; font-weight: bold; text-align: center; margin-top: 1rem;">
     Start moving today and watch your <span class="gold">$XHI</span> balance grow!
     </p>
@@ -319,7 +287,7 @@ const actionInfo = {
     content: `
     <div style="text-align: left; line-height: 1.6;">
     <p><strong>Dive into our gaming ecosystem and earn <span class="gold">$XHI</span> while having fun!</strong></p>
-    
+
     <p><strong>🎮 Available Games:</strong></p>
     <ul style="margin-left: 1rem;">
     <li><strong>Cube:</strong> Test your spatial reasoning with our 3D puzzle cube game</li>
@@ -327,13 +295,13 @@ const actionInfo = {
     <li><strong>Build:</strong> Create and construct in our virtual building environment</li>
     <li><strong>Spin:</strong> Try your luck with our reward wheel</li>
     </ul>
-    
+
     <p><strong>💰 Earning Mechanics:</strong><br/>
     Each game offers daily earning opportunities with skill-based and luck-based rewards. Complete challenges, achieve high scores, and participate in tournaments to maximize your <span class="gold">$XHI</span> earnings.</p>
-    
+
     <p><strong>🎯 Fair Play:</strong><br/>
     All games use blockchain verification to ensure fair play and transparent reward distribution.</p>
-    
+
     <p style="color: #FFD700; font-weight: bold; text-align: center; margin-top: 1rem;">
     Connect your wallet and start earning up to 0.015 <span class="gold">$XHI</span> per game session!
     </p>
@@ -345,22 +313,22 @@ const actionInfo = {
     content: `
     <div style="text-align: left; line-height: 1.6;">
     <p><strong>Exchange your <span class="gold">$XHI</span> tokens with our secure, decentralized swap platform!</strong></p>
-    
+
     <p><strong>🔄 Supported Trading Pairs:</strong><br/>
     Swap <span class="gold">$XHI</span> with POL, BTC, ETH, USDT, and SOL. Real-time pricing ensures you always get fair market rates for these premium cryptocurrency pairs.</p>
-    
+
     <p><strong>⚡ Lightning Fast:</strong><br/>
     Our optimized smart contracts provide near-instant swaps with minimal gas fees. No lengthy waiting periods or complex procedures.</p>
-    
+
     <p><strong>🔐 Secure & Trustless:</strong><br/>
     Built on proven blockchain technology with audited smart contracts. Your funds never leave your control during the swap process.</p>
-    
+
     <p><strong>📊 Advanced Features:</strong><br/>
     • Real-time price charts and market data<br/>
     • Slippage protection and MEV resistance<br/>
     • Limit orders and price alerts<br/>
     • Liquidity mining opportunities</p>
-    
+
     <div style="text-align: right; margin-top: 2rem;">
     <button onclick="window.location.href='Swap.html'" style="background: linear-gradient(145deg, #00BFFF, #0099CC); border: none; color: white; padding: 0.8rem 1.5rem; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 1rem;">
     SWAP →
@@ -374,10 +342,10 @@ const actionInfo = {
     content: `
     <div style="text-align: left; line-height: 1.6;">
     <p><strong>Spend your <span class="gold">$XHI</span> tokens in our exclusive marketplace!</strong></p>
-    
+
     <p><strong>🛍️ Coming Soon:</strong><br/>
     Our marketplace will feature exclusive items, NFTs, and digital goods available only to <span class="gold">$XHI</span> holders.</p>
-    
+
     <p><strong>🎨 Planned Categories:</strong></p>
     <ul style="margin-left: 1rem;">
     <li><strong>Digital Art & NFTs:</strong> Exclusive artwork and collectibles</li>
@@ -386,13 +354,13 @@ const actionInfo = {
     <li><strong>Virtual Real Estate:</strong> Digital land and metaverse properties</li>
     <li><strong>Creator Tools:</strong> Software, templates, and creative resources</li>
     </ul>
-    
+
     <p><strong>💎 Member Benefits:</strong><br/>
     <span class="gold">$XHI</span> holders will receive exclusive discounts, early access to limited editions, and special member-only items.</p>
-    
+
     <p><strong>🤝 Creator Economy:</strong><br/>
     Artists and creators can list their work and earn <span class="gold">$XHI</span> through sales, with low platform fees supporting the creative community.</p>
-    
+
     <p style="color: #FFD700; font-weight: bold; text-align: center; margin-top: 1rem;">
     Start earning <span class="gold">$XHI</span> now to be ready for marketplace launch!
     </p>
@@ -405,7 +373,7 @@ const actionInfo = {
 document.querySelectorAll('.action-btn').forEach(btn => {
   // Skip EARN button as it has its own dedicated handler
   if (btn.id === 'earnBtn') return;
-  
+
   btn.onclick = (e) => {
     e.preventDefault();
     const btnId = btn.id;

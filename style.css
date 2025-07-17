@@ -144,15 +144,54 @@ header {
   position: absolute;
   top: 60px;
   right: 1rem;
-  background: rgba(0,0,0,0.9);
-  border: 1px solid #00BFFF;
-  border-radius: 8px;
+  background: rgba(0,0,0,0.95);
+  border: 2px solid #00BFFF;
+  border-radius: 12px;
   display: none;
-  flex-direction: column;
-  padding: 0.5rem;
+  flex-direction: row;
+  padding: 0.8rem 1.2rem;
+  box-shadow: 0 0 25px rgba(0, 191, 255, 0.4), 0 0 50px rgba(255, 0, 255, 0.2);
+  backdrop-filter: blur(10px);
 }
 
-.menu-btn,
+.menu-btn {
+  background: none;
+  border: none;
+  color: #00BFFF;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+  text-align: center;
+  animation: pulseText 3s infinite ease-in-out;
+  transition: all 0.3s ease;
+  position: relative;
+  border-radius: 8px;
+}
+
+.menu-btn::before {
+  content: "|";
+  position: absolute;
+  left: -0.6rem;
+  color: #00BFFF;
+  font-weight: 400;
+  opacity: 0.7;
+}
+
+.menu-btn:first-child::before {
+  left: -1rem;
+}
+
+.menu-btn::after {
+  content: "|";
+  position: absolute;
+  right: -0.6rem;
+  color: #00BFFF;
+  font-weight: 400;
+  opacity: 0.7;
+}
+
 .footer-col {
   background: none;
   border: none;
@@ -486,27 +525,59 @@ p {
 
 .swal2-popup {
   font-family: 'Inter', 'Segoe UI', 'Roboto', sans-serif !important;
-  background: linear-gradient(145deg, #1a1a1a, #2a2a2a) !important;
-  border: 2px solid #00BFFF !important;
-  border-radius: 20px !important;
-  box-shadow: 0 0 30px rgba(0, 191, 255, 0.5), 0 0 60px rgba(255, 0, 255, 0.3) !important;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 25%, #2a2a2a 75%, #1a1a1a 100%) !important;
+  border: 3px solid transparent !important;
+  background-clip: padding-box !important;
+  border-radius: 24px !important;
+  box-shadow: 
+    0 0 40px rgba(0, 191, 255, 0.6), 
+    0 0 80px rgba(255, 0, 255, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.3) !important;
   color: #ffffff !important;
-  padding: 2rem !important;
+  padding: 3rem !important;
+  position: relative !important;
+  backdrop-filter: blur(20px) !important;
+}
+
+.swal2-popup::before {
+  content: '' !important;
+  position: absolute !important;
+  top: -3px !important;
+  left: -3px !important;
+  right: -3px !important;
+  bottom: -3px !important;
+  background: linear-gradient(45deg, #00BFFF, #FF00FF, #FFD700, #00BFFF) !important;
+  border-radius: 24px !important;
+  z-index: -1 !important;
+  animation: borderGlow 3s linear infinite !important;
+}
+
+@keyframes borderGlow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
 
 .swal2-title {
-  color: #00BFFF !important;
-  font-size: 1.8rem !important;
-  font-weight: 700 !important;
-  text-shadow: 0 0 10px #00BFFF !important;
-  margin-bottom: 1.5rem !important;
+  background: linear-gradient(135deg, #00BFFF 0%, #FFD700 50%, #FF00FF 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  font-size: 2.2rem !important;
+  font-weight: 800 !important;
+  text-shadow: 0 0 20px rgba(0, 191, 255, 0.8) !important;
+  margin-bottom: 2rem !important;
+  letter-spacing: 2px !important;
+  font-family: 'Orbitron', sans-serif !important;
 }
 
 .swal2-html-container {
-  color: #cccccc !important;
-  font-size: 1.1rem !important;
-  line-height: 1.6 !important;
-  margin-bottom: 1.5rem !important;
+  color: #e8e8e8 !important;
+  font-size: 1.2rem !important;
+  line-height: 1.8 !important;
+  margin-bottom: 2rem !important;
+  font-weight: 400 !important;
+  text-align: left !important;
 }
 
 .swal2-html-container p {
@@ -533,25 +604,49 @@ p {
 }
 
 .large-btn {
-  padding: 1rem 2rem !important;
-  font-size: 1.2rem !important;
-  font-weight: 700 !important;
-  letter-spacing: 1px !important;
-  border-radius: 12px !important;
-  background: linear-gradient(145deg, #00BFFF, #0099CC) !important;
+  padding: 1.2rem 2.5rem !important;
+  font-size: 1.3rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 2px !important;
+  border-radius: 16px !important;
+  background: linear-gradient(135deg, #00BFFF 0%, #0099CC 50%, #007BFF 100%) !important;
   color: white !important;
-  border: 2px solid #00BFFF !important;
-  box-shadow: 0 0 15px rgba(0, 191, 255, 0.5) !important;
+  border: 3px solid transparent !important;
+  box-shadow: 
+    0 8px 24px rgba(0, 191, 255, 0.4),
+    0 4px 12px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
   cursor: pointer !important;
-  transition: all 0.3s ease !important;
-  margin: 0.5rem !important;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+  margin: 0.8rem !important;
   font-family: 'Orbitron', sans-serif !important;
+  text-transform: uppercase !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.large-btn::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: -100% !important;
+  width: 100% !important;
+  height: 100% !important;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent) !important;
+  transition: left 0.6s !important;
 }
 
 .large-btn:hover {
-  transform: scale(1.05) !important;
-  box-shadow: 0 0 25px rgba(0, 191, 255, 0.8) !important;
-  background: linear-gradient(145deg, #0099CC, #00BFFF) !important;
+  transform: scale(1.08) translateY(-2px) !important;
+  box-shadow: 
+    0 12px 32px rgba(0, 191, 255, 0.6),
+    0 6px 16px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+  background: linear-gradient(135deg, #0099CC 0%, #00BFFF 50%, #00D4FF 100%) !important;
+}
+
+.large-btn:hover::before {
+  left: 100% !important;
 }
 
 .wallet-option {
