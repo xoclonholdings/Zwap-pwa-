@@ -8,26 +8,271 @@
 <link rel="stylesheet" href="style.css">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://unpkg.com/@walletconnect/web3-provider@1.8.0/dist/umd/index.min.js"></script>
+<style>
+.move-features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.feature-card {
+  background: rgba(0, 0, 0, 0.8);
+  border: 2px solid #00BFFF;
+  border-radius: 15px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(0, 191, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 30px rgba(0, 191, 255, 0.5);
+}
+
+.feature-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.feature-title {
+  color: #00BFFF;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.feature-description {
+  color: #CCCCCC;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.feature-stats {
+  background: rgba(0, 191, 255, 0.1);
+  border-radius: 10px;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
+.stat-item {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.5rem 0;
+  color: #FFFFFF;
+}
+
+.stat-label {
+  color: #CCCCCC;
+}
+
+.stat-value {
+  color: #FFD700;
+  font-weight: bold;
+}
+
+.feature-btn {
+  background: linear-gradient(135deg, #00BFFF, #0099CC);
+  color: white;
+  border: none;
+  padding: 0.8rem 2rem;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  width: 100%;
+  margin: 0.5rem 0;
+}
+
+.feature-btn:hover {
+  background: linear-gradient(135deg, #0099CC, #006699);
+  transform: scale(1.05);
+}
+
+.feature-btn:disabled {
+  background: #666;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.active-session {
+  border-color: #00FF00;
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+}
+
+.dance-difficulty {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  margin: 1rem 0;
+}
+
+.difficulty-btn {
+  background: rgba(0, 191, 255, 0.2);
+  border: 1px solid #00BFFF;
+  color: #00BFFF;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.difficulty-btn.selected {
+  background: #00BFFF;
+  color: white;
+}
+
+.progress-bar {
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  height: 20px;
+  margin: 1rem 0;
+  overflow: hidden;
+}
+
+.progress-fill {
+  background: linear-gradient(90deg, #00BFFF, #FFD700);
+  height: 100%;
+  transition: width 0.3s ease;
+  border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+  .move-features {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+</style>
 </head>
 <body>
 <header>
 <div class="header-left">
 <button id="connectBtn">CONNECT WALLET</button>
 </div>
+<div class="balance-display drop-animation">
+<div class="balance-item">
+<span class="balance-label gold">XHI</span>
+<span class="balance-value" id="xhiBalance">0.00</span>
+</div>
+<div class="balance-item">
+<span class="balance-label zpts">Z PTS</span>
+<span class="balance-value" id="zBalance">0</span>
+</div>
+</div>
 <img id="bang" src="Zwap_bang_3d.PNG" alt="Bang Symbol">
 <div id="bangMenu" class="dropdown-menu">
 <button class="menu-btn" id="homeBtn">HOME</button>
 <button class="menu-btn" id="learnBtn">LEARN</button>
 <button class="menu-btn" id="earnBtn">EARN</button>
+<button class="menu-btn" id="leaderboardBtn">LEADERBOARD</button>
 <button class="menu-btn" id="contactBtn">CONTACT</button>
 </div>
 </header>
 
 <main>
+<!-- Enterprise Navigation Menu -->
+<nav class="enterprise-nav">
+  <span class="nav-separator">|</span>
+  <button class="nav-item" onclick="window.location.href='index.html'">HOME</button>
+  <span class="nav-separator">|</span>
+  <button class="nav-item" onclick="window.location.href='play.html'">PLAY</button>
+  <span class="nav-separator">|</span>
+  <button class="nav-item" onclick="window.location.href='Swap.html'">SWAP</button>
+  <span class="nav-separator">|</span>
+  <button class="nav-item" onclick="window.location.href='Credit.html'">CREDIT</button>
+  <span class="nav-separator">|</span>
+</nav>
+
 <img src="Zwap_logo_full.png" alt="ZWAP! Logo" class="logo">
 <h1>MOVE TO EARN</h1>
 <p>Walk or dance to earn <span class="gold">$XHI</span> rewards.</p>
-<div id="gameStatus">Feature coming soon! Stay tuned for movement-based earning opportunities.</div>
+
+<div class="move-features">
+  <!-- Walk Feature -->
+  <div class="feature-card" id="walkCard">
+    <span class="feature-icon">🚶‍♂️</span>
+    <h2 class="feature-title">Walk to Earn</h2>
+    <p class="feature-description">Connect your fitness tracker or use device sensors to earn XHI for every step you take.</p>
+    
+    <div class="feature-stats">
+      <div class="stat-item">
+        <span class="stat-label">Today's Steps:</span>
+        <span class="stat-value" id="todaySteps">0</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">XHI Rate:</span>
+        <span class="stat-value">0.001 per 100 steps</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">Total Earned:</span>
+        <span class="stat-value" id="walkEarned">0.000 XHI</span>
+      </div>
+    </div>
+
+    <div class="progress-bar">
+      <div class="progress-fill" id="walkProgress" style="width: 0%"></div>
+    </div>
+    <p style="color: #CCCCCC; font-size: 0.9rem;">Progress to next reward (100 steps)</p>
+
+    <button class="feature-btn" id="startWalkBtn">Start Walking Session</button>
+    <button class="feature-btn" id="connectFitnessBtn">Connect Fitness Tracker</button>
+  </div>
+
+  <!-- Dance Feature -->
+  <div class="feature-card" id="danceCard">
+    <span class="feature-icon">💃</span>
+    <h2 class="feature-title">Dance to Earn</h2>
+    <p class="feature-description">Join dance challenges and earn XHI based on movement intensity and duration.</p>
+    
+    <div class="dance-difficulty">
+      <button class="difficulty-btn" data-difficulty="easy">Easy</button>
+      <button class="difficulty-btn selected" data-difficulty="medium">Medium</button>
+      <button class="difficulty-btn" data-difficulty="hard">Hard</button>
+    </div>
+
+    <div class="feature-stats">
+      <div class="stat-item">
+        <span class="stat-label">Session Time:</span>
+        <span class="stat-value" id="danceTime">00:00</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">Intensity Score:</span>
+        <span class="stat-value" id="intensityScore">0%</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">Session Earnings:</span>
+        <span class="stat-value" id="danceEarned">0.000 XHI</span>
+      </div>
+    </div>
+
+    <div class="progress-bar">
+      <div class="progress-fill" id="danceProgress" style="width: 0%"></div>
+    </div>
+    <p style="color: #CCCCCC; font-size: 0.9rem;">Movement intensity tracker</p>
+
+    <button class="feature-btn" id="startDanceBtn">Start Dance Session</button>
+    <button class="feature-btn" id="joinChallengeBtn">Join Dance Challenge</button>
+  </div>
+</div>
+
+<div id="sessionModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; display: flex; align-items: center; justify-content: center;">
+  <div style="background: #111; border: 2px solid #00BFFF; border-radius: 15px; padding: 2rem; max-width: 400px; text-align: center;">
+    <h3 id="sessionTitle" style="color: #00BFFF; margin-bottom: 1rem;"></h3>
+    <div id="sessionContent"></div>
+    <button onclick="closeSessionModal()" style="background: #FF0000; color: white; border: none; padding: 0.5rem 1rem; border-radius: 5px; margin-top: 1rem; cursor: pointer;">Stop Session</button>
+  </div>
+</div>
 </main>
 
 <footer>
@@ -38,5 +283,423 @@
 </footer>
 
 <script src="script.js"></script>
+<script>
+// Move to Earn Functionality
+class MoveToEarn {
+  constructor() {
+    this.walkData = JSON.parse(localStorage.getItem('zwapWalkData') || '{}');
+    this.danceData = JSON.parse(localStorage.getItem('zwapDanceData') || '{}');
+    this.isWalking = false;
+    this.isDancing = false;
+    this.walkSession = null;
+    this.danceSession = null;
+    this.selectedDifficulty = 'medium';
+    
+    this.initializeUI();
+    this.loadSavedData();
+  }
+
+  initializeUI() {
+    // Walk button handlers
+    document.getElementById('startWalkBtn').onclick = () => this.toggleWalking();
+    document.getElementById('connectFitnessBtn').onclick = () => this.connectFitnessTracker();
+
+    // Dance button handlers
+    document.getElementById('startDanceBtn').onclick = () => this.toggleDancing();
+    document.getElementById('joinChallengeBtn').onclick = () => this.joinDanceChallenge();
+
+    // Difficulty selection
+    document.querySelectorAll('.difficulty-btn').forEach(btn => {
+      btn.onclick = () => {
+        document.querySelectorAll('.difficulty-btn').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        this.selectedDifficulty = btn.dataset.difficulty;
+      };
+    });
+  }
+
+  loadSavedData() {
+    const today = new Date().toDateString();
+    
+    // Load walk data
+    if (!this.walkData[today]) {
+      this.walkData[today] = { steps: 0, earned: 0 };
+    }
+    
+    document.getElementById('todaySteps').textContent = this.walkData[today].steps.toLocaleString();
+    document.getElementById('walkEarned').textContent = this.walkData[today].earned.toFixed(3);
+    this.updateWalkProgress();
+  }
+
+  toggleWalking() {
+    const connectBtn = document.getElementById('connectBtn');
+    if (connectBtn.textContent === 'CONNECT WALLET') {
+      Swal.fire({
+        title: 'WALLET REQUIRED',
+        text: 'Please connect your wallet to start earning XHI!',
+        background: '#111',
+        color: '#fff',
+        showCloseButton: true,
+        showConfirmButton: false
+      });
+      return;
+    }
+
+    if (!this.isWalking) {
+      this.startWalking();
+    } else {
+      this.stopWalking();
+    }
+  }
+
+  startWalking() {
+    this.isWalking = true;
+    document.getElementById('startWalkBtn').textContent = 'Stop Walking';
+    document.getElementById('walkCard').classList.add('active-session');
+
+    // Request device motion permissions if available
+    if (typeof DeviceMotionEvent !== 'undefined' && typeof DeviceMotionEvent.requestPermission === 'function') {
+      DeviceMotionEvent.requestPermission()
+        .then(response => {
+          if (response === 'granted') {
+            this.startStepDetection();
+          }
+        });
+    } else {
+      this.startStepDetection();
+    }
+
+    Swal.fire({
+      title: 'WALKING SESSION STARTED',
+      text: 'Start moving to earn XHI! The app will track your steps automatically.',
+      background: '#111',
+      color: '#fff',
+      timer: 3000,
+      showConfirmButton: false
+    });
+  }
+
+  startStepDetection() {
+    let stepCount = 0;
+    let lastAcceleration = 0;
+    let stepThreshold = 12; // Acceleration threshold for step detection
+
+    // Simulate step detection (in production, use actual device sensors)
+    this.walkSession = setInterval(() => {
+      // Simulate steps (replace with actual step detection logic)
+      if (Math.random() > 0.7) { // 30% chance of step per second
+        this.addStep();
+      }
+    }, 1000);
+
+    // If device motion is available, use it
+    if (window.DeviceMotionEvent) {
+      window.addEventListener('devicemotion', (event) => {
+        if (!this.isWalking) return;
+        
+        const acceleration = Math.sqrt(
+          event.accelerationIncludingGravity.x ** 2 +
+          event.accelerationIncludingGravity.y ** 2 +
+          event.accelerationIncludingGravity.z ** 2
+        );
+
+        if (acceleration > stepThreshold && Math.abs(acceleration - lastAcceleration) > 5) {
+          this.addStep();
+        }
+        lastAcceleration = acceleration;
+      });
+    }
+  }
+
+  addStep() {
+    const today = new Date().toDateString();
+    if (!this.walkData[today]) {
+      this.walkData[today] = { steps: 0, earned: 0 };
+    }
+
+    this.walkData[today].steps++;
+    
+    // Award XHI every 100 steps
+    if (this.walkData[today].steps % 100 === 0) {
+      this.walkData[today].earned += 0.001;
+      this.updateBalances();
+      
+      Swal.fire({
+        title: '+0.001 XHI',
+        text: 'Great job! You earned XHI for walking 100 steps!',
+        background: '#111',
+        color: '#fff',
+        timer: 2000,
+        showConfirmButton: false
+      });
+    }
+
+    this.updateWalkDisplay();
+    this.saveWalkData();
+  }
+
+  updateWalkDisplay() {
+    const today = new Date().toDateString();
+    const todayData = this.walkData[today];
+    
+    document.getElementById('todaySteps').textContent = todayData.steps.toLocaleString();
+    document.getElementById('walkEarned').textContent = todayData.earned.toFixed(3);
+    this.updateWalkProgress();
+  }
+
+  updateWalkProgress() {
+    const today = new Date().toDateString();
+    const steps = this.walkData[today]?.steps || 0;
+    const progress = (steps % 100) / 100 * 100;
+    document.getElementById('walkProgress').style.width = `${progress}%`;
+  }
+
+  stopWalking() {
+    this.isWalking = false;
+    document.getElementById('startWalkBtn').textContent = 'Start Walking Session';
+    document.getElementById('walkCard').classList.remove('active-session');
+    
+    if (this.walkSession) {
+      clearInterval(this.walkSession);
+      this.walkSession = null;
+    }
+
+    Swal.fire({
+      title: 'WALKING SESSION ENDED',
+      text: 'Great job! Keep moving to earn more XHI.',
+      background: '#111',
+      color: '#fff',
+      timer: 2000,
+      showConfirmButton: false
+    });
+  }
+
+  toggleDancing() {
+    const connectBtn = document.getElementById('connectBtn');
+    if (connectBtn.textContent === 'CONNECT WALLET') {
+      Swal.fire({
+        title: 'WALLET REQUIRED',
+        text: 'Please connect your wallet to start earning XHI!',
+        background: '#111',
+        color: '#fff',
+        showCloseButton: true,
+        showConfirmButton: false
+      });
+      return;
+    }
+
+    if (!this.isDancing) {
+      this.startDancing();
+    } else {
+      this.stopDancing();
+    }
+  }
+
+  startDancing() {
+    this.isDancing = true;
+    document.getElementById('startDanceBtn').textContent = 'Stop Dancing';
+    document.getElementById('danceCard').classList.add('active-session');
+
+    let sessionTime = 0;
+    let intensity = 0;
+    let earnings = 0;
+
+    // Difficulty multipliers
+    const multipliers = { easy: 1, medium: 1.5, hard: 2 };
+    const baseRate = 0.002; // Base XHI per minute
+
+    this.danceSession = setInterval(() => {
+      sessionTime++;
+      
+      // Simulate movement intensity (0-100%)
+      intensity = Math.random() * 100;
+      
+      // Calculate earnings based on time, intensity, and difficulty
+      const intensityBonus = intensity / 100;
+      const minuteEarnings = (baseRate * multipliers[this.selectedDifficulty] * intensityBonus) / 60;
+      earnings += minuteEarnings;
+
+      // Update display
+      const minutes = Math.floor(sessionTime / 60);
+      const seconds = sessionTime % 60;
+      document.getElementById('danceTime').textContent = 
+        `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+      document.getElementById('intensityScore').textContent = `${Math.round(intensity)}%`;
+      document.getElementById('danceEarned').textContent = earnings.toFixed(3);
+      document.getElementById('danceProgress').style.width = `${intensity}%`;
+    }, 1000);
+
+    Swal.fire({
+      title: 'DANCE SESSION STARTED',
+      text: `${this.selectedDifficulty.toUpperCase()} difficulty selected. Start dancing to earn XHI!`,
+      background: '#111',
+      color: '#fff',
+      timer: 3000,
+      showConfirmButton: false
+    });
+  }
+
+  stopDancing() {
+    this.isDancing = false;
+    document.getElementById('startDanceBtn').textContent = 'Start Dance Session';
+    document.getElementById('danceCard').classList.remove('active-session');
+    
+    const earnings = parseFloat(document.getElementById('danceEarned').textContent);
+    
+    if (this.danceSession) {
+      clearInterval(this.danceSession);
+      this.danceSession = null;
+    }
+
+    // Reset display
+    document.getElementById('danceTime').textContent = '00:00';
+    document.getElementById('intensityScore').textContent = '0%';
+    document.getElementById('danceEarned').textContent = '0.000';
+    document.getElementById('danceProgress').style.width = '0%';
+
+    // Add earnings to total balance
+    if (earnings > 0) {
+      this.updateBalances(earnings);
+      
+      Swal.fire({
+        title: 'DANCE SESSION COMPLETE',
+        text: `You earned ${earnings.toFixed(3)} XHI! Keep dancing to earn more!`,
+        background: '#111',
+        color: '#fff',
+        timer: 3000,
+        showConfirmButton: false
+      });
+    }
+  }
+
+  connectFitnessTracker() {
+    Swal.fire({
+      title: 'CONNECT FITNESS TRACKER',
+      html: `
+        <div style="text-align: left; line-height: 1.6;">
+          <p>Connect your fitness tracker to automatically sync steps:</p>
+          <div style="margin: 1rem 0;">
+            <button onclick="connectFitbit()" style="width: 100%; margin: 0.5rem 0; padding: 0.8rem; background: #00BFFF; color: white; border: none; border-radius: 5px; cursor: pointer;">📱 Fitbit</button>
+            <button onclick="connectAppleHealth()" style="width: 100%; margin: 0.5rem 0; padding: 0.8rem; background: #00BFFF; color: white; border: none; border-radius: 5px; cursor: pointer;">🍎 Apple Health</button>
+            <button onclick="connectGoogleFit()" style="width: 100%; margin: 0.5rem 0; padding: 0.8rem; background: #00BFFF; color: white; border: none; border-radius: 5px; cursor: pointer;">📊 Google Fit</button>
+            <button onclick="connectGarmin()" style="width: 100%; margin: 0.5rem 0; padding: 0.8rem; background: #00BFFF; color: white; border: none; border-radius: 5px; cursor: pointer;">⌚ Garmin</button>
+          </div>
+          <p style="color: #ccc; font-size: 0.9rem;">Note: This feature requires API integration with fitness platforms.</p>
+        </div>
+      `,
+      background: '#111',
+      color: '#fff',
+      showCloseButton: true,
+      showConfirmButton: false
+    });
+  }
+
+  joinDanceChallenge() {
+    Swal.fire({
+      title: 'DANCE CHALLENGES',
+      html: `
+        <div style="text-align: left; line-height: 1.6;">
+          <p><strong>Available Challenges:</strong></p>
+          <div style="margin: 1rem 0;">
+            <div style="background: rgba(0,191,255,0.1); padding: 1rem; border-radius: 8px; margin: 0.5rem 0; cursor: pointer;" onclick="joinChallenge('weekly')">
+              <h4 style="color: #00BFFF; margin: 0;">Weekly Dance Marathon</h4>
+              <p style="margin: 0.5rem 0; color: #ccc;">Dance 30 minutes total this week</p>
+              <p style="margin: 0; color: #FFD700;">Reward: 0.1 XHI + 50 Z Points</p>
+            </div>
+            <div style="background: rgba(255,0,255,0.1); padding: 1rem; border-radius: 8px; margin: 0.5rem 0; cursor: pointer;" onclick="joinChallenge('intensity')">
+              <h4 style="color: #FF00FF; margin: 0;">High Intensity Challenge</h4>
+              <p style="margin: 0.5rem 0; color: #ccc;">Maintain 80%+ intensity for 10 minutes</p>
+              <p style="margin: 0; color: #FFD700;">Reward: 0.05 XHI + 25 Z Points</p>
+            </div>
+            <div style="background: rgba(255,215,0,0.1); padding: 1rem; border-radius: 8px; margin: 0.5rem 0; cursor: pointer;" onclick="joinChallenge('streak')">
+              <h4 style="color: #FFD700; margin: 0;">7-Day Dance Streak</h4>
+              <p style="margin: 0.5rem 0; color: #ccc;">Dance at least 5 minutes daily for a week</p>
+              <p style="margin: 0; color: #FFD700;">Reward: 0.2 XHI + 100 Z Points</p>
+            </div>
+          </div>
+        </div>
+      `,
+      background: '#111',
+      color: '#fff',
+      showCloseButton: true,
+      showConfirmButton: false,
+      width: '500px'
+    });
+  }
+
+  updateBalances(additionalXHI = 0) {
+    // Update XHI balance in the header
+    const xhiElement = document.getElementById('xhiBalance');
+    if (xhiElement) {
+      const currentXHI = parseFloat(xhiElement.textContent) || 0;
+      const newXHI = currentXHI + additionalXHI;
+      xhiElement.textContent = newXHI.toFixed(3);
+    }
+  }
+
+  saveWalkData() {
+    localStorage.setItem('zwapWalkData', JSON.stringify(this.walkData));
+  }
+}
+
+// Global functions for challenge joining
+window.joinChallenge = function(challengeType) {
+  Swal.fire({
+    title: 'CHALLENGE JOINED!',
+    text: 'You have successfully joined the challenge. Start dancing to make progress!',
+    background: '#111',
+    color: '#fff',
+    timer: 2000,
+    showConfirmButton: false
+  });
+};
+
+window.connectFitbit = function() {
+  Swal.fire({
+    title: 'FITBIT INTEGRATION',
+    text: 'Fitbit integration coming soon! This feature requires OAuth setup.',
+    background: '#111',
+    color: '#fff',
+    timer: 3000,
+    showConfirmButton: false
+  });
+};
+
+window.connectAppleHealth = function() {
+  Swal.fire({
+    title: 'APPLE HEALTH INTEGRATION',
+    text: 'Apple Health integration coming soon! This feature requires HealthKit setup.',
+    background: '#111',
+    color: '#fff',
+    timer: 3000,
+    showConfirmButton: false
+  });
+};
+
+window.connectGoogleFit = function() {
+  Swal.fire({
+    title: 'GOOGLE FIT INTEGRATION',
+    text: 'Google Fit integration coming soon! This feature requires Google Fit API setup.',
+    background: '#111',
+    color: '#fff',
+    timer: 3000,
+    showConfirmButton: false
+  });
+};
+
+window.connectGarmin = function() {
+  Swal.fire({
+    title: 'GARMIN INTEGRATION',
+    text: 'Garmin integration coming soon! This feature requires Garmin Connect IQ setup.',
+    background: '#111',
+    color: '#fff',
+    timer: 3000,
+    showConfirmButton: false
+  });
+};
+
+// Initialize Move to Earn system
+const moveToEarn = new MoveToEarn();
+</script>
 </body>
 </html>

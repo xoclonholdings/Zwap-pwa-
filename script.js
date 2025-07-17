@@ -562,20 +562,7 @@ window.location.href = 'leaderboard.html';
 });
 }
 
-// Add referral functionality to earn button
-const earnBtn = document.getElementById('earnBtn');
-if (earnBtn) {
-earnBtn.onclick = () => {
-showModal('EARN <span class="gold">$XHI</span>', `
-<p>Choose how you want to earn <span class="gold">$XHI</span> rewards:</p>
-<div style="display:flex; justify-content:center; gap:1rem; margin-top:1rem; flex-wrap: wrap;">
-<button class="large-btn" onclick="window.location.href='move.html'">MOVE</button>
-<button class="large-btn" onclick="window.location.href='play.html'">PLAY</button>
-<button class="large-btn" onclick="referralSystem.showReferralDashboard()">REFER FRIENDS</button>
-</div>
-`);
-};
-}
+
 
 const contactBtn = document.getElementById('contactBtn');
 if (contactBtn) {
