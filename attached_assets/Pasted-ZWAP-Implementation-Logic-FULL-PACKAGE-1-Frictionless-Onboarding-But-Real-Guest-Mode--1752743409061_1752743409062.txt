@@ -1,0 +1,100 @@
+ZWAP! Implementation Logic (FULL PACKAGE)
+
+✅ 1️⃣ Frictionless Onboarding (But Real)
+• Guest Mode:
+• Available for preview-only on MOVE and as “Guest Tier” for Games.
+• No XHI can be claimed in Guest Mode — wallet connection is mandatory for claim access.
+• Purpose: attract casual users to engage quickly but gate value until verified participation.
+
+⸻
+
+✅ 2️⃣ Wallet Connection = Required for Claims
+• Before claiming any XHI, user must:
+• ✅ Connect wallet
+• Ensures every reward is tied to a unique, trackable wallet.
+• Blocks abuse by multi-email/fake signups.
+
+⸻
+
+✅ 3️⃣ Unified Cross-Device Sync
+• Single profile per wallet address:
+• Mobile MOVE + web Cube Faucet = same XHI balance, activity history.
+• Encourage multiple entry points but keep rewards consolidated and secure.
+
+⸻
+
+✅ 4️⃣ Real-Time Reward Feedback
+• Visuals that show users they are progressing:
+• Live progress bars for steps → XHI accrual.
+• Animated XHI drop for faucet wins.
+• All tied to real value, no fake “hashrates” or mining animations.
+
+⸻
+
+✅ 5️⃣ Daily Streak + Bonus System
+• Drives retention and habit-building:
+• Bonuses increase with consecutive days:
+• Day 1: +2 XHI
+• Day 2: +4 XHI
+• Day 5: +10 XHI
+• Streak resets after missed day.
+• Optional push notifications: “Don’t break your streak!”
+
+⸻
+
+✅ 6️⃣ Transparent, Abuse-Protected Referrals
+• No instant bonus on signup — no freebies for fake accounts.
+• Referrer and Invitee bonuses unlocked only after real engagement:
+• Referrer bonus example: +25 XHI when referred user earns 500 XHI.
+• Invitee bonus example: +25 XHI after completing 3 days of MOVE or Faucet play.
+• Referral dashboard:
+• Show referral count.
+• Show exactly how much XHI earned from valid referrals.
+• No MLM structures — flat, fair, performance-based.
+• Anti-abuse:
+• No bonuses for duplicate wallets from same device/IP cluster.
+• Optional fraud pattern detection (auto-flagging suspicious activity).
+
+⸻
+
+✅ 7️⃣ Premium Membership Tier
+• Optional upsell — delivers real perks:
+• Remove faucet cooldowns.
+• Increase credit-builder multiplier (earn credit faster).
+• Early access to marketplace discounts, premium skins/features.
+• Priority support.
+
+⸻
+
+✅ 8️⃣ Liquidity & Utility-First Rewards
+• XHI rewards immediately liquid and usable:
+• No sketchy withdrawal minimums.
+• Spendable directly in-app for:
+• Credit-builder deposits
+• Future ZWAP! Marketplace discounts
+• Partnered services/classes
+
+⸻
+
+🔒 Core Design Principles:
+
+💡 User-first, secure, transparent:
+• Frictionless but secure onboarding.
+• Real-time feedback and engagement.
+• Bonuses that reward real participation, not bots or spam.
+• No pennies-for-time gimmicks.
+• Designed for value + habit + ecosystem growth.
+
+⸻
+
+🔥 Summary:
+
+Category Logic
+Guest Mode Preview MOVE + Games only, no claim without wallet connect
+Wallet Requirement Wallet connect mandatory to claim any XHI
+Reward Feedback Live, animated visuals for progress but tied to real earnings
+Daily Streaks Bonuses that grow with participation, reset on inactivity
+Referrals Performance-based unlocks only; protect against abuse
+Sync Unified account across devices tied to wallet/profile
+Premium Tier Real perks (no predatory upsells): faster credit-building, no cooldowns
+Liquidity & Utility XHI immediately spendable, no withdrawal traps or delays
