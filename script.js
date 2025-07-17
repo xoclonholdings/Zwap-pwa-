@@ -165,11 +165,11 @@ throw new Error('Unknown wallet type');
 
 if (accounts.length > 0) {
 // Update connect button text
-const connectBtn = document.getElementById('connectBtn');
-if (connectBtn) {
-connectBtn.textContent = `${accounts[0].substring(0,6)}...${accounts[0].substring(38)}`;
-connectBtn.style.background = 'linear-gradient(145deg, #00ff00, #00cc00)';
-}
+        const connectBtn = document.getElementById('connectBtn');
+        if (connectBtn) {
+          connectBtn.textContent = `${accounts[0].substring(0,6)}...${accounts[0].substring(38)}`;
+          connectBtn.classList.add('connected');
+        }
 
 // Update balance display with mock data (replace with real blockchain calls)
 updateBalances(1.2345, 150);
