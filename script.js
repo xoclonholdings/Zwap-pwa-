@@ -291,7 +291,21 @@ Z Points are your achievement currency within the ZWAP! ecosystem. Unlike <span 
 • Maintaining consistent engagement across MOVE and PLAY</p>
 
 <p><strong style="color: #B8B8B8;">🏆 Leaderboard Integration:</strong><br/>
-Track your Z Points ranking against other users, view your achievement progress, and compete for additional rewards through our comprehensive leaderboard system.</p>
+Track your Z Points ranking against other users, view your achievement progress, and compete for additional rewards.</p>
+
+<div style="text-align: center; margin-top: 2rem;">
+<button class="large-btn" onclick="proceedToLeaderboard()">VIEW LEADERBOARD</button>
+</div>
+</div>
+`, true, 'z-points-modal', 'z-points-backdrop');
+}
+
+function proceedToLeaderboard() {
+// Mark that user has seen Z Points overview
+localStorage.setItem('zwapZPointsOverviewSeen', 'true');
+// Close modal and navigate to leaderboard
+Swal.close();
+window.location.href = 'leaderboard.html';wards through our comprehensive leaderboard system.</p>
 
 <p style="text-align: center; margin-top: 2rem;">
 <button onclick="proceedToLeaderboard()" style="background: linear-gradient(135deg, #B8B8B8, #A0A0A0); border: none; color: white; padding: 1rem 2rem; border-radius: 12px; font-weight: bold; cursor: pointer; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px;">
