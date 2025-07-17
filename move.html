@@ -282,5 +282,256 @@
 
 <script src="script.js"></script>
 <script src="zed-copilot.js"></script>
+<script>
+// Move to Earn functionality
+let walkSession = {
+  active: false,
+  startTime: null,
+  steps: 0,
+  earnings: 0
+};
+
+let danceSession = {
+  active: false,
+  startTime: null,
+  duration: 0,
+  intensity: 0,
+  earnings: 0
+};
+
+// Close session modal function
+function closeSessionModal() {
+  document.getElementById('sessionModal').style.display = 'none';
+  
+  // Stop any active sessions
+  if (walkSession.active) {
+    walkSession.active = false;
+    document.getElementById('walkCard').classList.remove('active-session');
+    document.getElementById('startWalkBtn').textContent = 'Start Walking Session';
+  }
+  
+  if (danceSession.active) {
+    danceSession.active = false;
+    document.getElementById('danceCard').classList.remove('active-session');
+    document.getElementById('startDanceBtn').textContent = 'Start Dance Session';
+  }
+}
+
+// Walk session functionality
+document.getElementById('startWalkBtn').addEventListener('click', function() {
+  if (!walkSession.active) {
+    startWalkSession();
+  } else {
+    stopWalkSession();
+  }
+});
+
+function startWalkSession() {
+  walkSession.active = true;
+  walkSession.startTime = Date.now();
+  document.getElementById('walkCard').classList.add('active-session');
+  document.getElementById('startWalkBtn').textContent = 'Stop Walking Session';
+  
+  // Show session modal
+  document.getElementById('sessionModal').style.display = 'flex';
+  document.getElementById('sessionTitle').textContent = 'Walking Session Active';
+  document.getElementById('sessionContent').innerHTML = `
+    <p>🚶‍♂️ Keep moving to earn XHI!</p>
+    <p>Steps: <span id="liveSteps">0</span></p>
+    <p>Earnings: <span id="liveEarnings">0.000</span> XHI</p>
+  `;
+  
+  // Simulate step counting
+  simulateSteps();
+}
+
+function stopWalkSession() {
+  walkSession.active = false;
+  document.getElementById('walkCard').classList.remove('active-session');
+  document.getElementById('startWalkBtn').textContent = 'Start Walking Session';
+  closeSessionModal();
+}
+
+function simulateSteps() {
+  if (!walkSession.active) return;
+  
+  // Simulate step increments
+  walkSession.steps += Math.floor(Math.random() * 3) + 1;
+  walkSession.earnings = (walkSession.steps / 100) * 0.001;
+  
+  // Update UI
+  document.getElementById('todaySteps').textContent = walkSession.steps;
+  document.getElementById('walkEarned').textContent = walkSession.earnings.toFixed(3) + ' XHI';
+  
+  const progressPercent = (walkSession.steps % 100);
+  document.getElementById('walkProgress').style.width = progressPercent + '%';
+  
+  // Update live session if active
+  const liveSteps = document.getElementById('liveSteps');
+  const liveEarnings = document.getElementById('liveEarnings');
+  if (liveSteps) liveSteps.textContent = walkSession.steps;
+  if (liveEarnings) liveEarnings.textContent = walkSession.earnings.toFixed(3);
+  
+  setTimeout(simulateSteps, 2000);
+}
+
+// Dance session functionality
+document.getElementById('startDanceBtn').addEventListener('click', function() {
+  if (!danceSession.active) {
+    startDanceSession();
+  } else {
+    stopDanceSession();
+  }
+});
+
+function startDanceSession() {
+  danceSession.active = true;
+  danceSession.startTime = Date.now();
+  document.getElementById('danceCard').classList.add('active-session');
+  document.getElementById('startDanceBtn').textContent = 'Stop Dance Session';
+  
+  // Show session modal
+  document.getElementById('sessionModal').style.display = 'flex';
+  document.getElementById('sessionTitle').textContent = 'Dance Session Active';
+  document.getElementById('sessionContent').innerHTML = `
+    <p>💃 Keep dancing to earn XHI!</p>
+    <p>Duration: <span id="liveDuration">00:00</span></p>
+    <p>Intensity: <span id="liveIntensity">0</span>%</p>
+    <p>Earnings: <span id="liveDanceEarnings">0.000</span> XHI</p>
+  `;
+  
+  // Simulate dance tracking
+  simulateDance();
+}
+
+function stopDanceSession() {
+  danceSession.active = false;
+  document.getElementById('danceCard').classList.remove('active-session');
+  document.getElementById('startDanceBtn').textContent = 'Start Dance Session';
+  closeSessionModal();
+}
+
+function simulateDance() {
+  if (!danceSession.active) return;
+  
+  // Calculate duration
+  const currentTime = Date.now();
+  danceSession.duration = Math.floor((currentTime - danceSession.startTime) / 1000);
+  
+  // Simulate intensity changes
+  danceSession.intensity = Math.floor(Math.random() * 100);
+  
+  // Calculate earnings based on duration and intensity
+  danceSession.earnings = (danceSession.duration * danceSession.intensity / 10000) * 0.01;
+  
+  // Update UI
+  const minutes = Math.floor(danceSession.duration / 60);
+  const seconds = danceSession.duration % 60;
+  const timeString = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+  
+  document.getElementById('danceTime').textContent = timeString;
+  document.getElementById('intensityScore').textContent = danceSession.intensity + '%';
+  document.getElementById('danceEarned').textContent = danceSession.earnings.toFixed(3) + ' XHI';
+  document.getElementById('danceProgress').style.width = danceSession.intensity + '%';
+  
+  // Update live session if active
+  const liveDuration = document.getElementById('liveDuration');
+  const liveIntensity = document.getElementById('liveIntensity');
+  const liveDanceEarnings = document.getElementById('liveDanceEarnings');
+  if (liveDuration) liveDuration.textContent = timeString;
+  if (liveIntensity) liveIntensity.textContent = danceSession.intensity;
+  if (liveDanceEarnings) liveDanceEarnings.textContent = danceSession.earnings.toFixed(3);
+  
+  setTimeout(simulateDance, 1000);
+}
+
+// Difficulty selection
+document.querySelectorAll('.difficulty-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.difficulty-btn').forEach(b => b.classList.remove('selected'));
+    this.classList.add('selected');
+  });
+});
+
+// Connect fitness tracker button
+document.getElementById('connectFitnessBtn').addEventListener('click', function() {
+  Swal.fire({
+    title: 'CONNECT FITNESS TRACKER',
+    html: `
+      <p>Connect your fitness tracker to automatically earn XHI for your daily activities!</p>
+      <div style="margin: 1rem 0;">
+        <button onclick="connectFitness('googlefit')" style="background: #4285f4; color: white; border: none; padding: 0.5rem 1rem; margin: 0.5rem; border-radius: 5px;">Google Fit</button>
+        <button onclick="connectFitness('apple')" style="background: #000; color: white; border: none; padding: 0.5rem 1rem; margin: 0.5rem; border-radius: 5px;">Apple Health</button>
+        <button onclick="connectFitness('fitbit')" style="background: #00B0B9; color: white; border: none; padding: 0.5rem 1rem; margin: 0.5rem; border-radius: 5px;">Fitbit</button>
+      </div>
+    `,
+    background: '#111',
+    color: '#fff',
+    showCloseButton: true,
+    showConfirmButton: false
+  });
+});
+
+function connectFitness(provider) {
+  Swal.fire({
+    title: 'CONNECTING...',
+    text: `Connecting to ${provider}...`,
+    background: '#111',
+    color: '#fff',
+    timer: 2000,
+    showConfirmButton: false
+  }).then(() => {
+    Swal.fire({
+      title: 'CONNECTED!',
+      text: `${provider} connected successfully!`,
+      background: '#111',
+      color: '#fff',
+      timer: 2000,
+      showConfirmButton: false
+    });
+  });
+}
+
+// Join dance challenge button
+document.getElementById('joinChallengeBtn').addEventListener('click', function() {
+  Swal.fire({
+    title: 'DANCE CHALLENGES',
+    html: `
+      <div style="text-align: left;">
+        <h3>Available Challenges:</h3>
+        <div style="margin: 1rem 0; padding: 1rem; background: rgba(0,191,255,0.1); border-radius: 8px;">
+          <h4>Weekly Dance Battle</h4>
+          <p>Duration: 3 days remaining</p>
+          <p>Prize Pool: 100 XHI</p>
+          <p>Participants: 234</p>
+          <button onclick="joinChallenge('weekly')" style="background: #00BFFF; color: white; border: none; padding: 0.5rem 1rem; border-radius: 5px;">JOIN</button>
+        </div>
+        <div style="margin: 1rem 0; padding: 1rem; background: rgba(255,215,0,0.1); border-radius: 8px;">
+          <h4>Freestyle Friday</h4>
+          <p>Duration: 2 days remaining</p>
+          <p>Prize Pool: 50 XHI</p>
+          <p>Participants: 89</p>
+          <button onclick="joinChallenge('freestyle')" style="background: #FFD700; color: black; border: none; padding: 0.5rem 1rem; border-radius: 5px;">JOIN</button>
+        </div>
+      </div>
+    `,
+    background: '#111',
+    color: '#fff',
+    showCloseButton: true,
+    showConfirmButton: false
+  });
+});
+
+function joinChallenge(challengeType) {
+  Swal.fire({
+    title: 'CHALLENGE JOINED!',
+    text: `You've joined the ${challengeType} challenge! Start dancing to compete.`,
+    background: '#111',
+    color: '#fff',
+    timer: 3000,
+    showConfirmButton: false
+  });
+}
+</script>
 </body>
 </html>

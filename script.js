@@ -210,7 +210,7 @@ function updateBalances(xhi = 0.00, zPoints = 0) {
   if (zElement) zElement.textContent = zPoints.toLocaleString();
   
   // Check for referral bonuses when balances update
-  if (typeof referralSystem !== 'undefined') {
+  if (referralSystem) {
     referralSystem.awardReferralBonuses();
   }
 }
@@ -377,7 +377,7 @@ class DailyStreakSystem {
       this.saveStreakData();
       
       // Check if this qualifies for referral bonus
-      if (this.streakData.totalDaysActive >= 3) {
+      if (this.streakData.totalDaysActive >= 3 && referralSystem) {
         referralSystem.awardReferralBonuses();
       }
     }
