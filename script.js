@@ -357,8 +357,8 @@ class ReferralSystem {
   }
 }
 
-// Initialize referral system
-const referralSystem = new ReferralSystem();
+// Initialize referral system after DOM load
+let referralSystem = null;
 
 // Daily Streak System for Referral Bonus Tracking
 class DailyStreakSystem {
@@ -388,7 +388,8 @@ class DailyStreakSystem {
   }
 }
 
-// Initialize streak system
+// Initialize referral and streak systems
+referralSystem = new ReferralSystem();
 const dailyStreakSystem = new DailyStreakSystem();
 
 // Initialize balances
@@ -468,9 +469,9 @@ showPaginatedModal(content, currentIndex + 1);
 });
 }
 
-const earnBtn = document.getElementById('earnBtn');
-if (earnBtn) {
-earnBtn.onclick = () => {
+const earnBtnElement = document.getElementById('earnBtn');
+if (earnBtnElement) {
+earnBtnElement.onclick = () => {
 showModal('EARN <span class="gold">$XHI</span>', `
 <p>Choose how you want to earn <span class="gold">$XHI</span> rewards:</p>
 <div style="display:flex; justify-content:center; gap:1rem; margin-top:1rem;">
