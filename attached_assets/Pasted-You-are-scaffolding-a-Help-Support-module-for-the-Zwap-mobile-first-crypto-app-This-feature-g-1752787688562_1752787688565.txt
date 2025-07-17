@@ -1,0 +1,90 @@
+You are scaffolding a Help & Support module for the Zwap! mobile-first crypto app.
+
+
+
+This feature gives the user access to a conversational assistant called Zed Lite™ when they have direct questions or need support during onboarding, gameplay, or shopping.
+
+💼 Framework / Environment:
+
+React.js functional component
+
+Mobile-first design
+
+Style:
+
+Black background, gold accents
+
+Orbitron monospace font
+
+Large tappable elements
+
+Smooth slide-up modal / drawer UI for chat window
+
+📝 Required features and logic:
+
+
+
+1️⃣ Help/Support entry point:
+
+Add a persistent floating button in lower-right corner of the screen:
+
+Icon: ❔ (question mark emoji or appropriate icon)
+
+Label (optional on hover/long press): “Help”
+
+
+
+2️⃣ When tapped:
+
+Open a slide-up drawer/modal labeled Help & Support with conversational welcome from Zed Lite™:
+
+"Hey, I’m Zed Lite 👋🏾  
+Need a hand? Ask me anything or choose one of these quick questions:"
+3️⃣ Display a list of suggested quick questions as buttons (examples):
+
+“How do I connect my wallet?”
+
+“What is XHI?”
+
+“How do I claim faucet rewards?”
+
+“How do I shop with XHI?”
+
+
+
+4️⃣ Below quick questions:
+
+Include a freeform text input:
+
+Placeholder: Type your question here...
+
+Submit button: Ask Zed Lite
+
+
+
+5️⃣ Message handling:
+
+Stub out handler function for now (can later be wired to OpenAI, Claude API, or canned response library).
+
+After submission, simply display mock reply from Zed Lite™:
+
+"Thanks for asking! I’ll guide you through this. Stay tuned for future updates where I’ll answer instantly."
+
+
+
+
+6️⃣ Privacy principles:
+
+No analytics, no tracking cookies, no persistent logs for now.
+
+Privacy-first UX.
+
+✅ Output requirement:
+
+Deliver as a single, self-contained React functional component named: HelpSupportChat.jsx.
+
+Make sure it can drop into a mobile-first Zwap! app immediately.
+
+Wallet connection and routing logic should NOT be part of this component — this is strictly a Help/Support chat scaffold.
+
+🔥 Claude: Output clean, production-ready code using modern React patterns (hooks, functional state management). All copy and UI text must match the script exactly.
