@@ -159,12 +159,6 @@
 <div class="header-left">
 <button id="connectBtn">CONNECT WALLET</button>
 </div>
-<div class="header-nav">
-<button class="nav-item" onclick="window.location.href='move.html'">MOVE</button>
-<button class="nav-item" onclick="window.location.href='Swap.html'">SWAP</button>
-<button class="nav-item" onclick="shopComingSoon()">SHOP</button>
-<button class="nav-item" id="earnBtn">EARN</button>
-</div>
 <div class="balance-display drop-animation">
 <div class="balance-item">
 <span class="balance-label gold">XHI</span>
@@ -175,29 +169,24 @@
 <span class="balance-value" id="zBalance">0</span>
 </div>
 </div>
+<nav class="header-nav">
+<button class="header-nav-item" onclick="window.location.href='index.html'">HOME</button>
+<button class="header-nav-item current">MOVE</button>
+<button class="header-nav-item" onclick="window.location.href='play.html'">PLAY</button>
+<button class="header-nav-item" onclick="window.location.href='Swap.html'">SWAP</button>
+<button class="header-nav-item" onclick="window.location.href='Credit.html'">CREDIT</button>
+</nav>
 <img id="bang" src="Zwap_bang_3d.PNG" alt="Bang Symbol">
 <div id="bangMenu" class="dropdown-menu">
 <button class="menu-btn" id="homeBtn">HOME</button>
 <button class="menu-btn" id="learnBtn">LEARN</button>
+<button class="menu-btn" id="earnBtn">EARN</button>
 <button class="menu-btn" id="leaderboardBtn">LEADERBOARD</button>
 <button class="menu-btn" id="contactBtn">CONTACT</button>
 </div>
 </header>
 
 <main>
-<!-- Enterprise Navigation Menu -->
-<nav class="enterprise-nav">
-  <span class="nav-separator">|</span>
-  <button class="nav-item" onclick="window.location.href='index.html'">HOME</button>
-  <span class="nav-separator">|</span>
-  <button class="nav-item" onclick="window.location.href='play.html'">PLAY</button>
-  <span class="nav-separator">|</span>
-  <button class="nav-item" onclick="window.location.href='Swap.html'">SWAP</button>
-  <span class="nav-separator">|</span>
-  <button class="nav-item" onclick="window.location.href='Credit.html'">CREDIT</button>
-  <span class="nav-separator">|</span>
-</nav>
-
 <h1>MOVE TO EARN</h1>
 <p>Walk or dance to earn <span class="gold">$XHI</span> rewards.</p>
 
@@ -307,14 +296,14 @@ let danceSession = {
 // Close session modal function
 function closeSessionModal() {
   document.getElementById('sessionModal').style.display = 'none';
-  
+
   // Stop any active sessions
   if (walkSession.active) {
     walkSession.active = false;
     document.getElementById('walkCard').classList.remove('active-session');
     document.getElementById('startWalkBtn').textContent = 'Start Walking Session';
   }
-  
+
   if (danceSession.active) {
     danceSession.active = false;
     document.getElementById('danceCard').classList.remove('active-session');
@@ -336,7 +325,7 @@ function startWalkSession() {
   walkSession.startTime = Date.now();
   document.getElementById('walkCard').classList.add('active-session');
   document.getElementById('startWalkBtn').textContent = 'Stop Walking Session';
-  
+
   // Show session modal
   document.getElementById('sessionModal').style.display = 'flex';
   document.getElementById('sessionTitle').textContent = 'Walking Session Active';
@@ -345,7 +334,7 @@ function startWalkSession() {
     <p>Steps: <span id="liveSteps">0</span></p>
     <p>Earnings: <span id="liveEarnings">0.000</span> XHI</p>
   `;
-  
+
   // Simulate step counting
   simulateSteps();
 }
@@ -359,24 +348,24 @@ function stopWalkSession() {
 
 function simulateSteps() {
   if (!walkSession.active) return;
-  
+
   // Simulate step increments
   walkSession.steps += Math.floor(Math.random() * 3) + 1;
   walkSession.earnings = (walkSession.steps / 100) * 0.001;
-  
+
   // Update UI
   document.getElementById('todaySteps').textContent = walkSession.steps;
   document.getElementById('walkEarned').textContent = walkSession.earnings.toFixed(3) + ' XHI';
-  
+
   const progressPercent = (walkSession.steps % 100);
   document.getElementById('walkProgress').style.width = progressPercent + '%';
-  
+
   // Update live session if active
   const liveSteps = document.getElementById('liveSteps');
   const liveEarnings = document.getElementById('liveEarnings');
   if (liveSteps) liveSteps.textContent = walkSession.steps;
   if (liveEarnings) liveEarnings.textContent = walkSession.earnings.toFixed(3);
-  
+
   setTimeout(simulateSteps, 2000);
 }
 
@@ -394,7 +383,7 @@ function startDanceSession() {
   danceSession.startTime = Date.now();
   document.getElementById('danceCard').classList.add('active-session');
   document.getElementById('startDanceBtn').textContent = 'Stop Dance Session';
-  
+
   // Show session modal
   document.getElementById('sessionModal').style.display = 'flex';
   document.getElementById('sessionTitle').textContent = 'Dance Session Active';
@@ -404,7 +393,7 @@ function startDanceSession() {
     <p>Intensity: <span id="liveIntensity">0</span>%</p>
     <p>Earnings: <span id="liveDanceEarnings">0.000</span> XHI</p>
   `;
-  
+
   // Simulate dance tracking
   simulateDance();
 }
@@ -418,27 +407,27 @@ function stopDanceSession() {
 
 function simulateDance() {
   if (!danceSession.active) return;
-  
+
   // Calculate duration
   const currentTime = Date.now();
   danceSession.duration = Math.floor((currentTime - danceSession.startTime) / 1000);
-  
+
   // Simulate intensity changes
   danceSession.intensity = Math.floor(Math.random() * 100);
-  
+
   // Calculate earnings based on duration and intensity
   danceSession.earnings = (danceSession.duration * danceSession.intensity / 10000) * 0.01;
-  
+
   // Update UI
   const minutes = Math.floor(danceSession.duration / 60);
   const seconds = danceSession.duration % 60;
   const timeString = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-  
+
   document.getElementById('danceTime').textContent = timeString;
   document.getElementById('intensityScore').textContent = danceSession.intensity + '%';
   document.getElementById('danceEarned').textContent = danceSession.earnings.toFixed(3) + ' XHI';
   document.getElementById('danceProgress').style.width = danceSession.intensity + '%';
-  
+
   // Update live session if active
   const liveDuration = document.getElementById('liveDuration');
   const liveIntensity = document.getElementById('liveIntensity');
@@ -446,7 +435,7 @@ function simulateDance() {
   if (liveDuration) liveDuration.textContent = timeString;
   if (liveIntensity) liveIntensity.textContent = danceSession.intensity;
   if (liveDanceEarnings) liveDanceEarnings.textContent = danceSession.earnings.toFixed(3);
-  
+
   setTimeout(simulateDance, 1000);
 }
 

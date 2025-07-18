@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,12 +13,6 @@
 <div class="header-left">
 <button id="connectBtn">CONNECT WALLET</button>
 </div>
-<div class="header-nav">
-<button class="nav-item" onclick="window.location.href='move.html'">MOVE</button>
-<button class="nav-item" onclick="window.location.href='Swap.html'">SWAP</button>
-<button class="nav-item" onclick="shopComingSoon()">SHOP</button>
-<button class="nav-item" id="earnBtn">EARN</button>
-</div>
 <div class="balance-display drop-animation">
 <div class="balance-item">
 <span class="balance-label gold">XHI</span>
@@ -30,6 +23,13 @@
 <span class="balance-value" id="zBalance">0</span>
 </div>
 </div>
+<nav class="header-nav">
+<button class="header-nav-item" onclick="window.location.href='index.html'">HOME</button>
+<button class="header-nav-item" onclick="window.location.href='move.html'">MOVE</button>
+<button class="header-nav-item" onclick="window.location.href='play.html'">PLAY</button>
+<button class="header-nav-item" onclick="window.location.href='Swap.html'">SWAP</button>
+<button class="header-nav-item current">CREDIT</button>
+</nav>
 <img id="bang" src="Zwap_bang_3d.PNG" alt="Bang Symbol">
 <div id="bangMenu" class="dropdown-menu">
 <button class="menu-btn" id="homeBtn">HOME</button>
@@ -41,19 +41,6 @@
 </header>
 
 <main>
-<!-- Enterprise Navigation Menu -->
-<nav class="enterprise-nav">
-  <span class="nav-separator">|</span>
-  <button class="nav-item" onclick="window.location.href='index.html'">HOME</button>
-  <span class="nav-separator">|</span>
-  <button class="nav-item" onclick="window.location.href='move.html'">MOVE</button>
-  <span class="nav-separator">|</span>
-  <button class="nav-item" onclick="window.location.href='play.html'">PLAY</button>
-  <span class="nav-separator">|</span>
-  <button class="nav-item" onclick="window.location.href='Swap.html'">SWAP</button>
-  <span class="nav-separator">|</span>
-</nav>
-
 <h1>CREDIT BUILD</h1>
 <p>Build your credit and earn <span class="gold">$XHI</span> rewards.</p>
 <div id="gameStatus">Credit building features coming soon! Check back later for updates.</div>

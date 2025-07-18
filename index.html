@@ -13,39 +13,37 @@
     <div class="header-left">
       <button id="connectBtn">CONNECT WALLET</button>
     </div>
-    <div class="header-nav">
-      <button class="nav-item" onclick="window.location.href='move.html'">MOVE</button>
-      <button class="nav-item" onclick="window.location.href='Swap.html'">SWAP</button>
-      <button class="nav-item" onclick="shopComingSoon()">SHOP</button>
-      <button class="nav-item" id="earnBtn">EARN</button>
+    <div class="balance-display drop-animation">
+      <div class="balance-item">
+        <span class="balance-label gold">XHI</span>
+        <span class="balance-value" id="xhiBalance">0.00</span>
+      </div>
+      <div class="balance-item">
+        <span class="balance-label zpts">Z PTS</span>
+        <span class="balance-value" id="zBalance">0</span>
+      </div>
     </div>
+    <nav class="header-nav">
+      <button class="header-nav-item" onclick="window.location.href='move.html'">MOVE</button>
+      <button class="header-nav-item" onclick="window.location.href='play.html'">PLAY</button>
+      <button class="header-nav-item" onclick="window.location.href='Swap.html'">SWAP</button>
+      <button class="header-nav-item" onclick="window.location.href='Credit.html'">CREDIT</button>
+    </nav>
     <img id="bang" src="Zwap_bang_3d.PNG" alt="Bang Symbol">
     <div id="bangMenu" class="dropdown-menu">
       <button class="menu-btn" id="homeBtn">HOME</button>
       <button class="menu-btn" id="learnBtn">LEARN</button>
+      <button class="menu-btn" id="earnBtn">EARN</button>
       <button class="menu-btn" id="leaderboardBtn">LEADERBOARD</button>
       <button class="menu-btn" id="contactBtn">CONTACT</button>
     </div>
   </header>
 
   <main>
-    <!-- Enterprise Navigation Menu -->
-    <nav class="enterprise-nav">
-      <span class="nav-separator">|</span>
-      <button class="nav-item" onclick="window.location.href='move.html'">MOVE</button>
-      <span class="nav-separator">|</span>
-      <button class="nav-item" onclick="window.location.href='play.html'">PLAY</button>
-      <span class="nav-separator">|</span>
-      <button class="nav-item" onclick="window.location.href='Swap.html'">SWAP</button>
-      <span class="nav-separator">|</span>
-      <button class="nav-item" onclick="window.location.href='Credit.html'">CREDIT</button>
-      <span class="nav-separator">|</span>
-    </nav>
-
     <img src="Zwap_logo_full.png" alt="ZWAP! Logo" class="logo">
     <p class="tagline">EARN <span class="gold">$XHI</span> THROUGH WELLNESS, CREATIVITY, AND PLAY.</p>
 
-    
+
   </main>
 
   <footer>
