@@ -255,12 +255,13 @@ header {
 h1 {
   font-size: 2.5rem;
   text-shadow: 0 0 15px #00BFFF, 0 0 30px #FF00FF;
-  margin: 0;
+  margin: 2rem 0 1rem 0;
 }
 
 p {
   color: #CCCCCC;
   font-size: 1rem;
+  margin: 1rem 0 2rem 0;
 }
 
 .tagline {
@@ -598,10 +599,16 @@ p {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 1rem 0;
-  padding: 0.5rem 0;
+  margin: 1.5rem 0;
+  padding: 1rem 0;
   position: relative;
   z-index: 1;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .nav-separator {
@@ -621,14 +628,17 @@ p {
   font-size: 1rem;
   font-weight: 600;
   letter-spacing: 1px;
-  padding: 0.8rem 1.5rem;
+  padding: 0.8rem 1.2rem;
+  margin: 0 0.3rem;
   cursor: pointer;
   text-transform: uppercase;
   transition: all 0.3s ease;
   position: relative;
   text-decoration: none;
   display: inline-block;
-  border-radius: 8px;
+  border-radius: 10px;
+  min-width: 80px;
+  text-align: center;
 }
 
 .nav-item::before {
@@ -664,11 +674,15 @@ p {
     flex-wrap: wrap;
     gap: 0.5rem;
     padding: 1rem 0.5rem;
+    margin: 1rem;
+    border-radius: 10px;
   }
   
   .nav-item {
-    font-size: 0.9rem;
-    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+    padding: 0.6rem 0.8rem;
+    margin: 0.2rem;
+    min-width: 70px;
   }
   
   .nav-separator {

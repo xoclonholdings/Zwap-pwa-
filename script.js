@@ -210,13 +210,10 @@ function updateBalances(xhi = 0.00, zPoints = 0) {
   if (zElement) zElement.textContent = zPoints.toLocaleString();
   
   // Check for referral bonuses when balances update
-  if (referralSystem) {
+  if (typeof referralSystem !== 'undefined' && referralSystem) {
     referralSystem.awardReferralBonuses();
   }
 }
-
-// Initialize balances
-updateBalances();
 
 // Referral System Implementation
 class ReferralSystem {
