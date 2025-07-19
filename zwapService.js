@@ -1,6 +1,11 @@
 
 /**
  * ZWAP! Multi-Asset Swap Service
+ * ©️ 2025 XOCLON HOLDINGS INC.™ - All Rights Reserved
+ * 
+ * This file contains proprietary intellectual property of XOCLON HOLDINGS INC.™
+ * Unauthorized copying, reproduction, or distribution is strictly prohibited.
+ * 
  * Centralized service for handling decentralized swaps
  * Supports XHI ↔ ETH/USDC/POL/BTC/SOL
  */

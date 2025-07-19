@@ -1,5 +1,11 @@
 
-// Leaderboard system for ZWAP! games
+/**
+ * Leaderboard System for ZWAP! Games
+ * ©️ 2025 XOCLON HOLDINGS INC.™ - All Rights Reserved
+ * 
+ * This file contains proprietary intellectual property of XOCLON HOLDINGS INC.™
+ * Unauthorized copying, reproduction, or distribution is strictly prohibited.
+ */
 class ZwapLeaderboard {
   constructor() {
     this.leaderboardData = this.loadLeaderboardData();

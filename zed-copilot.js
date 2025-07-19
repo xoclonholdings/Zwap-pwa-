@@ -1,5 +1,11 @@
 
-// ZED AI Co-pilot for ZWAP!
+/**
+ * ZED AI Co-pilot for ZWAP!
+ * ©️ 2025 XOCLON HOLDINGS INC.™ - All Rights Reserved
+ * 
+ * This file contains proprietary intellectual property of XOCLON HOLDINGS INC.™
+ * Unauthorized copying, reproduction, or distribution is strictly prohibited.
+ */
 class ZEDCopilot {
   constructor() {
     this.isActive = false;

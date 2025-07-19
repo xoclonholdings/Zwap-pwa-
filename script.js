@@ -1,3 +1,10 @@
+/**
+ * ZWAP! Main Application Script
+ * ©️ 2025 XOCLON HOLDINGS INC.™ - All Rights Reserved
+ * 
+ * This file contains proprietary intellectual property of XOCLON HOLDINGS INC.™
+ * Unauthorized copying, reproduction, or distribution is strictly prohibited.
+ */
 document.addEventListener("DOMContentLoaded", () => {
 // Toggle dropdown menu under bang
 const bang = document.getElementById('bang');
@@ -208,7 +215,7 @@ function updateBalances(xhi = 0.00, zPoints = 0) {
 
   if (xhiElement) xhiElement.textContent = xhi.toFixed(2);
   if (zElement) zElement.textContent = zPoints.toLocaleString();
-  
+
   // Check for referral bonuses when balances update
   if (typeof referralSystem !== 'undefined' && referralSystem) {
     referralSystem.awardReferralBonuses();
@@ -227,7 +234,7 @@ class ReferralSystem {
     // Check for referral code in URL
     const urlParams = new URLSearchParams(window.location.search);
     const referralCode = urlParams.get('ref');
-    
+
     if (referralCode && !this.referralData.usedReferralCode) {
       this.referralData.referredBy = referralCode;
       this.referralData.usedReferralCode = true;
@@ -238,10 +245,10 @@ class ReferralSystem {
   generateReferralCode() {
     const connectBtn = document.getElementById('connectBtn');
     if (!connectBtn || connectBtn.textContent === 'CONNECT WALLET') return null;
-    
+
     const walletAddress = this.extractWalletFromButton(connectBtn.textContent);
     if (!walletAddress) return null;
-    
+
     // Generate referral code based on wallet address
     return walletAddress.substring(0, 8).toUpperCase();
   }
@@ -263,32 +270,32 @@ class ReferralSystem {
   checkReferralBonusEligibility() {
     const earnings = this.getUserEarnings();
     const daysActive = this.getDaysActive();
-    
+
     // Referrer bonus: +25 XHI when referred user earns 500 XHI
     const referrerBonusEligible = earnings >= 500 && !this.referralData.referrerBonusAwarded;
-    
+
     // Invitee bonus: +25 XHI after completing 3 days of MOVE or Faucet play
     const inviteeBonusEligible = daysActive >= 3 && !this.referralData.inviteeBonusAwarded;
-    
+
     return { referrerBonusEligible, inviteeBonusEligible };
   }
 
   awardReferralBonuses() {
     const { referrerBonusEligible, inviteeBonusEligible } = this.checkReferralBonusEligibility();
-    
+
     if (inviteeBonusEligible && this.referralData.referredBy) {
       // Award invitee bonus
       this.referralData.inviteeBonusAwarded = true;
       this.userStats.totalEarnings = (this.userStats.totalEarnings || 0) + 25;
       this.saveReferralData();
       this.saveUserStats();
-      
+
       showModal('REFERRAL BONUS EARNED!', `
         <p style="color: #00ff00; font-weight: bold;">🎉 You've earned +25 XHI!</p>
         <p>Bonus for completing 3 days of activity as a referred user.</p>
       `);
     }
-    
+
     if (referrerBonusEligible && this.referralData.referredBy) {
       // This would notify the referrer (in a real implementation, this would be handled server-side)
       console.log('Referrer bonus should be awarded to:', this.referralData.referredBy);
@@ -304,35 +311,35 @@ class ReferralSystem {
 
     const referralLink = `${window.location.origin}?ref=${referralCode}`;
     const { referrerBonusEligible, inviteeBonusEligible } = this.checkReferralBonusEligibility();
-    
+
     showModal('REFERRAL DASHBOARD', `
       <div style="text-align: left; line-height: 1.6;">
         <p><strong>Your Referral Code:</strong> <span style="color: #00BFFF; font-weight: bold;">${referralCode}</span></p>
-        
+
         <p><strong>Referral Link:</strong></p>
         <div style="background: rgba(0,0,0,0.3); padding: 0.5rem; border-radius: 5px; margin: 0.5rem 0; word-break: break-all; font-size: 0.9rem;">
           ${referralLink}
         </div>
-        
+
         <button onclick="navigator.clipboard.writeText('${referralLink}')" style="background: #00BFFF; color: white; border: none; padding: 0.5rem 1rem; border-radius: 5px; cursor: pointer; margin-bottom: 1rem;">
           📋 Copy Link
         </button>
-        
+
         <div style="margin-top: 1.5rem;">
           <h3 style="color: #FFD700; margin-bottom: 1rem;">📊 Referral Status</h3>
-          
+
           <p><strong>🎯 Referrer Bonus (25 XHI):</strong><br/>
           ${referrerBonusEligible ? '✅ Eligible! Bonus will be awarded when referred user earns 500 XHI.' : '⏳ Refer users who earn 500+ XHI to unlock this bonus.'}</p>
-          
+
           <p><strong>🎁 Invitee Bonus (25 XHI):</strong><br/>
           ${this.referralData.referredBy ? 
             (inviteeBonusEligible ? '✅ Bonus earned!' : `⏳ ${3 - this.getDaysActive()} more days of activity needed.`) : 
             '❌ Not referred by anyone.'}</p>
-          
+
           <p><strong>Total Earnings:</strong> <span class="gold">${this.getUserEarnings().toFixed(2)} XHI</span></p>
           <p><strong>Days Active:</strong> ${this.getDaysActive()}</p>
         </div>
-        
+
         <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(0,191,255,0.1); border-radius: 8px; border-left: 4px solid #00BFFF;">
           <h4 style="color: #00BFFF; margin-bottom: 0.5rem;">🛡️ Anti-Abuse Protection</h4>
           <p style="font-size: 0.9rem; color: #ccc;">
@@ -367,12 +374,12 @@ class DailyStreakSystem {
   checkDailyLogin() {
     const today = new Date().toDateString();
     const lastLogin = this.streakData.lastLogin;
-    
+
     if (lastLogin !== today) {
       this.streakData.lastLogin = today;
       this.streakData.totalDaysActive = (this.streakData.totalDaysActive || 0) + 1;
       this.saveStreakData();
-      
+
       // Check if this qualifies for referral bonus
       if (this.streakData.totalDaysActive >= 3 && referralSystem) {
         referralSystem.awardReferralBonuses();
@@ -753,6 +760,7 @@ color: '#fff',
 showCloseButton: true,
 showConfirmButton: false,
 });
+Adding the copyright notice to the javascript file.Updating the javascript file with the copyright notice.```text
 }
 
 const miniPopups = {

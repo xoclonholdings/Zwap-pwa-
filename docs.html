@@ -1,0 +1,217 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZWAP! Technical Documentation</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.docs-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.8);
+  border: 2px solid #00BFFF;
+  border-radius: 15px;
+}
+
+.copyright-notice {
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 0, 255, 0.1));
+  border: 2px solid #FFD700;
+  border-radius: 10px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.copyright-title {
+  color: #FFD700;
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 10px #FFD700;
+}
+
+.copyright-text {
+  color: #fff;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.rights-reserved {
+  color: #FF6666;
+  font-weight: bold;
+  font-size: 1.1rem;
+  text-shadow: 0 0 5px #FF6666;
+}
+
+.docs-section {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background: rgba(0, 191, 255, 0.1);
+  border-radius: 10px;
+  border-left: 4px solid #00BFFF;
+}
+
+.section-title {
+  color: #00BFFF;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 5px #00BFFF;
+}
+
+.back-btn {
+  background: linear-gradient(135deg, #00BFFF, #0099CC);
+  border: none;
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 191, 255, 0.4);
+}
+</style>
+</head>
+<body>
+<header>
+<div class="header-left">
+<button id="connectBtn">CONNECT WALLET</button>
+</div>
+<div class="balance-display drop-animation">
+<div class="balance-item">
+<span class="balance-label gold">XHI</span>
+<span class="balance-value" id="xhiBalance">0.00</span>
+</div>
+<div class="balance-item">
+<span class="balance-label zpts">Z PTS</span>
+<span class="balance-value" id="zBalance">0</span>
+</div>
+</div>
+<nav class="header-nav">
+<button class="header-nav-item" onclick="window.location.href='index.html'">HOME</button>
+<button class="header-nav-item" onclick="window.location.href='move.html'">MOVE</button>
+<button class="header-nav-item" onclick="window.location.href='play.html'">PLAY</button>
+<button class="header-nav-item" onclick="window.location.href='Swap.html'">SWAP</button>
+<button class="header-nav-item" onclick="window.location.href='Credit.html'">CREDIT</button>
+</nav>
+<img id="bang" src="Zwap_bang_3d.PNG" alt="Bang Symbol">
+<div id="bangMenu" class="dropdown-menu">
+<button class="menu-btn" id="homeBtn">HOME</button>
+<button class="menu-btn" id="learnBtn">LEARN</button>
+<button class="menu-btn" id="earnBtn">EARN</button>
+<button class="menu-btn" id="leaderboardBtn">LEADERBOARD</button>
+<button class="menu-btn" id="contactBtn">CONTACT</button>
+</div>
+</header>
+
+<main>
+<div class="docs-container">
+<button class="back-btn" onclick="window.history.back()">← BACK</button>
+
+<div class="copyright-notice">
+<div class="copyright-title">
+ZWAP! Technical Documentation — Ownership Guarantee
+</div>
+<div class="copyright-text">
+<strong>©️ 2025 XOCLON HOLDINGS INC.™ — ZWAP!™ Architecture, Source Code, and Processes</strong>
+</div>
+<div class="copyright-text">
+This entire application, including but not limited to all technical documentation, architecture, design patterns, workflows, middleware structures (e.g. zwapService.ts, useZwap.ts, ZwapUI.tsx), premium tier logic, credit builder mechanism, and associated methodologies, constitutes proprietary intellectual property of XOCLON HOLDINGS INC.™.
+</div>
+<div class="copyright-text">
+Unauthorized copying, reproduction, redistribution, reverse engineering, or derivative work creation is strictly prohibited.
+</div>
+<div class="copyright-text">
+By accessing or viewing this technical documentation, source code, or any related materials, you acknowledge notice of this ownership and accept that any circumvention, misappropriation, or replication of these protected processes will be treated as intentional infringement under U.S. and international intellectual property law.
+</div>
+<div class="rights-reserved">
+All rights reserved.
+</div>
+</div>
+
+<div class="docs-section">
+<div class="section-title">🏗️ Architecture Overview</div>
+<p>ZWAP! is built on a modular, scalable architecture designed for mobile-first crypto interactions:</p>
+<ul>
+<li><strong>zwapService.js</strong> - Core DeFi swap functionality with multi-asset support</li>
+<li><strong>zed-copilot.js</strong> - AI-powered user assistance system</li>
+<li><strong>Premium Tier System</strong> - Enhanced features for paid subscribers</li>
+<li><strong>Credit Builder</strong> - Financial wellness integration</li>
+<li><strong>Move-to-Earn Engine</strong> - Fitness tracking and rewards</li>
+</ul>
+</div>
+
+<div class="docs-section">
+<div class="section-title">🔒 Security Framework</div>
+<p>Enterprise-grade security measures protect user assets and data:</p>
+<ul>
+<li>Multi-signature wallet integration</li>
+<li>Slippage protection mechanisms</li>
+<li>Gas optimization algorithms</li>
+<li>Real-time price feed validation</li>
+<li>Anti-MEV transaction routing</li>
+</ul>
+</div>
+
+<div class="docs-section">
+<div class="section-title">⚡ Performance Optimizations</div>
+<p>Optimized for mobile performance and user experience:</p>
+<ul>
+<li>Progressive web app (PWA) capabilities</li>
+<li>Cached price feeds for offline functionality</li>
+<li>Lazy loading of game assets</li>
+<li>Compressed image optimization</li>
+<li>Minimal JavaScript bundle size</li>
+</ul>
+</div>
+
+<div class="docs-section">
+<div class="section-title">📊 Analytics & Tracking</div>
+<p>Comprehensive user behavior and performance monitoring:</p>
+<ul>
+<li>Real-time transaction monitoring</li>
+<li>User engagement metrics</li>
+<li>Swap success rate analytics</li>
+<li>Game performance statistics</li>
+<li>Revenue optimization tracking</li>
+</ul>
+</div>
+
+<div class="docs-section">
+<div class="section-title">🎮 Gaming Engine</div>
+<p>Interactive gaming system with reward mechanisms:</p>
+<ul>
+<li>Cube - 3D puzzle challenge game</li>
+<li>Trivia - Knowledge-based earning</li>
+<li>BlockCraft - Creative building rewards</li>
+<li>Spin - Luck-based token earning</li>
+<li>Leaderboard system with competitive rewards</li>
+</ul>
+</div>
+
+<div class="docs-section">
+<div class="section-title">⚠️ Legal Compliance</div>
+<p>This documentation and all associated code is protected under intellectual property law. Any unauthorized use constitutes infringement and will be prosecuted to the full extent of the law.</p>
+<p><strong>For licensing inquiries:</strong> legal@xoclon.com</p>
+</div>
+</div>
+</main>
+
+<footer>
+<div class="footer-info">
+<img src="xoclon-inc-logo.png" alt="XOCLON Logo" class="mini-logo">
+<p>© 2025 XOCLON INC. — All rights reserved</p>
+</div>
+</footer>
+
+<script src="script.js"></script>
+<script src="zed-copilot.js"></script>
+</body>
+</html>
