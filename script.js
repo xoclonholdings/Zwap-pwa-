@@ -760,7 +760,6 @@ color: '#fff',
 showCloseButton: true,
 showConfirmButton: false,
 });
-Adding the copyright notice to the javascript file.Updating the javascript file with the copyright notice.```text
 }
 
 const miniPopups = {

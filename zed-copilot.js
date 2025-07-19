@@ -100,9 +100,11 @@ class ZincCopilot {
         </div>
         <div class="zinc-chat" id="zinc-chat">
           <div class="zinc-message zinc-assistant">
-            <div class="message-avatar">🤖</div>
+            <div class="message-avatar">
+                <img src="zinc-logo.png" alt="Zinc" style="width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 0 8px #FFD700);">
+            </div>
             <div class="message-content">
-              Hi! I'm ZED, your ZWAP! co-pilot. I can help you with wallets, earning $XHI, games, and more. What can I assist you with today?
+              Hi! I'm Zinc, your ZWAP! co-pilot. I can help you with wallets, earning $XHI, games, and more. What can I assist you with today?
             </div>
           </div>
         </div>
