@@ -67,17 +67,13 @@ main p {
 margin-bottom: 2rem;
 }
 
-.friends-section {
-background: rgba(0, 0, 0, 0.8);
-border: 2px solid #00BFFF;
-border-radius: 15px;
-padding: 2rem;
-margin: 2rem 1rem;
+.friends-section-clean {
+padding: 2rem 1rem;
+margin: 2rem 0;
 text-align: center;
-box-shadow: 0 0 20px rgba(0, 191, 255, 0.3);
 }
 
-.friends-section h2 {
+.friends-section-clean h2 {
 color: #00BFFF;
 margin-bottom: 1.5rem;
 font-size: 1.8rem;
@@ -168,25 +164,6 @@ justify-content: center;
 <h1>Choose Your Game</h1>
 <p>Select a game to play and earn <span class="gold">$XHI</span>.</p>
 
-<!-- Play with Friends Section -->
-<div class="friends-section">
-<h2>🎮 PLAY WITH FRIENDS</h2>
-<div class="friends-actions">
-<button class="friends-btn" onclick="inviteFriends()">
-<span>📧</span>
-INVITE FRIENDS
-</button>
-<button class="friends-btn" onclick="createChallenge()">
-<span>⚡</span>
-CREATE CHALLENGE
-</button>
-<button class="friends-btn" onclick="joinChallenge()">
-<span>🎯</span>
-JOIN CHALLENGE
-</button>
-</div>
-</div>
-
 <div class="game-grid">
 <div class="game-block" onclick="window.location.href='cube.html'">
 <img src="Cube.PNG" alt="Cube" class="game-icon">
@@ -203,6 +180,25 @@ JOIN CHALLENGE
 <div class="game-block" onclick="comingSoon()">
 <img src="Spin.PNG" alt="Spin" class="game-icon">
 <p>Spin</p>
+</div>
+</div>
+
+<!-- Play with Friends Section -->
+<div class="friends-section-clean">
+<h2>🎮 PLAY WITH FRIENDS</h2>
+<div class="friends-actions">
+<button class="friends-btn" onclick="inviteFriends()">
+<span>📧</span>
+INVITE FRIENDS
+</button>
+<button class="friends-btn" onclick="createChallenge()">
+<span>⚡</span>
+CREATE CHALLENGE
+</button>
+<button class="friends-btn" onclick="joinChallenge()">
+<span>🎯</span>
+JOIN CHALLENGE
+</button>
 </div>
 </div>
 </main>
