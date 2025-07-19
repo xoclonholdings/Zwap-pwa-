@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +8,300 @@
 <link rel="stylesheet" href="style.css">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://unpkg.com/@walletconnect/web3-provider@1.8.0/dist/umd/index.min.js"></script>
+<style>
+.swap-container {
+  max-width: 500px;
+  margin: 2rem auto;
+  background: rgba(0, 0, 0, 0.8);
+  border: 2px solid #00BFFF;
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 0 30px rgba(0, 191, 255, 0.3);
+}
+
+.swap-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.swap-box {
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid #333;
+  border-radius: 15px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.swap-label {
+  color: #00BFFF;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.token-input-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.token-select {
+  background: rgba(255, 215, 0, 0.1);
+  border: 2px solid #FFD700;
+  border-radius: 10px;
+  padding: 0.8rem 1rem;
+  color: #FFD700;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 120px;
+  transition: all 0.3s ease;
+}
+
+.token-select:hover {
+  background: rgba(255, 215, 0, 0.2);
+  transform: translateY(-2px);
+}
+
+.amount-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: right;
+  outline: none;
+}
+
+.amount-input::placeholder {
+  color: #666;
+}
+
+.balance-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+.max-btn {
+  background: #00BFFF;
+  color: white;
+  border: none;
+  padding: 0.3rem 0.8rem;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.swap-arrow {
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
+}
+
+.arrow-btn {
+  background: #FFD700;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: #000;
+  transition: all 0.3s ease;
+}
+
+.arrow-btn:hover {
+  transform: rotate(180deg) scale(1.1);
+}
+
+.swap-details {
+  background: rgba(0, 191, 255, 0.1);
+  border: 1px solid #00BFFF;
+  border-radius: 10px;
+  padding: 1rem;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  color: #ccc;
+}
+
+.detail-row:last-child {
+  margin-bottom: 0;
+}
+
+.detail-value {
+  color: #fff;
+  font-weight: bold;
+}
+
+.swap-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #00BFFF, #0099CC);
+  border: none;
+  color: white;
+  padding: 1rem;
+  border-radius: 12px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.swap-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 191, 255, 0.4);
+}
+
+.swap-btn:disabled {
+  background: #666;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.settings-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: #00BFFF;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.token-modal {
+  background: rgba(0, 0, 0, 0.95);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10000;
+  display: none;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+.token-modal-content {
+  background: #111;
+  border: 2px solid #00BFFF;
+  border-radius: 15px;
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 2rem;
+}
+
+.token-search {
+  width: 100%;
+  background: #000;
+  border: 1px solid #333;
+  color: #fff;
+  padding: 1rem;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.token-list {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.token-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+.token-item:hover {
+  background: rgba(0, 191, 255, 0.1);
+}
+
+.token-icon {
+  font-size: 1.5rem;
+  width: 30px;
+  text-align: center;
+}
+
+.token-info {
+  flex: 1;
+}
+
+.token-symbol {
+  font-weight: bold;
+  color: #fff;
+}
+
+.token-name {
+  color: #ccc;
+  font-size: 0.9rem;
+}
+
+.token-balance {
+  color: #00BFFF;
+  font-weight: bold;
+}
+
+.price-chart {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.price-change {
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.price-change.positive {
+  color: #00FF00;
+}
+
+.price-change.negative {
+  color: #FF6666;
+}
+
+@media (max-width: 768px) {
+  .swap-container {
+    margin: 1rem;
+    padding: 1rem;
+  }
+  
+  .token-modal {
+    padding: 1rem;
+  }
+  
+  .token-modal-content {
+    margin: 1rem auto;
+  }
+}
+</style>
 </head>
 <body>
 <header>
@@ -41,10 +336,91 @@
 </header>
 
 <main>
-<img src="Zwap_logo_full.png" alt="ZWAP! Logo" class="logo">
+<div class="swap-container">
+<button class="settings-btn" onclick="showSwapSettings()">⚙️</button>
+
+<div class="swap-header">
 <h1>SWAP</h1>
-<p>Instantly exchange <span class="gold">$XHI</span> for other assets.</p>
-<div id="gameStatus">Swap functionality coming soon! Connect your wallet to get started.</div>
+<p>Exchange your <span class="gold">$XHI</span> for other assets</p>
+</div>
+
+<!-- From Token -->
+<div class="swap-box">
+<div class="swap-label">From</div>
+<div class="token-input-row">
+<div class="token-select" onclick="showTokenModal('from')">
+<span class="token-icon" id="fromTokenIcon">🪙</span>
+<span id="fromTokenSymbol">XHI</span>
+<span>▼</span>
+</div>
+<input type="number" class="amount-input" id="fromAmount" placeholder="0.0" oninput="updateSwapCalculation()">
+</div>
+<div class="balance-info">
+<span>Balance: <span id="fromBalance">0.00</span></span>
+<button class="max-btn" onclick="setMaxAmount()">MAX</button>
+</div>
+</div>
+
+<!-- Swap Arrow -->
+<div class="swap-arrow">
+<button class="arrow-btn" onclick="swapTokens()">⇅</button>
+</div>
+
+<!-- To Token -->
+<div class="swap-box">
+<div class="swap-label">To</div>
+<div class="token-input-row">
+<div class="token-select" onclick="showTokenModal('to')">
+<span class="token-icon" id="toTokenIcon">⟠</span>
+<span id="toTokenSymbol">ETH</span>
+<span>▼</span>
+</div>
+<input type="number" class="amount-input" id="toAmount" placeholder="0.0" readonly>
+</div>
+<div class="balance-info">
+<span>Balance: <span id="toBalance">0.00</span></span>
+</div>
+</div>
+
+<!-- Swap Details -->
+<div class="swap-details" id="swapDetails" style="display: none;">
+<div class="detail-row">
+<span>Exchange Rate:</span>
+<span class="detail-value" id="exchangeRate">-</span>
+</div>
+<div class="detail-row">
+<span>Price Impact:</span>
+<span class="detail-value" id="priceImpact">-</span>
+</div>
+<div class="detail-row">
+<span>Slippage Tolerance:</span>
+<span class="detail-value" id="slippageTolerance">0.5%</span>
+</div>
+<div class="detail-row">
+<span>Estimated Gas:</span>
+<span class="detail-value" id="estimatedGas">-</span>
+</div>
+</div>
+
+<!-- Swap Button -->
+<button class="swap-btn" id="swapButton" onclick="executeSwap()" disabled>
+Connect Wallet to Swap
+</button>
+</div>
+
+<!-- Token Selection Modal -->
+<div class="token-modal" id="tokenModal">
+<div class="token-modal-content">
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+<h3>Select Token</h3>
+<button onclick="closeTokenModal()" style="background: none; border: none; color: #00BFFF; font-size: 1.5rem; cursor: pointer;">×</button>
+</div>
+<input type="text" class="token-search" id="tokenSearch" placeholder="Search tokens..." oninput="filterTokens()">
+<div class="token-list" id="tokenList">
+<!-- Tokens will be populated by JavaScript -->
+</div>
+</div>
+</div>
 </main>
 
 <footer>
@@ -56,5 +432,399 @@
 
 <script src="script.js"></script>
 <script src="zed-copilot.js"></script>
+<script src="zwapService.js"></script>
+<script>
+// Swap interface state
+let currentSwapData = {
+  fromToken: 'XHI',
+  toToken: 'ETH',
+  fromAmount: 0,
+  toAmount: 0,
+  modalType: null
+};
+
+let tokenBalances = {};
+
+// Initialize swap interface
+document.addEventListener('DOMContentLoaded', async () => {
+  await initializeSwapInterface();
+  updateSwapButton();
+});
+
+async function initializeSwapInterface() {
+  try {
+    // Update token balances
+    await updateAllBalances();
+    
+    // Update prices
+    await window.zwapSwapService.updateAllPrices();
+    
+    // Populate token list
+    populateTokenModal();
+    
+    console.log('Swap interface initialized');
+  } catch (error) {
+    console.error('Failed to initialize swap interface:', error);
+  }
+}
+
+async function updateAllBalances() {
+  const tokens = Object.keys(window.zwapSwapService.supportedTokens);
+  
+  for (const token of tokens) {
+    try {
+      const balance = await window.zwapSwapService.getTokenBalance(token);
+      tokenBalances[token] = balance;
+    } catch (error) {
+      tokenBalances[token] = 0;
+    }
+  }
+  
+  updateBalanceDisplays();
+}
+
+function updateBalanceDisplays() {
+  document.getElementById('fromBalance').textContent = (tokenBalances[currentSwapData.fromToken] || 0).toFixed(4);
+  document.getElementById('toBalance').textContent = (tokenBalances[currentSwapData.toToken] || 0).toFixed(4);
+}
+
+function populateTokenModal() {
+  const tokenList = document.getElementById('tokenList');
+  const tokens = window.zwapSwapService.supportedTokens;
+  
+  tokenList.innerHTML = '';
+  
+  Object.values(tokens).forEach(token => {
+    const balance = tokenBalances[token.symbol] || 0;
+    const priceData = window.zwapSwapService.getMarketData(token.symbol);
+    
+    const tokenItem = document.createElement('div');
+    tokenItem.className = 'token-item';
+    tokenItem.onclick = () => selectToken(token.symbol);
+    
+    tokenItem.innerHTML = `
+      <div class="token-icon">${token.icon}</div>
+      <div class="token-info">
+        <div class="token-symbol">${token.symbol}</div>
+        <div class="token-name">${token.name}</div>
+        ${priceData ? `
+          <div class="price-chart">
+            <span>$${priceData.price.toFixed(priceData.price < 1 ? 4 : 2)}</span>
+            <span class="price-change ${priceData.change24h >= 0 ? 'positive' : 'negative'}">
+              ${priceData.change24h >= 0 ? '+' : ''}${priceData.change24h.toFixed(2)}%
+            </span>
+          </div>
+        ` : ''}
+      </div>
+      <div class="token-balance">${balance.toFixed(4)}</div>
+    `;
+    
+    tokenList.appendChild(tokenItem);
+  });
+}
+
+function showTokenModal(type) {
+  currentSwapData.modalType = type;
+  document.getElementById('tokenModal').style.display = 'block';
+  document.getElementById('tokenSearch').value = '';
+  populateTokenModal();
+}
+
+function closeTokenModal() {
+  document.getElementById('tokenModal').style.display = 'none';
+  currentSwapData.modalType = null;
+}
+
+function filterTokens() {
+  const query = document.getElementById('tokenSearch').value;
+  const filteredTokens = window.zwapSwapService.searchTokens(query);
+  
+  const tokenList = document.getElementById('tokenList');
+  tokenList.innerHTML = '';
+  
+  filteredTokens.forEach(token => {
+    const balance = tokenBalances[token.symbol] || 0;
+    const priceData = window.zwapSwapService.getMarketData(token.symbol);
+    
+    const tokenItem = document.createElement('div');
+    tokenItem.className = 'token-item';
+    tokenItem.onclick = () => selectToken(token.symbol);
+    
+    tokenItem.innerHTML = `
+      <div class="token-icon">${token.icon}</div>
+      <div class="token-info">
+        <div class="token-symbol">${token.symbol}</div>
+        <div class="token-name">${token.name}</div>
+        ${priceData ? `
+          <div class="price-chart">
+            <span>$${priceData.price.toFixed(priceData.price < 1 ? 4 : 2)}</span>
+            <span class="price-change ${priceData.change24h >= 0 ? 'positive' : 'negative'}">
+              ${priceData.change24h >= 0 ? '+' : ''}${priceData.change24h.toFixed(2)}%
+            </span>
+          </div>
+        ` : ''}
+      </div>
+      <div class="token-balance">${balance.toFixed(4)}</div>
+    `;
+    
+    tokenList.appendChild(tokenItem);
+  });
+}
+
+function selectToken(symbol) {
+  const token = window.zwapSwapService.supportedTokens[symbol];
+  
+  if (currentSwapData.modalType === 'from') {
+    currentSwapData.fromToken = symbol;
+    document.getElementById('fromTokenIcon').textContent = token.icon;
+    document.getElementById('fromTokenSymbol').textContent = symbol;
+  } else if (currentSwapData.modalType === 'to') {
+    currentSwapData.toToken = symbol;
+    document.getElementById('toTokenIcon').textContent = token.icon;
+    document.getElementById('toTokenSymbol').textContent = symbol;
+  }
+  
+  updateBalanceDisplays();
+  updateSwapCalculation();
+  closeTokenModal();
+}
+
+function swapTokens() {
+  const tempToken = currentSwapData.fromToken;
+  currentSwapData.fromToken = currentSwapData.toToken;
+  currentSwapData.toToken = tempToken;
+  
+  // Update UI
+  const fromToken = window.zwapSwapService.supportedTokens[currentSwapData.fromToken];
+  const toToken = window.zwapSwapService.supportedTokens[currentSwapData.toToken];
+  
+  document.getElementById('fromTokenIcon').textContent = fromToken.icon;
+  document.getElementById('fromTokenSymbol').textContent = fromToken.symbol;
+  document.getElementById('toTokenIcon').textContent = toToken.icon;
+  document.getElementById('toTokenSymbol').textContent = toToken.symbol;
+  
+  // Swap amounts
+  const fromAmount = document.getElementById('fromAmount').value;
+  const toAmount = document.getElementById('toAmount').value;
+  document.getElementById('fromAmount').value = toAmount;
+  document.getElementById('toAmount').value = fromAmount;
+  
+  updateBalanceDisplays();
+  updateSwapCalculation();
+}
+
+function setMaxAmount() {
+  const maxBalance = tokenBalances[currentSwapData.fromToken] || 0;
+  document.getElementById('fromAmount').value = maxBalance.toFixed(6);
+  updateSwapCalculation();
+}
+
+async function updateSwapCalculation() {
+  const fromAmount = parseFloat(document.getElementById('fromAmount').value) || 0;
+  
+  if (fromAmount <= 0) {
+    document.getElementById('toAmount').value = '';
+    document.getElementById('swapDetails').style.display = 'none';
+    updateSwapButton();
+    return;
+  }
+  
+  try {
+    const swapDetails = window.zwapSwapService.calculateSwapAmount(
+      currentSwapData.fromToken,
+      currentSwapData.toToken,
+      fromAmount
+    );
+    
+    document.getElementById('toAmount').value = swapDetails.toAmount.toFixed(6);
+    
+    // Update swap details
+    const fromPrice = window.zwapSwapService.getTokenPrice(currentSwapData.fromToken);
+    const toPrice = window.zwapSwapService.getTokenPrice(currentSwapData.toToken);
+    const rate = fromPrice / toPrice;
+    
+    document.getElementById('exchangeRate').textContent = 
+      `1 ${currentSwapData.fromToken} = ${rate.toFixed(6)} ${currentSwapData.toToken}`;
+    document.getElementById('priceImpact').textContent = `${swapDetails.priceImpact}%`;
+    
+    // Estimate gas
+    const gasEstimate = await window.zwapSwapService.estimateGasFee(
+      currentSwapData.fromToken,
+      currentSwapData.toToken,
+      fromAmount
+    );
+    document.getElementById('estimatedGas').textContent = `$${gasEstimate.gasCostUsd}`;
+    
+    document.getElementById('swapDetails').style.display = 'block';
+    
+  } catch (error) {
+    console.error('Swap calculation failed:', error);
+    document.getElementById('toAmount').value = '';
+    document.getElementById('swapDetails').style.display = 'none';
+  }
+  
+  updateSwapButton();
+}
+
+function updateSwapButton() {
+  const button = document.getElementById('swapButton');
+  const connectBtn = document.getElementById('connectBtn');
+  const isWalletConnected = connectBtn.textContent !== 'CONNECT WALLET';
+  const fromAmount = parseFloat(document.getElementById('fromAmount').value) || 0;
+  const balance = tokenBalances[currentSwapData.fromToken] || 0;
+  
+  if (!isWalletConnected) {
+    button.textContent = 'Connect Wallet to Swap';
+    button.disabled = true;
+  } else if (fromAmount <= 0) {
+    button.textContent = 'Enter Amount';
+    button.disabled = true;
+  } else if (fromAmount > balance) {
+    button.textContent = `Insufficient ${currentSwapData.fromToken} Balance`;
+    button.disabled = true;
+  } else {
+    button.textContent = `Swap ${currentSwapData.fromToken} for ${currentSwapData.toToken}`;
+    button.disabled = false;
+  }
+}
+
+async function executeSwap() {
+  const fromAmount = parseFloat(document.getElementById('fromAmount').value);
+  const balance = tokenBalances[currentSwapData.fromToken] || 0;
+  
+  if (fromAmount > balance) {
+    Swal.fire({
+      title: 'INSUFFICIENT BALANCE',
+      text: `You don't have enough ${currentSwapData.fromToken} to complete this swap.`,
+      background: '#111',
+      color: '#fff',
+      icon: 'error'
+    });
+    return;
+  }
+  
+  try {
+    // Show loading
+    Swal.fire({
+      title: 'EXECUTING SWAP',
+      html: `
+        <div style="text-align: center;">
+          <p>Swapping ${fromAmount} ${currentSwapData.fromToken} for ${currentSwapData.toToken}...</p>
+          <div style="margin: 1rem 0;">
+            <div style="border: 3px solid #00BFFF; border-radius: 50%; border-top: 3px solid transparent; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto;"></div>
+          </div>
+          <p style="color: #ccc; font-size: 0.9rem;">Please confirm the transaction in your wallet</p>
+        </div>
+      `,
+      background: '#111',
+      color: '#fff',
+      showConfirmButton: false,
+      allowOutsideClick: false
+    });
+    
+    // Execute swap
+    const result = await window.zwapSwapService.executeSwap(
+      currentSwapData.fromToken,
+      currentSwapData.toToken,
+      fromAmount
+    );
+    
+    // Show success
+    Swal.fire({
+      title: 'SWAP SUCCESSFUL!',
+      html: `
+        <div style="text-align: center;">
+          <p style="color: #00FF00; font-weight: bold;">✅ Swap completed successfully!</p>
+          <p>Swapped ${fromAmount} ${currentSwapData.fromToken} for ${result.swapDetails.toAmount.toFixed(6)} ${currentSwapData.toToken}</p>
+          <p style="color: #ccc; font-size: 0.9rem;">Transaction Hash:</p>
+          <p style="font-family: monospace; font-size: 0.8rem; word-break: break-all; background: rgba(0,0,0,0.3); padding: 0.5rem; border-radius: 5px;">${result.txHash}</p>
+        </div>
+      `,
+      background: '#111',
+      color: '#fff',
+      showConfirmButton: true,
+      confirmButtonText: 'View on Explorer'
+    });
+    
+    // Reset form and update balances
+    document.getElementById('fromAmount').value = '';
+    document.getElementById('toAmount').value = '';
+    document.getElementById('swapDetails').style.display = 'none';
+    await updateAllBalances();
+    updateSwapButton();
+    
+  } catch (error) {
+    console.error('Swap failed:', error);
+    Swal.fire({
+      title: 'SWAP FAILED',
+      text: error.message,
+      background: '#111',
+      color: '#fff',
+      icon: 'error'
+    });
+  }
+}
+
+function showSwapSettings() {
+  const currentSlippage = window.zwapSwapService.getSlippageTolerance();
+  
+  Swal.fire({
+    title: 'SWAP SETTINGS',
+    html: `
+      <div style="text-align: left; line-height: 1.6;">
+        <div style="margin-bottom: 1.5rem;">
+          <label style="display: block; margin-bottom: 0.5rem; color: #00BFFF; font-weight: bold;">Slippage Tolerance:</label>
+          <div style="display: flex; gap: 0.5rem; margin-bottom: 0.5rem;">
+            <button onclick="setSlippage(0.1)" style="padding: 0.5rem 1rem; background: ${currentSlippage === 0.1 ? '#00BFFF' : '#333'}; color: white; border: none; border-radius: 5px;">0.1%</button>
+            <button onclick="setSlippage(0.5)" style="padding: 0.5rem 1rem; background: ${currentSlippage === 0.5 ? '#00BFFF' : '#333'}; color: white; border: none; border-radius: 5px;">0.5%</button>
+            <button onclick="setSlippage(1.0)" style="padding: 0.5rem 1rem; background: ${currentSlippage === 1.0 ? '#00BFFF' : '#333'}; color: white; border: none; border-radius: 5px;">1.0%</button>
+          </div>
+          <input type="number" id="customSlippage" placeholder="Custom %" step="0.1" min="0.1" max="50" value="${currentSlippage}" style="width: 100%; padding: 0.8rem; background: #000; border: 1px solid #333; color: #fff; border-radius: 5px;">
+        </div>
+        
+        <div style="background: rgba(255, 215, 0, 0.1); padding: 1rem; border-radius: 8px; border-left: 4px solid #FFD700;">
+          <h4 style="color: #FFD700; margin-bottom: 0.5rem;">⚡ Premium Benefits</h4>
+          <p style="font-size: 0.9rem; color: #ccc; margin: 0;">
+            Premium members get reduced fees, priority routing, and advanced trading features.
+          </p>
+        </div>
+      </div>
+    `,
+    background: '#111',
+    color: '#fff',
+    showCloseButton: true,
+    showConfirmButton: true,
+    confirmButtonText: 'Save Settings',
+    preConfirm: () => {
+      const customSlippage = parseFloat(document.getElementById('customSlippage').value);
+      if (customSlippage && customSlippage > 0) {
+        window.zwapSwapService.setSlippageTolerance(customSlippage);
+        document.getElementById('slippageTolerance').textContent = customSlippage + '%';
+        updateSwapCalculation();
+      }
+    }
+  });
+}
+
+function setSlippage(percentage) {
+  document.getElementById('customSlippage').value = percentage;
+}
+
+// Update interface when wallet connects
+document.addEventListener('walletConnected', async () => {
+  await initializeSwapInterface();
+  updateSwapButton();
+});
+
+// Auto-refresh prices every 30 seconds
+setInterval(async () => {
+  try {
+    await window.zwapSwapService.updateAllPrices();
+    updateSwapCalculation();
+  } catch (error) {
+    console.error('Price update failed:', error);
+  }
+}, 30000);
+</script>
 </body>
 </html>
