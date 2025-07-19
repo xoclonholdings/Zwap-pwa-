@@ -1,4 +1,3 @@
-
 /**
  * ZED AI Co-pilot for ZWAP!
  * ©️ 2025 XOCLON HOLDINGS INC.™ - All Rights Reserved
@@ -6,7 +5,7 @@
  * This file contains proprietary intellectual property of XOCLON HOLDINGS INC.™
  * Unauthorized copying, reproduction, or distribution is strictly prohibited.
  */
-class ZEDCopilot {
+class ZincCopilot {
   constructor() {
     this.isActive = false;
     this.isListening = false;
@@ -74,58 +73,57 @@ class ZEDCopilot {
   }
 
   createInterface() {
-    // Create floating ZED button
-    const zedButton = document.createElement('div');
-    zedButton.id = 'zed-button';
-    zedButton.innerHTML = `
-      <div class="zed-avatar">
-        <div class="zed-eye"></div>
-        <div class="knight-rider-scanner"></div>
-      </div>
-    `;
-    document.body.appendChild(zedButton);
+    // Create floating Zinc button
+    const zincButton = document.createElement('div');
+    zincButton.id = 'zinc-button';
+    zincButton.innerHTML = '<div class="zinc-button-circle"><img src="zinc-logo.png" alt="Zinc" class="zinc-button-symbol" /></div>';
+    document.body.appendChild(zincButton);
 
-    // Create ZED modal interface
-    const zedModal = document.createElement('div');
-    zedModal.id = 'zed-modal';
-    zedModal.innerHTML = `
-      <div class="zed-container">
-        <div class="zed-header">
-          <div class="zed-title">
-            <span class="zed-logo">ZED</span>
-            <span class="zed-subtitle">AI Co-pilot</span>
+    // Create Zinc modal interface
+    const zincModal = document.createElement('div');
+    zincModal.id = 'zinc-modal';
+    zincModal.innerHTML = `
+      <div class="zinc-container">
+        <div class="zinc-header">
+          <div class="zinc-title">
+            <span class="zinc-logo">
+              <div class="zinc-circle">
+                <img src="zinc-logo.png" alt="Zinc" class="zinc-symbol" />
+              </div>
+            </span>
+            <span class="zinc-subtitle">AI Co-pilot</span>
           </div>
-          <button class="zed-close" onclick="window.zedCopilot.closeInterface()">×</button>
+          <button class="zinc-close" onclick="window.zincCopilot.closeInterface()">×</button>
         </div>
-        <div class="zed-visualizer">
-          <canvas id="zed-canvas" width="300" height="60"></canvas>
+        <div class="zinc-visualizer">
+          <canvas id="zinc-canvas" width="300" height="60"></canvas>
         </div>
-        <div class="zed-chat" id="zed-chat">
-          <div class="zed-message zed-assistant">
+        <div class="zinc-chat" id="zinc-chat">
+          <div class="zinc-message zinc-assistant">
             <div class="message-avatar">🤖</div>
             <div class="message-content">
               Hi! I'm ZED, your ZWAP! co-pilot. I can help you with wallets, earning $XHI, games, and more. What can I assist you with today?
             </div>
           </div>
         </div>
-        <div class="zed-input-container">
-          <input type="text" id="zed-input" placeholder="Ask ZED anything about ZWAP!..." />
-          <button id="zed-send" onclick="window.zedCopilot.sendMessage()">Send</button>
-          <button id="zed-voice" onclick="window.zedCopilot.toggleVoiceInput()">🎤</button>
+        <div class="zinc-input-container">
+          <input type="text" id="zinc-input" placeholder="Ask ZED anything about ZWAP!..." />
+          <button id="zinc-send" onclick="window.zincCopilot.sendMessage()">Send</button>
+          <button id="zinc-voice" onclick="window.zincCopilot.toggleVoiceInput()">🎤</button>
         </div>
-        <div class="zed-quick-actions">
-          <button onclick="window.zedCopilot.quickAction('wallet')">Connect Wallet</button>
-          <button onclick="window.zedCopilot.quickAction('earn')">How to Earn</button>
-          <button onclick="window.zedCopilot.quickAction('games')">Game Help</button>
+        <div class="zinc-quick-actions">
+          <button onclick="window.zincCopilot.quickAction('wallet')">Connect Wallet</button>
+          <button onclick="window.zincCopilot.quickAction('earn')">How to Earn</button>
+          <button onclick="window.zincCopilot.quickAction('games')">Game Help</button>
         </div>
       </div>
     `;
-    document.body.appendChild(zedModal);
+    document.body.appendChild(zincModal);
 
     // Add event listeners
-    zedButton.onclick = () => this.toggleInterface();
-    
-    const input = document.getElementById('zed-input');
+    zincButton.onclick = () => this.toggleInterface();
+
+    const input = document.getElementById('zinc-input');
     input.addEventListener('keypress', (e) => {
       if (e.key === 'Enter') this.sendMessage();
     });
@@ -137,153 +135,162 @@ class ZEDCopilot {
   addStyles() {
     const style = document.createElement('style');
     style.textContent = `
-      #zed-button {
+      #zinc-button {
         position: fixed;
-        bottom: 90px;
+        bottom: 20px;
         right: 20px;
         width: 60px;
         height: 60px;
-        background: linear-gradient(135deg, #000, #1a1a1a);
-        border: 2px solid #FFD700;
+        background: transparent;
+        border: none;
         border-radius: 50%;
-        cursor: pointer;
-        z-index: 10000;
         display: flex;
         align-items: center;
         justify-content: center;
-        box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+        z-index: 1000;
         transition: all 0.3s ease;
+        animation: pulse 2s infinite;
       }
 
-      #zed-button:hover {
-        transform: scale(1.1);
-        box-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
-      }
-
-      .zed-avatar {
-        position: relative;
-        width: 40px;
-        height: 40px;
-      }
-
-      .zed-eye {
-        position: absolute;
-        top: 15px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 8px;
-        height: 8px;
-        background: #FF0000;
+      .zinc-button-circle {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, #FFD700, #FFA500);
+        border: 2px solid #FFD700;
         border-radius: 50%;
-        box-shadow: 0 0 10px #FF0000;
-        animation: zed-pulse 2s infinite;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
       }
 
-      .knight-rider-scanner {
-        position: absolute;
-        bottom: 8px;
-        left: 5px;
-        right: 5px;
-        height: 3px;
-        background: linear-gradient(90deg, transparent, #FF0000, transparent);
-        animation: knight-rider-scan 1.5s infinite;
+      .zinc-button-symbol {
+        width: 35px;
+        height: 35px;
+        object-fit: contain;
+        filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
       }
 
-      @keyframes zed-pulse {
-        0%, 100% { opacity: 1; transform: translateX(-50%) scale(1); }
-        50% { opacity: 0.5; transform: translateX(-50%) scale(1.2); }
+      #zinc-button:hover {
+        transform: scale(1.1);
+        box-shadow: 0 6px 20px rgba(255, 215, 0, 0.6);
       }
 
-      @keyframes knight-rider-scan {
-        0% { transform: translateX(-100%); }
-        100% { transform: translateX(100%); }
-      }
-
-      #zed-modal {
+      #zinc-modal {
         position: fixed;
         top: 20px;
         right: 20px;
         width: 350px;
         height: 500px;
-        background: transparent;
-        z-index: 10001;
-        display: none;
-        pointer-events: none;
-      }
-
-      .zed-container {
-        background: linear-gradient(135deg, #000, #1a1a1a);
+        background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
         border: 2px solid #FFD700;
         border-radius: 15px;
-        width: 100%;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        z-index: 1001;
+        display: none;
+        overflow: hidden;
+        font-family: 'Orbitron', monospace;
+      }
+
+      .zinc-container {
         height: 100%;
         display: flex;
         flex-direction: column;
-        font-family: 'Orbitron', monospace;
-        color: #fff;
-        overflow: hidden;
-        pointer-events: all;
-        box-shadow: 0 0 30px rgba(255, 215, 0, 0.3), 0 0 60px rgba(0, 0, 0, 0.8);
-        backdrop-filter: blur(15px);
       }
 
-      .zed-header {
-        padding: 1rem;
+      .zinc-header {
         background: linear-gradient(135deg, #FFD700, #FFA500);
         color: #000;
+        padding: 15px;
         display: flex;
         justify-content: space-between;
         align-items: center;
       }
 
-      .zed-logo {
-        font-size: 1.5rem;
-        font-weight: bold;
-        letter-spacing: 2px;
+      .zinc-title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
       }
 
-      .zed-subtitle {
-        font-size: 0.8rem;
+      .zinc-logo {
+        display: flex;
+        align-items: center;
+      }
+
+      .zinc-circle {
+        width: 40px;
+        height: 40px;
+        background: linear-gradient(135deg, #FFD700, #FFA500);
+        border: 2px solid #000;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .zinc-symbol {
+        width: 24px;
+        height: 24px;
+        object-fit: contain;
+        filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.3));
+      }
+
+      .zinc-subtitle {
+        font-size: 12px;
         opacity: 0.8;
+        font-weight: bold;
       }
 
-      .zed-close {
+      .zinc-close {
         background: none;
         border: none;
-        font-size: 1.5rem;
         color: #000;
+        font-size: 24px;
         cursor: pointer;
         font-weight: bold;
       }
 
-      .zed-visualizer {
-        padding: 1rem;
-        background: #000;
-        border-bottom: 1px solid #333;
-      }
-
-      #zed-canvas {
-        width: 100%;
+      .zinc-visualizer {
         height: 60px;
         background: #000;
-      }
-
-      .zed-chat {
-        flex: 1;
-        padding: 1rem;
-        overflow-y: auto;
-        max-height: 200px;
-        min-height: 200px;
-      }
-
-      .zed-message {
+        border-bottom: 1px solid #FFD700;
         display: flex;
-        margin-bottom: 1rem;
-        gap: 0.5rem;
+        align-items: center;
+        justify-content: center;
       }
 
-      .zed-message.zed-user {
-        flex-direction: row-reverse;
+      .zinc-chat {
+        flex: 1;
+        overflow-y: auto;
+        padding: 15px;
+        background: #1a1a1a;
+      }
+
+      .zinc-message {
+        margin-bottom: 15px;
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+      }
+
+      .zinc-user {
+        justify-content: flex-end;
+      }
+
+      .zinc-user .message-content {
+        background: #FFD700;
+        color: #000;
+      }
+
+      .zinc-assistant .message-content {
+        background: #333;
+        color: #FFD700;
       }
 
       .message-avatar {
@@ -293,78 +300,82 @@ class ZEDCopilot {
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 0.8rem;
-        background: #333;
+        font-size: 16px;
+        flex-shrink: 0;
       }
 
-      .zed-user .message-avatar {
-        background: #FFD700;
-        color: #000;
+      .zinc-avatar {
+        width: 30px;
+        height: 30px;
+        background: linear-gradient(135deg, #FFD700, #FFA500);
+        border: 1px solid #FFD700;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+
+      .zinc-avatar-symbol {
+        width: 18px;
+        height: 18px;
+        object-fit: contain;
+        filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.3));
       }
 
       .message-content {
-        background: #333;
-        padding: 0.8rem;
+        max-width: 250px;
+        padding: 10px 15px;
         border-radius: 10px;
-        max-width: 80%;
+        font-size: 14px;
         line-height: 1.4;
       }
 
-      .zed-user .message-content {
-        background: #FFD700;
-        color: #000;
-      }
-
-      .zed-input-container {
-        padding: 1rem;
-        background: #1a1a1a;
+      .zinc-input-container {
         display: flex;
-        gap: 0.5rem;
-        border-top: 1px solid #333;
+        padding: 15px;
+        gap: 5px;
+        background: #2d2d2d;
+        border-top: 1px solid #FFD700;
       }
 
-      #zed-input {
+      #zinc-input {
         flex: 1;
-        background: #000;
+        background: #1a1a1a;
         border: 1px solid #FFD700;
-        color: #fff;
-        padding: 0.8rem;
+        color: #FFD700;
+        padding: 8px 12px;
         border-radius: 5px;
         font-family: 'Orbitron', monospace;
+        font-size: 12px;
       }
 
-      #zed-send, #zed-voice {
+      #zinc-send, #zinc-voice {
         background: #FFD700;
         color: #000;
         border: none;
-        padding: 0.8rem 1rem;
+        padding: 8px 12px;
         border-radius: 5px;
         cursor: pointer;
-        font-weight: bold;
         font-family: 'Orbitron', monospace;
+        font-size: 12px;
+        font-weight: bold;
       }
 
-      #zed-voice {
-        background: #FF0000;
-        color: #fff;
-        min-width: 50px;
-      }
-
-      #zed-voice.listening {
-        background: #00FF00;
+      #zinc-voice.listening {
+        background: #ff4444;
         animation: pulse 1s infinite;
       }
 
-      .zed-quick-actions {
-        padding: 1rem;
-        background: #1a1a1a;
+      .zinc-quick-actions {
         display: flex;
-        gap: 0.5rem;
+        gap: 5px;
+        padding: 10px 15px;
+        background: #2d2d2d;
         flex-wrap: wrap;
-        border-top: 1px solid #333;
       }
 
-      .zed-quick-actions button {
+      .zinc-quick-actions button {
         background: #333;
         color: #FFD700;
         border: 1px solid #FFD700;
@@ -376,7 +387,7 @@ class ZEDCopilot {
         transition: all 0.3s ease;
       }
 
-      .zed-quick-actions button:hover {
+      .zinc-quick-actions button:hover {
         background: #FFD700;
         color: #000;
       }
@@ -387,24 +398,24 @@ class ZEDCopilot {
       }
 
       @media (max-width: 768px) {
-        #zed-modal {
+        #zinc-modal {
           top: 10px;
           right: 10px;
           width: 300px;
           height: 450px;
         }
-        
-        .zed-quick-actions {
+
+        .zinc-quick-actions {
           flex-direction: column;
         }
-        
-        .zed-quick-actions button {
+
+        .zinc-quick-actions button {
           text-align: center;
         }
       }
 
       @media (max-width: 480px) {
-        #zed-modal {
+        #zinc-modal {
           top: 10px;
           right: 10px;
           left: 10px;
@@ -429,9 +440,9 @@ class ZEDCopilot {
   }
 
   startVisualization() {
-    const canvas = document.getElementById('zed-canvas');
+    const canvas = document.getElementById('zinc-canvas');
     if (!canvas) return;
-    
+
     const ctx = canvas.getContext('2d');
     const width = canvas.width;
     const height = canvas.height;
@@ -447,13 +458,13 @@ class ZEDCopilot {
       // Knight Rider style scanner
       const time = Date.now() * 0.005;
       const scannerPos = (Math.sin(time) + 1) * 0.5 * width;
-      
+
       // Create gradient for scanner beam
       const gradient = ctx.createLinearGradient(scannerPos - 50, 0, scannerPos + 50, 0);
       gradient.addColorStop(0, 'transparent');
       gradient.addColorStop(0.5, '#FF0000');
       gradient.addColorStop(1, 'transparent');
-      
+
       ctx.fillStyle = gradient;
       ctx.fillRect(scannerPos - 50, height * 0.4, 100, height * 0.2);
 
@@ -475,7 +486,7 @@ class ZEDCopilot {
   }
 
   toggleInterface() {
-    const modal = document.getElementById('zed-modal');
+    const modal = document.getElementById('zinc-modal');
     if (this.isActive) {
       this.closeInterface();
     } else {
@@ -483,14 +494,14 @@ class ZEDCopilot {
       this.isActive = true;
       // Small delay to ensure modal is rendered before focusing
       setTimeout(() => {
-        const input = document.getElementById('zed-input');
+        const input = document.getElementById('zinc-input');
         if (input) input.focus();
       }, 100);
     }
   }
 
   closeInterface() {
-    const modal = document.getElementById('zed-modal');
+    const modal = document.getElementById('zinc-modal');
     modal.style.display = 'none';
     this.isActive = false;
     if (this.isListening) {
@@ -499,7 +510,7 @@ class ZEDCopilot {
   }
 
   sendMessage() {
-    const input = document.getElementById('zed-input');
+    const input = document.getElementById('zinc-input');
     const message = input.value.trim();
     if (!message) return;
 
@@ -514,23 +525,23 @@ class ZEDCopilot {
   }
 
   addMessage(content, sender) {
-    const chat = document.getElementById('zed-chat');
+    const chat = document.getElementById('zinc-chat');
     const messageDiv = document.createElement('div');
-    messageDiv.className = `zed-message zed-${sender}`;
-    
+    messageDiv.className = `zinc-message zinc-${sender}`;
+
     const avatar = sender === 'user' ? '👤' : '🤖';
     messageDiv.innerHTML = `
       <div class="message-avatar">${avatar}</div>
       <div class="message-content">${content}</div>
     `;
-    
+
     chat.appendChild(messageDiv);
     chat.scrollTop = chat.scrollHeight;
   }
 
   processMessage(message) {
     const lowerMessage = message.toLowerCase();
-    
+
     // Check each knowledge base category
     for (const [category, data] of Object.entries(this.knowledgeBase)) {
       for (const keyword of data.keywords) {
@@ -548,7 +559,7 @@ class ZEDCopilot {
       "Let me help you with that! I can assist with wallet connections, game strategies, and earning tips.",
       "I'm your ZWAP! co-pilot! Ask me about MOVE features, PLAY games, or how to maximize your $XHI earnings."
     ];
-    
+
     return defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
   }
 
@@ -576,8 +587,8 @@ class ZEDCopilot {
   }
 
   toggleVoiceInput() {
-    const voiceBtn = document.getElementById('zed-voice');
-    
+    const voiceBtn = document.getElementById('zinc-voice');
+
     if (!this.isListening) {
       // Start listening
       if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
@@ -595,7 +606,7 @@ class ZEDCopilot {
 
         this.recognition.onresult = (event) => {
           const transcript = event.results[0][0].transcript;
-          document.getElementById('zed-input').value = transcript;
+          document.getElementById('zinc-input').value = transcript;
         };
 
         this.recognition.onend = () => {
@@ -617,7 +628,7 @@ class ZEDCopilot {
   }
 }
 
-// Initialize ZED when DOM is loaded
+// Initialize Zinc when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-  window.zedCopilot = new ZEDCopilot();
+  window.zincCopilot = new ZincCopilot();
 });
