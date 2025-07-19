@@ -20,7 +20,7 @@ menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
 const homeBtn = document.getElementById('homeBtn');
 if (homeBtn) {
 homeBtn.onclick = () => {
-window.location.href = 'index.html';
+window.location.href = 'index.html';';
 };
 }
 
