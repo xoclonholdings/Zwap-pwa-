@@ -338,33 +338,8 @@ p {
   letter-spacing: 2px;
   line-height: 1.4;
   margin: 1.5rem auto;
-  transform: translateX(-100%);
-  opacity: 0;
-  animation: slideInTypewriter 3s ease-out 2.5s forwards;
-  white-space: nowrap;
-  overflow: hidden;
-  border-right: 2px solid #FFFFFF;
   text-align: center;
   width: fit-content;
-}
-
-@keyframes slideInTypewriter {
-  0% {
-    transform: translateX(-100%);
-    opacity: 0;
-    width: 0;
-  }
-  20% {
-    transform: translateX(0);
-    opacity: 1;
-    width: 0;
-  }
-  100% {
-    transform: translateX(0);
-    opacity: 1;
-    width: 100%;
-    border-right: 2px solid transparent;
-  }
 }
 
 .tagline .gold {
