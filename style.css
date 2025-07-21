@@ -80,13 +80,25 @@ header {
   min-height: 80px;
 }
 
-header > #bang {
-  flex: 0 0 auto;
-  order: 3;
-}
-
 .header-left {
   flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+.header-right {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+#bang {
+  width: 80px;
+  cursor: pointer;
+  filter: drop-shadow(0 0 8px #FF00FF) drop-shadow(0 0 12px #00BFFF);
+  transition: all 0.3s ease;
+  animation: bangShine 4s ease-in-out infinite;
+  position: relative;
 }
 
 .header-nav {
@@ -242,15 +254,7 @@ header > #bang {
   display: none;
 }
 
-#bang {
-  width: 80px;
-  cursor: pointer;
-  filter: drop-shadow(0 0 8px #FF00FF) drop-shadow(0 0 12px #00BFFF);
-  transition: all 0.3s ease;
-  animation: bangShine 4s ease-in-out infinite;
-  position: relative;
-  margin-left: auto;
-}
+
 
 #bang:hover {
   transform: scale(1.15);
