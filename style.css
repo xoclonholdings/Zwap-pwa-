@@ -1,5 +1,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 
+/* Mobile optimization to prevent zooming */
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(0, 191, 255, 0.2);
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Allow text selection for specific elements */
+p, h1, h2, h3, .balance-value, .balance-label {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
+/* Prevent zoom on input focus */
+input, select, textarea, button {
+  font-size: 16px !important;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 0;
+}
+
 body {
   font-family: 'Orbitron', sans-serif;
   background: radial-gradient(circle at center, #0a0a0a, #000);
@@ -9,6 +37,10 @@ body {
   margin: 0;
   position: relative;
   min-height: 100vh;
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body::before {
@@ -473,6 +505,19 @@ p {
 }
 
 @media (max-width: 768px) {
+  /* Prevent zooming on mobile */
+  body {
+    font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+  }
+  
+  /* Ensure all touch targets meet 44px minimum */
+  button, .nav-item, .action-btn, #connectBtn, #bang {
+    min-height: 44px;
+    min-width: 44px;
+    font-size: 16px !important;
+  }
+
   header {
     padding: 1rem 0.5rem;
     gap: 1rem;
@@ -492,14 +537,16 @@ p {
   }
 
   #connectBtn {
-    font-size: 0.8rem;
-    padding: 0.7rem 1.2rem;
+    font-size: 16px !important;
+    padding: 0.8rem 1.2rem;
     width: auto;
     max-width: 200px;
+    min-height: 44px;
   }
 
   #bang {
     width: 50px;
+    min-height: 44px;
     flex-shrink: 0;
   }
 
@@ -515,14 +562,18 @@ p {
   .balance-item {
     min-width: 65px;
     padding: 0.3rem 0.8rem;
+    min-height: 44px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   .balance-label {
-    font-size: 0.7rem;
+    font-size: 16px;
   }
 
   .balance-value {
-    font-size: 1rem;
+    font-size: 18px;
   }
 
   /* Navigation - third row */
@@ -537,9 +588,10 @@ p {
   }
 
   .header-nav .nav-item {
-    font-size: 0.6rem;
-    padding: 0.4rem 0.6rem;
-    min-width: 55px;
+    font-size: 16px !important;
+    padding: 0.6rem 0.8rem;
+    min-width: 70px;
+    min-height: 44px;
     text-align: center;
     flex: 0 0 auto;
   }
@@ -560,9 +612,10 @@ p {
   }
 
   .header-nav .nav-item {
-    font-size: 0.6rem;
-    padding: 0.4rem 0.5rem;
-    min-width: 55px;
+    font-size: 16px !important;
+    padding: 0.6rem 0.8rem;
+    min-width: 70px;
+    min-height: 44px;
   }
 
   .main-actions {
@@ -572,13 +625,19 @@ p {
     padding: 0 1rem;
   }
 
+  .action-btn {
+    font-size: 18px !important;
+    min-height: 50px;
+    padding: 1rem 1.5rem;
+  }
+
   .logo {
     width: 280px;
     margin: 2rem auto 1rem;
   }
 
   .tagline {
-    font-size: 1.1rem;
+    font-size: 18px;
     letter-spacing: 1px;
     margin: 1rem 1rem 2rem;
     line-height: 1.4;
@@ -589,7 +648,7 @@ p {
   }
 
   p {
-    font-size: 1.1rem;
+    font-size: 18px;
     margin: 1rem 0;
     line-height: 1.5;
   }
@@ -614,24 +673,27 @@ p {
   .balance-item {
     min-width: 60px;
     padding: 0.4rem 0.8rem;
+    min-height: 44px;
   }
 
   .balance-label {
-    font-size: 0.7rem;
+    font-size: 16px;
   }
 
   .balance-value {
-    font-size: 1.1rem;
+    font-size: 18px;
   }
 
   #connectBtn {
-    font-size: 0.85rem;
+    font-size: 16px !important;
     padding: 0.8rem 1.2rem;
     max-width: 260px;
+    min-height: 44px;
   }
 
   #bang {
     width: 55px;
+    min-height: 44px;
   }
 
   .logo {
@@ -640,7 +702,7 @@ p {
   }
 
   .tagline {
-    font-size: 1rem;
+    font-size: 16px;
     letter-spacing: 1px;
     margin: 1rem 1rem 2rem;
     padding: 0 0.5rem;
@@ -656,7 +718,7 @@ p {
   }
 
   p {
-    font-size: 1rem;
+    font-size: 16px;
     margin: 1rem 0;
     padding: 0 0.5rem;
   }
@@ -668,8 +730,9 @@ p {
   }
 
   .action-btn {
-    font-size: 1.4rem;
+    font-size: 18px !important;
     padding: 1.2rem 1.5rem;
+    min-height: 50px;
   }
 
   .footer-info {
