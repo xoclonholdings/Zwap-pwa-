@@ -64,15 +64,15 @@ header {
   border: 1px solid rgba(0, 191, 255, 0.3);
   color: #FFFFFF;
   font-family: 'Orbitron', sans-serif;
-  font-size: 0.85rem;
+  font-size: 0.7rem;
   font-weight: 600;
-  letter-spacing: 1px;
-  padding: 0.6rem 1rem;
+  letter-spacing: 0.5px;
+  padding: 0.5rem 0.7rem;
   cursor: pointer;
   text-transform: uppercase;
   transition: all 0.3s ease;
   text-decoration: none;
-  border-radius: 8px;
+  border-radius: 6px;
   backdrop-filter: blur(5px);
 }
 
@@ -525,9 +525,9 @@ p {
   }
 
   .header-nav .nav-item {
-    font-size: 0.8rem;
-    padding: 0.6rem 1rem;
-    min-width: 70px;
+    font-size: 0.65rem;
+    padding: 0.4rem 0.6rem;
+    min-width: 60px;
     text-align: center;
   }
 
@@ -554,9 +554,9 @@ p {
   }
 
   .header-nav .nav-item {
-    font-size: 0.75rem;
-    padding: 0.5rem 0.8rem;
-    min-width: 65px;
+    font-size: 0.6rem;
+    padding: 0.4rem 0.5rem;
+    min-width: 55px;
   }
 
   .main-actions {
