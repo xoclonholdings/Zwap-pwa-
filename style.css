@@ -482,9 +482,9 @@ p {
 
   .header-left {
     order: 1;
-    width: 100%;
+    flex: 1;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
   }
 
   #connectBtn {
@@ -495,7 +495,7 @@ p {
   }
 
   .balance-display {
-    order: 2;
+    order: 3;
     gap: 1.5rem;
     width: 100%;
     justify-content: center;
@@ -516,7 +516,7 @@ p {
   }
 
   .header-nav {
-    order: 3;
+    order: 4;
     width: 100%;
     flex-wrap: wrap;
     justify-content: center;
@@ -532,10 +532,43 @@ p {
   }
 
   #bang {
-    order: 4;
+    order: 2;
     align-self: center;
     width: 60px;
-    margin-top: 0.5rem;
+    flex: 0 0 auto;
+  }
+
+  /* Create a top row for connect wallet and bang */
+  header {
+    display: flex;
+    flex-direction: column;
+  }
+
+  header::before {
+    content: '';
+    display: flex;
+    order: 1;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .header-left {
+    position: absolute;
+    top: 1rem;
+    left: 0.5rem;
+    order: unset;
+    width: auto;
+    flex: unset;
+  }
+
+  #bang {
+    position: absolute;
+    top: 1rem;
+    right: 0.5rem;
+    order: unset;
+    margin-top: 0;
   }
 }
 
