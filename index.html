@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
-  <meta name="format-detection" content="telephone=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ZWAP! Landing Page</title>
   <link rel="stylesheet" href="style.css">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -14,36 +13,45 @@
     <div class="header-left">
       <button id="connectBtn">CONNECT WALLET</button>
     </div>
-    
+    <div class="balance-display drop-animation">
+      <div class="balance-item">
+        <span class="balance-label gold">XHI</span>
+        <span class="balance-value" id="xhiBalance">0.00</span>
+      </div>
+      <div class="balance-item">
+        <span class="balance-label zpts">Z PTS</span>
+        <span class="balance-value" id="zBalance">0</span>
+      </div>
+    </div>
     <nav class="header-nav">
       <a href="move.html" class="nav-item">MOVE</a>
       <a href="play.html" class="nav-item">PLAY</a>
       <a href="Swap.html" class="nav-item">SWAP</a>
       <a href="Credit.html" class="nav-item">CREDIT</a>
     </nav>
-    <div class="header-right">
-      <img id="bang" src="Zwap_bang_3d.PNG" alt="Bang Symbol">
-      <div id="bangMenu" class="dropdown-menu">
-        <button class="menu-btn" id="homeBtn">HOME</button>
-        <button class="menu-btn" id="learnBtn">LEARN</button>
-        <button class="menu-btn" id="earnBtn">EARN</button>
-        <button class="menu-btn" id="leaderboardBtn">LEADERBOARD</button>
-        <button class="menu-btn" id="contactBtn">CONTACT</button>
-      </div>
+    <img id="bang" src="Zwap_bang_3d.PNG" alt="Bang Symbol">
+    <div id="bangMenu" class="dropdown-menu">
+      <button class="menu-btn" id="homeBtn">HOME</button>
+      <button class="menu-btn" id="learnBtn">LEARN</button>
+      <button class="menu-btn" id="earnBtn">EARN</button>
+      <button class="menu-btn" id="leaderboardBtn">LEADERBOARD</button>
+      <button class="menu-btn" id="contactBtn">CONTACT</button>
     </div>
   </header>
 
   <main>
     <img src="Zwap_logo_full.png" alt="ZWAP! Logo" class="logo">
-    <p class="tagline">EARN <span class="gold">$XHI</span> THROUGH PLAY.</p>
+    <p class="tagline">EARN <span class="gold">$XHI</span> THROUGH WELLNESS, CREATIVITY, AND PLAY.</p>
   </main>
 
   <footer>
     <div class="footer-info">
+      <img src="xoclon-inc-logo.png" alt="XOCLON Logo" class="mini-logo">
       <p>© 2025 XOCLON INC. — All rights reserved</p>
     </div>
   </footer>
 
+  <script src="security.js"></script>
   <script src="script.js"></script>
   <script src="zed-copilot.js"></script>
 </body>

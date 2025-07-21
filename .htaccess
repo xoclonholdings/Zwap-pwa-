@@ -1,0 +1,46 @@
+
+# ZWAP! Security Headers
+<IfModule mod_headers.c>
+    # Prevent MIME type sniffing
+    Header always set X-Content-Type-Options nosniff
+    
+    # Enable XSS protection
+    Header always set X-XSS-Protection "1; mode=block"
+    
+    # Prevent clickjacking
+    Header always set X-Frame-Options "SAMEORIGIN"
+    
+    # Force HTTPS
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+    
+    # Referrer policy
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    
+    # Permissions policy
+    Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+    
+    # Content Security Policy
+    Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://unpkg.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https: wss:; frame-src 'self'; object-src 'none';"
+</IfModule>
+
+# Block access to sensitive files
+<Files ~ "\.(env|log|json|md)$">
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Prevent directory browsing
+Options -Indexes
+
+# Block malicious user agents
+<IfModule mod_setenvif.c>
+    SetEnvIfNoCase User-Agent "libwww-perl" block_bad_bots
+    SetEnvIfNoCase User-Agent "python" block_bad_bots
+    SetEnvIfNoCase User-Agent "nikto" block_bad_bots
+    SetEnvIfNoCase User-Agent "sqlmap" block_bad_bots
+    
+    <RequireAll>
+        Require all granted
+        Require not env block_bad_bots
+    </RequireAll>
+</IfModule>

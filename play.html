@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
-<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ZWAP! Game Launcher</title>
 <link rel="stylesheet" href="style.css">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -150,7 +149,6 @@ justify-content: center;
 <a href="Swap.html" class="nav-item">SWAP</a>
 <a href="Credit.html" class="nav-item">CREDIT</a>
 </nav>
-<div class="header-right">
 <img id="bang" src="Zwap_bang_3d.PNG" alt="Bang Symbol">
 <div id="bangMenu" class="dropdown-menu">
 <button class="menu-btn" id="homeBtn">HOME</button>
@@ -158,7 +156,6 @@ justify-content: center;
 <button class="menu-btn" id="earnBtn">EARN</button>
 <button class="menu-btn" id="leaderboardBtn">LEADERBOARD</button>
 <button class="menu-btn" id="contactBtn">CONTACT</button>
-</div>
 </div>
 </header>
 
@@ -208,266 +205,13 @@ JOIN CHALLENGE
 
 <footer>
 <div class="footer-info">
+<img src="xoclon-inc-logo.png" alt="XOCLON Logo" class="mini-logo">
 <p>© 2025 XOCLON INC. — All rights reserved</p>
 </div>
 </footer>
 
-<script src="script.js"></script>
-<script src="zed-copilot.js"></script>
-<script>
-function comingSoon() {
-Swal.fire({
-title: 'COMING SOON',
-text: 'This game will be available soon!',
-background: '#111',
-color: '#fff',
-showCloseButton: true,
-showConfirmButton: false,
-});
-}
-
-function inviteFriends() {
-Swal.fire({
-title: '📧 INVITE FRIENDS',
-html: `
-<div style="text-align: left; line-height: 1.6;">
-<p style="margin-bottom: 1rem;">Share ZWAP! with your friends and earn bonus <span class="gold">Z Points</span> when they join!</p>
-
-<div style="background: rgba(0, 191, 255, 0.1); padding: 1rem; border-radius: 10px; margin: 1rem 0;">
-<h4 style="color: #00BFFF; margin-bottom: 0.5rem;">📱 Share Options:</h4>
-<div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-<button onclick="shareToSocial('twitter')" style="background: #1DA1F2; color: white; border: none; padding: 0.5rem 1rem; border-radius: 8px; cursor: pointer;">Twitter</button>
-<button onclick="shareToSocial('facebook')" style="background: #4267B2; color: white; border: none; padding: 0.5rem 1rem; border-radius: 8px; cursor: pointer;">Facebook</button>
-<button onclick="shareToSocial('telegram')" style="background: #0088CC; color: white; border: none; padding: 0.5rem 1rem; border-radius: 8px; cursor: pointer;">Telegram</button>
-<button onclick="copyInviteLink()" style="background: #00BFFF; color: white; border: none; padding: 0.5rem 1rem; border-radius: 8px; cursor: pointer;">Copy Link</button>
-</div>
-</div>
-
-<div style="background: rgba(255, 215, 0, 0.1); padding: 1rem; border-radius: 10px; border: 1px solid #FFD700;">
-<h4 style="color: #FFD700; margin-bottom: 0.5rem;">🎁 Referral Rewards:</h4>
-<ul style="margin-left: 1rem; color: #ccc;">
-<li>+50 Z Points for each friend who joins</li>
-<li>+10 Z Points when they play their first game</li>
-<li>+5% of their earnings for 30 days</li>
-</ul>
-</div>
-</div>
-`,
-background: '#111',
-color: '#fff',
-showCloseButton: true,
-showConfirmButton: false,
-width: '500px'
-});
-}
-
-function createChallenge() {
-Swal.fire({
-title: '⚡ CREATE CHALLENGE',
-html: `
-<div style="text-align: left;">
-<p style="margin-bottom: 1rem;">Create a custom challenge for your friends!</p>
-
-<div style="margin-bottom: 1rem;">
-<label style="display: block; margin-bottom: 0.5rem; color: #00BFFF;">Challenge Name:</label>
-<input type="text" id="challengeName" placeholder="Enter challenge name" style="width: 100%; padding: 0.5rem; border-radius: 8px; border: 1px solid #ccc;">
-</div>
-
-<div style="margin-bottom: 1rem;">
-<label style="display: block; margin-bottom: 0.5rem; color: #00BFFF;">Select Game:</label>
-<select id="challengeGame" style="width: 100%; padding: 0.5rem; border-radius: 8px; border: 1px solid #ccc;">
-<option value="cube">Cube</option>
-<option value="trivia">Trivia (Coming Soon)</option>
-<option value="blockcraft">BlockCraft (Coming Soon)</option>
-<option value="spin">Spin (Coming Soon)</option>
-</select>
-</div>
-
-<div style="margin-bottom: 1rem;">
-<label style="display: block; margin-bottom: 0.5rem; color: #00BFFF;">Duration:</label>
-<select id="challengeDuration" style="width: 100%; padding: 0.5rem; border-radius: 8px; border: 1px solid #ccc;">
-<option value="1h">1 Hour</option>
-<option value="24h">24 Hours</option>
-<option value="7d">7 Days</option>
-<option value="30d">30 Days</option>
-</select>
-</div>
-
-<div style="margin-bottom: 1rem;">
-<label style="display: block; margin-bottom: 0.5rem; color: #00BFFF;">Prize Pool (Z Points):</label>
-<input type="number" id="challengePrize" placeholder="Enter Z Points to contribute" style="width: 100%; padding: 0.5rem; border-radius: 8px; border: 1px solid #ccc;">
-</div>
-
-<div style="text-align: center; margin-top: 1.5rem;">
-<button onclick="submitChallenge()" style="background: #00BFFF; color: white; border: none; padding: 0.8rem 2rem; border-radius: 10px; cursor: pointer; font-weight: bold;">CREATE CHALLENGE</button>
-</div>
-</div>
-`,
-background: '#111',
-color: '#fff',
-showCloseButton: true,
-showConfirmButton: false,
-width: '500px'
-});
-}
-
-function joinChallenge() {
-Swal.fire({
-title: '🎯 JOIN CHALLENGE',
-html: `
-<div style="text-align: left;">
-<p style="margin-bottom: 1rem;">Enter a challenge code to join a friend's challenge!</p>
-
-<div style="margin-bottom: 1rem;">
-<label style="display: block; margin-bottom: 0.5rem; color: #00BFFF;">Challenge Code:</label>
-<input type="text" id="challengeCode" placeholder="Enter 6-digit challenge code" style="width: 100%; padding: 0.8rem; border-radius: 8px; border: 1px solid #ccc; font-size: 1.1rem; text-align: center; letter-spacing: 2px;">
-</div>
-
-<div style="text-align: center; margin-top: 1.5rem;">
-<button onclick="joinChallengeCode()" style="background: #00BFFF; color: white; border: none; padding: 0.8rem 2rem; border-radius: 10px; cursor: pointer; font-weight: bold;">JOIN CHALLENGE</button>
-</div>
-
-<div style="margin-top: 2rem; padding: 1rem; background: rgba(0, 191, 255, 0.1); border-radius: 10px;">
-<h4 style="color: #00BFFF; margin-bottom: 0.5rem;">🏆 Active Challenges:</h4>
-<div id="activeChallenges" style="color: #ccc;">
-<p style="font-style: italic;">No active challenges found. Ask your friends to create one!</p>
-</div>
-</div>
-</div>
-`,
-background: '#111',
-color: '#fff',
-showCloseButton: true,
-showConfirmButton: false,
-width: '500px'
-});
-}
-
-function shareToSocial(platform) {
-const url = window.location.origin;
-const text = "🎮 Join me on ZWAP! - Earn $XHI through wellness, creativity, and play! 🚀";
-
-
-let shareUrl = '';
-switch(platform) {
-case 'twitter':
-shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
-break;
-case 'facebook':
-shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
-break;
-case 'telegram':
-shareUrl = `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`;
-break;
-}
-window.open(shareUrl, '_blank');
-}
-
-function copyInviteLink() {
-const url = window.location.origin;
-navigator.clipboard.writeText(url).then(() => {
-Swal.fire({
-title: '✅ COPIED!',
-text: 'Invite link copied to clipboard!',
-background: '#111',
-color: '#fff',
-timer: 2000,
-showConfirmButton: false
-});
-});
-}
-
-function submitChallenge() {
-const name = document.getElementById('challengeName').value;
-const game = document.getElementById('challengeGame').value;
-const duration = document.getElementById('challengeDuration').value;
-const prize = document.getElementById('challengePrize').value;
-
-if (!name || !prize) {
-Swal.fire({
-title: '❌ ERROR',
-text: 'Please fill in all required fields!',
-background: '#111',
-color: '#fff',
-timer: 3000,
-showConfirmButton: false
-});
-return;
-}
-
-// Generate random challenge code
-const challengeCode = Math.random().toString(36).substring(2, 8).toUpperCase();
-
-Swal.fire({
-title: '🎉 CHALLENGE CREATED!',
-html: `
-<div style="text-align: center;">
-<p style="margin-bottom: 1rem;">Your challenge "${name}" has been created!</p>
-<div style="background: rgba(0, 191, 255, 0.2); padding: 1rem; border-radius: 10px; margin: 1rem 0;">
-<h3 style="color: #00BFFF; margin-bottom: 0.5rem;">Challenge Code:</h3>
-<p style="font-size: 2rem; font-weight: bold; letter-spacing: 3px; color: #FFD700;">${challengeCode}</p>
-</div>
-<p style="color: #ccc; font-size: 0.9rem;">Share this code with your friends to invite them!</p>
-<button onclick="copyInviteLink()" style="background: #00BFFF; color: white; border: none; padding: 0.5rem 1rem; border-radius: 8px; cursor: pointer; margin-top: 1rem;">Share Challenge</button>
-</div>
-`,
-background: '#111',
-color: '#fff',
-showCloseButton: true,
-showConfirmButton: false
-});
-}
-
-function joinChallengeCode() {
-const code = document.getElementById('challengeCode').value;
-if (!code) {
-Swal.fire({
-title: '❌ ERROR',
-text: 'Please enter a challenge code!',
-background: '#111',
-color: '#fff',
-timer: 3000,
-showConfirmButton: false
-});
-return;
-}
-
-Swal.fire({
-title: '🎮 JOINING CHALLENGE...',
-html: `
-<div style="text-align: center;">
-<p style="margin-bottom: 1rem;">Joining challenge with code: <strong>${code}</strong></p>
-<div style="background: rgba(0, 191, 255, 0.1); padding: 1rem; border-radius: 10px; margin: 1rem 0;">
-<h4 style="color: #00BFFF;">Challenge: "Weekly Cube Master"</h4>
-<p style="color: #ccc;">Game: Cube | Duration: 7 Days | Prize: 500 Z Points</p>
-<p style="color: #FFD700;">3 participants so far</p>
-</div>
-<button onclick="confirmJoinChallenge()" style="background: #00BFFF; color: white; border: none; padding: 0.8rem 2rem; border-radius: 10px; cursor: pointer; font-weight: bold;">CONFIRM JOIN</button>
-</div>
-`,
-background: '#111',
-color: '#fff',
-showCloseButton: true,
-showConfirmButton: false
-});
-}
-
-function confirmJoinChallenge() {
-Swal.fire({
-title: '🎉 CHALLENGE JOINED!',
-html: `
-<div style="text-align: center;">
-<p style="color: #00FF00; font-weight: bold;">✅ Successfully joined the challenge!</p>
-<p style="margin: 1rem 0;">You can now compete with your friends. Good luck!</p>
-<button onclick="window.location.href='cube.html'" style="background: #00BFFF; color: white; border: none; padding: 0.8rem 2rem; border-radius: 10px; cursor: pointer; font-weight: bold;">START PLAYING</button>
-</div>
-`,
-background: '#111',
-color: '#fff',
-showCloseButton: true,
-showConfirmButton: false
-});
-}
-</script>
+<script src="security.js"></script>
+  <script src="script.js"></script>
+  <script src="zed-copilot.js"></script>
 </body>
 </html>
