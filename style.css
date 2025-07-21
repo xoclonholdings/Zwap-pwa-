@@ -61,7 +61,7 @@ header {
 
 .header-nav .nav-item {
   background: none;
-  border: 1px solid rgba(0, 191, 255, 0.3);
+  border: none;
   color: #FFFFFF;
   font-family: 'Orbitron', sans-serif;
   font-size: 0.7rem;
@@ -78,7 +78,6 @@ header {
 
 .header-nav .nav-item:hover {
   color: #00BFFF;
-  border-color: #00BFFF;
   background: rgba(0, 191, 255, 0.1);
   transform: translateY(-1px);
   box-shadow: 0 4px 15px rgba(0, 191, 255, 0.2);
