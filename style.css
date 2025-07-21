@@ -152,10 +152,10 @@ header {
 #connectBtn {
   background: linear-gradient(135deg, #FF00FF, #00BFFF);
   color: white;
-  font-size: 0.9rem;
+  font-size: 0.7rem;
   font-weight: 700;
   border: 2px solid #FF00FF;
-  padding: 0.8rem 1rem;
+  padding: 0.6rem 0.8rem;
   border-radius: 8px;
   cursor: pointer;
   letter-spacing: 1px;
@@ -164,6 +164,7 @@ header {
   text-transform: uppercase;
   position: relative;
   overflow: hidden;
+  max-width: 140px;
 }
 
 #connectBtn:not(.connected)::before {
