@@ -478,97 +478,70 @@ p {
     gap: 1rem;
     flex-direction: column;
     min-height: auto;
+    position: relative;
   }
 
+  /* Top row with connect wallet and bang */
   .header-left {
     order: 1;
-    flex: 1;
     display: flex;
-    justify-content: flex-start;
-  }
-
-  #connectBtn {
-    font-size: 0.9rem;
-    padding: 0.8rem 1.5rem;
-    width: auto;
-    max-width: 280px;
-  }
-
-  .balance-display {
-    order: 3;
-    gap: 1.5rem;
-    width: 100%;
-    justify-content: center;
-    margin: 0.5rem 0;
-  }
-
-  .balance-item {
-    min-width: 70px;
-    padding: 0.4rem 1rem;
-  }
-
-  .balance-label {
-    font-size: 0.8rem;
-  }
-
-  .balance-value {
-    font-size: 1.2rem;
-  }
-
-  .header-nav {
-    order: 4;
-    width: 100%;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.5rem;
-    margin: 0.5rem 0;
-  }
-
-  .header-nav .nav-item {
-    font-size: 0.65rem;
-    padding: 0.4rem 0.6rem;
-    min-width: 60px;
-    text-align: center;
-  }
-
-  #bang {
-    order: 2;
-    align-self: center;
-    width: 60px;
-    flex: 0 0 auto;
-  }
-
-  /* Create a top row for connect wallet and bang */
-  header {
-    display: flex;
-    flex-direction: column;
-  }
-
-  header::before {
-    content: '';
-    display: flex;
-    order: 1;
     justify-content: space-between;
     align-items: center;
     width: 100%;
     margin-bottom: 1rem;
   }
 
-  .header-left {
-    position: absolute;
-    top: 1rem;
-    left: 0.5rem;
-    order: unset;
+  #connectBtn {
+    font-size: 0.8rem;
+    padding: 0.7rem 1.2rem;
     width: auto;
-    flex: unset;
+    max-width: 200px;
   }
 
   #bang {
-    position: absolute;
-    top: 1rem;
-    right: 0.5rem;
-    order: unset;
-    margin-top: 0;
+    width: 50px;
+    flex-shrink: 0;
+  }
+
+  /* Balance display - second row */
+  .balance-display {
+    order: 2;
+    gap: 1rem;
+    width: 100%;
+    justify-content: center;
+    margin: 0.5rem 0;
+  }
+
+  .balance-item {
+    min-width: 65px;
+    padding: 0.3rem 0.8rem;
+  }
+
+  .balance-label {
+    font-size: 0.7rem;
+  }
+
+  .balance-value {
+    font-size: 1rem;
+  }
+
+  /* Navigation - third row */
+  .header-nav {
+    order: 3;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.4rem;
+    margin: 0.5rem 0 1rem 0;
+  }
+
+  .header-nav .nav-item {
+    font-size: 0.6rem;
+    padding: 0.4rem 0.6rem;
+    min-width: 55px;
+    text-align: center;
+    flex: 0 0 auto;
   }
 }
 
