@@ -152,19 +152,19 @@ header {
 #connectBtn {
   background: linear-gradient(135deg, #FF00FF, #00BFFF);
   color: white;
-  font-size: 0.7rem;
+  font-size: 0.5rem;
   font-weight: 700;
-  border: 2px solid #FF00FF;
-  padding: 0.6rem 0.8rem;
-  border-radius: 8px;
+  border: 1px solid #FF00FF;
+  padding: 0.4rem 0.5rem;
+  border-radius: 6px;
   cursor: pointer;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
   transition: all 0.3s ease;
   font-family: 'Orbitron', sans-serif;
   text-transform: uppercase;
   position: relative;
   overflow: hidden;
-  max-width: 140px;
+  max-width: 90px;
 }
 
 #connectBtn:not(.connected)::before {
