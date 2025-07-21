@@ -12,12 +12,21 @@
 <style>
 .swap-container {
   max-width: 500px;
-  margin: 2rem auto;
+  margin: 1rem auto;
   background: rgba(0, 0, 0, 0.8);
   border: 2px solid #00BFFF;
   border-radius: 20px;
-  padding: 2rem;
+  padding: 1.5rem;
   box-shadow: 0 0 30px rgba(0, 191, 255, 0.3);
+}
+
+@media (max-width: 768px) {
+  .swap-container {
+    margin: 0.5rem;
+    padding: 1rem;
+    border-radius: 15px;
+    max-width: none;
+  }
 }
 
 .swap-header {
@@ -290,16 +299,89 @@
 
 @media (max-width: 768px) {
   .swap-container {
-    margin: 1rem;
+    margin: 0.5rem;
     padding: 1rem;
+    border-radius: 15px;
+  }
+  
+  .swap-header h1 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .swap-header p {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+  
+  .swap-box {
+    padding: 1rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .token-select {
+    min-width: 100px;
+    padding: 0.6rem 0.8rem;
+    font-size: 0.9rem;
+  }
+  
+  .amount-input {
+    font-size: 1.2rem;
+  }
+  
+  .swap-btn {
+    font-size: 1rem;
+    padding: 0.8rem;
   }
   
   .token-modal {
-    padding: 1rem;
+    padding: 0.5rem;
   }
   
   .token-modal-content {
     margin: 1rem auto;
+    padding: 1.5rem;
+  }
+  
+  .settings-btn {
+    top: 0.5rem;
+    right: 0.5rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .swap-container {
+    margin: 0.25rem;
+    padding: 0.8rem;
+  }
+  
+  .swap-header h1 {
+    font-size: 1.5rem;
+  }
+  
+  .token-input-row {
+    gap: 0.5rem;
+  }
+  
+  .token-select {
+    min-width: 80px;
+    padding: 0.5rem 0.6rem;
+    font-size: 0.8rem;
+  }
+  
+  .amount-input {
+    font-size: 1rem;
+  }
+  
+  .arrow-btn {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .swap-details {
+    padding: 0.8rem;
+    font-size: 0.8rem;
   }
 }
 </style>
