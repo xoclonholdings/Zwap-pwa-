@@ -201,10 +201,10 @@ header {
 #connectBtn {
   background: linear-gradient(135deg, #FF00FF, #00BFFF);
   color: white;
-  font-size: 0.5rem;
+  font-size: 0.6rem;
   font-weight: 700;
   border: 1px solid #FF00FF;
-  padding: 0.4rem 0.5rem;
+  padding: 0.5rem 0.7rem;
   border-radius: 6px;
   cursor: pointer;
   letter-spacing: 0.5px;
@@ -213,7 +213,7 @@ header {
   text-transform: uppercase;
   position: relative;
   overflow: hidden;
-  max-width: 90px;
+  max-width: 110px;
 }
 
 #connectBtn:not(.connected)::before {
@@ -518,26 +518,35 @@ p {
   .header-left {
     order: 1;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  
+  .header-right {
+    order: 1;
+    display: flex;
+    justify-content: flex-end;
     align-items: center;
     width: 100%;
     margin-bottom: 1rem;
   }
 
   #connectBtn {
-    font-size: 16px !important;
-    padding: 0.8rem 1.2rem;
+    font-size: 12px !important;
+    padding: 0.6rem 0.8rem;
     width: auto;
-    max-width: 200px;
+    max-width: 120px;
     min-height: 44px;
+    white-space: nowrap;
   }
 
   #bang {
     width: 50px;
     min-height: 44px;
     flex-shrink: 0;
-    margin-left: auto;
-    order: 3;
+    margin-left: 1rem;
   }
   
   .dropdown-menu {
