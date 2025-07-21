@@ -80,6 +80,11 @@ header {
   min-height: 80px;
 }
 
+header > #bang {
+  flex: 0 0 auto;
+  order: 3;
+}
+
 .header-left {
   flex: 0 0 auto;
 }
@@ -243,6 +248,8 @@ header {
   filter: drop-shadow(0 0 8px #FF00FF) drop-shadow(0 0 12px #00BFFF);
   transition: all 0.3s ease;
   animation: bangShine 4s ease-in-out infinite;
+  position: relative;
+  margin-left: auto;
 }
 
 #bang:hover {
@@ -262,14 +269,16 @@ header {
 
 .dropdown-menu {
   position: absolute;
-  top: 60px;
-  right: 1rem;
+  top: 90px;
+  right: 0;
   background: rgba(0,0,0,0.9);
   border: 1px solid #00BFFF;
   border-radius: 8px;
   display: none;
   flex-direction: column;
   padding: 0.5rem;
+  min-width: 150px;
+  z-index: 1000;
 }
 
 .menu-btn,
@@ -523,6 +532,14 @@ p {
     width: 50px;
     min-height: 44px;
     flex-shrink: 0;
+    margin-left: auto;
+    order: 3;
+  }
+  
+  .dropdown-menu {
+    right: 0;
+    top: 50px;
+    min-width: 140px;
   }
 
   /* Balance display - second row */
@@ -669,6 +686,8 @@ p {
   #bang {
     width: 55px;
     min-height: 44px;
+    margin-left: auto;
+    order: 3;
   }
 
   .logo {
