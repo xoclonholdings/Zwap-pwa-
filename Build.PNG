@@ -1,2 +1,42 @@
 
-data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiBmaWxsPSIjMTExIi8+Cjx0ZXh0IHg9IjUwIiB5PSI1NSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjQwIiBmaWxsPSIjRkZENzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj7wn5WHPC90ZXh0Pgo8L3N2Zz4K
+<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Construction crane base -->
+  <rect x="45" y="70" width="10" height="20" fill="#00BFFF" filter="url(#glow)"/>
+  
+  <!-- Crane mast -->
+  <rect x="48" y="20" width="4" height="50" fill="#00BFFF" filter="url(#glow)"/>
+  
+  <!-- Crane arm -->
+  <rect x="30" y="22" width="40" height="4" fill="#FF00FF" filter="url(#glow)"/>
+  
+  <!-- Hook and cable -->
+  <line x1="65" y1="26" x2="65" y2="45" stroke="#FFD700" stroke-width="2"/>
+  <rect x="63" y="45" width="4" height="6" fill="#FFD700" filter="url(#glow)"/>
+  
+  <!-- Building blocks being constructed -->
+  <rect x="20" y="60" width="15" height="10" fill="#00FFFF" stroke="#00BFFF" stroke-width="1" opacity="0.8"/>
+  <rect x="60" y="55" width="15" height="15" fill="#39FF14" stroke="#00FF00" stroke-width="1" opacity="0.8"/>
+  
+  <!-- Construction grid -->
+  <line x1="10" y1="80" x2="90" y2="80" stroke="#00BFFF" stroke-width="1" opacity="0.4" stroke-dasharray="3,3"/>
+  <line x1="10" y1="85" x2="90" y2="85" stroke="#00BFFF" stroke-width="1" opacity="0.4" stroke-dasharray="3,3"/>
+  
+  <!-- Progress indicators -->
+  <circle cx="25" cy="35" r="3" fill="#FFD700" opacity="0.8"/>
+  <circle cx="75" cy="40" r="3" fill="#FF00FF" opacity="0.8"/>
+  <circle cx="35" cy="45" r="3" fill="#00FFFF" opacity="0.8"/>
+  
+  <!-- Connecting construction lines -->
+  <line x1="25" y1="35" x2="35" y2="45" stroke="#FFD700" stroke-width="1" opacity="0.3"/>
+  <line x1="35" y1="45" x2="75" y2="40" stroke="#FF00FF" stroke-width="1" opacity="0.3"/>
+</svg>
