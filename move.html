@@ -299,17 +299,36 @@ function closeSessionModal() {
 }
 
 // Walk session functionality
-document.getElementById('startWalkBtn').addEventListener('click', function() {
-  if (!walkSession.active) {
-    startWalkSession();
-  } else {
-    stopWalkSession();
+document.addEventListener('DOMContentLoaded', function() {
+  const startWalkBtn = document.getElementById('startWalkBtn');
+  if (startWalkBtn) {
+    startWalkBtn.addEventListener('click', function() {
+      if (!walkSession.active) {
+        startWalkSession();
+      } else {
+        stopWalkSession();
+      }
+    });
+  }
+
+  const startDanceBtn = document.getElementById('startDanceBtn');
+  if (startDanceBtn) {
+    startDanceBtn.addEventListener('click', function() {
+      if (!danceSession.active) {
+        startDanceSession();
+      } else {
+        stopDanceSession();
+      }
+    });
   }
 });
 
 function startWalkSession() {
   walkSession.active = true;
   walkSession.startTime = Date.now();
+  walkSession.steps = 0;
+  walkSession.earnings = 0;
+  
   document.getElementById('walkCard').classList.add('active-session');
   document.getElementById('startWalkBtn').textContent = 'Stop Walking Session';
 
@@ -317,6 +336,177 @@ function startWalkSession() {
   document.getElementById('sessionModal').style.display = 'flex';
   document.getElementById('sessionTitle').textContent = 'Walking Session Active';
   document.getElementById('sessionContent').innerHTML = `
+    <div class="session-stats">
+      <div class="stat-item">
+        <span class="stat-label">Steps:</span>
+        <span class="stat-value" id="currentSteps">0</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">Duration:</span>
+        <span class="stat-value" id="sessionDuration">00:00</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">Earnings:</span>
+        <span class="stat-value gold" id="sessionEarnings">0.0000 XHI</span>
+      </div>
+    </div>
+    <button onclick="closeSessionModal()" class="session-btn">End Session</button>
+  `;
+
+  // Start step simulation
+  simulateWalkingSteps();
+}
+
+function stopWalkSession() {
+  walkSession.active = false;
+  document.getElementById('walkCard').classList.remove('active-session');
+  document.getElementById('startWalkBtn').textContent = 'Start Walking Session';
+  
+  // Update user balance
+  const userData = JSON.parse(localStorage.getItem('zwapUserStats') || '{}');
+  userData.totalEarnings = (userData.totalEarnings || 0) + walkSession.earnings;
+  localStorage.setItem('zwapUserStats', JSON.stringify(userData));
+  
+  // Show completion message
+  if (walkSession.earnings > 0) {
+    Swal.fire({
+      title: 'WALK SESSION COMPLETE!',
+      html: `
+        <div style="text-align: center;">
+          <p style="color: #00FF00; font-weight: bold;">✅ Great job!</p>
+          <p>Steps: ${walkSession.steps}</p>
+          <p>Earned: <span class="gold">${walkSession.earnings.toFixed(4)} XHI</span></p>
+        </div>
+      `,
+      background: '#111',
+      color: '#fff',
+      showConfirmButton: true,
+      confirmButtonText: 'Awesome!'
+    });
+  }
+
+  closeSessionModal();
+}
+
+function startDanceSession() {
+  danceSession.active = true;
+  danceSession.startTime = Date.now();
+  danceSession.duration = 0;
+  danceSession.earnings = 0;
+  
+  document.getElementById('danceCard').classList.add('active-session');
+  document.getElementById('startDanceBtn').textContent = 'Stop Dance Session';
+
+  // Show session modal
+  document.getElementById('sessionModal').style.display = 'flex';
+  document.getElementById('sessionTitle').textContent = 'Dance Session Active';
+  document.getElementById('sessionContent').innerHTML = `
+    <div class="session-stats">
+      <div class="stat-item">
+        <span class="stat-label">Duration:</span>
+        <span class="stat-value" id="danceDuration">00:00</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">Intensity:</span>
+        <span class="stat-value" id="danceIntensity">Medium</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">Earnings:</span>
+        <span class="stat-value gold" id="danceEarnings">0.0000 XHI</span>
+      </div>
+    </div>
+    <div class="dance-controls">
+      <button onclick="setDanceIntensity('low')" class="intensity-btn">Low</button>
+      <button onclick="setDanceIntensity('medium')" class="intensity-btn active">Medium</button>
+      <button onclick="setDanceIntensity('high')" class="intensity-btn">High</button>
+    </div>
+    <button onclick="closeSessionModal()" class="session-btn">End Session</button>
+  `;
+
+  // Start dance simulation
+  simulateDanceSession();
+}
+
+function stopDanceSession() {
+  danceSession.active = false;
+  document.getElementById('danceCard').classList.remove('active-session');
+  document.getElementById('startDanceBtn').textContent = 'Start Dance Session';
+  
+  // Update user balance
+  const userData = JSON.parse(localStorage.getItem('zwapUserStats') || '{}');
+  userData.totalEarnings = (userData.totalEarnings || 0) + danceSession.earnings;
+  localStorage.setItem('zwapUserStats', JSON.stringify(userData));
+  
+  // Show completion message
+  if (danceSession.earnings > 0) {
+    Swal.fire({
+      title: 'DANCE SESSION COMPLETE!',
+      html: `
+        <div style="text-align: center;">
+          <p style="color: #00FF00; font-weight: bold;">✅ Amazing moves!</p>
+          <p>Duration: ${Math.floor(danceSession.duration / 60)}:${(danceSession.duration % 60).toString().padStart(2, '0')}</p>
+          <p>Earned: <span class="gold">${danceSession.earnings.toFixed(4)} XHI</span></p>
+        </div>
+      `,
+      background: '#111',
+      color: '#fff',
+      showConfirmButton: true,
+      confirmButtonText: 'Fantastic!'
+    });
+  }
+
+  closeSessionModal();
+}
+
+function simulateWalkingSteps() {
+  if (!walkSession.active) return;
+
+  // Simulate step counting
+  walkSession.steps += Math.floor(Math.random() * 3) + 1;
+  walkSession.earnings = walkSession.steps * 0.0001; // 0.0001 XHI per step
+
+  // Update UI
+  document.getElementById('currentSteps').textContent = walkSession.steps;
+  document.getElementById('sessionEarnings').textContent = walkSession.earnings.toFixed(4) + ' XHI';
+  
+  const duration = Math.floor((Date.now() - walkSession.startTime) / 1000);
+  const minutes = Math.floor(duration / 60);
+  const seconds = duration % 60;
+  document.getElementById('sessionDuration').textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+  setTimeout(simulateWalkingSteps, 2000); // Update every 2 seconds
+}
+
+function simulateDanceSession() {
+  if (!danceSession.active) return;
+
+  const duration = Math.floor((Date.now() - danceSession.startTime) / 1000);
+  danceSession.duration = duration;
+  
+  // Calculate earnings based on duration and intensity
+  const intensityMultiplier = danceSession.intensity === 'high' ? 0.0003 : danceSession.intensity === 'medium' ? 0.0002 : 0.0001;
+  danceSession.earnings = duration * intensityMultiplier;
+
+  // Update UI
+  const minutes = Math.floor(duration / 60);
+  const seconds = duration % 60;
+  document.getElementById('danceDuration').textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+  document.getElementById('danceEarnings').textContent = danceSession.earnings.toFixed(4) + ' XHI';
+
+  setTimeout(simulateDanceSession, 1000); // Update every second
+}
+
+function setDanceIntensity(level) {
+  danceSession.intensity = level;
+  
+  // Update intensity display
+  document.getElementById('danceIntensity').textContent = level.charAt(0).toUpperCase() + level.slice(1);
+  
+  // Update button states
+  document.querySelectorAll('.intensity-btn').forEach(btn => btn.classList.remove('active'));
+  event.target.classList.add('active');
+}
+</script>).innerHTML = `
     <p>🚶‍♂️ Keep moving to earn XHI!</p>
     <p>Steps: <span id="liveSteps">0</span></p>
     <p>Earnings: <span id="liveEarnings">0.000</span> XHI</p>

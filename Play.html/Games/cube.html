@@ -491,50 +491,45 @@
     }
 
     // ZWAP Integration API
-    window.ZwapCubeGame = {
-      initializeWallet: function (walletData) {
-        gameState.walletConnected = true;
-        gameState.walletData = walletData;
+      window.ZwapCubeGame = {
+        initializeWallet: function (walletData) {
+          gameState.walletConnected = true;
+          gameState.walletData = walletData;
 
-        // Update UI
-        document.getElementById('wallet-status-text').textContent = 'Wallet: Connected';
-        document.getElementById('wallet-status-text').className = 'wallet-connected';
-        document.getElementById('wallet-address').textContent = walletData.address.substring(0, 6) + '...' + walletData.address.substring(38);
-        document.getElementById('wallet-address').style.display = 'block';
+          // Update UI
+          document.getElementById('wallet-status-text').textContent = 'Wallet: Connected';
+          document.getElementById('play-button').disabled = false;
+          document.getElementById('play-button').textContent = 'START GAME';
+        },
 
-        document.getElementById('play-button').textContent = 'PLAY';
-        document.getElementById('play-button').disabled = false;
+        getGameState: function() {
+          return gameState;
+        },
 
-        console.log('Cube game initialized with wallet:', walletData);
-      },
+        resetGame: function() {
+          gameState.round = 1;
+          gameState.moves = 0;
+          gameState.xhiEarned = 0;
+          gameState.playing = false;
+          updateDisplay();
+        }
+      };
 
-      disconnectWallet: function () {
-        gameState.walletConnected = false;
-        gameState.walletData = null;
-        gameState.playing = false;
+      // Initialize the game
+      document.addEventListener('DOMContentLoaded', function() {
+        updateDisplay();
 
-        // Update UI
-        document.getElementById('wallet-status-text').textContent = 'Wallet: Disconnected';
-        document.getElementById('wallet-status-text').className = 'wallet-disconnected';
-        document.getElementById('wallet-address').style.display = 'none';
-
-        document.getElementById('play-button').textContent = 'WALLET REQUIRED';
-        document.getElementById('play-button').disabled = true;
-        document.getElementById('joystick').classList.add('disabled');
-
-        console.log('Wallet disconnected from cube game');
-      },
-
-      getGameState: function () {
-        return {
-          walletConnected: gameState.walletConnected,
-          playing: gameState.playing,
-          round: gameState.round,
-          moves: gameState.moves,
-          xhiEarned: gameState.xhiEarned
-        };
-      }
-    };
+        // Check if wallet is already connected
+        if (window.parent && window.parent.document) {
+          const connectBtn = window.parent.document.getElementById('connectBtn');
+          if (connectBtn && connectBtn.textContent !== 'CONNECT WALLET') {
+            window.ZwapCubeGame.initializeWallet({
+              address: connectBtn.textContent,
+              connected: true
+            });
+          }
+        }
+      });
 
     // Volume and Instructions controls
     let volumeEnabled = true;

@@ -184,7 +184,17 @@ class ZwapSecurity {
 
   validateScriptSource(scriptElement) {
     const src = scriptElement.src;
-    if (!src) return false; // Block inline scripts from unknown sources
+    if (!src) {
+      // Allow inline scripts that are part of the app structure
+      const content = scriptElement.textContent;
+      if (content.includes('currentSwapData') || 
+          content.includes('walkSession') || 
+          content.includes('ZwapCubeGame') ||
+          content.includes('showTokenModal')) {
+        return true; // Allow app-specific inline scripts
+      }
+      return false;
+    }
     
     return this.trustedDomains.some(domain => src.startsWith(domain));
   }

@@ -1302,3 +1302,112 @@ p {
   padding: 8px;
   overflow: hidden;
 }
+
+/* Move to Earn Session Styles */
+.session-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.9);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  padding: 20px;
+}
+
+.session-content {
+  background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+  border: 2px solid #00BFFF;
+  border-radius: 15px;
+  padding: 30px;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+}
+
+.session-title {
+  color: #00BFFF;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.session-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.stat-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+}
+
+.stat-label {
+  color: #ccc;
+  font-weight: bold;
+}
+
+.stat-value {
+  color: #fff;
+  font-weight: bold;
+}
+
+.dance-controls {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+  justify-content: center;
+}
+
+.intensity-btn {
+  background: #333;
+  color: #fff;
+  border: 1px solid #555;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.intensity-btn.active,
+.intensity-btn:hover {
+  background: #00BFFF;
+  border-color: #00BFFF;
+  color: #000;
+}
+
+.session-btn {
+  background: linear-gradient(135deg, #FF6B6B, #FF4757);
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.session-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+}
+
+.active-session {
+  border-color: #00FF00 !important;
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+}
+
+.active-session h3 {
+  color: #00FF00;
+}
