@@ -399,8 +399,8 @@
 </div>
 
 <!-- Swap Button -->
-<button class="swap-btn" id="swapButton" onclick="executeSwap()" disabled>
-Connect Wallet to Swap
+<button class="swap-btn" id="swapButton" onclick="showSwapSettings()" disabled>
+⚙️ Settings
 </button>
 </div>
 
@@ -671,17 +671,21 @@ function updateSwapButton() {
   const balance = tokenBalances[currentSwapData.fromToken] || 0;
   
   if (!isWalletConnected) {
-    button.textContent = 'Connect Wallet to Swap';
+    button.innerHTML = '⚙️ Settings';
     button.disabled = true;
+    button.onclick = () => showSwapSettings();
   } else if (fromAmount <= 0) {
     button.textContent = 'Enter Amount';
     button.disabled = true;
+    button.onclick = () => executeSwap();
   } else if (fromAmount > balance) {
     button.textContent = `Insufficient ${currentSwapData.fromToken} Balance`;
     button.disabled = true;
+    button.onclick = () => executeSwap();
   } else {
     button.textContent = `Swap ${currentSwapData.fromToken} for ${currentSwapData.toToken}`;
     button.disabled = false;
+    button.onclick = () => executeSwap();
   }
 }
 
