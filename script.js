@@ -17,7 +17,7 @@ window.location.href = 'index.html';
 const homeBtn = document.getElementById('homeBtn');
 if (homeBtn) {
 homeBtn.onclick = () => {
-window.location.href = 'index.html';';
+window.location.href = 'index.html';
 };
 }
 
