@@ -80,9 +80,12 @@
 </head>
 <body>
 <header>
-<div class="header-left">
-<button id="connectBtn">CONNECT WALLET</button>
-</div>
+<nav class="header-nav">
+<button class="header-nav-item" onclick="window.location.href='move.html'">MOVE</button>
+<button class="header-nav-item" onclick="window.location.href='play.html'">PLAY</button>
+<button class="header-nav-item" onclick="window.location.href='Swap.html'">SWAP</button>
+<button class="header-nav-item" onclick="window.location.href='Credit.html'">CREDIT</button>
+</nav>
 <div class="balance-display drop-animation">
 <div class="balance-item">
 <span class="balance-label gold">XHI</span>
@@ -93,13 +96,6 @@
 <span class="balance-value" id="zBalance">0</span>
 </div>
 </div>
-<nav class="header-nav">
-<button class="header-nav-item" onclick="window.location.href='move.html'">MOVE</button>
-<button class="header-nav-item" onclick="window.location.href='play.html'">PLAY</button>
-<button class="header-nav-item" onclick="window.location.href='Swap.html'">SWAP</button>
-<button class="header-nav-item" onclick="window.location.href='Credit.html'">CREDIT</button>
-</nav>
-<div class="header-right">
 <img id="bang" src="Zwap_bang_3d.PNG" alt="Bang Symbol">
 <div id="bangMenu" class="dropdown-menu">
 <button class="menu-btn" id="homeBtn">HOME</button>
@@ -107,7 +103,6 @@
 <button class="menu-btn" id="earnBtn">EARN</button>
 <button class="menu-btn" id="leaderboardBtn">LEADERBOARD</button>
 <button class="menu-btn" id="contactBtn">CONTACT</button>
-</div>
 </div>
 </header>
 
@@ -206,6 +201,7 @@ All rights reserved.
 
 <footer>
 <div class="footer-info">
+<button id="connectBtn">CONNECT WALLET</button>
 <p>© 2025 XOCLON INC. — All rights reserved</p>
 </div>
 </footer>
