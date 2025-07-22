@@ -514,20 +514,11 @@ p {
     position: relative;
   }
 
-  /* Top row with connect wallet and bang */
+  /* Top row with connect wallet */
   .header-left {
     order: 1;
     display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    width: 100%;
-    margin-bottom: 1rem;
-  }
-  
-  .header-right {
-    order: 1;
-    display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
     width: 100%;
     margin-bottom: 1rem;
@@ -542,26 +533,33 @@ p {
     white-space: nowrap;
   }
 
+  /* Second row with balance display and bang icon on same line */
+  .balance-display {
+    order: 2;
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0.5rem 0;
+  }
+
+  .balance-display::after {
+    content: '';
+    flex: 1;
+  }
+
   #bang {
     width: 50px;
     min-height: 44px;
     flex-shrink: 0;
-    margin-left: 1rem;
+    order: 3;
   }
   
   .dropdown-menu {
     right: 0;
     top: 50px;
     min-width: 140px;
-  }
-
-  /* Balance display - second row */
-  .balance-display {
-    order: 2;
-    gap: 1rem;
-    width: 100%;
-    justify-content: center;
-    margin: 0.5rem 0;
   }
 
   .balance-item {
@@ -583,7 +581,7 @@ p {
 
   /* Navigation - third row */
   .header-nav {
-    order: 3;
+    order: 4;
     width: 100%;
     display: flex;
     flex-wrap: wrap;
@@ -608,8 +606,25 @@ p {
     gap: 1rem;
   }
 
-  .header-nav {
+  .balance-display {
+    order: 2;
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0.5rem 0;
+  }
+
+  #bang {
+    width: 50px;
+    min-height: 44px;
+    flex-shrink: 0;
     order: 3;
+  }
+
+  .header-nav {
+    order: 4;
     flex: 1 1 100%;
     justify-content: center;
     margin: 0.5rem 0;
@@ -671,8 +686,13 @@ p {
   }
 
   .balance-display {
+    order: 2;
+    display: flex;
     gap: 1rem;
-    margin: 1rem 0;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0.5rem 0;
   }
 
   .balance-item {
@@ -699,7 +719,7 @@ p {
   #bang {
     width: 55px;
     min-height: 44px;
-    margin-left: auto;
+    flex-shrink: 0;
     order: 3;
   }
 
