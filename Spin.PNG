@@ -1,33 +1,40 @@
 
-<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <filter id="glow">
-      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
-      <feMerge> 
-        <feMergeNode in="coloredBlur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
+    <radialGradient id="wheelGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#FFD700;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#FFA500;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FF8C00;stop-opacity:1" />
+    </radialGradient>
   </defs>
   
-  <!-- Outer wheel -->
-  <circle cx="50" cy="50" r="40" fill="none" stroke="#00BFFF" stroke-width="4" filter="url(#glow)"/>
+  <!-- Outer wheel rim -->
+  <circle cx="50" cy="50" r="40" fill="url(#wheelGrad)" stroke="#00BFFF" stroke-width="4"/>
   
   <!-- Wheel segments -->
-  <path d="M50 50 L50 10 A40 40 0 0 1 85 35 Z" fill="#FF00FF" opacity="0.7" filter="url(#glow)"/>
-  <path d="M50 50 L85 35 A40 40 0 0 1 85 65 Z" fill="#00FFFF" opacity="0.7" filter="url(#glow)"/>
-  <path d="M50 50 L85 65 A40 40 0 0 1 50 90 Z" fill="#FFD700" opacity="0.7" filter="url(#glow)"/>
-  <path d="M50 50 L50 90 A40 40 0 0 1 15 65 Z" fill="#39FF14" opacity="0.7" filter="url(#glow)"/>
-  <path d="M50 50 L15 65 A40 40 0 0 1 15 35 Z" fill="#FF4500" opacity="0.7" filter="url(#glow)"/>
-  <path d="M50 50 L15 35 A40 40 0 0 1 50 10 Z" fill="#9400D3" opacity="0.7" filter="url(#glow)"/>
+  <g stroke="#FFFFFF" stroke-width="2" fill="none">
+    <line x1="50" y1="10" x2="50" y2="90"/>
+    <line x1="10" y1="50" x2="90" y2="50"/>
+    <line x1="21.7" y1="21.7" x2="78.3" y2="78.3"/>
+    <line x1="78.3" y1="21.7" x2="21.7" y2="78.3"/>
+  </g>
+  
+  <!-- Segment colors -->
+  <path d="M50,50 L50,10 A40,40 0 0,1 78.3,21.7 Z" fill="#FF00FF" opacity="0.7"/>
+  <path d="M50,50 L78.3,21.7 A40,40 0 0,1 90,50 Z" fill="#00FF00" opacity="0.7"/>
+  <path d="M50,50 L90,50 A40,40 0 0,1 78.3,78.3 Z" fill="#00BFFF" opacity="0.7"/>
+  <path d="M50,50 L78.3,78.3 A40,40 0 0,1 50,90 Z" fill="#FFD700" opacity="0.7"/>
   
   <!-- Center hub -->
-  <circle cx="50" cy="50" r="8" fill="#FFFFFF" stroke="#00BFFF" stroke-width="2" filter="url(#glow)"/>
+  <circle cx="50" cy="50" r="8" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
   
-  <!-- Pointer -->
-  <polygon points="50,5 45,15 55,15" fill="#FFD700" stroke="#FFFF00" stroke-width="1" filter="url(#glow)"/>
+  <!-- Pointer/Arrow -->
+  <path d="M50,5 L55,15 L45,15 Z" fill="#FF0000" stroke="#FFFFFF" stroke-width="1"/>
   
   <!-- Motion lines -->
-  <path d="M20 20 Q30 25 25 35" stroke="#00FFFF" stroke-width="2" fill="none" opacity="0.6" stroke-linecap="round"/>
-  <path d="M80 20 Q70 25 75 35" stroke="#FF00FF" stroke-width="2" fill="none" opacity="0.6" stroke-linecap="round"/>
+  <g stroke="#00FFFF" stroke-width="2" opacity="0.6" fill="none">
+    <path d="M30,15 Q35,20 25,25"/>
+    <path d="M70,15 Q75,20 65,25"/>
+    <path d="M85,35 Q90,40 80,45"/>
+  </g>
 </svg>

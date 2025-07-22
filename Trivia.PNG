@@ -1,31 +1,29 @@
 
-<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <filter id="glow">
-      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
-      <feMerge> 
-        <feMergeNode in="coloredBlur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
+    <radialGradient id="triviaGrad" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" style="stop-color:#FFD700;stop-opacity:1" />
+      <stop offset="70%" style="stop-color:#FFA500;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FF8C00;stop-opacity:1" />
+    </radialGradient>
   </defs>
   
-  <!-- Question mark circle -->
-  <circle cx="50" cy="50" r="35" fill="none" stroke="#00BFFF" stroke-width="4" filter="url(#glow)"/>
+  <!-- Brain/Question mark background -->
+  <circle cx="50" cy="45" r="35" fill="url(#triviaGrad)" stroke="#00BFFF" stroke-width="3"/>
   
   <!-- Question mark -->
-  <path d="M40 35 Q40 25 50 25 Q60 25 60 35 Q60 40 50 45 L50 50" stroke="#FF00FF" stroke-width="3" fill="none" stroke-linecap="round" filter="url(#glow)"/>
-  <circle cx="50" cy="60" r="3" fill="#FFD700" filter="url(#glow)"/>
+  <path d="M35,35 Q35,25 45,25 Q55,25 55,35 Q55,40 50,42 L50,50" 
+        fill="none" stroke="#0040FF" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="50" cy="58" r="3" fill="#0040FF"/>
   
-  <!-- Brain synapses effect -->
-  <circle cx="25" cy="25" r="2" fill="#00FFFF" opacity="0.8"/>
-  <circle cx="75" cy="25" r="2" fill="#00FFFF" opacity="0.6"/>
-  <circle cx="25" cy="75" r="2" fill="#00FFFF" opacity="0.7"/>
-  <circle cx="75" cy="75" r="2" fill="#00FFFF" opacity="0.9"/>
+  <!-- Sparkle effects -->
+  <g fill="#00FFFF" opacity="0.8">
+    <path d="M25,20 L27,25 L32,23 L27,28 L25,33 L23,28 L18,30 L23,25 Z"/>
+    <path d="M75,25 L76,28 L79,27 L76,30 L75,33 L74,30 L71,31 L74,28 Z"/>
+    <path d="M30,70 L31,72 L33,71 L31,73 L30,75 L29,73 L27,74 L29,72 Z"/>
+    <path d="M70,70 L72,73 L75,72 L72,75 L70,78 L68,75 L65,76 L68,73 Z"/>
+  </g>
   
-  <!-- Connecting lines -->
-  <line x1="25" y1="25" x2="40" y2="35" stroke="#00FFFF" stroke-width="1" opacity="0.4"/>
-  <line x1="75" y1="25" x2="60" y2="35" stroke="#00FFFF" stroke-width="1" opacity="0.4"/>
-  <line x1="25" y1="75" x2="40" y2="65" stroke="#00FFFF" stroke-width="1" opacity="0.4"/>
-  <line x1="75" y1="75" x2="60" y2="65" stroke="#00FFFF" stroke-width="1" opacity="0.4"/>
+  <!-- Text indicator -->
+  <text x="50" y="92" text-anchor="middle" font-family="Arial" font-size="10" fill="#00BFFF" font-weight="bold">QUIZ</text>
 </svg>

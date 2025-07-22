@@ -1,27 +1,31 @@
 
-<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <filter id="glow">
-      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
-      <feMerge> 
-        <feMergeNode in="coloredBlur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
+    <linearGradient id="cubeGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00BFFF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0080FF;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="cubeGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0080FF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0040FF;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="cubeGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0040FF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#002080;stop-opacity:1" />
+    </linearGradient>
   </defs>
   
-  <!-- Cube faces -->
-  <path d="M20 35 L50 20 L80 35 L50 50 Z" fill="#00BFFF" opacity="0.8" filter="url(#glow)"/>
-  <path d="M20 35 L20 65 L50 80 L50 50 Z" fill="#0080CC" opacity="0.9" filter="url(#glow)"/>
-  <path d="M50 50 L50 80 L80 65 L80 35 Z" fill="#0066AA" opacity="0.7" filter="url(#glow)"/>
+  <!-- Top face -->
+  <path d="M20,30 L50,15 L80,30 L50,45 Z" fill="url(#cubeGrad1)" stroke="#FFD700" stroke-width="2"/>
   
-  <!-- Cube edges -->
-  <path d="M20 35 L50 20 L80 35 L50 50 Z" stroke="#00FFFF" stroke-width="2" fill="none" filter="url(#glow)"/>
-  <path d="M20 35 L20 65 L50 80 L50 50 Z" stroke="#00FFFF" stroke-width="2" fill="none" filter="url(#glow)"/>
-  <path d="M50 50 L50 80 L80 65 L80 35 Z" stroke="#00FFFF" stroke-width="2" fill="none" filter="url(#glow)"/>
+  <!-- Left face -->
+  <path d="M20,30 L50,45 L50,75 L20,60 Z" fill="url(#cubeGrad2)" stroke="#FFD700" stroke-width="2"/>
   
-  <!-- Inner lines for detail -->
-  <line x1="50" y1="20" x2="50" y2="50" stroke="#FF00FF" stroke-width="1" opacity="0.6"/>
-  <line x1="20" y1="35" x2="50" y2="50" stroke="#FF00FF" stroke-width="1" opacity="0.6"/>
-  <line x1="80" y1="35" x2="50" y2="50" stroke="#FF00FF" stroke-width="1" opacity="0.6"/>
+  <!-- Right face -->
+  <path d="M50,45 L80,30 L80,60 L50,75 Z" fill="url(#cubeGrad3)" stroke="#FFD700" stroke-width="2"/>
+  
+  <!-- Highlight lines -->
+  <line x1="35" y1="22.5" x2="35" y2="37.5" stroke="#00FFFF" stroke-width="1" opacity="0.7"/>
+  <line x1="65" y1="37.5" x2="65" y2="52.5" stroke="#00FFFF" stroke-width="1" opacity="0.7"/>
+  <line x1="35" y1="52.5" x2="35" y2="67.5" stroke="#00FFFF" stroke-width="1" opacity="0.7"/>
 </svg>
