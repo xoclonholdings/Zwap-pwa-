@@ -6,14 +6,11 @@
  * Unauthorized copying, reproduction, or distribution is strictly prohibited.
  */
 document.addEventListener("DOMContentLoaded", () => {
-// Toggle dropdown menu under bang
+// Make bang icon navigate to home page
 const bang = document.getElementById('bang');
 if (bang) {
 bang.onclick = () => {
-const menu = document.getElementById('bangMenu');
-if (menu) {
-menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
-}
+window.location.href = 'index.html';
 };
 }
 
