@@ -79,37 +79,20 @@ class ZincCopilot {
     zincButton.innerHTML = '<div class="zinc-button-circle"><img src="zinc-logo.png" alt="Zinc" class="zinc-button-symbol" /></div>';
     document.body.appendChild(zincButton);
 
-    // Create Zinc modal interface
+    // Create simplified Zinc modal interface
     const zincModal = document.createElement('div');
     zincModal.id = 'zinc-modal';
     zincModal.innerHTML = `
       <div class="zinc-container">
         <div class="zinc-header">
-          <div class="zinc-title">
-            <span class="zinc-logo">
-              <div class="zinc-circle">
-                <img src="zinc-logo.png" alt="Zinc" class="zinc-symbol" />
-              </div>
-            </span>
-            <span class="zinc-subtitle">AI Co-pilot</span>
-          </div>
+          <span class="zinc-title">AI Co-pilot</span>
           <button class="zinc-close" onclick="window.zincCopilot.closeInterface()">×</button>
         </div>
-        <div class="zinc-visualizer">
-          <canvas id="zinc-canvas" width="300" height="60"></canvas>
-        </div>
-        <div class="zinc-chat" id="zinc-chat">
-          <div class="zinc-message zinc-assistant">
-            <div class="message-avatar">
-                <img src="zinc-logo.png" alt="Zinc" style="width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 0 8px #FFD700);">
-            </div>
-            <div class="message-content">
-              Hi! I'm Zinc, your ZWAP! co-pilot. I can help you with wallets, earning $XHI, games, and more. What can I assist you with today?
-            </div>
-          </div>
+        <div class="zinc-background-logo">
+          <img src="zinc-logo.png" alt="Zinc" class="zinc-bg-symbol" />
         </div>
         <div class="zinc-input-container">
-          <input type="text" id="zinc-input" placeholder="Ask ZED anything about ZWAP!..." />
+          <input type="text" id="zinc-input" placeholder="Ask ZED anything about ZWAP..." />
           <button id="zinc-send" onclick="window.zincCopilot.sendMessage()">Send</button>
           <button id="zinc-voice" onclick="window.zincCopilot.toggleVoiceInput()">🎤</button>
         </div>
@@ -186,8 +169,8 @@ class ZincCopilot {
         top: 20px;
         right: 20px;
         width: 350px;
-        height: 500px;
-        background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+        height: 200px;
+        background: linear-gradient(135deg, rgba(26, 26, 26, 0.95), rgba(45, 45, 45, 0.95));
         border: 2px solid #FFD700;
         border-radius: 15px;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
@@ -195,57 +178,29 @@ class ZincCopilot {
         display: none;
         overflow: hidden;
         font-family: 'Orbitron', monospace;
+        backdrop-filter: blur(10px);
       }
 
       .zinc-container {
         height: 100%;
         display: flex;
         flex-direction: column;
+        position: relative;
       }
 
       .zinc-header {
         background: linear-gradient(135deg, #FFD700, #FFA500);
         color: #000;
-        padding: 15px;
+        padding: 10px 15px;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        font-size: 14px;
+        font-weight: bold;
       }
 
       .zinc-title {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-      }
-
-      .zinc-logo {
-        display: flex;
-        align-items: center;
-      }
-
-      .zinc-circle {
-        width: 40px;
-        height: 40px;
-        background: linear-gradient(135deg, #FFD700, #FFA500);
-        border: 2px solid #000;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .zinc-symbol {
-        width: 24px;
-        height: 24px;
-        object-fit: contain;
-        filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.3));
-      }
-
-      .zinc-subtitle {
-        font-size: 12px;
-        opacity: 0.8;
+        font-size: 14px;
         font-weight: bold;
       }
 
@@ -253,115 +208,86 @@ class ZincCopilot {
         background: none;
         border: none;
         color: #000;
-        font-size: 24px;
+        font-size: 20px;
         cursor: pointer;
         font-weight: bold;
-      }
-
-      .zinc-visualizer {
-        height: 60px;
-        background: #000;
-        border-bottom: 1px solid #FFD700;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .zinc-chat {
-        flex: 1;
-        overflow-y: auto;
-        padding: 15px;
-        background: #1a1a1a;
-      }
-
-      .zinc-message {
-        margin-bottom: 15px;
-        display: flex;
-        gap: 10px;
-        align-items: flex-start;
-      }
-
-      .zinc-user {
-        justify-content: flex-end;
-      }
-
-      .zinc-user .message-content {
-        background: #FFD700;
-        color: #000;
-      }
-
-      .zinc-assistant .message-content {
-        background: #333;
-        color: #FFD700;
-      }
-
-      .message-avatar {
         width: 30px;
         height: 30px;
-        border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 16px;
-        flex-shrink: 0;
-      }
-
-      .zinc-avatar {
-        width: 30px;
-        height: 30px;
-        background: linear-gradient(135deg, #FFD700, #FFA500);
-        border: 1px solid #FFD700;
         border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
       }
 
-      .zinc-avatar-symbol {
-        width: 18px;
-        height: 18px;
+      .zinc-close:hover {
+        background: rgba(0, 0, 0, 0.1);
+      }
+
+      .zinc-background-logo {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0.1;
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      .zinc-bg-symbol {
+        width: 120px;
+        height: 120px;
         object-fit: contain;
-        filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.3));
-      }
-
-      .message-content {
-        max-width: 250px;
-        padding: 10px 15px;
-        border-radius: 10px;
-        font-size: 14px;
-        line-height: 1.4;
+        filter: drop-shadow(0 0 20px #FFD700);
       }
 
       .zinc-input-container {
         display: flex;
         padding: 15px;
-        gap: 5px;
-        background: #2d2d2d;
-        border-top: 1px solid #FFD700;
+        gap: 8px;
+        background: rgba(45, 45, 45, 0.8);
+        border-top: 1px solid rgba(255, 215, 0, 0.3);
+        z-index: 1;
+        position: relative;
       }
 
       #zinc-input {
         flex: 1;
-        background: #1a1a1a;
+        background: rgba(26, 26, 26, 0.8);
         border: 1px solid #FFD700;
         color: #FFD700;
-        padding: 8px 12px;
-        border-radius: 5px;
+        padding: 10px 15px;
+        border-radius: 8px;
         font-family: 'Orbitron', monospace;
-        font-size: 12px;
+        font-size: 14px;
+        backdrop-filter: blur(5px);
+      }
+
+      #zinc-input::placeholder {
+        color: rgba(255, 215, 0, 0.6);
+      }
+
+      #zinc-input:focus {
+        outline: none;
+        border-color: #FFD700;
+        box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
       }
 
       #zinc-send, #zinc-voice {
         background: #FFD700;
         color: #000;
         border: none;
-        padding: 8px 12px;
-        border-radius: 5px;
+        padding: 10px 15px;
+        border-radius: 8px;
         cursor: pointer;
         font-family: 'Orbitron', monospace;
         font-size: 12px;
         font-weight: bold;
+        transition: all 0.3s ease;
+      }
+
+      #zinc-send:hover, #zinc-voice:hover {
+        background: #FFA500;
+        transform: translateY(-1px);
       }
 
       #zinc-voice.listening {
@@ -371,27 +297,31 @@ class ZincCopilot {
 
       .zinc-quick-actions {
         display: flex;
-        gap: 5px;
+        gap: 8px;
         padding: 10px 15px;
-        background: #2d2d2d;
+        background: rgba(45, 45, 45, 0.6);
         flex-wrap: wrap;
+        z-index: 1;
+        position: relative;
       }
 
       .zinc-quick-actions button {
-        background: #333;
+        background: rgba(51, 51, 51, 0.8);
         color: #FFD700;
-        border: 1px solid #FFD700;
-        padding: 0.5rem 1rem;
-        border-radius: 5px;
+        border: 1px solid rgba(255, 215, 0, 0.5);
+        padding: 8px 12px;
+        border-radius: 6px;
         cursor: pointer;
-        font-size: 0.8rem;
+        font-size: 11px;
         font-family: 'Orbitron', monospace;
         transition: all 0.3s ease;
+        backdrop-filter: blur(5px);
       }
 
       .zinc-quick-actions button:hover {
-        background: #FFD700;
-        color: #000;
+        background: rgba(255, 215, 0, 0.2);
+        border-color: #FFD700;
+        transform: translateY(-1px);
       }
 
       @keyframes pulse {
@@ -399,20 +329,80 @@ class ZincCopilot {
         50% { opacity: 0.5; }
       }
 
+      .zinc-response-overlay {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: linear-gradient(135deg, rgba(26, 26, 26, 0.95), rgba(45, 45, 45, 0.95));
+        border: 2px solid #FFD700;
+        border-radius: 15px;
+        padding: 20px;
+        max-width: 400px;
+        z-index: 1002;
+        backdrop-filter: blur(15px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+        animation: slideInResponse 0.3s ease-out;
+      }
+
+      .response-content {
+        display: flex;
+        align-items: flex-start;
+        gap: 15px;
+      }
+
+      .response-text {
+        color: #FFD700;
+        font-family: 'Orbitron', monospace;
+        font-size: 14px;
+        line-height: 1.5;
+        flex: 1;
+      }
+
+      .response-close {
+        background: #FFD700;
+        color: #000;
+        border: none;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        cursor: pointer;
+        font-weight: bold;
+        flex-shrink: 0;
+        transition: all 0.3s ease;
+      }
+
+      .response-close:hover {
+        background: #FFA500;
+        transform: scale(1.1);
+      }
+
+      @keyframes slideInResponse {
+        0% {
+          opacity: 0;
+          transform: translate(-50%, -60%);
+        }
+        100% {
+          opacity: 1;
+          transform: translate(-50%, -50%);
+        }
+      }
+
       @media (max-width: 768px) {
         #zinc-modal {
           top: 10px;
           right: 10px;
           width: 300px;
-          height: 450px;
+          height: 180px;
         }
 
         .zinc-quick-actions {
-          flex-direction: column;
+          gap: 5px;
         }
 
         .zinc-quick-actions button {
-          text-align: center;
+          font-size: 10px;
+          padding: 6px 10px;
         }
       }
 
@@ -422,7 +412,22 @@ class ZincCopilot {
           right: 10px;
           left: 10px;
           width: auto;
-          height: 400px;
+          height: 160px;
+        }
+
+        .zinc-input-container {
+          padding: 10px;
+          gap: 5px;
+        }
+
+        #zinc-input {
+          font-size: 12px;
+          padding: 8px 12px;
+        }
+
+        #zinc-send, #zinc-voice {
+          padding: 8px 12px;
+          font-size: 11px;
         }
       }
     `;
@@ -516,29 +521,32 @@ class ZincCopilot {
     const message = input.value.trim();
     if (!message) return;
 
-    this.addMessage(message, 'user');
+    // Show response overlay
+    this.showResponseOverlay(message);
     input.value = '';
-
-    // Process message and respond
-    setTimeout(() => {
-      const response = this.processMessage(message);
-      this.addMessage(response, 'assistant');
-    }, 500);
   }
 
-  addMessage(content, sender) {
-    const chat = document.getElementById('zinc-chat');
-    const messageDiv = document.createElement('div');
-    messageDiv.className = `zinc-message zinc-${sender}`;
-
-    const avatar = sender === 'user' ? '👤' : '🤖';
-    messageDiv.innerHTML = `
-      <div class="message-avatar">${avatar}</div>
-      <div class="message-content">${content}</div>
+  showResponseOverlay(userMessage) {
+    const response = this.processMessage(userMessage);
+    
+    // Create overlay with response
+    const overlay = document.createElement('div');
+    overlay.className = 'zinc-response-overlay';
+    overlay.innerHTML = `
+      <div class="response-content">
+        <div class="response-text">${response}</div>
+        <button onclick="this.parentElement.parentElement.remove()" class="response-close">✓</button>
+      </div>
     `;
-
-    chat.appendChild(messageDiv);
-    chat.scrollTop = chat.scrollHeight;
+    
+    document.body.appendChild(overlay);
+    
+    // Auto-remove after 5 seconds
+    setTimeout(() => {
+      if (overlay.parentElement) {
+        overlay.remove();
+      }
+    }, 5000);
   }
 
   processMessage(message) {
