@@ -132,6 +132,13 @@ header {
   box-shadow: 0 4px 15px rgba(0, 191, 255, 0.2);
 }
 
+.header-nav .nav-item.current {
+  color: #FFD700;
+  background: rgba(255, 215, 0, 0.1);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+}
+
 .balance-display {
   display: flex;
   gap: 1rem;

@@ -1,13 +1,6 @@
-
 /**
- * ZWAP! Multi-Asset Swap Service
+ * ZWAP! Service Layer
  * ©️ 2025 XOCLON HOLDINGS INC.™ - All Rights Reserved
- * 
- * This file contains proprietary intellectual property of XOCLON HOLDINGS INC.™
- * Unauthorized copying, reproduction, or distribution is strictly prohibited.
- * 
- * Centralized service for handling decentralized swaps
- * Supports XHI ↔ ETH/USDC/POL/BTC/SOL
  */
 
 class ZwapSwapService {
@@ -15,345 +8,171 @@ class ZwapSwapService {
     this.supportedTokens = {
       XHI: {
         symbol: 'XHI',
-        name: 'XHI Token',
-        decimals: 18,
-        address: '0x...', // XHI contract address
+        name: 'XOCLON Holdings Inc',
         icon: '🪙',
-        color: '#FFD700'
+        address: '0x742d35Cc6634C0532925a3b8D1de65c07c1e4BA2',
+        decimals: 18
       },
       ETH: {
         symbol: 'ETH',
         name: 'Ethereum',
-        decimals: 18,
-        address: '0x0000000000000000000000000000000000000000',
         icon: '⟠',
-        color: '#627EEA'
-      },
-      USDC: {
-        symbol: 'USDC',
-        name: 'USD Coin',
-        decimals: 6,
-        address: '0xA0b86a33E6441d81c2F9b7C9cbE1C9bB9A7E7fB7',
-        icon: '💵',
-        color: '#2775CA'
-      },
-      POL: {
-        symbol: 'POL',
-        name: 'Polygon',
-        decimals: 18,
-        address: '0x455e53c2F935C4a1DdA0dF1Ad2e5Ca89a2d888e2',
-        icon: '🔷',
-        color: '#8247E5'
+        address: '0x0000000000000000000000000000000000000000',
+        decimals: 18
       },
       BTC: {
         symbol: 'BTC',
         name: 'Bitcoin',
-        decimals: 8,
-        address: '0x2260fac5e5542a773aa44fbcfedf7c193bc2c599',
         icon: '₿',
-        color: '#F7931A'
+        address: '0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599',
+        decimals: 8
       },
-      SOL: {
-        symbol: 'SOL',
-        name: 'Solana',
-        decimals: 9,
-        address: '0xd31a59c85ae9d8edefec411d448f90841571b89c',
-        icon: '◎',
-        color: '#00FFA3'
+      USDT: {
+        symbol: 'USDT',
+        name: 'Tether USD',
+        icon: '💵',
+        address: '0xdAC17F958D2ee523a2206206994597C13D831ec7',
+        decimals: 6
+      },
+      USDC: {
+        symbol: 'USDC',
+        name: 'USD Coin',
+        icon: '🔵',
+        address: '0xA0b86a33E6441C73e6aa3b7c82b43b14738e2B82',
+        decimals: 6
       }
     };
 
-    this.priceFeeds = {};
-    this.slippageTolerance = 0.5; // 0.5% default
-    this.isInitialized = false;
-    this.walletProvider = null;
-    this.userAddress = null;
-    
-    this.initializePriceFeeds();
+    this.marketData = {};
+    this.slippageTolerance = 0.5;
+    this.initializePrices();
   }
 
-  async initialize(walletProvider, userAddress) {
-    this.walletProvider = walletProvider;
-    this.userAddress = userAddress;
-    this.isInitialized = true;
-    
-    await this.updateAllPrices();
-    console.log('ZwapSwapService initialized for:', userAddress);
-  }
-
-  initializePriceFeeds() {
-    // Mock price data - replace with real API calls
-    this.priceFeeds = {
-      XHI: { price: 0.15, change24h: 5.2 },
-      ETH: { price: 3200.45, change24h: -1.8 },
-      USDC: { price: 1.00, change24h: 0.1 },
-      POL: { price: 0.45, change24h: 3.1 },
-      BTC: { price: 68500.00, change24h: 2.4 },
-      SOL: { price: 145.67, change24h: -0.9 }
+  initializePrices() {
+    this.marketData = {
+      XHI: { price: 0.0045, change24h: 12.5 },
+      ETH: { price: 3245.67, change24h: -2.3 },
+      BTC: { price: 45234.89, change24h: 1.8 },
+      USDT: { price: 1.00, change24h: 0.1 },
+      USDC: { price: 1.00, change24h: -0.05 }
     };
   }
 
   async updateAllPrices() {
-    // In production, fetch real prices from APIs like CoinGecko, DeFiPulse, etc.
-    try {
-      // Simulate API call delay
-      await new Promise(resolve => setTimeout(resolve, 500));
-      
-      // Mock price updates with slight variations
-      Object.keys(this.priceFeeds).forEach(token => {
-        const variation = (Math.random() - 0.5) * 0.02; // ±1% variation
-        this.priceFeeds[token].price *= (1 + variation);
-      });
-      
-      console.log('Prices updated:', this.priceFeeds);
-      return this.priceFeeds;
-    } catch (error) {
-      console.error('Failed to update prices:', error);
-      throw new Error('Price feed update failed');
-    }
+    // Simulate price updates
+    Object.keys(this.marketData).forEach(symbol => {
+      const current = this.marketData[symbol];
+      const change = (Math.random() - 0.5) * 0.1; // ±5% change
+      current.price *= (1 + change);
+      current.change24h = change * 100;
+    });
   }
 
   getTokenPrice(symbol) {
-    return this.priceFeeds[symbol]?.price || 0;
+    return this.marketData[symbol]?.price || 0;
+  }
+
+  getMarketData(symbol) {
+    return this.marketData[symbol];
+  }
+
+  async getTokenBalance(symbol) {
+    // Simulate balance retrieval
+    const balances = {
+      XHI: Math.random() * 1000,
+      ETH: Math.random() * 10,
+      BTC: Math.random() * 0.5,
+      USDT: Math.random() * 5000,
+      USDC: Math.random() * 5000
+    };
+
+    return balances[symbol] || 0;
   }
 
   calculateSwapAmount(fromToken, toToken, fromAmount) {
     const fromPrice = this.getTokenPrice(fromToken);
     const toPrice = this.getTokenPrice(toToken);
-    
-    if (!fromPrice || !toPrice) {
-      throw new Error('Price data unavailable');
+
+    if (!fromPrice || !toPrice || fromAmount <= 0) {
+      throw new Error('Invalid swap parameters');
     }
 
-    const usdValue = fromAmount * fromPrice;
-    const toAmount = usdValue / toPrice;
-    
-    // Apply slippage
-    const slippageMultiplier = 1 - (this.slippageTolerance / 100);
-    const finalAmount = toAmount * slippageMultiplier;
-    
+    const rate = fromPrice / toPrice;
+    const toAmount = fromAmount * rate;
+    const priceImpact = Math.min(fromAmount / 10000, 5); // Max 5% impact
+
     return {
-      fromAmount,
-      toAmount: finalAmount,
-      usdValue,
-      slippage: this.slippageTolerance,
-      priceImpact: this.calculatePriceImpact(fromToken, toToken, fromAmount)
+      toAmount: toAmount * (1 - priceImpact / 100),
+      priceImpact: priceImpact.toFixed(2),
+      rate
     };
-  }
-
-  calculatePriceImpact(fromToken, toToken, amount) {
-    // Simplified price impact calculation
-    // In production, this would consider liquidity pools
-    const baseImpact = Math.min(amount * 0.001, 0.05); // Max 5% impact
-    return Math.round(baseImpact * 100 * 100) / 100; // Round to 2 decimals
-  }
-
-  async getTokenBalance(tokenSymbol) {
-    if (!this.isInitialized) {
-      throw new Error('Service not initialized');
-    }
-
-    try {
-      // Mock balance data - replace with actual blockchain calls
-      const mockBalances = {
-        XHI: 1.2345,
-        ETH: 0.5678,
-        USDC: 1000.00,
-        POL: 250.75,
-        BTC: 0.02,
-        SOL: 10.5
-      };
-
-      return mockBalances[tokenSymbol] || 0;
-    } catch (error) {
-      console.error('Failed to get balance:', error);
-      return 0;
-    }
-  }
-
-  async executeSwap(fromToken, toToken, fromAmount, slippage = null) {
-    if (!this.isInitialized) {
-      throw new Error('Wallet not connected');
-    }
-
-    try {
-      // Use custom slippage or default
-      const currentSlippage = slippage || this.slippageTolerance;
-      
-      // Calculate swap details
-      const swapDetails = this.calculateSwapAmount(fromToken, toToken, fromAmount);
-      
-      // Validate balance
-      const balance = await this.getTokenBalance(fromToken);
-      if (balance < fromAmount) {
-        throw new Error(`Insufficient ${fromToken} balance`);
-      }
-
-      // Simulate transaction processing
-      const txHash = await this.processSwapTransaction(fromToken, toToken, swapDetails);
-      
-      // Record transaction
-      this.recordSwapTransaction({
-        hash: txHash,
-        fromToken,
-        toToken,
-        fromAmount,
-        toAmount: swapDetails.toAmount,
-        timestamp: Date.now(),
-        status: 'completed'
-      });
-
-      return {
-        success: true,
-        txHash,
-        swapDetails,
-        message: `Successfully swapped ${fromAmount} ${fromToken} for ${swapDetails.toAmount.toFixed(6)} ${toToken}`
-      };
-
-    } catch (error) {
-      console.error('Swap execution failed:', error);
-      throw error;
-    }
-  }
-
-  async processSwapTransaction(fromToken, toToken, swapDetails) {
-    // Simulate blockchain transaction
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        // Mock transaction hash
-        const txHash = '0x' + Array.from({length: 64}, () => Math.floor(Math.random() * 16).toString(16)).join('');
-        resolve(txHash);
-      }, 2000); // 2 second delay to simulate network
-    });
-  }
-
-  recordSwapTransaction(txData) {
-    // Store transaction history
-    const history = JSON.parse(localStorage.getItem('zwapSwapHistory') || '[]');
-    history.unshift(txData);
-    
-    // Keep only last 50 transactions
-    if (history.length > 50) {
-      history.splice(50);
-    }
-    
-    localStorage.setItem('zwapSwapHistory', JSON.stringify(history));
-  }
-
-  getSwapHistory() {
-    return JSON.parse(localStorage.getItem('zwapSwapHistory') || '[]');
   }
 
   async estimateGasFee(fromToken, toToken, amount) {
-    // Mock gas estimation - replace with real web3 calls
+    // Simulate gas estimation
     const baseGas = 21000;
-    const swapGas = 150000;
-    const gasPrice = 50; // Gwei
+    const complexityMultiplier = fromToken === 'ETH' ? 1 : 1.5;
+    const gasPrice = 20; // Gwei
     const ethPrice = this.getTokenPrice('ETH');
-    
-    const totalGas = baseGas + swapGas;
-    const gasCostEth = (totalGas * gasPrice) / 1e9;
-    const gasCostUsd = gasCostEth * ethPrice;
-    
+
+    const gasLimit = Math.floor(baseGas * complexityMultiplier);
+    const gasCostEth = (gasLimit * gasPrice) / 1e9;
+    const gasCostUsd = (gasCostEth * ethPrice).toFixed(2);
+
     return {
-      gasLimit: totalGas,
+      gasLimit,
       gasPrice,
       gasCostEth: gasCostEth.toFixed(6),
-      gasCostUsd: gasCostUsd.toFixed(2)
+      gasCostUsd
     };
   }
 
+  async executeSwap(fromToken, toToken, amount) {
+    // Simulate swap execution
+    await new Promise(resolve => setTimeout(resolve, 3000));
+
+    const swapDetails = this.calculateSwapAmount(fromToken, toToken, amount);
+    const txHash = '0x' + Array.from({length: 64}, () => Math.floor(Math.random() * 16).toString(16)).join('');
+
+    // Update balances in localStorage
+    const currentFromBalance = parseFloat(localStorage.getItem(`zwap${fromToken}Balance`) || '0');
+    const currentToBalance = parseFloat(localStorage.getItem(`zwap${toToken}Balance`) || '0');
+
+    localStorage.setItem(`zwap${fromToken}Balance`, (currentFromBalance - amount).toString());
+    localStorage.setItem(`zwap${toToken}Balance`, (currentToBalance + swapDetails.toAmount).toString());
+
+    return {
+      txHash,
+      swapDetails,
+      success: true
+    };
+  }
+
+  searchTokens(query) {
+    if (!query) return Object.values(this.supportedTokens);
+
+    return Object.values(this.supportedTokens).filter(token =>
+      token.symbol.toLowerCase().includes(query.toLowerCase()) ||
+      token.name.toLowerCase().includes(query.toLowerCase())
+    );
+  }
+
   setSlippageTolerance(percentage) {
-    this.slippageTolerance = Math.max(0.1, Math.min(50, percentage));
+    this.slippageTolerance = percentage;
   }
 
   getSlippageTolerance() {
     return this.slippageTolerance;
   }
-
-  // Premium member benefits
-  getPremiumBenefits(isPremium) {
-    if (isPremium) {
-      return {
-        reducedFees: true,
-        feeDiscount: 0.5, // 50% discount
-        prioritySupport: true,
-        advancedCharts: true,
-        limitOrders: true
-      };
-    }
-    return {
-      reducedFees: false,
-      feeDiscount: 0,
-      prioritySupport: false,
-      advancedCharts: false,
-      limitOrders: false
-    };
-  }
-
-  // Market data and analytics
-  getMarketData(tokenSymbol) {
-    const priceData = this.priceFeeds[tokenSymbol];
-    if (!priceData) return null;
-
-    return {
-      symbol: tokenSymbol,
-      price: priceData.price,
-      change24h: priceData.change24h,
-      volume24h: Math.random() * 1000000, // Mock volume
-      marketCap: priceData.price * Math.random() * 1000000000, // Mock market cap
-      lastUpdated: Date.now()
-    };
-  }
-
-  // Token search and filtering
-  searchTokens(query) {
-    if (!query) return Object.values(this.supportedTokens);
-    
-    const lowercaseQuery = query.toLowerCase();
-    return Object.values(this.supportedTokens).filter(token => 
-      token.symbol.toLowerCase().includes(lowercaseQuery) ||
-      token.name.toLowerCase().includes(lowercaseQuery)
-    );
-  }
-
-  // Swap route optimization
-  findBestRoute(fromToken, toToken, amount) {
-    // For now, direct swaps only
-    // In production, implement multi-hop routing
-    return {
-      route: [fromToken, toToken],
-      hops: 1,
-      estimatedOutput: this.calculateSwapAmount(fromToken, toToken, amount).toAmount,
-      fees: amount * 0.003 // 0.3% swap fee
-    };
-  }
-
-  // Health check
-  async healthCheck() {
-    try {
-      await this.updateAllPrices();
-      return {
-        status: 'healthy',
-        priceFeeds: 'operational',
-        lastUpdate: Date.now()
-      };
-    } catch (error) {
-      return {
-        status: 'degraded',
-        error: error.message,
-        lastUpdate: Date.now()
-      };
-    }
-  }
 }
 
-// Initialize global instance
+// Initialize service
 window.zwapSwapService = new ZwapSwapService();
 
 // Export for module usage
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = ZwapSwapService;
 }
+```
 
 console.log('ZwapSwapService loaded and ready');
