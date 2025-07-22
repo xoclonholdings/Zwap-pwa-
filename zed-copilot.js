@@ -76,7 +76,7 @@ class ZincCopilot {
     // Create floating Zinc button
     const zincButton = document.createElement('div');
     zincButton.id = 'zinc-button';
-    zincButton.innerHTML = '<div class="zinc-button-circle"><img src="./zinc-logo.png" alt="Zinc" class="zinc-button-symbol" /></div>';
+    zincButton.innerHTML = '<div class="zinc-button-circle"><img src="zinc-logo.png" alt="Zinc" class="zinc-button-symbol" /></div>';
     document.body.appendChild(zincButton);
 
     // Create Zinc modal interface
@@ -88,7 +88,7 @@ class ZincCopilot {
           <div class="zinc-title">
             <span class="zinc-logo">
               <div class="zinc-circle">
-                <img src="./zinc-logo.png" alt="Zinc" class="zinc-symbol" />
+                <img src="zinc-logo.png" alt="Zinc" class="zinc-symbol" />
               </div>
             </span>
             <span class="zinc-subtitle">AI Co-pilot</span>
@@ -101,7 +101,7 @@ class ZincCopilot {
         <div class="zinc-chat" id="zinc-chat">
           <div class="zinc-message zinc-assistant">
             <div class="message-avatar">
-                <img src="./zinc-logo.png" alt="Zinc" style="width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 0 8px #FFD700);">
+                <img src="zinc-logo.png" alt="Zinc" style="width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 0 8px #FFD700);">
             </div>
             <div class="message-content">
               Hi! I'm Zinc, your ZWAP! co-pilot. I can help you with wallets, earning $XHI, games, and more. What can I assist you with today?
