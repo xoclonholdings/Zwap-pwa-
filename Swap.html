@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -294,11 +293,11 @@
     margin: 1rem;
     padding: 1rem;
   }
-  
+
   .token-modal {
     padding: 1rem;
   }
-  
+
   .token-modal-content {
     margin: 1rem auto;
   }
@@ -417,9 +416,19 @@
 </footer>
 
 <script src="security.js"></script>
+<script src="zwapService.js"></script>
+<script>
+// Wait for zwapService to load before continuing
+document.addEventListener('DOMContentLoaded', function() {
+  if (window.zwapSwapService) {
+    initializeSwapInterface();
+  } else {
+    console.error('ZwapSwapService failed to load');
+  }
+});
+</script>
 <script src="script.js"></script>
 <script src="zebulon-oracle.js"></script>
-<script src="zwapService.js"></script>rvice.js"></script>
 <script>
 // Swap interface state
 let currentSwapData = {
@@ -442,13 +451,13 @@ async function initializeSwapInterface() {
   try {
     // Update token balances
     await updateAllBalances();
-    
+
     // Update prices
     await window.zwapSwapService.updateAllPrices();
-    
+
     // Populate token list
     populateTokenModal();
-    
+
     console.log('Swap interface initialized');
   } catch (error) {
     console.error('Failed to initialize swap interface:', error);
@@ -457,7 +466,7 @@ async function initializeSwapInterface() {
 
 async function updateAllBalances() {
   const tokens = Object.keys(window.zwapSwapService.supportedTokens);
-  
+
   for (const token of tokens) {
     try {
       const balance = await window.zwapSwapService.getTokenBalance(token);
@@ -466,7 +475,7 @@ async function updateAllBalances() {
       tokenBalances[token] = 0;
     }
   }
-  
+
   updateBalanceDisplays();
 }
 
@@ -478,17 +487,17 @@ function updateBalanceDisplays() {
 function populateTokenModal() {
   const tokenList = document.getElementById('tokenList');
   const tokens = window.zwapSwapService.supportedTokens;
-  
+
   tokenList.innerHTML = '';
-  
+
   Object.values(tokens).forEach(token => {
     const balance = tokenBalances[token.symbol] || 0;
     const priceData = window.zwapSwapService.getMarketData(token.symbol);
-    
+
     const tokenItem = document.createElement('div');
     tokenItem.className = 'token-item';
     tokenItem.onclick = () => selectToken(token.symbol);
-    
+
     tokenItem.innerHTML = `
       <div class="token-icon">${token.icon}</div>
       <div class="token-info">
@@ -505,7 +514,7 @@ function populateTokenModal() {
       </div>
       <div class="token-balance">${balance.toFixed(4)}</div>
     `;
-    
+
     tokenList.appendChild(tokenItem);
   });
 }
@@ -525,18 +534,18 @@ function closeTokenModal() {
 function filterTokens() {
   const query = document.getElementById('tokenSearch').value;
   const filteredTokens = window.zwapSwapService.searchTokens(query);
-  
+
   const tokenList = document.getElementById('tokenList');
   tokenList.innerHTML = '';
-  
+
   filteredTokens.forEach(token => {
     const balance = tokenBalances[token.symbol] || 0;
     const priceData = window.zwapSwapService.getMarketData(token.symbol);
-    
+
     const tokenItem = document.createElement('div');
     tokenItem.className = 'token-item';
     tokenItem.onclick = () => selectToken(token.symbol);
-    
+
     tokenItem.innerHTML = `
       <div class="token-icon">${token.icon}</div>
       <div class="token-info">
@@ -553,14 +562,14 @@ function filterTokens() {
       </div>
       <div class="token-balance">${balance.toFixed(4)}</div>
     `;
-    
+
     tokenList.appendChild(tokenItem);
   });
 }
 
 function selectToken(symbol) {
   const token = window.zwapSwapService.supportedTokens[symbol];
-  
+
   if (currentSwapData.modalType === 'from') {
     currentSwapData.fromToken = symbol;
     document.getElementById('fromTokenIcon').textContent = token.icon;
@@ -570,7 +579,7 @@ function selectToken(symbol) {
     document.getElementById('toTokenIcon').textContent = token.icon;
     document.getElementById('toTokenSymbol').textContent = symbol;
   }
-  
+
   updateBalanceDisplays();
   updateSwapCalculation();
   closeTokenModal();
@@ -580,22 +589,22 @@ function swapTokens() {
   const tempToken = currentSwapData.fromToken;
   currentSwapData.fromToken = currentSwapData.toToken;
   currentSwapData.toToken = tempToken;
-  
+
   // Update UI
   const fromToken = window.zwapSwapService.supportedTokens[currentSwapData.fromToken];
   const toToken = window.zwapSwapService.supportedTokens[currentSwapData.toToken];
-  
+
   document.getElementById('fromTokenIcon').textContent = fromToken.icon;
   document.getElementById('fromTokenSymbol').textContent = fromToken.symbol;
   document.getElementById('toTokenIcon').textContent = toToken.icon;
   document.getElementById('toTokenSymbol').textContent = toToken.symbol;
-  
+
   // Swap amounts
   const fromAmount = document.getElementById('fromAmount').value;
   const toAmount = document.getElementById('toAmount').value;
   document.getElementById('fromAmount').value = toAmount;
   document.getElementById('toAmount').value = fromAmount;
-  
+
   updateBalanceDisplays();
   updateSwapCalculation();
 }
@@ -608,32 +617,32 @@ function setMaxAmount() {
 
 async function updateSwapCalculation() {
   const fromAmount = parseFloat(document.getElementById('fromAmount').value) || 0;
-  
+
   if (fromAmount <= 0) {
     document.getElementById('toAmount').value = '';
     document.getElementById('swapDetails').style.display = 'none';
     updateSwapButton();
     return;
   }
-  
+
   try {
     const swapDetails = window.zwapSwapService.calculateSwapAmount(
       currentSwapData.fromToken,
       currentSwapData.toToken,
       fromAmount
     );
-    
+
     document.getElementById('toAmount').value = swapDetails.toAmount.toFixed(6);
-    
+
     // Update swap details
     const fromPrice = window.zwapSwapService.getTokenPrice(currentSwapData.fromToken);
     const toPrice = window.zwapSwapService.getTokenPrice(currentSwapData.toToken);
     const rate = fromPrice / toPrice;
-    
+
     document.getElementById('exchangeRate').textContent = 
       `1 ${currentSwapData.fromToken} = ${rate.toFixed(6)} ${currentSwapData.toToken}`;
     document.getElementById('priceImpact').textContent = `${swapDetails.priceImpact}%`;
-    
+
     // Estimate gas
     const gasEstimate = await window.zwapSwapService.estimateGasFee(
       currentSwapData.fromToken,
@@ -641,15 +650,15 @@ async function updateSwapCalculation() {
       fromAmount
     );
     document.getElementById('estimatedGas').textContent = `$${gasEstimate.gasCostUsd}`;
-    
+
     document.getElementById('swapDetails').style.display = 'block';
-    
+
   } catch (error) {
     console.error('Swap calculation failed:', error);
     document.getElementById('toAmount').value = '';
     document.getElementById('swapDetails').style.display = 'none';
   }
-  
+
   updateSwapButton();
 }
 
@@ -659,7 +668,7 @@ function updateSwapButton() {
   const isWalletConnected = connectBtn.textContent !== 'CONNECT WALLET';
   const fromAmount = parseFloat(document.getElementById('fromAmount').value) || 0;
   const balance = tokenBalances[currentSwapData.fromToken] || 0;
-  
+
   if (!isWalletConnected) {
     button.innerHTML = '⚙️ Settings';
     button.disabled = true;
@@ -682,7 +691,7 @@ function updateSwapButton() {
 async function executeSwap() {
   const fromAmount = parseFloat(document.getElementById('fromAmount').value);
   const balance = tokenBalances[currentSwapData.fromToken] || 0;
-  
+
   if (fromAmount > balance) {
     Swal.fire({
       title: 'INSUFFICIENT BALANCE',
@@ -693,7 +702,7 @@ async function executeSwap() {
     });
     return;
   }
-  
+
   try {
     // Show loading
     Swal.fire({
@@ -712,14 +721,14 @@ async function executeSwap() {
       showConfirmButton: false,
       allowOutsideClick: false
     });
-    
+
     // Execute swap
     const result = await window.zwapSwapService.executeSwap(
       currentSwapData.fromToken,
       currentSwapData.toToken,
       fromAmount
     );
-    
+
     // Show success
     Swal.fire({
       title: 'SWAP SUCCESSFUL!',
@@ -736,14 +745,14 @@ async function executeSwap() {
       showConfirmButton: true,
       confirmButtonText: 'View on Explorer'
     });
-    
+
     // Reset form and update balances
     document.getElementById('fromAmount').value = '';
     document.getElementById('toAmount').value = '';
     document.getElementById('swapDetails').style.display = 'none';
     await updateAllBalances();
     updateSwapButton();
-    
+
   } catch (error) {
     console.error('Swap failed:', error);
     Swal.fire({
@@ -758,7 +767,7 @@ async function executeSwap() {
 
 function showSwapSettings() {
   const currentSlippage = window.zwapSwapService.getSlippageTolerance();
-  
+
   Swal.fire({
     title: 'SWAP SETTINGS',
     html: `
@@ -772,7 +781,7 @@ function showSwapSettings() {
           </div>
           <input type="number" id="customSlippage" placeholder="Custom %" step="0.1" min="0.1" max="50" value="${currentSlippage}" style="width: 100%; padding: 0.8rem; background: #000; border: 1px solid #333; color: #fff; border-radius: 5px;">
         </div>
-        
+
         <div style="background: rgba(255, 215, 0, 0.1); padding: 1rem; border-radius: 8px; border-left: 4px solid #FFD700;">
           <h4 style="color: #FFD700; margin-bottom: 0.5rem;">Premium Benefits</h4>
           <p style="font-size: 0.9rem; color: #ccc; margin: 0;">

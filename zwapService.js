@@ -275,7 +275,12 @@ class ZwapSwapService {
 }
 
 // Initialize service
-window.zwapSwapService = new ZwapSwapService();
+try {
+  window.zwapSwapService = new ZwapSwapService();
+  console.log('ZwapSwapService initialized successfully');
+} catch (error) {
+  console.error('Failed to initialize ZwapSwapService:', error);
+}
 
 // Export for module usage
 if (typeof module !== 'undefined' && module.exports) {

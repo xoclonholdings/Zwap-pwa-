@@ -1,4 +1,3 @@
-
 /**
  * Zebulon Oracle Integration for ZWAP!
  * ©️ 2025 XOCLON HOLDINGS INC.™ - All Rights Reserved
@@ -17,7 +16,7 @@ class ZebulonOracle {
     this.websocket = null;
     this.retryCount = 0;
     this.maxRetries = 3;
-    
+
     this.initializeOracle();
   }
 
@@ -36,7 +35,7 @@ class ZebulonOracle {
     return new Promise((resolve, reject) => {
       try {
         this.websocket = new WebSocket(this.oracleEndpoint);
-        
+
         this.websocket.onopen = () => {
           console.log('🌐 Connected to Zebulon Oracle');
           this.isConnected = true;
@@ -95,29 +94,29 @@ class ZebulonOracle {
   handleOracleMessage(rawData) {
     try {
       const message = JSON.parse(rawData);
-      
+
       switch (message.type) {
         case 'auth_success':
           console.log('✅ Oracle authentication successful');
           this.processMessageQueue();
           break;
-          
+
         case 'prediction':
           this.handlePrediction(message.data);
           break;
-          
+
         case 'market_data':
           this.handleMarketData(message.data);
           break;
-          
+
         case 'user_insight':
           this.handleUserInsight(message.data);
           break;
-          
+
         case 'system_alert':
           this.handleSystemAlert(message.data);
           break;
-          
+
         default:
           console.log('📨 Received oracle message:', message);
       }
@@ -161,7 +160,7 @@ class ZebulonOracle {
 
       const result = await response.json();
       return result;
-      
+
     } catch (error) {
       console.error('❌ ZedAI query error:', error);
       return {
@@ -431,7 +430,7 @@ class ZebulonOracle {
   toggleInterface() {
     const modal = document.getElementById('zebulon-oracle-modal');
     const isVisible = modal.style.display === 'block';
-    
+
     if (isVisible) {
       this.closeInterface();
     } else {
@@ -449,14 +448,14 @@ class ZebulonOracle {
   async sendQuery() {
     const input = document.getElementById('oracle-input');
     const query = input.value.trim();
-    
+
     if (!query) return;
 
     const insights = document.getElementById('oracle-insights');
-    
+
     // Show loading state
     this.addInsight('🔮 Consulting the Oracle...', 'loading');
-    
+
     // Clear input
     input.value = '';
 
@@ -477,7 +476,7 @@ class ZebulonOracle {
 
       // Also query Zed AI directly as backup
       const result = await this.queryZedAI(query);
-      
+
       if (result.success) {
         this.addInsight(result.response, 'response');
       } else {
@@ -493,7 +492,7 @@ class ZebulonOracle {
   addInsight(message, type = 'response') {
     const insights = document.getElementById('oracle-insights');
     const placeholder = insights.querySelector('.insight-placeholder');
-    
+
     if (placeholder) {
       placeholder.remove();
     }
@@ -536,7 +535,7 @@ class ZebulonOracle {
     if (this.retryCount < this.maxRetries) {
       this.retryCount++;
       console.log(`🔄 Attempting to reconnect... (${this.retryCount}/${this.maxRetries})`);
-      
+
       setTimeout(() => {
         this.connectToOracle();
       }, 5000 * this.retryCount);
@@ -549,6 +548,31 @@ class ZebulonOracle {
   handleConnectionError(error) {
     console.error('Oracle connection error:', error);
     // Fallback to offline mode or show error message
+  }
+
+  connectWebSocket() {
+    try {
+      // Use mock connection for now to avoid connection errors
+      this.simulateMockConnection();
+    } catch (error) {
+      console.log('❌ Failed to initialize Zebulon Oracle:', error);
+      this.simulateMockConnection();
+    }
+  }
+
+  simulateMockConnection() {
+    console.log('🔗 Using mock Oracle connection (development mode)');
+    this.isConnected = true;
+    this.reconnectAttempts = 0;
+
+    // Simulate successful authentication
+    setTimeout(() => {
+      this.handleMessage({
+        type: 'auth_response',
+        success: true,
+        sessionId: 'mock-session-' + Date.now()
+      });
+    }, 1000);
   }
 }
 

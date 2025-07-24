@@ -570,6 +570,22 @@ const dailyStreakSystem = new DailyStreakSystem();
 // Global error handler
 window.addEventListener('error', function(e) {
 console.error('JavaScript Error:', e.error);
+// Prevent further errors from cascading
+e.preventDefault();
+});
+
+// Service validation
+document.addEventListener('DOMContentLoaded', function() {
+  // Ensure zwapSwapService is available
+  if (!window.zwapSwapService) {
+    console.warn('ZwapSwapService not available, creating fallback');
+    window.zwapSwapService = {
+      supportedTokens: {},
+      searchTokens: () => [],
+      getTokenPrice: () => 0,
+      updateAllPrices: () => Promise.resolve(false)
+    };
+  }
 });
 
 // Export for other modules
