@@ -122,6 +122,7 @@ header {
   transition: all 0.3s ease;
   text-decoration: none;
   border-radius: 6px;
+  -webkit-backdrop-filter: blur(5px);
   backdrop-filter: blur(5px);
 }
 
@@ -504,6 +505,8 @@ p {
   body {
     font-size: 16px;
     -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
   }
   
   /* Ensure all touch targets meet 44px minimum */
@@ -517,7 +520,7 @@ p {
     padding: 1rem 0.5rem;
     gap: 1rem;
     flex-direction: column;
-    min-height: auto;
+    min-height: fit-content;
     position: relative;
   }
 
@@ -805,6 +808,7 @@ p {
   z-index: 1;
   background: rgba(0, 0, 0, 0.2);
   border-radius: 12px;
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   max-width: 800px;
   margin-left: auto;
@@ -982,6 +986,7 @@ p {
     inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
   color: #ffffff !important;
   padding: 3rem 2.5rem !important;
+  -webkit-backdrop-filter: blur(15px) !important;
   backdrop-filter: blur(15px) !important;
   position: relative !important;
   overflow: hidden !important;
@@ -1182,6 +1187,7 @@ p {
   width: 100% !important;
   box-sizing: border-box !important;
   transition: all 0.3s ease !important;
+  -webkit-backdrop-filter: blur(10px) !important;
   backdrop-filter: blur(10px) !important;
   box-shadow: 
     inset 0 2px 8px rgba(0, 0, 0, 0.3),
@@ -1276,11 +1282,13 @@ p {
 /* Modal backdrop */
 .swal2-backdrop-show {
   background: rgba(0, 0, 0, 0.8) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
   backdrop-filter: blur(8px) !important;
 }
 
 /* Z Points specific modal styling */
 .swal2-popup.z-points-modal {
+  -webkit-backdrop-filter: blur(15px) !important;
   backdrop-filter: blur(15px) !important;
   box-shadow: 
     0 25px 80px rgba(0, 0, 0, 0.9),
@@ -1290,6 +1298,7 @@ p {
 
 .swal2-backdrop-show.z-points-backdrop {
   background: rgba(0, 0, 0, 0.9) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
   backdrop-filter: blur(12px) !important;
 }
 
@@ -1417,4 +1426,252 @@ p {
 
 .active-session h3 {
   color: #00FF00;
+}
+
+/* Utility Classes */
+.hidden {
+  display: none !important;
+}
+
+.progress-bar-0 {
+  width: 0% !important;
+}
+
+.progress-text {
+  color: #CCCCCC;
+  font-size: 0.9rem;
+}
+
+.session-modal {
+  display: none;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 320px;
+  height: auto;
+  background: transparent;
+  z-index: 1000;
+}
+
+.session-modal-content {
+  background: linear-gradient(135deg, #111, #1a1a1a);
+  border: 2px solid #00BFFF;
+  border-radius: 15px;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 0 30px rgba(0, 191, 255, 0.3);
+}
+
+.session-modal-title {
+  color: #00BFFF;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.session-modal-content-area {
+  margin-bottom: 1rem;
+}
+
+.session-modal-close {
+  background: linear-gradient(135deg, #FF4444, #CC0000);
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.session-modal-close:hover {
+  background: linear-gradient(135deg, #FF6666, #EE2222);
+  transform: translateY(-2px);
+}
+
+.fitness-connect-area {
+  margin: 1rem 0;
+}
+
+.fitness-btn {
+  border: none;
+  padding: 0.5rem 1rem;
+  margin: 0.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Orbitron', sans-serif;
+  transition: all 0.3s ease;
+}
+
+.fitness-btn:hover {
+  transform: translateY(-2px);
+}
+
+.fitness-btn.google {
+  background: #4285f4;
+  color: white;
+}
+
+.fitness-btn.apple {
+  background: #000;
+  color: white;
+}
+
+.fitness-btn.fitbit {
+  background: #00B0B9;
+  color: white;
+}
+
+.challenge-area {
+  text-align: left;
+}
+
+.challenge-item {
+  margin: 1rem 0;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.challenge-item.weekly {
+  background: rgba(0,191,255,0.1);
+}
+
+.challenge-item.freestyle {
+  background: rgba(255,215,0,0.1);
+}
+
+.challenge-btn {
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Orbitron', sans-serif;
+  transition: all 0.3s ease;
+}
+
+.challenge-btn:hover {
+  transform: translateY(-2px);
+}
+
+.challenge-btn.weekly {
+  background: #00BFFF;
+  color: white;
+}
+
+.challenge-btn.freestyle {
+  background: #FFD700;
+  color: black;
+}
+
+.swap-details-hidden {
+  display: none !important;
+}
+
+.token-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.token-modal-close {
+  background: none;
+  border: none;
+  color: #00BFFF;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.back-btn-inline {
+  color: white;
+  text-decoration: none;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #1a1a1a, #333);
+  border: 2px solid #00BFFF;
+  border-radius: 12px;
+  display: inline-block;
+  transition: all 0.3s ease;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: bold;
+  margin: 1rem;
+  cursor: pointer;
+}
+
+.back-btn-inline:hover {
+  background: linear-gradient(135deg, #00BFFF, #0099CC);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 191, 255, 0.4);
+}
+
+.flex-gap-1 {
+  display: flex;
+  gap: 1rem;
+}
+
+.flex-center-gap-1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.wallet-address-hidden {
+  display: none;
+}
+
+.help-text {
+  text-align: left;
+  color: #CCCCCC;
+}
+
+.progress-fill-0 {
+  width: 0%;
+}
+
+.progress-help-text {
+  color: #CCCCCC;
+  font-size: 0.9rem;
+}
+
+.session-modal-visible {
+  display: block;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 320px;
+  height: auto;
+  background: transparent;
+  z-index: 1000;
+}
+
+.session-modal-inner {
+  background: linear-gradient(135deg, #111, #1a1a1a);
+  border: 2px solid #00BFFF;
+  border-radius: 15px;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 0 30px rgba(0, 191, 255, 0.3);
+}
+
+.session-modal-title-blue {
+  color: #00BFFF;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.session-modal-content-margin {
+  margin-bottom: 1rem;
+}
+
+.session-close-btn {
+  background: linear-gradient(135deg, #FF4444, #CC0000);
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: bold;
+  transition: all 0.3s ease;
 }
