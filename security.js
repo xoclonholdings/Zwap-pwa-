@@ -99,7 +99,7 @@ class ZwapSecurity {
     // Protect critical elements
     const criticalSelectors = [
       '#connectBtn',
-      '#xhiBalance',
+      '#zwapBalance',
       '#zBalance',
       '.header-nav',
       '#bangMenu'

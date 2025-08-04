@@ -63,7 +63,7 @@ class ZwapLeaderboard {
 
   generateMockData(gameType) {
     const names = [
-      'CryptoPro', 'BlockMaster', 'XHIKing', 'GameChamp', 'EarnBot',
+      'CryptoPro', 'BlockMaster', 'ZWAPKing', 'GameChamp', 'EarnBot',
       'CubeWizard', 'TriviaGuru', 'BuilderX', 'SpinLord', 'WalletHero',
       'ChainGamer', 'TokenEarn', 'PlayToWin', 'CryptoAce', 'ZwapStar',
       'PixelMiner', 'ScoreHunter', 'RewardSeeker', 'GameMaster', 'EarnPro'
@@ -127,7 +127,7 @@ class ZwapLeaderboard {
             </div>
           </div>
           <div class="score-value">${player.score.toLocaleString()}</div>
-          <div class="earnings-value">${player.earnings.toFixed(4)} XHI</div>
+          <div class="earnings-value">${player.earnings.toFixed(4)} ZWAP</div>
         </div>
       `;
     }).join('');
@@ -139,7 +139,7 @@ class ZwapLeaderboard {
     if (!connectBtn || connectBtn.textContent === 'CONNECT WALLET') {
       // User not connected
       document.getElementById('userRank').textContent = '--';
-      document.getElementById('userEarnings').textContent = '0.0000 XHI';
+      document.getElementById('userEarnings').textContent = '0.0000 ZWAP';
       document.getElementById('userBestScore').textContent = '0';
       document.getElementById('userGamesPlayed').textContent = '0';
       return;
@@ -149,7 +149,7 @@ class ZwapLeaderboard {
     const userData = this.getCurrentUserData();
     
     document.getElementById('userRank').textContent = userData.rank || '--';
-    document.getElementById('userEarnings').textContent = `${userData.totalEarnings.toFixed(4)} XHI`;
+    document.getElementById('userEarnings').textContent = `${userData.totalEarnings.toFixed(4)} ZWAP`;
     document.getElementById('userBestScore').textContent = userData.bestScore.toLocaleString();
     document.getElementById('userGamesPlayed').textContent = userData.gamesPlayed.toLocaleString();
   }

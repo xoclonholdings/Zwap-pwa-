@@ -15,7 +15,7 @@ By accessing or viewing this technical documentation, source code, or any relate
 
 ## ZWAP! Mobile-First Crypto App
 
-ZWAP! is a comprehensive wellness, creativity, and gaming platform that enables users to earn $XHI tokens through various activities:
+ZWAP! is a comprehensive wellness, creativity, and gaming platform that enables users to earn $ZWAP tokens through various activities:
 
 - **Move to Earn**: Walk or dance to earn rewards
 - **Play to Earn**: Game challenges and competitions  

@@ -7,11 +7,11 @@
 class ZwapSwapService {
   constructor() {
     this.supportedTokens = {
-      'XHI': {
-        symbol: 'XHI',
-        name: 'Xoclon Holdings Inc',
+      'ZWAP': {
+        symbol: 'ZWAP',
+        name: 'ZWAP Coin',
         icon: '🪙',
-        address: '0x742d35Cc6634C0532925a3b8D1de65c07c1e4BA2',
+        address: '0xE8898453Af13B9496a6E8ADA92C6efDAF4967A81',
         decimals: 18,
         chainId: 1
       },
@@ -67,7 +67,7 @@ class ZwapSwapService {
   initializePrices() {
     // Initialize with mock market data
     this.marketData = {
-      'XHI': { price: 0.0025, change24h: 15.7, volume24h: 125000 },
+      'ZWAP': { price: 0.0025, change24h: 15.7, volume24h: 125000 },
       'ETH': { price: 3420.50, change24h: 2.3, volume24h: 15000000 },
       'BTC': { price: 97250.00, change24h: 1.8, volume24h: 25000000 },
       'USDT': { price: 1.00, change24h: 0.1, volume24h: 45000000 },
@@ -117,7 +117,7 @@ class ZwapSwapService {
 
     // Simulate different balances for different tokens
     const mockBalances = {
-      'XHI': 1250.0 + Math.random() * 500,
+      'ZWAP': 1250.0 + Math.random() * 500,
       'ETH': 0.5 + Math.random() * 2,
       'BTC': 0.01 + Math.random() * 0.05,
       'USDT': 500 + Math.random() * 1000,
@@ -245,8 +245,8 @@ class ZwapSwapService {
   async getLiquidityPools() {
     // Mock liquidity pool data
     return {
-      'XHI/ETH': { liquidity: 1250000, apr: 15.7, volume24h: 85000 },
-      'XHI/USDT': { liquidity: 950000, apr: 12.3, volume24h: 125000 },
+      'ZWAP/ETH': { liquidity: 1250000, apr: 15.7, volume24h: 85000 },
+      'ZWAP/USDT': { liquidity: 950000, apr: 12.3, volume24h: 125000 },
       'ETH/USDT': { liquidity: 15000000, apr: 8.5, volume24h: 2500000 }
     };
   }

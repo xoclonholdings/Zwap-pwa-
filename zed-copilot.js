@@ -30,9 +30,9 @@ class ZincCopilot {
         ]
       },
       earning: {
-        keywords: ['earn', 'xhi', 'rewards', 'money', 'tokens'],
+        keywords: ['earn', 'zwap', 'rewards', 'money', 'tokens'],
         responses: [
-          "You can earn $XHI through MOVE (walking/dancing) and PLAY (games). Each game session can earn up to 0.015 $XHI!",
+          "You can earn $ZWAP through MOVE (walking/dancing) and PLAY (games). Each game session can earn up to 0.015 $ZWAP!",
           "The faucet games reset daily. Complete challenges for bonus rewards!",
           "Z Points unlock premium features like removing cooldowns and increasing multipliers."
         ]
@@ -41,7 +41,7 @@ class ZincCopilot {
         keywords: ['games', 'play', 'cube', 'trivia', 'spin', 'build'],
         responses: [
           "Try the Cube game - it's available now! Trivia, BlockCraft, and Spin are coming soon.",
-          "Each game has daily earning limits to ensure fair distribution of $XHI rewards.",
+          "Each game has daily earning limits to ensure fair distribution of $ZWAP rewards.",
           "Challenge your friends using the invite system for extra Z Points!"
         ]
       },
@@ -49,7 +49,7 @@ class ZincCopilot {
         keywords: ['move', 'walk', 'dance', 'fitness', 'steps'],
         responses: [
           "MOVE features Walk-to-Earn and Dance-to-Earn! Connect your fitness tracker to start earning.",
-          "Every step counts towards your $XHI rewards. Dance challenges offer bonus multipliers!",
+          "Every step counts towards your $ZWAP rewards. Dance challenges offer bonus multipliers!",
           "Maintain daily streaks for increasing Z Points bonuses."
         ]
       },
@@ -564,10 +564,10 @@ class ZincCopilot {
 
     // Default responses for unmatched queries
     const defaultResponses = [
-      "I'm here to help with ZWAP! Try asking about wallets, earning $XHI, games, or Z Points.",
+      "I'm here to help with ZWAP! Try asking about wallets, earning $ZWAP, games, or Z Points.",
       "That's an interesting question! I specialize in ZWAP! features. What would you like to know about earning or playing?",
       "Let me help you with that! I can assist with wallet connections, game strategies, and earning tips.",
-      "I'm your ZWAP! co-pilot! Ask me about MOVE features, PLAY games, or how to maximize your $XHI earnings."
+      "I'm your ZWAP! co-pilot! Ask me about MOVE features, PLAY games, or how to maximize your $ZWAP earnings."
     ];
 
     return defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
@@ -582,7 +582,7 @@ class ZincCopilot {
         }, 500);
         break;
       case 'earn':
-        this.addMessage('How can I earn $XHI?', 'user');
+        this.addMessage('How can I earn $ZWAP?', 'user');
         setTimeout(() => {
           this.addMessage(this.knowledgeBase.earning.responses[0], 'assistant');
         }, 500);

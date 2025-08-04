@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>XHI Cube Game - ZWAP!</title>
+  <title>ZWAP Cube Game - ZWAP!</title>
   <link rel="stylesheet" href="../../style.css">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <style>
@@ -371,8 +371,8 @@
         <span class="status-value" id="moves">4/4</span>
       </div>
       <div class="status-item">
-        <span class="status-label">XHI EARNED:</span>
-        <span class="status-value" id="xhi">0.0000</span>
+        <span class="status-label">ZWAP EARNED:</span>
+        <span class="status-value" id="zwapEarned">0.0000</span>
       </div>
     </div>
 
@@ -409,7 +409,7 @@
       playing: false,
       round: 1,
       moves: 4,
-      xhiEarned: 0,
+      zwapEarned: 0,
       walletData: null
     };
 
@@ -423,7 +423,7 @@
       gameState.playing = true;
       gameState.round = 1;
       gameState.moves = 4;
-      gameState.xhiEarned = 0;
+      gameState.zwapEarned = 0;
 
       updateDisplay();
       document.getElementById('play-button').textContent = 'PLAYING...';
@@ -449,12 +449,12 @@
       if (gameState.moves === 0) {
         // Round complete
         const roundReward = 0.001 + (gameState.round * 0.001);
-        gameState.xhiEarned += roundReward;
+        gameState.zwapEarned += roundReward;
 
         if (gameState.round < 5) {
           gameState.round++;
           gameState.moves = 4;
-          showMessage(`Round ${gameState.round - 1} complete! +${roundReward.toFixed(4)} XHI`);
+          showMessage(`Round ${gameState.round - 1} complete! +${roundReward.toFixed(4)} ZWAP`);
         } else {
           // Game complete
           gameState.playing = false;
@@ -465,10 +465,10 @@
           // Record result in leaderboard
           if (window.parent && window.parent.zwapLeaderboard) {
             const totalScore = gameState.round * 1000 + (gameState.moves * 100);
-            window.parent.zwapLeaderboard.recordGameResult('cube', totalScore, gameState.xhiEarned);
+            window.parent.zwapLeaderboard.recordGameResult('cube', totalScore, gameState.zwapEarned);
           }
 
-          showMessage(`Game complete! Total earned: ${gameState.xhiEarned.toFixed(4)} XHI`);
+          showMessage(`Game complete! Total earned: ${gameState.zwapEarned.toFixed(4)} ZWAP`);
         }
       }
 
@@ -478,7 +478,7 @@
     function updateDisplay() {
       document.getElementById('round').textContent = `${gameState.round}/5`;
       document.getElementById('moves').textContent = `${gameState.moves}/4`;
-      document.getElementById('xhi').textContent = gameState.xhiEarned.toFixed(4);
+      document.getElementById('zwapEarned').textContent = gameState.zwapEarned.toFixed(4);
     }
 
     function showMessage(text) {
@@ -509,7 +509,7 @@
         resetGame: function() {
           gameState.round = 1;
           gameState.moves = 0;
-          gameState.xhiEarned = 0;
+          gameState.zwapEarned = 0;
           gameState.playing = false;
           updateDisplay();
         }
@@ -547,7 +547,7 @@
           <div style="text-align: left; color: #CCCCCC;">
             <p>• Connect wallet in ZWAP app</p>
             <p>• Tap joystick to rotate cube</p>
-            <p>• Complete 5 rounds to earn XHI</p>
+            <p>• Complete 5 rounds to earn ZWAP</p>
             <p>• 4 moves per round maximum</p>
           </div>
         `,
@@ -576,7 +576,7 @@
       }
     });
 
-    console.log('XHI Cube Game loaded. Press T to test wallet connection.');
+    console.log('ZWAP Cube Game loaded. Press T to test wallet connection.');
   </script>
 </body>
 </html>

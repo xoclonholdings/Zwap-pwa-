@@ -1,0 +1,37 @@
+[general]
+host = "0.0.0.0"
+port = 80
+root = "./"
+
+log-level = "info"
+log-remote-address = true
+
+directory-listing = false
+cache-control-headers = true
+
+cors-allow-origins = "*"
+index-files = "index.html"
+
+ignore-hidden-files = true
+disable-symlinks = true
+
+[advanced]
+compression = true
+
+[[advanced.headers]]
+source = "**/*.html"
+[advanced.headers.headers]
+Cache-Control = "public, max-age=300"
+X-Content-Type-Options = "nosniff"
+X-Frame-Options = "DENY"
+X-XSS-Protection = "1; mode=block"
+
+[[advanced.headers]]
+source = "**/*.{js,css}"
+[advanced.headers.headers]
+Cache-Control = "public, max-age=86400"
+
+[[advanced.headers]]
+source = "**/*.{png,jpg,jpeg,gif,ico,svg}"
+[advanced.headers.headers]
+Cache-Control = "public, max-age=604800"

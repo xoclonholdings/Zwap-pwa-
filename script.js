@@ -201,7 +201,7 @@ title: 'WALLET INFO',
 html: `
 <div style="text-align: left;">
 <p><strong>Address:</strong><br/><span style="font-family: monospace;">${userAddress}</span></p>
-<p><strong>XHI Balance:</strong> ${(Math.random() * 100).toFixed(4)} XHI</p>
+<p><strong>ZWAP Balance:</strong> ${(Math.random() * 100).toFixed(4)} ZWAP</p>
 <p><strong>Z Points:</strong> ${Math.floor(Math.random() * 1000)} ZPTS</p>
 <button class="large-btn" onclick="disconnectWallet()" style="margin-top: 1rem; background: #FF4444;">
 DISCONNECT WALLET
@@ -238,17 +238,17 @@ showConfirmButton: false
 
 // Balance management
 function updateBalances() {
-const xhiBalance = document.getElementById('xhiBalance');
+const zwapBalance = document.getElementById('zwapBalance');
 const zBalance = document.getElementById('zBalance');
 
 if (walletConnected) {
-const savedBalance = parseFloat(localStorage.getItem('zwapXhiBalance') || '0');
+const savedBalance = parseFloat(localStorage.getItem('zwapZwapBalance') || '0');
 const savedZPoints = parseInt(localStorage.getItem('zwapZPoints') || '0');
 
-if (xhiBalance) xhiBalance.textContent = savedBalance.toFixed(4);
+if (zwapBalance) zwapBalance.textContent = savedBalance.toFixed(4);
 if (zBalance) zBalance.textContent = savedZPoints.toString();
 } else {
-if (xhiBalance) xhiBalance.textContent = '0.00';
+if (zwapBalance) zwapBalance.textContent = '0.00';
 if (zBalance) zBalance.textContent = '0';
 }
 }
@@ -258,7 +258,7 @@ function showZPointsOverview() {
 const zPointsContent = [
 {
 title: 'INTRODUCING Z POINTS',
-content: '<p style="text-align: center; color: #B8B8B8; font-size: 1.3rem; font-weight: bold; margin-bottom: 1.5rem;">Your Gateway to Premium ZWAP! Benefits</p><p><strong style="color: #B8B8B8;">🎯 What are Z Points?</strong><br/>Z Points are your achievement currency within the ZWAP! ecosystem. Unlike <span class="gold">$XHI</span> tokens, Z Points represent your engagement level and unlock exclusive platform privileges.</p>'
+content: '<p style="text-align: center; color: #B8B8B8; font-size: 1.3rem; font-weight: bold; margin-bottom: 1.5rem;">Your Gateway to Premium ZWAP! Benefits</p><p><strong style="color: #B8B8B8;">🎯 What are Z Points?</strong><br/>Z Points are your achievement currency within the ZWAP! ecosystem. Unlike <span class="gold">$ZWAP</span> tokens, Z Points represent your engagement level and unlock exclusive platform privileges.</p>'
 },
 {
 title: 'PREMIUM BENEFITS',
@@ -674,8 +674,8 @@ showPaginatedModal(content, currentIndex + 1);
 const earnBtnElement = document.getElementById('earnBtn');
 if (earnBtnElement) {
 earnBtnElement.onclick = () => {
-showModal('EARN <span class="gold">$XHI</span>', `
-<p>Choose how you want to earn <span class="gold">$XHI</span> rewards:</p>
+showModal('EARN <span class="gold">$ZWAP</span>', `
+<p>Choose how you want to earn <span class="gold">$ZWAP</span> rewards:</p>
 <div style="display:flex; justify-content:center; gap:1rem; margin-top:1rem;">
 <button class="large-btn" onclick="window.location.href='move.html'">MOVE</button>
 <button class="large-btn" onclick="window.location.href='play.html'">PLAY</button>
@@ -721,9 +721,6 @@ Connect with our executive team for strategic partnerships, institutional inquir
 <a href="https://github.com/xoclonholdings" target="_blank" style="color:#00BFFF; text-decoration:none; font-weight:bold;">
 💻 Technical Repository
 </a>
-<a href="https://t.me/xhi_coin" target="_blank" style="color:#00BFFF; text-decoration:none; font-weight:bold;">
-📱 Executive Communications
-</a>
 </div>
 </div>
 </div>
@@ -740,19 +737,19 @@ moveBtn: {
 title: 'MOVE TO EARN',
 content: `
 <div style="text-align: left; line-height: 1.6;">
-<p><strong>Transform your daily movement into <span class="gold">$XHI</span> rewards!</strong></p>
+<p><strong>Transform your daily movement into <span class="gold">$ZWAP</span> rewards!</strong></p>
 
 <p><strong>🚶‍♀️ Walk-to-Earn:</strong><br/>
 Connect your fitness tracker or use your phone's built-in step counter to earn rewards for every step you take. Whether you're walking to work, hiking trails, or just moving around your home - every step counts!</p>
 
 <p><strong>💃 Dance-to-Earn:</strong><br/>
-Join our dance challenges and earn <span class="gold">$XHI</span> by showcasing your moves! From structured routines to freestyle sessions, get your groove on and get rewarded.</p>
+Join our dance challenges and earn <span class="gold">$ZWAP</span> by showcasing your moves! From structured routines to freestyle sessions, get your groove on and get rewarded.</p>
 
 <p><strong>🏃‍♂️ Fitness Activities:</strong><br/>
 Running, cycling, yoga, swimming - track any fitness activity and earn proportional rewards based on duration and intensity.</p>
 
 <p style="color: #FFD700; font-weight: bold; text-align: center; margin-top: 1rem;">
-Start moving today and watch your <span class="gold">$XHI</span> balance grow!
+Start moving today and watch your <span class="gold">$ZWAP</span> balance grow!
 </p>
 </div>
 `
@@ -761,7 +758,7 @@ playBtn: {
 title: 'PLAY TO EARN',
 content: `
 <div style="text-align: left; line-height: 1.6;">
-<p><strong>Dive into our gaming ecosystem and earn <span class="gold">$XHI</span> while having fun!</strong></p>
+<p><strong>Dive into our gaming ecosystem and earn <span class="gold">$ZWAP</span> while having fun!</strong></p>
 
 <p><strong>🎮 Available Games:</strong></p>
 <ul style="margin-left: 1rem;">
@@ -772,13 +769,13 @@ content: `
 </ul>
 
 <p><strong>💰 Earning Mechanics:</strong><br/>
-Each game offers daily earning opportunities with skill-based and luck-based rewards. Complete challenges, achieve high scores, and participate in tournaments to maximize your <span class="gold">$XHI</span> earnings.</p>
+Each game offers daily earning opportunities with skill-based and luck-based rewards. Complete challenges, achieve high scores, and participate in tournaments to maximize your <span class="gold">$ZWAP</span> earnings.</p>
 
 <p><strong>🎯 Fair Play:</strong><br/>
 All games use blockchain verification to ensure fair play and transparent reward distribution.</p>
 
 <p style="color: #FFD700; font-weight: bold; text-align: center; margin-top: 1rem;">
-Connect your wallet and start earning up to 0.015 <span class="gold">$XHI</span> per game session!
+Connect your wallet and start earning up to 0.015 <span class="gold">$ZWAP</span> per game session!
 </p>
 </div>
 `
@@ -787,10 +784,10 @@ swapBtn: {
 title: 'DECENTRALIZED SWAP',
 content: `
 <div style="text-align: left; line-height: 1.6;">
-<p><strong>Exchange your <span class="gold">$XHI</span> tokens with our secure, decentralized swap platform!</strong></p>
+<p><strong>Exchange your <span class="gold">$ZWAP</span> tokens with our secure, decentralized swap platform!</strong></p>
 
 <p><strong>🔄 Supported Trading Pairs:</strong><br/>
-Swap <span class="gold">$XHI</span> with POL, BTC, ETH, USDT, and SOL. Real-time pricing ensures you always get fair market rates for these premium cryptocurrency pairs.</p>
+Swap <span class="gold">$ZWAP</span> with POL, BTC, ETH, USDT, and SOL. Real-time pricing ensures you always get fair market rates for these premium cryptocurrency pairs.</p>
 
 <p><strong>⚡ Lightning Fast:</strong><br/>
 Our optimized smart contracts provide near-instant swaps with minimal gas fees. No lengthy waiting periods or complex procedures.</p>
@@ -816,10 +813,10 @@ shopBtn: {
 title: 'EXCLUSIVE MARKETPLACE',
 content: `
 <div style="text-align: left; line-height: 1.6;">
-<p><strong>Spend your <span class="gold">$XHI</span> tokens in our exclusive marketplace!</strong></p>
+<p><strong>Spend your <span class="gold">$ZWAP</span> tokens in our exclusive marketplace!</strong></p>
 
 <p><strong>🛍️ Coming Soon:</strong><br/>
-Our marketplace will feature exclusive items, NFTs, and digital goods available only to <span class="gold">$XHI</span> holders.</p>
+Our marketplace will feature exclusive items, NFTs, and digital goods available only to <span class="gold">$ZWAP</span> holders.</p>
 
 <p><strong>🎨 Planned Categories:</strong></p>
 <ul style="margin-left: 1rem;">
@@ -831,13 +828,13 @@ Our marketplace will feature exclusive items, NFTs, and digital goods available 
 </ul>
 
 <p><strong>💎 Member Benefits:</strong><br/>
-<span class="gold">$XHI</span> holders will receive exclusive discounts, early access to limited editions, and special member-only items.</p>
+<span class="gold">$ZWAP</span> holders will receive exclusive discounts, early access to limited editions, and special member-only items.</p>
 
 <p><strong>🤝 Creator Economy:</strong><br/>
-Artists and creators can list their work and earn <span class="gold">$XHI</span> through sales, with low platform fees supporting the creative community.</p>
+Artists and creators can list their work and earn <span class="gold">$ZWAP</span> through sales, with low platform fees supporting the creative community.</p>
 
 <p style="color: #FFD700; font-weight: bold; text-align: center; margin-top: 1rem;">
-Start earning <span class="gold">$XHI</span> now to be ready for marketplace launch!
+Start earning <span class="gold">$ZWAP</span> now to be ready for marketplace launch!
 </p>
 </div>
 `
@@ -882,7 +879,7 @@ window.location.href = page;
 window.shopComingSoon = function() {
 Swal.fire({
 title: 'COMING SOON',
-text: 'Shop marketplace coming soon for $XHI holders!',
+text: 'Shop marketplace coming soon for $ZWAP holders!',
 background: '#111',
 color: '#fff',
 showCloseButton: true,
@@ -891,10 +888,10 @@ showConfirmButton: false,
 }
 
 const miniPopups = {
-swapCol: 'Swap your <span class="gold">$XHI</span> for other assets easily.',
-moveCol: 'Move includes Walk-for-<span class="gold">$XHI</span> and Dance-for-<span class="gold">$XHI</span> opportunities.',
-playCol: 'Play faucet games to earn daily <span class="gold">$XHI</span> rewards.',
-shopCol: 'Shop marketplace coming soon for <span class="gold">$XHI</span> holders.'
+swapCol: 'Swap your <span class="gold">$ZWAP</span> for other assets easily.',
+moveCol: 'Move includes Walk-for-<span class="gold">$ZWAP</span> and Dance-for-<span class="gold">$ZWAP</span> opportunities.',
+playCol: 'Play faucet games to earn daily <span class="gold">$ZWAP</span> rewards.',
+shopCol: 'Shop marketplace coming soon for <span class="gold">$ZWAP</span> holders.'
 };
 
 Object.keys(miniPopups).forEach(id => {

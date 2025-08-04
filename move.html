@@ -174,14 +174,14 @@
 
 <main>
 <h1>MOVE TO EARN</h1>
-<p>Walk or dance to earn <span class="gold">$XHI</span> rewards.</p>
+<p>Walk or dance to earn <span class="gold">$ZWAP</span> rewards.</p>
 
 <div class="move-features">
   <!-- Walk Feature -->
   <div class="feature-card" id="walkCard">
     <span class="feature-icon">🚶‍♂️</span>
     <h2 class="feature-title">Walk to Earn</h2>
-    <p class="feature-description">Connect your fitness tracker or use device sensors to earn XHI for every step you take.</p>
+    <p class="feature-description">Connect your fitness tracker or use device sensors to earn ZWAP for every step you take.</p>
 
     <div class="feature-stats">
       <div class="stat-item">
@@ -189,12 +189,12 @@
         <span class="stat-value" id="todaySteps">0</span>
       </div>
       <div class="stat-item">
-        <span class="stat-label">XHI Rate:</span>
+        <span class="stat-label">ZWAP Rate:</span>
         <span class="stat-value">0.001 per 100 steps</span>
       </div>
       <div class="stat-item">
         <span class="stat-label">Total Earned:</span>
-        <span class="stat-value" id="walkEarned">0.000 XHI</span>
+        <span class="stat-value" id="walkEarned">0.000 ZWAP</span>
       </div>
     </div>
 
@@ -211,7 +211,7 @@
   <div class="feature-card" id="danceCard">
     <span class="feature-icon">💃</span>
     <h2 class="feature-title">Dance to Earn</h2>
-    <p class="feature-description">Join dance challenges and earn XHI based on movement intensity and duration.</p>
+    <p class="feature-description">Join dance challenges and earn ZWAP based on movement intensity and duration.</p>
 
     <div class="dance-difficulty">
       <button class="difficulty-btn" data-difficulty="easy">Easy</button>
@@ -230,7 +230,7 @@
       </div>
       <div class="stat-item">
         <span class="stat-label">Session Earnings:</span>
-        <span class="stat-value" id="danceEarned">0.000 XHI</span>
+        <span class="stat-value" id="danceEarned">0.000 ZWAP</span>
       </div>
     </div>
 
@@ -347,7 +347,7 @@ function startWalkSession() {
       </div>
       <div class="stat-item">
         <span class="stat-label">Earnings:</span>
-        <span class="stat-value gold" id="sessionEarnings">0.0000 XHI</span>
+        <span class="stat-value gold" id="sessionEarnings">0.0000 ZWAP</span>
       </div>
     </div>
     <button onclick="closeSessionModal()" class="session-btn">End Session</button>
@@ -375,7 +375,7 @@ function stopWalkSession() {
         <div style="text-align: center;">
           <p style="color: #00FF00; font-weight: bold;">✅ Great job!</p>
           <p>Steps: ${walkSession.steps}</p>
-          <p>Earned: <span class="gold">${walkSession.earnings.toFixed(4)} XHI</span></p>
+          <p>Earned: <span class="gold">${walkSession.earnings.toFixed(4)} ZWAP</span></p>
         </div>
       `,
       background: '#111',
@@ -412,7 +412,7 @@ function startDanceSession() {
       </div>
       <div class="stat-item">
         <span class="stat-label">Earnings:</span>
-        <span class="stat-value gold" id="danceEarnings">0.0000 XHI</span>
+        <span class="stat-value gold" id="danceEarnings">0.0000 ZWAP</span>
       </div>
     </div>
     <div class="dance-controls">
@@ -445,7 +445,7 @@ function stopDanceSession() {
         <div style="text-align: center;">
           <p style="color: #00FF00; font-weight: bold;">✅ Amazing moves!</p>
           <p>Duration: ${Math.floor(danceSession.duration / 60)}:${(danceSession.duration % 60).toString().padStart(2, '0')}</p>
-          <p>Earned: <span class="gold">${danceSession.earnings.toFixed(4)} XHI</span></p>
+          <p>Earned: <span class="gold">${danceSession.earnings.toFixed(4)} ZWAP</span></p>
         </div>
       `,
       background: '#111',
@@ -463,11 +463,11 @@ function simulateWalkingSteps() {
 
   // Simulate step counting
   walkSession.steps += Math.floor(Math.random() * 3) + 1;
-  walkSession.earnings = walkSession.steps * 0.0001; // 0.0001 XHI per step
+  walkSession.earnings = walkSession.steps * 0.0001; // 0.0001 ZWAP per step
 
   // Update UI
   document.getElementById('currentSteps').textContent = walkSession.steps;
-  document.getElementById('sessionEarnings').textContent = walkSession.earnings.toFixed(4) + ' XHI';
+  document.getElementById('sessionEarnings').textContent = walkSession.earnings.toFixed(4) + ' ZWAP';
   
   const duration = Math.floor((Date.now() - walkSession.startTime) / 1000);
   const minutes = Math.floor(duration / 60);
@@ -491,7 +491,7 @@ function simulateDanceSession() {
   const minutes = Math.floor(duration / 60);
   const seconds = duration % 60;
   document.getElementById('danceDuration').textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-  document.getElementById('danceEarnings').textContent = danceSession.earnings.toFixed(4) + ' XHI';
+  document.getElementById('danceEarnings').textContent = danceSession.earnings.toFixed(4) + ' ZWAP';
 
   setTimeout(simulateDanceSession, 1000); // Update every second
 }
@@ -507,9 +507,9 @@ function setDanceIntensity(level) {
   event.target.classList.add('active');
 }
 </script>).innerHTML = `
-    <p>🚶‍♂️ Keep moving to earn XHI!</p>
+    <p>🚶‍♂️ Keep moving to earn ZWAP!</p>
     <p>Steps: <span id="liveSteps">0</span></p>
-    <p>Earnings: <span id="liveEarnings">0.000</span> XHI</p>
+    <p>Earnings: <span id="liveEarnings">0.000</span> ZWAP</p>
   `;
 
   // Simulate step counting
@@ -532,7 +532,7 @@ function simulateSteps() {
 
   // Update UI
   document.getElementById('todaySteps').textContent = walkSession.steps;
-  document.getElementById('walkEarned').textContent = walkSession.earnings.toFixed(3) + ' XHI';
+  document.getElementById('walkEarned').textContent = walkSession.earnings.toFixed(3) + ' ZWAP';
 
   const progressPercent = (walkSession.steps % 100);
   document.getElementById('walkProgress').style.width = progressPercent + '%';
@@ -565,10 +565,10 @@ function startDanceSession() {
   document.getElementById('sessionModal').style.display = 'flex';
   document.getElementById('sessionTitle').textContent = 'Dance Session Active';
   document.getElementById('sessionContent').innerHTML = `
-    <p>💃 Keep dancing to earn XHI!</p>
+    <p>💃 Keep dancing to earn ZWAP!</p>
     <p>Duration: <span id="liveDuration">00:00</span></p>
     <p>Intensity: <span id="liveIntensity">0</span>%</p>
-    <p>Earnings: <span id="liveDanceEarnings">0.000</span> XHI</p>
+    <p>Earnings: <span id="liveDanceEarnings">0.000</span> ZWAP</p>
   `;
 
   // Simulate dance tracking
@@ -602,7 +602,7 @@ function simulateDance() {
 
   document.getElementById('danceTime').textContent = timeString;
   document.getElementById('intensityScore').textContent = danceSession.intensity + '%';
-  document.getElementById('danceEarned').textContent = danceSession.earnings.toFixed(3) + ' XHI';
+  document.getElementById('danceEarned').textContent = danceSession.earnings.toFixed(3) + ' ZWAP';
   document.getElementById('danceProgress').style.width = danceSession.intensity + '%';
 
   // Update live session if active
@@ -629,7 +629,7 @@ document.getElementById('connectFitnessBtn').addEventListener('click', function(
   Swal.fire({
     title: 'CONNECT FITNESS TRACKER',
     html: `
-      <p>Connect your fitness tracker to automatically earn XHI for your daily activities!</p>
+      <p>Connect your fitness tracker to automatically earn ZWAP for your daily activities!</p>
       <div style="margin: 1rem 0;">
         <button onclick="connectFitness('googlefit')" style="background: #4285f4; color: white; border: none; padding: 0.5rem 1rem; margin: 0.5rem; border-radius: 5px;">Google Fit</button>
         <button onclick="connectFitness('apple')" style="background: #000; color: white; border: none; padding: 0.5rem 1rem; margin: 0.5rem; border-radius: 5px;">Apple Health</button>
@@ -673,14 +673,14 @@ document.getElementById('joinChallengeBtn').addEventListener('click', function()
         <div style="margin: 1rem 0; padding: 1rem; background: rgba(0,191,255,0.1); border-radius: 8px;">
           <h4>Weekly Dance Battle</h4>
           <p>Duration: 3 days remaining</p>
-          <p>Prize Pool: 100 XHI</p>
+          <p>Prize Pool: 100 ZWAP</p>
           <p>Participants: 234</p>
           <button onclick="joinChallenge('weekly')" style="background: #00BFFF; color: white; border: none; padding: 0.5rem 1rem; border-radius: 5px;">JOIN</button>
         </div>
         <div style="margin: 1rem 0; padding: 1rem; background: rgba(255,215,0,0.1); border-radius: 8px;">
           <h4>Freestyle Friday</h4>
           <p>Duration: 2 days remaining</p>
-          <p>Prize Pool: 50 XHI</p>
+          <p>Prize Pool: 50 ZWAP</p>
           <p>Participants: 89</p>
           <button onclick="joinChallenge('freestyle')" style="background: #FFD700; color: black; border: none; padding: 0.5rem 1rem; border-radius: 5px;">JOIN</button>
         </div>

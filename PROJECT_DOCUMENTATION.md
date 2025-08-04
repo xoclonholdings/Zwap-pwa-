@@ -9,7 +9,7 @@ This document contains the complete technical architecture, implementation detai
 
 ## 🏗️ Project Overview
 
-**ZWAP!** is a comprehensive mobile-first decentralized application that combines wellness, creativity, gaming, and DeFi functionality. Users can earn $XHI tokens through various interactive activities while building financial wellness.
+**ZWAP!** is a comprehensive mobile-first decentralized application that combines wellness, creativity, gaming, and DeFi functionality. Users can earn $ZWAP tokens through various interactive activities while building financial wellness.
 
 ### Core Features
 - **Move to Earn**: Fitness tracking with token rewards
@@ -128,7 +128,7 @@ ZWAP Project Structure:
 ### Color Palette
 ```css
 Primary Colors:
-- Gold: #FFD700 ($XHI token accent)
+- Gold: #FFD700 ($ZWAP token accent)
 - Electric Blue: #00BFFF (primary actions)
 - Deep Purple: #4A148C (oracle system)
 - Neon Green: #39FF14 (success states)
@@ -210,7 +210,7 @@ Final Reward = Base Reward × Total Multipliers
 
 ## 💰 Economic Model
 
-### Token Economics ($XHI)
+### Token Economics ($ZWAP)
 - **Earning Mechanisms**: Move, Play, Swap, Credit activities
 - **Utility Functions**: Premium features, gaming boosts, governance
 - **Deflationary Mechanics**: Burn on certain transactions
