@@ -1,3 +1,40 @@
+/* Avatar circle in header */
+.zwap-avatar {
+  display: inline-block;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  border: 2.5px solid #3fdfff;
+  box-shadow: 0 0 16px #00BFFF, 0 0 24px #FF00FF44;
+  margin-left: auto;
+  margin-right: 0.2rem;
+  margin-top: 0.1rem;
+  overflow: hidden;
+  background: linear-gradient(135deg, #181a2a 60%, #2323ff 100%);
+  vertical-align: middle;
+}
+.zwap-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+}
+/* SVG icon styles for action tiles */
+.action-icon svg {
+  width: 38px;
+  height: 38px;
+  display: block;
+  margin: 0 auto;
+  filter: drop-shadow(0 0 8px #00BFFF) drop-shadow(0 0 12px #FF00FF);
+}
+.zwap-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.2rem;
+}
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Montserrat:wght@400;700&display=swap');
 
 body {
