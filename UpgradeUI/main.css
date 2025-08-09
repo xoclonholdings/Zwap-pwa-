@@ -1,0 +1,276 @@
+body {
+    font-family: 'Orbitron', Arial, sans-serif;
+    background: radial-gradient(circle at 60% 0%, #181a2a 60%, #0a0a0a 100%);
+    color: #fff;
+    margin: 0;
+    min-height: 100vh;
+}
+
+.zwap-app-shell {
+    max-width: 420px;
+    margin: 0 auto;
+    background: rgba(10, 10, 30, 0.98);
+    border-radius: 32px;
+    border: 2px solid #3f3fff;
+    box-shadow: 0 0 40px #00BFFF44, 0 0 80px #FF00FF22;
+    padding: 1.2rem 0.5rem 2.2rem 0.5rem;
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.zwap-header {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 1.2rem;
+}
+
+.zwap-title {
+    font-size: 2.1rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: #fff;
+    text-shadow: 0 0 18px #00BFFF, 0 0 30px #FF00FF;
+    margin-left: 0.7rem;
+}
+
+.zwap-balance-row {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.7rem;
+    padding: 0 0.7rem;
+}
+
+.zwap-balance-circle,
+.zwap-steps-circle {
+    background: linear-gradient(135deg, #0a0a0a 60%, #1a1aff 100%);
+    border: 2.5px solid #00BFFF;
+    border-radius: 50%;
+    width: 130px;
+    height: 110px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 30px #00BFFF, 0 0 40px #FF00FF44;
+    margin-bottom: 0.2rem;
+    position: relative;
+}
+
+.zwap-steps-circle {
+    border-color: #3fdfff;
+    box-shadow: 0 0 30px #3fdfff, 0 0 40px #00BFFF44;
+}
+
+.balance-main,
+.steps-main {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #fff;
+    text-shadow: 0 0 10px #00BFFF, 0 0 20px #FF00FF;
+}
+
+.balance-label,
+.steps-label {
+    font-size: 1.1rem;
+    color: #3fdfff;
+    font-weight: 700;
+    margin-top: 0.2rem;
+    letter-spacing: 1px;
+}
+
+.zwap-progress-bar {
+    width: 90%;
+    margin: 0.7rem auto 0.5rem auto;
+    display: flex;
+    justify-content: center;
+}
+
+.progress-bar-bg {
+    width: 100%;
+    height: 14px;
+    background: #181a2a;
+    border-radius: 8px;
+    border: 1.5px solid #2222ff;
+    box-shadow: 0 0 10px #00BFFF44;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #00BFFF 60%, #3fdfff 100%);
+    border-radius: 8px 0 0 8px;
+    box-shadow: 0 0 10px #00BFFF;
+    transition: width 0.4s;
+}
+
+.zwap-earn-text {
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-align: center;
+    margin: 0.7rem 0 1.1rem 0;
+    text-shadow: 0 0 10px #00BFFF;
+}
+
+.zwap-actions-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+    width: 100%;
+    padding: 0 0.7rem;
+    margin-bottom: 1.5rem;
+}
+
+.action-tile {
+    background: rgba(20, 20, 40, 0.95);
+    border: 2.5px solid #3fdfff;
+    border-radius: 18px;
+    box-shadow: 0 0 18px #00BFFF, 0 0 30px #FF00FF44;
+    padding: 1.1rem 0.5rem 1.1rem 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #fff;
+    transition: transform 0.18s, box-shadow 0.18s;
+    min-width: 0;
+}
+
+.action-tile:hover {
+    transform: scale(1.04);
+    box-shadow: 0 0 30px #00BFFF, 0 0 50px #FF00FF;
+}
+
+.action-icon {
+    width: 36px;
+    height: 36px;
+    margin-bottom: 0.5rem;
+    /* Placeholder for SVG icons */
+}
+
+.action-title {
+    font-size: 1.1rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin-bottom: 0.2rem;
+}
+
+.action-desc {
+    font-size: 0.9rem;
+    color: #3fdfff;
+    font-weight: 500;
+}
+
+.action-tile.move {
+    border-color: #3fdfff;
+}
+
+.action-tile.play {
+    border-color: #ff00ff;
+}
+
+.action-tile.shop {
+    border-color: #ff00ff;
+}
+
+.action-tile.swap {
+    border-color: #ffd700;
+}
+
+.zwap-bonus-label {
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-align: center;
+    margin: 1.2rem 0 0.5rem 0;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px #FF00FF;
+}
+
+.zwap-scratch-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 0.7rem;
+    margin-top: 0.2rem;
+}
+
+.scratch-left {
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-align: left;
+}
+
+.scratch-win {
+    color: #ffd700;
+    font-size: 1.3rem;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.scratch-btn {
+    background: linear-gradient(90deg, #ff00ff 0%, #ffd700 100%);
+    color: #222;
+    font-size: 1.2rem;
+    font-weight: 900;
+    border: none;
+    border-radius: 14px;
+    box-shadow: 0 0 18px #ff00ff, 0 0 30px #ffd70044;
+    padding: 1.1rem 2.2rem;
+    text-decoration: none;
+    margin-left: 1.2rem;
+    transition: transform 0.18s, box-shadow 0.18s;
+    letter-spacing: 1px;
+}
+
+.scratch-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px #ffd700, 0 0 50px #ff00ff;
+}
+
+@media (max-width: 600px) {
+    .zwap-app-shell {
+        max-width: 100vw;
+        border-radius: 0;
+        padding: 0.5rem 0.1rem 1.2rem 0.1rem;
+    }
+
+    .zwap-balance-circle,
+    .zwap-steps-circle {
+        width: 90px;
+        height: 70px;
+    }
+
+    .zwap-title {
+        font-size: 1.3rem;
+    }
+
+    .balance-main,
+    .steps-main {
+        font-size: 1.2rem;
+    }
+
+    .zwap-actions-grid {
+        gap: 0.5rem;
+    }
+
+    .action-tile {
+        padding: 0.7rem 0.2rem 0.7rem 0.2rem;
+        font-size: 0.9rem;
+    }
+
+    .scratch-btn {
+        padding: 0.7rem 1.1rem;
+        font-size: 1rem;
+    }
+}
