@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +13,10 @@
       width: 100%;
       min-height: calc(100vh - 160px);
       display: flex;
+      -ms-flex-direction: column;
       flex-direction: column;
+      -ms-flex-align: center;
+      -ms-flex-align: center;
       align-items: center;
       justify-content: flex-start;
       padding: 1rem 1rem 2rem 1rem;
@@ -34,8 +38,14 @@
       height: 200px;
       border: 3px solid #00ffff;
       box-shadow: 0 0 30px #00ffff;
+      display: -ms-grid;
       display: grid;
+      -ms-grid-columns: 1fr 1fr 1fr;
+      -ms-grid-columns: 1fr 1fr 1fr;
+      -ms-grid-columns: 1fr 1fr 1fr;
       grid-template-columns: repeat(3, 1fr);
+      -ms-grid-rows: 1fr 1fr 1fr;
+      -ms-grid-rows: 1fr 1fr 1fr;
       grid-template-rows: repeat(3, 1fr);
       gap: 2px;
       padding: 10px;
@@ -48,16 +58,38 @@
       box-shadow: 0 0 10px rgba(255, 0, 255, 0.5);
     }
 
-    .cube-face.front { transform: translateZ(100px); }
-    .cube-face.back { transform: rotateY(180deg) translateZ(100px); }
-    .cube-face.left { transform: rotateY(-90deg) translateZ(100px); }
-    .cube-face.right { transform: rotateY(90deg) translateZ(100px); }
-    .cube-face.top { transform: rotateX(90deg) translateZ(100px); }
-    .cube-face.bottom { transform: rotateX(-90deg) translateZ(100px); }
+    .cube-face.front {
+      transform: translateZ(100px);
+    }
+
+    .cube-face.back {
+      transform: rotateY(180deg) translateZ(100px);
+    }
+
+    .cube-face.left {
+      transform: rotateY(-90deg) translateZ(100px);
+    }
+
+    .cube-face.right {
+      transform: rotateY(90deg) translateZ(100px);
+    }
+
+    .cube-face.top {
+      transform: rotateX(90deg) translateZ(100px);
+    }
+
+    .cube-face.bottom {
+      transform: rotateX(-90deg) translateZ(100px);
+    }
 
     @keyframes rotateCube {
-      0% { transform: rotateX(0deg) rotateY(0deg); }
-      100% { transform: rotateX(360deg) rotateY(360deg); }
+      0% {
+        transform: rotateX(0deg) rotateY(0deg);
+      }
+
+      100% {
+        transform: rotateX(360deg) rotateY(360deg);
+      }
     }
 
     .game-title {
@@ -178,8 +210,13 @@
       z-index: 10;
     }
 
-    .wallet-connected { color: #00ff00; }
-    .wallet-disconnected { color: #ff6666; }
+    .wallet-connected {
+      color: #00ff00;
+    }
+
+    .wallet-disconnected {
+      color: #ff6666;
+    }
 
     .control-btn {
       width: 40px;
@@ -237,12 +274,29 @@
         height: 150px;
       }
 
-      .cube-face.front { transform: translateZ(75px); }
-      .cube-face.back { transform: rotateY(180deg) translateZ(75px); }
-      .cube-face.left { transform: rotateY(-90deg) translateZ(75px); }
-      .cube-face.right { transform: rotateY(90deg) translateZ(75px); }
-      .cube-face.top { transform: rotateX(90deg) translateZ(75px); }
-      .cube-face.bottom { transform: rotateX(-90deg) translateZ(75px); }
+      .cube-face.front {
+        transform: translateZ(75px);
+      }
+
+      .cube-face.back {
+        transform: rotateY(180deg) translateZ(75px);
+      }
+
+      .cube-face.left {
+        transform: rotateY(-90deg) translateZ(75px);
+      }
+
+      .cube-face.right {
+        transform: rotateY(90deg) translateZ(75px);
+      }
+
+      .cube-face.top {
+        transform: rotateX(90deg) translateZ(75px);
+      }
+
+      .cube-face.bottom {
+        transform: rotateX(-90deg) translateZ(75px);
+      }
 
       .game-controls {
         gap: 1rem;
@@ -261,9 +315,10 @@
     }
   </style>
 </head>
+
 <body>
   <header>
-    <div style="display: flex; gap: 1rem;">
+    <div class="flex-gap-1">
       <button id="connectBtn">CONNECT WALLET</button>
       <button id="creditBtn">CREDIT BUILD</button>
     </div>
@@ -280,11 +335,11 @@
     <!-- Wallet Status -->
     <div class="wallet-status">
       <div id="wallet-status-text" class="wallet-disconnected">Wallet: Disconnected</div>
-      <div id="wallet-address" style="display: none;"></div>
+      <div id="wallet-address" class="wallet-address-hidden"></div>
     </div>
 
     <!-- Game Title with Controls -->
-    <div style="display: flex; align-items: center; justify-content: center; gap: 1rem; margin-bottom: 1rem;">
+    <div class="flex-center-gap-1">
       <button class="control-btn" id="volumeBtn" title="Toggle Volume">🔊</button>
       <h1 class="game-title">CUBE</h1>
       <button class="control-btn" id="instructionsBtn" title="Show Instructions">❓</button>
@@ -372,7 +427,6 @@
       </div>
       <div class="status-item">
         <span class="status-label">ZWAP EARNED:</span>
-        <span class="status-value" id="zwapEarned">0.0000</span>
       </div>
     </div>
 
@@ -394,10 +448,12 @@
 
   <footer>
     <div class="footer-info">
-      <a href="https://xoclon.online" target="_blank">
+      <a href="https://xoclon.online" target="_blank" rel="noopener noreferrer">
         <img src="../../xoclon-inc-logo.png" alt="XOCLON Logo" class="mini-logo">
       </a>
-      <p>© 2025 XOCLON INC. — All rights reserved • <a href="https://xoclon.online" target="_blank">xoclon.online</a></p>
+      <p>© 2025 XOCLON INC. — All rights reserved • <a href="https://xoclon.online" target="_blank"
+          rel="noopener noreferrer">xoclon.online</a>
+      </p>
     </div>
   </footer>
 
@@ -491,60 +547,60 @@
     }
 
     // ZWAP Integration API
-      window.ZwapCubeGame = {
-        initializeWallet: function (walletData) {
-          gameState.walletConnected = true;
-          gameState.walletData = walletData;
+    window.ZwapCubeGame = {
+      initializeWallet: function (walletData) {
+        gameState.walletConnected = true;
+        gameState.walletData = walletData;
 
-          // Update UI
-          document.getElementById('wallet-status-text').textContent = 'Wallet: Connected';
-          document.getElementById('play-button').disabled = false;
-          document.getElementById('play-button').textContent = 'START GAME';
-        },
+        // Update UI
+        document.getElementById('wallet-status-text').textContent = 'Wallet: Connected';
+        document.getElementById('play-button').disabled = false;
+        document.getElementById('play-button').textContent = 'START GAME';
+      },
 
-        getGameState: function() {
-          return gameState;
-        },
+      getGameState: function () {
+        return gameState;
+      },
 
-        resetGame: function() {
-          gameState.round = 1;
-          gameState.moves = 0;
-          gameState.zwapEarned = 0;
-          gameState.playing = false;
-          updateDisplay();
-        }
-      };
-
-      // Initialize the game
-      document.addEventListener('DOMContentLoaded', function() {
+      resetGame: function () {
+        gameState.round = 1;
+        gameState.moves = 0;
+        gameState.zwapEarned = 0;
+        gameState.playing = false;
         updateDisplay();
+      }
+    };
 
-        // Check if wallet is already connected
-        if (window.parent && window.parent.document) {
-          const connectBtn = window.parent.document.getElementById('connectBtn');
-          if (connectBtn && connectBtn.textContent !== 'CONNECT WALLET') {
-            window.ZwapCubeGame.initializeWallet({
-              address: connectBtn.textContent,
-              connected: true
-            });
-          }
+    // Initialize the game
+    document.addEventListener('DOMContentLoaded', function () {
+      updateDisplay();
+
+      // Check if wallet is already connected
+      if (window.parent && window.parent.document) {
+        const connectBtn = window.parent.document.getElementById('connectBtn');
+        if (connectBtn && connectBtn.textContent !== 'CONNECT WALLET') {
+          window.ZwapCubeGame.initializeWallet({
+            address: connectBtn.textContent,
+            connected: true
+          });
         }
-      });
+      }
+    });
 
     // Volume and Instructions controls
     let volumeEnabled = true;
 
-    document.getElementById('volumeBtn').addEventListener('click', function() {
+    document.getElementById('volumeBtn').addEventListener('click', function () {
       volumeEnabled = !volumeEnabled;
       this.textContent = volumeEnabled ? '🔊' : '🔇';
       this.title = volumeEnabled ? 'Mute Volume' : 'Unmute Volume';
     });
 
-    document.getElementById('instructionsBtn').addEventListener('click', function() {
+    document.getElementById('instructionsBtn').addEventListener('click', function () {
       Swal.fire({
         title: 'HOW TO PLAY',
         html: `
-          <div style="text-align: left; color: #CCCCCC;">
+          <div class="help-text">
             <p>• Connect wallet in ZWAP app</p>
             <p>• Tap joystick to rotate cube</p>
             <p>• Complete 5 rounds to earn ZWAP</p>
@@ -579,4 +635,5 @@
     console.log('ZWAP Cube Game loaded. Press T to test wallet connection.');
   </script>
 </body>
+
 </html>

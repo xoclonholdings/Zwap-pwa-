@@ -12,7 +12,12 @@
 }
 
 /* Allow text selection for specific elements */
-p, h1, h2, h3, .balance-value, .balance-label {
+p,
+h1,
+h2,
+h3,
+.balance-value,
+.balance-label {
   -webkit-user-select: text;
   -moz-user-select: text;
   -ms-user-select: text;
@@ -20,7 +25,10 @@ p, h1, h2, h3, .balance-value, .balance-label {
 }
 
 /* Prevent zoom on input focus */
-input, select, textarea, button {
+input,
+select,
+textarea,
+button {
   font-size: 16px !important;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -38,40 +46,65 @@ body {
   position: relative;
   min-height: 100vh;
   font-size: 16px;
-  -webkit-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%;
-  text-size-adjust: 100%;
 }
 
 body::before {
   content: "";
   position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background: url('https://raw.githubusercontent.com/joshbroughton/css-animated-stars/master/stars.png') repeat;
   animation: moveStars 60s linear infinite;
-  opacity: 0.3; z-index: 0;
+  opacity: 0.3;
+  z-index: 0;
 }
 
 @keyframes moveStars {
-  from {background-position:0 0;}
-  to {background-position:1000px 1000px;}
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 1000px 1000px;
+  }
 }
 
 @keyframes pulseLogo {
-  0% { transform: scale(1); filter: drop-shadow(0 0 15px #00BFFF) drop-shadow(0 0 25px #FF00FF); }
-  50% { transform: scale(1.05); filter: drop-shadow(0 0 25px #00BFFF) drop-shadow(0 0 35px #FF00FF); }
-  100% { transform: scale(1); filter: drop-shadow(0 0 15px #00BFFF) drop-shadow(0 0 25px #FF00FF); }
+  0% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 15px #00BFFF) drop-shadow(0 0 25px #FF00FF);
+  }
+
+  50% {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 25px #00BFFF) drop-shadow(0 0 35px #FF00FF);
+  }
+
+  100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 15px #00BFFF) drop-shadow(0 0 25px #FF00FF);
+  }
 }
 
 @keyframes pulseText {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+
+  100% {
+    transform: scale(1);
+  }
 }
 
 header {
-  position: relative; z-index: 1;
+  position: relative;
+  z-index: 1;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -157,10 +190,12 @@ header {
     transform: translateY(-100px);
     opacity: 0;
   }
+
   60% {
     transform: translateY(10px);
     opacity: 1;
   }
+
   100% {
     transform: translateY(0);
     opacity: 1;
@@ -240,9 +275,11 @@ header {
   0% {
     left: -100%;
   }
+
   50% {
     left: 100%;
   }
+
   100% {
     left: 100%;
   }
@@ -270,9 +307,13 @@ header {
 }
 
 @keyframes bangShine {
-  0%, 80%, 100% {
+
+  0%,
+  80%,
+  100% {
     filter: drop-shadow(0 0 8px #FF00FF) drop-shadow(0 0 12px #00BFFF);
   }
+
   40% {
     filter: drop-shadow(0 0 15px #FF00FF) drop-shadow(0 0 20px #00BFFF);
     transform: scale(1.05);
@@ -283,7 +324,7 @@ header {
   position: absolute;
   top: 90px;
   right: 0;
-  background: rgba(0,0,0,0.9);
+  background: rgba(0, 0, 0, 0.9);
   border: 1px solid #00BFFF;
   border-radius: 8px;
   display: none;
@@ -313,11 +354,39 @@ header {
   color: #FFD700;
 }
 
+
 .logo {
   width: 500px;
   margin: 1rem auto;
-  transform: translateZ(-1000px) rotateY(180deg) scale(0.3);
-  animation: logoSlam 2s ease-out forwards, pulseLogo 3s infinite ease-in-out 2s;
+  will-change: transform, opacity;
+}
+
+/* Enhanced landing animation for the logo */
+.landing-logo {
+  transform: scale(0.1) rotate(-720deg);
+  opacity: 0;
+  animation: landingLogoSlam 1.6s cubic-bezier(0.7, 1.7, 0.3, 1) forwards, pulseLogo 3s infinite ease-in-out 2s;
+}
+
+@keyframes landingLogoSlam {
+  0% {
+    transform: scale(0.1) rotate(-720deg);
+    opacity: 0;
+  }
+
+  60% {
+    transform: scale(1.15) rotate(20deg);
+    opacity: 1;
+  }
+
+  80% {
+    transform: scale(0.95) rotate(-10deg);
+  }
+
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
 }
 
 @keyframes logoSlam {
@@ -325,13 +394,16 @@ header {
     transform: translateZ(-1000px) rotateY(180deg) scale(0.3);
     opacity: 0.5;
   }
+
   70% {
     transform: translateZ(50px) rotateY(10deg) scale(1.2);
     opacity: 1;
   }
+
   85% {
     transform: translateZ(-20px) rotateY(-5deg) scale(0.95);
   }
+
   100% {
     transform: translateZ(0) rotateY(0deg) scale(1);
     opacity: 1;
@@ -392,7 +464,7 @@ p {
 
 .swap-btn {
   color: #00BFFF;
-  text-shadow: 
+  text-shadow:
     0 0 10px #00BFFF,
     0 0 20px #00BFFF,
     0 0 30px #00BFFF,
@@ -404,7 +476,7 @@ p {
 
 .earn-btn {
   color: #FF00FF;
-  text-shadow: 
+  text-shadow:
     0 0 10px #FF00FF,
     0 0 20px #FF00FF,
     0 0 30px #FF00FF,
@@ -416,7 +488,7 @@ p {
 
 .shop-btn {
   color: #9d4edd;
-  text-shadow: 
+  text-shadow:
     0 0 10px #9d4edd,
     0 0 20px #9d4edd,
     0 0 30px #9d4edd,
@@ -428,7 +500,7 @@ p {
 
 .save-btn {
   color: #0099CC;
-  text-shadow: 
+  text-shadow:
     0 0 10px #0099CC,
     0 0 20px #0099CC,
     0 0 30px #0099CC,
@@ -444,7 +516,7 @@ p {
 }
 
 .swap-btn:hover {
-  text-shadow: 
+  text-shadow:
     -2px -2px 0 #000000,
     2px -2px 0 #000000,
     -2px 2px 0 #000000,
@@ -457,7 +529,7 @@ p {
 }
 
 .earn-btn:hover {
-  text-shadow: 
+  text-shadow:
     -2px -2px 0 #000000,
     2px -2px 0 #000000,
     -2px 2px 0 #000000,
@@ -470,7 +542,7 @@ p {
 }
 
 .shop-btn:hover {
-  text-shadow: 
+  text-shadow:
     -2px -2px 0 #000000,
     2px -2px 0 #000000,
     -2px 2px 0 #000000,
@@ -483,7 +555,7 @@ p {
 }
 
 .save-btn:hover {
-  text-shadow: 
+  text-shadow:
     -2px -2px 0 #000000,
     2px -2px 0 #000000,
     -2px 2px 0 #000000,
@@ -501,16 +573,18 @@ p {
 }
 
 @media (max-width: 768px) {
+
   /* Prevent zooming on mobile */
   body {
     font-size: 16px;
-    -webkit-text-size-adjust: 100%;
-    -ms-text-size-adjust: 100%;
-    text-size-adjust: 100%;
   }
-  
+
   /* Ensure all touch targets meet 44px minimum */
-  button, .nav-item, .action-btn, #connectBtn, #bang {
+  button,
+  .nav-item,
+  .action-btn,
+  #connectBtn,
+  #bang {
     min-height: 44px;
     min-width: 44px;
     font-size: 16px !important;
@@ -565,7 +639,7 @@ p {
     flex-shrink: 0;
     order: 3;
   }
-  
+
   .dropdown-menu {
     right: 0;
     top: 50px;
@@ -818,24 +892,28 @@ p {
 /* Mobile-first improvements */
 @media (max-width: 768px) {
   body {
-    font-size: 16px; /* Prevent zoom on iOS */
+    font-size: 16px;
+    /* Prevent zoom on iOS */
   }
-  
+
   * {
     -webkit-tap-highlight-color: rgba(0, 191, 255, 0.2);
   }
-  
-  button, .nav-item, .action-btn {
-    min-height: 44px; /* iOS touch target minimum */
+
+  button,
+  .nav-item,
+  .action-btn {
+    min-height: 44px;
+    /* iOS touch target minimum */
     min-width: 44px;
   }
-  
+
   .dropdown-menu {
     right: 0.5rem;
     left: 0.5rem;
     width: auto;
   }
-  
+
   .menu-btn {
     padding: 1rem;
     font-size: 1.1rem;
@@ -970,16 +1048,16 @@ p {
 /* Enterprise-Grade Modal Styling */
 .swal2-popup {
   font-family: 'Orbitron', 'Inter', 'Segoe UI', sans-serif !important;
-  background: linear-gradient(135deg, 
-    rgba(10, 15, 30, 0.95) 0%, 
-    rgba(15, 25, 45, 0.98) 25%, 
-    rgba(20, 30, 60, 0.96) 50%, 
-    rgba(15, 25, 45, 0.98) 75%, 
-    rgba(10, 15, 30, 0.95) 100%) !important;
+  background: linear-gradient(135deg,
+      rgba(10, 15, 30, 0.95) 0%,
+      rgba(15, 25, 45, 0.98) 25%,
+      rgba(20, 30, 60, 0.96) 50%,
+      rgba(15, 25, 45, 0.98) 75%,
+      rgba(10, 15, 30, 0.95) 100%) !important;
   border: 3px solid transparent !important;
   border-image: linear-gradient(45deg, #00BFFF, #FF00FF, #FFD700, #00BFFF) 1 !important;
   border-radius: 25px !important;
-  box-shadow: 
+  box-shadow:
     0 20px 60px rgba(0, 0, 0, 0.8),
     0 0 40px rgba(0, 191, 255, 0.4),
     0 0 80px rgba(255, 0, 255, 0.2),
@@ -999,7 +1077,7 @@ p {
   left: 0;
   right: 0;
   bottom: 0;
-  background: 
+  background:
     radial-gradient(circle at 20% 80%, rgba(0, 191, 255, 0.1) 0%, transparent 50%),
     radial-gradient(circle at 80% 20%, rgba(255, 0, 255, 0.1) 0%, transparent 50%);
   pointer-events: none;
@@ -1012,7 +1090,7 @@ p {
   font-weight: 800 !important;
   text-transform: uppercase !important;
   letter-spacing: 2px !important;
-  text-shadow: 
+  text-shadow:
     0 0 20px #00BFFF,
     0 0 40px #FF00FF,
     2px 2px 4px rgba(0, 0, 0, 0.8) !important;
@@ -1030,6 +1108,7 @@ p {
     background-position: 0% 50%;
     filter: brightness(1);
   }
+
   100% {
     background-position: 100% 50%;
     filter: brightness(1.3);
@@ -1098,17 +1177,17 @@ p {
   font-weight: 800 !important;
   letter-spacing: 1px !important;
   border-radius: 15px !important;
-  background: linear-gradient(135deg, 
-    #00BFFF 0%, 
-    #0099CC 25%, 
-    #006699 50%, 
-    #0099CC 75%, 
-    #00BFFF 100%) !important;
+  background: linear-gradient(135deg,
+      #00BFFF 0%,
+      #0099CC 25%,
+      #006699 50%,
+      #0099CC 75%,
+      #00BFFF 100%) !important;
   background-size: 200% 100% !important;
   color: white !important;
   border: 3px solid transparent !important;
   border-image: linear-gradient(45deg, #00BFFF, #FF00FF) 1 !important;
-  box-shadow: 
+  box-shadow:
     0 8px 25px rgba(0, 191, 255, 0.4),
     0 4px 15px rgba(0, 0, 0, 0.3),
     inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
@@ -1135,7 +1214,7 @@ p {
 
 .large-btn:hover {
   transform: scale(1.08) translateY(-3px) !important;
-  box-shadow: 
+  box-shadow:
     0 15px 40px rgba(0, 191, 255, 0.6),
     0 8px 25px rgba(255, 0, 255, 0.3),
     inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
@@ -1172,9 +1251,9 @@ p {
 /* Enterprise Form Styling */
 .swal2-html-container input,
 .swal2-html-container textarea {
-  background: linear-gradient(135deg, 
-    rgba(15, 25, 45, 0.8) 0%, 
-    rgba(20, 30, 60, 0.9) 100%) !important;
+  background: linear-gradient(135deg,
+      rgba(15, 25, 45, 0.8) 0%,
+      rgba(20, 30, 60, 0.9) 100%) !important;
   border: 2px solid transparent !important;
   border-image: linear-gradient(45deg, rgba(0, 191, 255, 0.5), rgba(255, 0, 255, 0.3)) 1 !important;
   border-radius: 12px !important;
@@ -1189,7 +1268,7 @@ p {
   transition: all 0.3s ease !important;
   -webkit-backdrop-filter: blur(10px) !important;
   backdrop-filter: blur(10px) !important;
-  box-shadow: 
+  box-shadow:
     inset 0 2px 8px rgba(0, 0, 0, 0.3),
     0 0 0 rgba(0, 191, 255, 0) !important;
 }
@@ -1198,13 +1277,13 @@ p {
 .swal2-html-container textarea:focus {
   outline: none !important;
   border-image: linear-gradient(45deg, #00BFFF, #FF00FF, #FFD700) 1 !important;
-  box-shadow: 
+  box-shadow:
     inset 0 2px 8px rgba(0, 0, 0, 0.3),
     0 0 20px rgba(0, 191, 255, 0.4),
     0 0 40px rgba(255, 0, 255, 0.2) !important;
-  background: linear-gradient(135deg, 
-    rgba(15, 25, 45, 0.9) 0%, 
-    rgba(25, 35, 65, 0.95) 100%) !important;
+  background: linear-gradient(135deg,
+      rgba(15, 25, 45, 0.9) 0%,
+      rgba(25, 35, 65, 0.95) 100%) !important;
   transform: translateY(-2px) !important;
 }
 
@@ -1273,6 +1352,7 @@ p {
     transform: scale(0.8) translateY(-50px);
     opacity: 0;
   }
+
   100% {
     transform: scale(1) translateY(0);
     opacity: 1;
@@ -1290,7 +1370,7 @@ p {
 .swal2-popup.z-points-modal {
   -webkit-backdrop-filter: blur(15px) !important;
   backdrop-filter: blur(15px) !important;
-  box-shadow: 
+  box-shadow:
     0 25px 80px rgba(0, 0, 0, 0.9),
     0 0 60px rgba(184, 184, 184, 0.3),
     0 0 100px rgba(160, 160, 160, 0.2) !important;
@@ -1533,11 +1613,11 @@ p {
 }
 
 .challenge-item.weekly {
-  background: rgba(0,191,255,0.1);
+  background: rgba(0, 191, 255, 0.1);
 }
 
 .challenge-item.freestyle {
-  background: rgba(255,215,0,0.1);
+  background: rgba(255, 215, 0, 0.1);
 }
 
 .challenge-btn {
@@ -1674,4 +1754,23 @@ p {
   font-family: 'Orbitron', sans-serif;
   font-weight: bold;
   transition: all 0.3s ease;
+}
+
+/* Progressive enhancement for text size adjustment */
+@supports (-webkit-text-size-adjust: 100%) {
+  body {
+    -webkit-text-size-adjust: 100%;
+  }
+}
+
+@supports (-ms-text-size-adjust: 100%) {
+  body {
+    -ms-text-size-adjust: 100%;
+  }
+}
+
+@supports (text-size-adjust: 100%) {
+  body {
+    text-size-adjust: 100%;
+  }
 }

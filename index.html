@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,38 +9,31 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://unpkg.com/@walletconnect/web3-provider@1.8.0/dist/umd/index.min.js"></script>
 </head>
-<body>
-  <header>
-    <nav class="header-nav">
-      <a href="move.html" class="nav-item">MOVE</a>
-      <a href="play.html" class="nav-item">PLAY</a>
-      <a href="Swap.html" class="nav-item">SWAP</a>
-      <a href="Credit.html" class="nav-item">CREDIT</a>
-    </nav>
-    <img id="bang" src="Zwap_bang_3d.PNG" alt="Bang Symbol">
-    <div id="bangMenu" class="dropdown-menu">
-      <button class="menu-btn" id="homeBtn">HOME</button>
-      <button class="menu-btn" id="learnBtn">LEARN</button>
-      <button class="menu-btn" id="earnBtn">EARN</button>
-      <button class="menu-btn" id="leaderboardBtn">LEADERBOARD</button>
-      <button class="menu-btn" id="contactBtn">CONTACT</button>
-    </div>
-  </header>
 
-  <main>
-    <img src="Zwap_logo_full.png" alt="ZWAP! Logo" class="logo">
-    <p class="tagline">EARN <span class="gold">$ZWAP</span> THROUGH WELLNESS, CREATIVITY, AND PLAY.</p>
+<body>
+
+  <main style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;">
+    <img src="Zwap_logo_full.png" alt="ZWAP! Logo" class="logo landing-logo" id="landingLogo" style="cursor:pointer;">
   </main>
 
-  <footer>
-    <div class="footer-info">
-      <button id="connectBtn">CONNECT WALLET</button>
-      <p>© 2025 XOCLON INC. — All rights reserved</p>
-    </div>
-  </footer>
+  <script>
+    // When the logo is clicked or tapped, go to main.html
+    document.addEventListener('DOMContentLoaded', function () {
+      var logo = document.getElementById('landingLogo');
+      if (logo) {
+        logo.addEventListener('click', function () {
+          window.location.href = 'main.html';
+        });
+        logo.addEventListener('touchend', function () {
+          window.location.href = 'main.html';
+        });
+      }
+    });
+  </script>
 
   <script src="security.js"></script>
   <script src="script.js"></script>
   <script src="zebulon-oracle.js"></script>
 </body>
+
 </html>

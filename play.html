@@ -1,206 +1,221 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ZWAP! Game Launcher</title>
-<link rel="stylesheet" href="style.css">
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="https://unpkg.com/@walletconnect/web3-provider@1.8.0/dist/umd/index.min.js"></script>
-<style>
-.game-grid {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-gap: 2rem;
-padding: 2rem 1rem;
-justify-items: center;
-align-items: center;
-}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZWAP! Game Launcher</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://unpkg.com/@walletconnect/web3-provider@1.8.0/dist/umd/index.min.js"></script>
+  <style>
+    .game-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 2rem;
+      padding: 2rem 1rem;
+      justify-items: center;
+      align-items: center;
+    }
 
-.game-block {
-background: rgba(0, 0, 0, 0.7);
-border: 2px solid #00BFFF;
-border-radius: 12px;
-padding: 1rem;
-width: 150px;
-height: 150px;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-text-align: center;
-box-shadow: 0 0 15px #00BFFF, 0 0 30px #FF00FF;
-cursor: pointer;
-transition: transform 0.3s ease;
-}
+    .game-block {
+      background: rgba(0, 0, 0, 0.7);
+      border: 2px solid #00BFFF;
+      border-radius: 12px;
+      padding: 1rem;
+      width: 150px;
+      height: 150px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      box-shadow: 0 0 15px #00BFFF, 0 0 30px #FF00FF;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
 
-.game-block:hover {
-transform: scale(1.05);
-}
+    .game-block:hover {
+      transform: scale(1.05);
+    }
 
-.game-icon {
-width: 60px;
-height: 60px;
-object-fit: contain;
-filter: drop-shadow(0 0 10px #00BFFF) drop-shadow(0 0 20px #FF00FF);
-transition: transform 0.3s ease;
-margin-bottom: 0.3rem;
-}
+    .game-icon {
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 10px #00BFFF) drop-shadow(0 0 20px #FF00FF);
+      transition: transform 0.3s ease;
+      margin-bottom: 0.3rem;
+    }
 
-.game-block:hover .game-icon {
-transform: scale(1.1);
-}
+    .game-block:hover .game-icon {
+      transform: scale(1.1);
+    }
 
-/* Specific style for BlockCraft icon to make it more prominent */
-.game-block img[alt="BlockCraft"] {
-width: 70px;
-height: 70px;
-filter: drop-shadow(0 0 20px #00BFFF) drop-shadow(0 0 40px #FF00FF);
-}
+    /* Specific style for BlockCraft icon to make it more prominent */
+    .game-block img[alt="BlockCraft"] {
+      width: 70px;
+      height: 70px;
+      filter: drop-shadow(0 0 20px #00BFFF) drop-shadow(0 0 40px #FF00FF);
+    }
 
-h1 {
-margin-top: 2rem;
-margin-bottom: 0.5rem;
-}
+    h1 {
+      margin-top: 2rem;
+      margin-bottom: 0.5rem;
+    }
 
-main p {
-margin-bottom: 2rem;
-}
+    main p {
+      margin-bottom: 2rem;
+    }
 
-.friends-section-clean {
-padding: 2rem 1rem;
-margin: 2rem 0;
-text-align: center;
-}
+    .friends-section-clean {
+      padding: 2rem 1rem;
+      margin: 2rem 0;
+      text-align: center;
+    }
 
-.friends-section-clean h2 {
-color: #00BFFF;
-margin-bottom: 1.5rem;
-font-size: 1.8rem;
-text-shadow: 0 0 10px #00BFFF;
-}
+    .friends-section-clean h2 {
+      color: #00BFFF;
+      margin-bottom: 1.5rem;
+      font-size: 1.8rem;
+      text-shadow: 0 0 10px #00BFFF;
+    }
 
-.friends-actions {
-display: flex;
-justify-content: center;
-gap: 1.5rem;
-flex-wrap: wrap;
-}
+    .friends-actions {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
 
-.friends-btn {
-background: linear-gradient(135deg, rgba(0, 191, 255, 0.2), rgba(255, 0, 255, 0.1));
-border: 2px solid #00BFFF;
-color: #FFFFFF;
-padding: 1rem 1.5rem;
-border-radius: 12px;
-cursor: pointer;
-font-family: 'Orbitron', sans-serif;
-font-weight: 600;
-font-size: 1rem;
-text-transform: uppercase;
-transition: all 0.3s ease;
-display: flex;
-align-items: center;
-gap: 0.5rem;
-box-shadow: 0 4px 15px rgba(0, 191, 255, 0.2);
-}
+    .friends-btn {
+      background: linear-gradient(135deg, rgba(0, 191, 255, 0.2), rgba(255, 0, 255, 0.1));
+      border: 2px solid #00BFFF;
+      color: #FFFFFF;
+      padding: 1rem 1.5rem;
+      border-radius: 12px;
+      cursor: pointer;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 4px 15px rgba(0, 191, 255, 0.2);
+    }
 
-.friends-btn:hover {
-background: linear-gradient(135deg, rgba(0, 191, 255, 0.4), rgba(255, 0, 255, 0.2));
-transform: translateY(-3px);
-box-shadow: 0 6px 20px rgba(0, 191, 255, 0.4);
-}
+    .friends-btn:hover {
+      background: linear-gradient(135deg, rgba(0, 191, 255, 0.4), rgba(255, 0, 255, 0.2));
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0, 191, 255, 0.4);
+    }
 
-.friends-btn span {
-font-size: 1.2rem;
-}
+    .friends-btn span {
+      font-size: 1.2rem;
+    }
 
-@media (max-width: 768px) {
-.friends-actions {
-flex-direction: column;
-align-items: center;
-}
-.friends-btn {
-width: 200px;
-justify-content: center;
-}
-}
-</style>
+    @media (max-width: 768px) {
+      .friends-actions {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .friends-btn {
+        width: 200px;
+        justify-content: center;
+      }
+    }
+  </style>
 </head>
-<body>
-<header>
-<nav class="header-nav">
-<a href="move.html" class="nav-item">MOVE</a>
-<a href="play.html" class="nav-item current">PLAY</a>
-<a href="Swap.html" class="nav-item">SWAP</a>
-<a href="Credit.html" class="nav-item">CREDIT</a>
-</nav>
-<img id="bang" src="Zwap_bang_3d.PNG" alt="Bang Symbol">
-<div id="bangMenu" class="dropdown-menu">
-<button class="menu-btn" id="homeBtn">HOME</button>
-<button class="menu-btn" id="learnBtn">LEARN</button>
-<button class="menu-btn" id="earnBtn">EARN</button>
-<button class="menu-btn" id="leaderboardBtn">LEADERBOARD</button>
-<button class="menu-btn" id="contactBtn">CONTACT</button>
-</div>
-</header>
 
-<main>
-    <button id="backToGames" onclick="backToGamesList()" style="display: none; position: fixed; top: 80px; left: 20px; z-index: 1000; background: #00BFFF; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">← Back to Games</button>
+<body>
+  <header>
+    <nav class="header-nav">
+      <a href="move.html" class="nav-item">MOVE</a>
+      <a href="play.html" class="nav-item current">PLAY</a>
+      <a href="Swap.html" class="nav-item">SWAP</a>
+      <a href="Credit.html" class="nav-item">CREDIT</a>
+    </nav>
+    <div class="balance-display hidden" id="balanceDisplay">
+      <span class="balance-label gold">ZWAP:</span>
+      <span class="balance-value" id="zwapBalance">0.00</span>
+      <span class="balance-label zpts">Z PTS:</span>
+      <span class="balance-value" id="zBalance">0</span>
+    </div>
+    <img id="bang" src="Zwap_bang_3d.PNG" alt="Bang Symbol">
+    <div id="bangMenu" class="dropdown-menu">
+      <button class="menu-btn" id="homeBtn">HOME</button>
+      <button class="menu-btn" id="learnBtn">LEARN</button>
+      <button class="menu-btn" id="earnBtn">EARN</button>
+      <button class="menu-btn" id="leaderboardBtn">LEADERBOARD</button>
+      <button class="menu-btn" id="contactBtn">CONTACT</button>
+    </div>
+  </header>
+
+  <main>
+    <button id="backToGames" onclick="backToGamesList()" class="back-btn-inline hidden">← Back to Games</button>
 
     <div class="page-header">
       <h1>Choose Your Game</h1>
       <p>Select a game to play and earn <span class="gold">$ZWAP</span>.</p>
     </div>
 
-<div class="game-grid">
-<div class="game-block" onclick="window.location.href='cube.html'">
-<img src="Cube.PNG" alt="Cube" class="game-icon" onerror="this.style.display='none'; this.nextElementSibling.style.fontSize='3rem'; this.nextElementSibling.innerHTML='🎲';">
-<p>Cube</p>
-</div>
-<div class="game-block" onclick="comingSoon()">
-<img src="Trivia.PNG" alt="Trivia" class="game-icon" onerror="this.style.display='none'; this.nextElementSibling.style.fontSize='3rem'; this.nextElementSibling.innerHTML='❓';">
-<p>Trivia</p>
-</div>
-<div class="game-block" onclick="comingSoon()">
-<img src="BlockCraft.PNG" alt="BlockCraft" class="game-icon" onerror="this.style.display='none'; this.nextElementSibling.style.fontSize='3rem'; this.nextElementSibling.innerHTML='🏗️';">
-<p>BlockCraft</p>
-</div>
-<div class="game-block" onclick="comingSoon()">
-<img src="Spin.PNG" alt="Spin" class="game-icon" onerror="this.style.display='none'; this.nextElementSibling.style.fontSize='3rem'; this.nextElementSibling.innerHTML='🎡';">
-<p>Spin</p>
-</div>
-</div></div>
+    <div class="game-grid">
+      <div class="game-block" onclick="window.location.href='cube.html'">
+        <img src="Cube.PNG" alt="Cube" class="game-icon"
+          onerror="this.style.display='none'; this.nextElementSibling.style.fontSize='3rem'; this.nextElementSibling.innerHTML='🎲';">
+        <p>Cube</p>
+      </div>
+      <div class="game-block" onclick="comingSoon()">
+        <img src="Trivia.PNG" alt="Trivia" class="game-icon"
+          onerror="this.style.display='none'; this.nextElementSibling.style.fontSize='3rem'; this.nextElementSibling.innerHTML='❓';">
+        <p>Trivia</p>
+      </div>
+      <div class="game-block" onclick="comingSoon()">
+        <img src="BlockCraft.PNG" alt="BlockCraft" class="game-icon"
+          onerror="this.style.display='none'; this.nextElementSibling.style.fontSize='3rem'; this.nextElementSibling.innerHTML='🏗️';">
+        <p>BlockCraft</p>
+      </div>
+      <div class="game-block" onclick="comingSoon()">
+        <img src="Spin.PNG" alt="Spin" class="game-icon"
+          onerror="this.style.display='none'; this.nextElementSibling.style.fontSize='3rem'; this.nextElementSibling.innerHTML='🎡';">
+        <p>Spin</p>
+      </div>
+    </div>
+    </div>
 
-<!-- Play with Friends Section -->
-<div class="friends-section-clean">
-<h2>🎮 PLAY WITH FRIENDS</h2>
-<div class="friends-actions">
-<button class="friends-btn" onclick="inviteFriends()">
-<span>📧</span>
-INVITE FRIENDS
-</button>
-<button class="friends-btn" onclick="createChallenge()">
-<span>⚡</span>
-CREATE CHALLENGE
-</button>
-<button class="friends-btn" onclick="joinChallenge()">
-<span>🎯</span>
-JOIN CHALLENGE
-</button>
-</div>
-</div>
-</main>
+    <!-- Play with Friends Section -->
+    <div class="friends-section-clean">
+      <h2>🎮 PLAY WITH FRIENDS</h2>
+      <div class="friends-actions">
+        <button class="friends-btn" onclick="inviteFriends()">
+          <span>📧</span>
+          INVITE FRIENDS
+        </button>
+        <button class="friends-btn" onclick="createChallenge()">
+          <span>⚡</span>
+          CREATE CHALLENGE
+        </button>
+        <button class="friends-btn" onclick="joinChallenge()">
+          <span>🎯</span>
+          JOIN CHALLENGE
+        </button>
+      </div>
+    </div>
+  </main>
 
-<footer>
-<div class="footer-info">
-<button id="connectBtn">CONNECT WALLET</button>
-<p>© 2025 XOCLON INC. — All rights reserved</p>
-</div>
-</footer>
+  <footer>
+    <div class="footer-info">
+      <button id="connectBtn">CONNECT WALLET</button>
+      <p>© 2025 XOCLON INC. — All rights reserved</p>
+    </div>
+  </footer>
 
-<script src="security.js"></script>
+  <script src="security.js"></script>
   <script src="script.js"></script>
   <script src="zebulon-oracle.js"></script>
 </body>
+
 </html>

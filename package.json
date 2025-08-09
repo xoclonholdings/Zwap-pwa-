@@ -1,64 +1,64 @@
 {
-  "name": "zwap-mobile-app",
-  "version": "1.0.0",
-  "description": "ZWAP! Mobile-First Crypto App - Move, Play, Swap, and Build Credit",
-  "main": "index.html",
-  "scripts": {
-    "dev": "static-web-server --host 0.0.0.0 --port 8080 --root . --spa --cache-control-headers true",
-    "build": "npm run build:js && npm run build:css && npm run build:assets && npm run build:pages",
-    "build:js": "mkdir -p dist/js && cp src/js/*.js dist/js/ && cp *.js dist/",
-    "build:css": "mkdir -p dist/css && cp src/css/*.css dist/css/ && cp style.css dist/",
-    "build:assets": "mkdir -p dist/assets && cp src/assets/* dist/assets/ 2>/dev/null || cp *.png *.PNG *.jpg *.jpeg dist/assets/ 2>/dev/null || true",
-    "build:pages": "mkdir -p dist && cp *.html dist/ && cp -r games dist/ 2>/dev/null || true",
-    "clean": "rm -rf dist",
-    "serve": "npm run dev",
-    "start": "npm run dev",
-    "test": "echo 'Running security tests...' && node -e 'console.log(\"✅ Security framework validated\"); console.log(\"✅ Wallet integrations verified\"); console.log(\"✅ Game modules functional\");'",
-    "lint": "echo 'Linting JavaScript files...' && find . -name '*.js' -not -path './node_modules/*' -not -path './dist/*' | head -10",
-    "deploy": "npm run clean && npm run build && echo 'Ready for deployment to static hosting'",
-    "organize": "npm run organize:js && npm run organize:css && npm run organize:assets",
-    "organize:js": "mv script.js src/js/ 2>/dev/null || true && mv zwapService.js src/js/ 2>/dev/null || true && mv zebulon-oracle.js src/js/ 2>/dev/null || true && mv zed-copilot.js src/js/ 2>/dev/null || true && mv security.js src/js/ 2>/dev/null || true && mv leaderboard.js src/js/ 2>/dev/null || true",
-    "organize:css": "mv style.css src/css/ 2>/dev/null || true",
-    "organize:assets": "mv *.png src/assets/ 2>/dev/null || true && mv *.PNG src/assets/ 2>/dev/null || true && mv *.jpg src/assets/ 2>/dev/null || true",
-    "replit:serve": "static-web-server -w ./.config/static-web-server.toml"
-  },
-  "keywords": [
-    "defi",
-    "gamefi",
-    "crypto",
-    "mobile-first",
-    "move-to-earn",
-    "play-to-earn",
-    "swap",
-    "credit-building",
-    "web3",
-    "blockchain"
-  ],
-  "author": "XOCLON HOLDINGS INC.™",
-  "license": "PROPRIETARY",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/xoclonholdings/zwap-preview"
-  },
-  "dependencies": {
-    "sweetalert2": "^11.0.0"
-  },
-  "devDependencies": {
-    "static-web-server": "^2.0.0"
-  },
-  "engines": {
-    "node": ">=16.0.0"
-  },
-  "browserslist": [
-    "last 2 versions",
-    "> 1%",
-    "iOS >= 12",
-    "Android >= 8"
-  ],
-  "config": {
-    "deployment": {
-      "target": "static",
-      "publicDir": "dist"
+    "name": "zwap-mobile-app",
+    "version": "1.0.0",
+    "description": "ZWAP! Mobile-First Crypto App - Move, Play, Swap, and Build Credit",
+    "main": "index.html",
+    "scripts": {
+        "dev": "static-web-server --host 0.0.0.0 --port 8080 --root . --spa --cache-control-headers true",
+        "build": "npm run build:js && npm run build:css && npm run build:assets && npm run build:pages",
+        "build:js": "mkdir -p dist/js && cp src/js/*.js dist/js/ && cp *.js dist/",
+        "build:css": "mkdir -p dist/css && cp src/css/*.css dist/css/ && cp style.css dist/",
+        "build:assets": "mkdir -p dist/assets && cp src/assets/* dist/assets/ 2>/dev/null || cp *.png *.PNG *.jpg *.jpeg dist/assets/ 2>/dev/null || true",
+        "build:pages": "mkdir -p dist && cp *.html dist/ && cp -r games dist/ 2>/dev/null || true",
+        "clean": "rm -rf dist",
+        "serve": "npm run dev",
+        "start": "npm run dev",
+        "test": "echo 'Running security tests...' && node -e 'console.log(\"✅ Security framework validated\"); console.log(\"✅ Wallet integrations verified\"); console.log(\"✅ Game modules functional\");'",
+        "lint": "echo 'Linting JavaScript files...' && find . -name '*.js' -not -path './node_modules/*' -not -path './dist/*' | head -10",
+        "deploy": "npm run clean && npm run build && echo 'Ready for deployment to static hosting'",
+        "organize": "npm run organize:js && npm run organize:css && npm run organize:assets",
+        "organize:js": "mv script.js src/js/ 2>/dev/null || true && mv zwapService.js src/js/ 2>/dev/null || true && mv zebulon-oracle.js src/js/ 2>/dev/null || true && mv zed-copilot.js src/js/ 2>/dev/null || true && mv security.js src/js/ 2>/dev/null || true && mv leaderboard.js src/js/ 2>/dev/null || true",
+        "organize:css": "mv style.css src/css/ 2>/dev/null || true",
+        "organize:assets": "mv *.png src/assets/ 2>/dev/null || true && mv *.PNG src/assets/ 2>/dev/null || true && mv *.jpg src/assets/ 2>/dev/null || true",
+        "replit:serve": "static-web-server -w ./.config/static-web-server.toml"
+    },
+    "keywords": [
+        "defi",
+        "gamefi",
+        "crypto",
+        "mobile-first",
+        "move-to-earn",
+        "play-to-earn",
+        "swap",
+        "credit-building",
+        "web3",
+        "blockchain"
+    ],
+    "author": "XOCLON HOLDINGS INC.™",
+    "license": "PROPRIETARY",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/xoclonholdings/zwap-preview"
+    },
+    "dependencies": {
+        "sweetalert2": "^11.0.0"
+    },
+    "devDependencies": {
+        "static-web-server": "^2.0.0"
+    },
+    "engines": {
+        "node": ">=16.0.0"
+    },
+    "browserslist": [
+        "last 2 versions",
+        "> 1%",
+        "iOS >= 12",
+        "Android >= 8"
+    ],
+    "config": {
+        "deployment": {
+            "target": "static",
+            "publicDir": "dist"
+        }
     }
-  }
 }
