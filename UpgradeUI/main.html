@@ -88,27 +88,7 @@
                 <div class="action-desc">Exchange Tokens</div>
             </a>
         </div>
-        <div class="zwap-carousel" id="zwap-carousel">
-            <div class="carousel-slide active" data-slide="0">
-                <div class="scratch-left">Scratch to<br><span class="scratch-win">Win</span></div>
-                <a href="#scratch" class="scratch-btn">SCRATCH</a>
-            </div>
-            <div class="carousel-slide" data-slide="1">
-                <div class="carousel-title">CREDIT BUILDER</div>
-                <div class="carousel-desc">Sign up to build your crypto credit!</div>
-                <a href="#credit" class="scratch-btn">SIGN UP</a>
-            </div>
-            <div class="carousel-slide" data-slide="2">
-                <div class="carousel-title">INVITE FRIENDS</div>
-                <div class="carousel-desc">Earn rewards for every friend you invite!</div>
-                <a href="#invite" class="scratch-btn">INVITE</a>
-            </div>
-            <div class="carousel-slide" data-slide="3">
-                <div class="carousel-title">Z POINTS LEADERBOARD</div>
-                <div class="carousel-desc">See where you rank and compete for prizes!</div>
-                <a href="#leaderboard" class="scratch-btn">LEADERBOARD</a>
-            </div>
-        </div>
+        <div id="carousel-ticker" class="zwap-carousel-ticker"></div>
     </div>
 </body>
 
@@ -129,14 +109,19 @@
         }
     };
 
-    // Carousel logic
-    const slides = document.querySelectorAll('.carousel-slide');
-    let currentSlide = 0;
-    setInterval(() => {
-        slides[currentSlide].classList.remove('active');
-        currentSlide = (currentSlide + 1) % slides.length;
-        slides[currentSlide].classList.add('active');
-    }, 4200);
+    // New carousel ticker logic
+    document.addEventListener('DOMContentLoaded', function () {
+        if (typeof setCarouselMode === 'function') {
+            setCarouselMode('HOME');
+        }
+        document.body.addEventListener('click', function (e) {
+            if (e.target.closest('.action-tile.move')) setCarouselMode('MOVE');
+            else if (e.target.closest('.action-tile.play')) setCarouselMode('PLAY');
+            else if (e.target.closest('.action-tile.shop')) setCarouselMode('SHOP');
+            else if (e.target.closest('.action-tile.swap')) setCarouselMode('SWAP');
+            else if (e.target.closest('.credit-repair-link')) setCarouselMode('CREDIT');
+        });
+    });
 </script>
-
+<script src="../script.js"></script>
 </html>
