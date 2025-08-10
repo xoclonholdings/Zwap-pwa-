@@ -1,341 +1,350 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ZWAP! Move to Earn</title>
-<link rel="stylesheet" href="style.css">
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="https://unpkg.com/@walletconnect/web3-provider@1.8.0/dist/umd/index.min.js"></script>
-<style>
-.move-features {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  max-width: 800px;
-  margin: 2rem auto;
-  padding: 0 1rem;
-}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZWAP! Move to Earn</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://unpkg.com/@walletconnect/web3-provider@1.8.0/dist/umd/index.min.js"></script>
+  <style>
+    .move-features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
 
-.feature-card {
-  background: rgba(0, 0, 0, 0.8);
-  border: 2px solid #00BFFF;
-  border-radius: 15px;
-  padding: 2rem;
-  text-align: center;
-  box-shadow: 0 0 20px rgba(0, 191, 255, 0.3);
-  transition: all 0.3s ease;
-}
+    .feature-card {
+      background: rgba(0, 0, 0, 0.8);
+      border: 2px solid #00BFFF;
+      border-radius: 15px;
+      padding: 2rem;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(0, 191, 255, 0.3);
+      transition: all 0.3s ease;
+    }
 
-.feature-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 0 30px rgba(0, 191, 255, 0.5);
-}
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 30px rgba(0, 191, 255, 0.5);
+    }
 
-.feature-icon {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-  display: block;
-}
+    .feature-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
 
-.feature-title {
-  color: #00BFFF;
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
+    .feature-title {
+      color: #00BFFF;
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
 
-.feature-description {
-  color: #CCCCCC;
-  margin-bottom: 1.5rem;
-  line-height: 1.6;
-}
+    .feature-description {
+      color: #CCCCCC;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
 
-.feature-stats {
-  background: rgba(0, 191, 255, 0.1);
-  border-radius: 10px;
-  padding: 1rem;
-  margin: 1rem 0;
-}
+    .feature-stats {
+      background: rgba(0, 191, 255, 0.1);
+      border-radius: 10px;
+      padding: 1rem;
+      margin: 1rem 0;
+    }
 
-.stat-item {
-  display: flex;
-  justify-content: space-between;
-  margin: 0.5rem 0;
-  color: #FFFFFF;
-}
+    .stat-item {
+      display: flex;
+      justify-content: space-between;
+      margin: 0.5rem 0;
+      color: #FFFFFF;
+    }
 
-.stat-label {
-  color: #CCCCCC;
-}
+    .stat-label {
+      color: #CCCCCC;
+    }
 
-.stat-value {
-  color: #FFD700;
-  font-weight: bold;
-}
+    .stat-value {
+      color: #FFD700;
+      font-weight: bold;
+    }
 
-.feature-btn {
-  background: linear-gradient(135deg, #00BFFF, #0099CC);
-  color: white;
-  border: none;
-  padding: 0.8rem 2rem;
-  border-radius: 10px;
-  font-weight: bold;
-  cursor: pointer;
-  font-size: 1rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  transition: all 0.3s ease;
-  width: 100%;
-  margin: 0.5rem 0;
-}
+    .feature-btn {
+      background: linear-gradient(135deg, #00BFFF, #0099CC);
+      color: white;
+      border: none;
+      padding: 0.8rem 2rem;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+      width: 100%;
+      margin: 0.5rem 0;
+    }
 
-.feature-btn:hover {
-  background: linear-gradient(135deg, #0099CC, #006699);
-  transform: scale(1.05);
-}
+    .feature-btn:hover {
+      background: linear-gradient(135deg, #0099CC, #006699);
+      transform: scale(1.05);
+    }
 
-.feature-btn:disabled {
-  background: #666;
-  cursor: not-allowed;
-  transform: none;
-}
+    .feature-btn:disabled {
+      background: #666;
+      cursor: not-allowed;
+      transform: none;
+    }
 
-.active-session {
-  border-color: #00FF00;
-  box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
-}
+    .active-session {
+      border-color: #00FF00;
+      box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+    }
 
-.dance-difficulty {
-  display: flex;
-  gap: 0.5rem;
-  justify-content: center;
-  margin: 1rem 0;
-}
+    .dance-difficulty {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+      margin: 1rem 0;
+    }
 
-.difficulty-btn {
-  background: rgba(0, 191, 255, 0.2);
-  border: 1px solid #00BFFF;
-  color: #00BFFF;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-size: 0.9rem;
-}
+    .difficulty-btn {
+      background: rgba(0, 191, 255, 0.2);
+      border: 1px solid #00BFFF;
+      color: #00BFFF;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 0.9rem;
+    }
 
-.difficulty-btn.selected {
-  background: #00BFFF;
-  color: white;
-}
+    .difficulty-btn.selected {
+      background: #00BFFF;
+      color: white;
+    }
 
-.progress-bar {
-  background: rgba(0, 0, 0, 0.5);
-  border-radius: 10px;
-  height: 20px;
-  margin: 1rem 0;
-  overflow: hidden;
-}
+    .progress-bar {
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 10px;
+      height: 20px;
+      margin: 1rem 0;
+      overflow: hidden;
+    }
 
-.progress-fill {
-  background: linear-gradient(90deg, #00BFFF, #FFD700);
-  height: 100%;
-  transition: width 0.3s ease;
-  border-radius: 10px;
-}
+    .progress-fill {
+      background: linear-gradient(90deg, #00BFFF, #FFD700);
+      height: 100%;
+      transition: width 0.3s ease;
+      border-radius: 10px;
+    }
 
-@media (max-width: 768px) {
-  .move-features {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-}
-</style>
+    @media (max-width: 768px) {
+      .move-features {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<header>
-<nav class="header-nav">
-<a href="move.html" class="nav-item current">MOVE</a>
-<a href="play.html" class="nav-item">PLAY</a>
-<a href="Swap.html" class="nav-item">SWAP</a>
-<a href="Credit.html" class="nav-item">CREDIT</a>
-</nav>
-<img id="bang" src="Zwap_bang_3d.PNG" alt="Bang Symbol">
-<div id="bangMenu" class="dropdown-menu">
-<button class="menu-btn" id="homeBtn">HOME</button>
-<button class="menu-btn" id="learnBtn">LEARN</button>
-<button class="menu-btn" id="earnBtn">EARN</button>
-<button class="menu-btn" id="leaderboardBtn">LEADERBOARD</button>
-<button class="menu-btn" id="contactBtn">CONTACT</button>
-</div>
-</header>
+  <header>
+    <nav class="header-nav">
+      <a href="move.html" class="nav-item current">MOVE</a>
+      <a href="play.html" class="nav-item">PLAY</a>
+      <a href="Swap.html" class="nav-item">SWAP</a>
+      <a href="Credit.html" class="nav-item">CREDIT</a>
+    </nav>
+    <div class="balance-display hidden" id="balanceDisplay">
+      <span class="balance-label gold">ZWAP:</span>
+      <span class="balance-value" id="zwapBalance">0.00</span>
+      <span class="balance-label zpts">Z PTS:</span>
+      <span class="balance-value" id="zBalance">0</span>
+    </div>
+    <img id="bang" src="Zwap_bang_3d.PNG" alt="Bang Symbol">
+    <div id="bangMenu" class="dropdown-menu">
+      <button class="menu-btn" id="homeBtn">HOME</button>
+      <button class="menu-btn" id="learnBtn">LEARN</button>
+      <button class="menu-btn" id="earnBtn">EARN</button>
+      <button class="menu-btn" id="leaderboardBtn">LEADERBOARD</button>
+      <button class="menu-btn" id="contactBtn">CONTACT</button>
+    </div>
+  </header>
 
-<main>
-<h1>MOVE TO EARN</h1>
-<p>Walk or dance to earn <span class="gold">$ZWAP</span> rewards.</p>
+  <main>
+    <h1>MOVE TO EARN</h1>
+    <p>Walk or dance to earn <span class="gold">$ZWAP</span> rewards.</p>
 
-<div class="move-features">
-  <!-- Walk Feature -->
-  <div class="feature-card" id="walkCard">
-    <span class="feature-icon">🚶‍♂️</span>
-    <h2 class="feature-title">Walk to Earn</h2>
-    <p class="feature-description">Connect your fitness tracker or use device sensors to earn ZWAP for every step you take.</p>
+    <div class="move-features">
+      <!-- Walk Feature -->
+      <div class="feature-card" id="walkCard">
+        <span class="feature-icon">🚶‍♂️</span>
+        <h2 class="feature-title">Walk to Earn</h2>
+        <p class="feature-description">Connect your fitness tracker or use device sensors to earn ZWAP for every step
+          you take.</p>
 
-    <div class="feature-stats">
-      <div class="stat-item">
-        <span class="stat-label">Today's Steps:</span>
-        <span class="stat-value" id="todaySteps">0</span>
+        <div class="feature-stats">
+          <div class="stat-item">
+            <span class="stat-label">Today's Steps:</span>
+            <span class="stat-value" id="todaySteps">0</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">ZWAP Rate:</span>
+            <span class="stat-value">0.001 per 100 steps</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Total Earned:</span>
+            <span class="stat-value" id="walkEarned">0.000 ZWAP</span>
+          </div>
+        </div>
+
+        <div class="progress-bar">
+          <div class="progress-fill progress-fill-0" id="walkProgress"></div>
+        </div>
+        <p class="progress-help-text">Progress to next reward (100 steps)</p>
+
+        <button class="feature-btn" id="startWalkBtn">Start Walking Session</button>
+        <button class="feature-btn" id="connectFitnessBtn">Connect Fitness Tracker</button>
       </div>
-      <div class="stat-item">
-        <span class="stat-label">ZWAP Rate:</span>
-        <span class="stat-value">0.001 per 100 steps</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-label">Total Earned:</span>
-        <span class="stat-value" id="walkEarned">0.000 ZWAP</span>
+
+      <!-- Dance Feature -->
+      <div class="feature-card" id="danceCard">
+        <span class="feature-icon">💃</span>
+        <h2 class="feature-title">Dance to Earn</h2>
+        <p class="feature-description">Join dance challenges and earn ZWAP based on movement intensity and duration.</p>
+
+        <div class="dance-difficulty">
+          <button class="difficulty-btn" data-difficulty="easy">Easy</button>
+          <button class="difficulty-btn selected" data-difficulty="medium">Medium</button>
+          <button class="difficulty-btn" data-difficulty="hard">Hard</button>
+        </div>
+
+        <div class="feature-stats">
+          <div class="stat-item">
+            <span class="stat-label">Session Time:</span>
+            <span class="stat-value" id="danceTime">00:00</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Intensity Score:</span>
+            <span class="stat-value" id="intensityScore">0%</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Session Earnings:</span>
+            <span class="stat-value" id="danceEarned">0.000 ZWAP</span>
+          </div>
+        </div>
+
+        <div class="progress-bar">
+          <div class="progress-fill progress-fill-0" id="danceProgress"></div>
+        </div>
+        <p class="progress-help-text">Movement intensity tracker</p>
+
+        <button class="feature-btn" id="startDanceBtn">Start Dance Session</button>
+        <button class="feature-btn" id="joinChallengeBtn">Join Dance Challenge</button>
       </div>
     </div>
 
-    <div class="progress-bar">
-      <div class="progress-fill" id="walkProgress" style="width: 0%"></div>
-    </div>
-    <p style="color: #CCCCCC; font-size: 0.9rem;">Progress to next reward (100 steps)</p>
-
-    <button class="feature-btn" id="startWalkBtn">Start Walking Session</button>
-    <button class="feature-btn" id="connectFitnessBtn">Connect Fitness Tracker</button>
-  </div>
-
-  <!-- Dance Feature -->
-  <div class="feature-card" id="danceCard">
-    <span class="feature-icon">💃</span>
-    <h2 class="feature-title">Dance to Earn</h2>
-    <p class="feature-description">Join dance challenges and earn ZWAP based on movement intensity and duration.</p>
-
-    <div class="dance-difficulty">
-      <button class="difficulty-btn" data-difficulty="easy">Easy</button>
-      <button class="difficulty-btn selected" data-difficulty="medium">Medium</button>
-      <button class="difficulty-btn" data-difficulty="hard">Hard</button>
-    </div>
-
-    <div class="feature-stats">
-      <div class="stat-item">
-        <span class="stat-label">Session Time:</span>
-        <span class="stat-value" id="danceTime">00:00</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-label">Intensity Score:</span>
-        <span class="stat-value" id="intensityScore">0%</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-label">Session Earnings:</span>
-        <span class="stat-value" id="danceEarned">0.000 ZWAP</span>
+    <div id="sessionModal" class="session-modal hidden">
+      <div class="session-modal-inner">
+        <h3 id="sessionTitle" class="session-modal-title-blue"></h3>
+        <div id="sessionContent" class="session-modal-content-margin"></div>
+        <button onclick="closeSessionModal()" class="session-close-btn">Stop Session</button>
       </div>
     </div>
+  </main>
 
-    <div class="progress-bar">
-      <div class="progress-fill" id="danceProgress" style="width: 0%"></div>
+  <footer>
+    <div class="footer-info">
+      <button id="connectBtn">CONNECT WALLET</button>
+      <p>© 2025 XOCLON INC. — All rights reserved</p>
     </div>
-    <p style="color: #CCCCCC; font-size: 0.9rem;">Movement intensity tracker</p>
+  </footer>
 
-    <button class="feature-btn" id="startDanceBtn">Start Dance Session</button>
-    <button class="feature-btn" id="joinChallengeBtn">Join Dance Challenge</button>
-  </div>
-</div>
+  <script src="security.js"></script>
+  <script src="script.js"></script>
+  <script src="zebulon-oracle.js"></script>t.js"></script>
+  <script>
+    // Move to Earn functionality
+    let walkSession = {
+      active: false,
+      startTime: null,
+      steps: 0,
+      earnings: 0
+    };
 
-<div id="sessionModal" style="display: none; position: fixed; top: 20px; right: 20px; width: 320px; height: auto; background: transparent; z-index: 1000;">
-  <div style="background: linear-gradient(135deg, #111, #1a1a1a); border: 2px solid #00BFFF; border-radius: 15px; padding: 1.5rem; text-align: center; box-shadow: 0 0 30px rgba(0, 191, 255, 0.3);">
-    <h3 id="sessionTitle" style="color: #00BFFF; margin-bottom: 1rem; font-size: 1.2rem;"></h3>
-    <div id="sessionContent" style="margin-bottom: 1rem;"></div>
-    <button onclick="closeSessionModal()" style="background: linear-gradient(135deg, #FF4444, #CC0000); color: white; border: none; padding: 0.6rem 1.2rem; border-radius: 8px; cursor: pointer; font-family: 'Orbitron', sans-serif; font-weight: 600; transition: all 0.3s ease;">Stop Session</button>
-  </div>
-</div>
-</main>
+    let danceSession = {
+      active: false,
+      startTime: null,
+      duration: 0,
+      intensity: 0,
+      earnings: 0
+    };
 
-<footer>
-<div class="footer-info">
-<button id="connectBtn">CONNECT WALLET</button>
-<p>© 2025 XOCLON INC. — All rights reserved</p>
-</div>
-</footer>
+    // Close session modal function
+    function closeSessionModal() {
+      document.getElementById('sessionModal').style.display = 'none';
 
-<script src="security.js"></script>
-<script src="script.js"></script>
-<script src="zebulon-oracle.js"></script>t.js"></script>
-<script>
-// Move to Earn functionality
-let walkSession = {
-  active: false,
-  startTime: null,
-  steps: 0,
-  earnings: 0
-};
+      // Stop any active sessions
+      if (walkSession.active) {
+        walkSession.active = false;
+        document.getElementById('walkCard').classList.remove('active-session');
+        document.getElementById('startWalkBtn').textContent = 'Start Walking Session';
+      }
 
-let danceSession = {
-  active: false,
-  startTime: null,
-  duration: 0,
-  intensity: 0,
-  earnings: 0
-};
+      if (danceSession.active) {
+        danceSession.active = false;
+        document.getElementById('danceCard').classList.remove('active-session');
+        document.getElementById('startDanceBtn').textContent = 'Start Dance Session';
+      }
+    }
 
-// Close session modal function
-function closeSessionModal() {
-  document.getElementById('sessionModal').style.display = 'none';
+    // Walk session functionality
+    document.addEventListener('DOMContentLoaded', function () {
+      const startWalkBtn = document.getElementById('startWalkBtn');
+      if (startWalkBtn) {
+        startWalkBtn.addEventListener('click', function () {
+          if (!walkSession.active) {
+            startWalkSession();
+          } else {
+            stopWalkSession();
+          }
+        });
+      }
 
-  // Stop any active sessions
-  if (walkSession.active) {
-    walkSession.active = false;
-    document.getElementById('walkCard').classList.remove('active-session');
-    document.getElementById('startWalkBtn').textContent = 'Start Walking Session';
-  }
-
-  if (danceSession.active) {
-    danceSession.active = false;
-    document.getElementById('danceCard').classList.remove('active-session');
-    document.getElementById('startDanceBtn').textContent = 'Start Dance Session';
-  }
-}
-
-// Walk session functionality
-document.addEventListener('DOMContentLoaded', function() {
-  const startWalkBtn = document.getElementById('startWalkBtn');
-  if (startWalkBtn) {
-    startWalkBtn.addEventListener('click', function() {
-      if (!walkSession.active) {
-        startWalkSession();
-      } else {
-        stopWalkSession();
+      const startDanceBtn = document.getElementById('startDanceBtn');
+      if (startDanceBtn) {
+        startDanceBtn.addEventListener('click', function () {
+          if (!danceSession.active) {
+            startDanceSession();
+          } else {
+            stopDanceSession();
+          }
+        });
       }
     });
-  }
 
-  const startDanceBtn = document.getElementById('startDanceBtn');
-  if (startDanceBtn) {
-    startDanceBtn.addEventListener('click', function() {
-      if (!danceSession.active) {
-        startDanceSession();
-      } else {
-        stopDanceSession();
-      }
-    });
-  }
-});
+    function startWalkSession() {
+      walkSession.active = true;
+      walkSession.startTime = Date.now();
+      walkSession.steps = 0;
+      walkSession.earnings = 0;
 
-function startWalkSession() {
-  walkSession.active = true;
-  walkSession.startTime = Date.now();
-  walkSession.steps = 0;
-  walkSession.earnings = 0;
-  
-  document.getElementById('walkCard').classList.add('active-session');
-  document.getElementById('startWalkBtn').textContent = 'Stop Walking Session';
+      document.getElementById('walkCard').classList.add('active-session');
+      document.getElementById('startWalkBtn').textContent = 'Stop Walking Session';
 
-  // Show session modal
-  document.getElementById('sessionModal').style.display = 'flex';
-  document.getElementById('sessionTitle').textContent = 'Walking Session Active';
-  document.getElementById('sessionContent').innerHTML = `
+      // Show session modal
+      document.getElementById('sessionModal').style.display = 'flex';
+      document.getElementById('sessionTitle').textContent = 'Walking Session Active';
+      document.getElementById('sessionContent').innerHTML = `
     <div class="session-stats">
       <div class="stat-item">
         <span class="stat-label">Steps:</span>
@@ -353,54 +362,54 @@ function startWalkSession() {
     <button onclick="closeSessionModal()" class="session-btn">End Session</button>
   `;
 
-  // Start step simulation
-  simulateWalkingSteps();
-}
+      // Start step simulation
+      simulateWalkingSteps();
+    }
 
-function stopWalkSession() {
-  walkSession.active = false;
-  document.getElementById('walkCard').classList.remove('active-session');
-  document.getElementById('startWalkBtn').textContent = 'Start Walking Session';
-  
-  // Update user balance
-  const userData = JSON.parse(localStorage.getItem('zwapUserStats') || '{}');
-  userData.totalEarnings = (userData.totalEarnings || 0) + walkSession.earnings;
-  localStorage.setItem('zwapUserStats', JSON.stringify(userData));
-  
-  // Show completion message
-  if (walkSession.earnings > 0) {
-    Swal.fire({
-      title: 'WALK SESSION COMPLETE!',
-      html: `
+    function stopWalkSession() {
+      walkSession.active = false;
+      document.getElementById('walkCard').classList.remove('active-session');
+      document.getElementById('startWalkBtn').textContent = 'Start Walking Session';
+
+      // Update user balance
+      const userData = JSON.parse(localStorage.getItem('zwapUserStats') || '{}');
+      userData.totalEarnings = (userData.totalEarnings || 0) + walkSession.earnings;
+      localStorage.setItem('zwapUserStats', JSON.stringify(userData));
+
+      // Show completion message
+      if (walkSession.earnings > 0) {
+        Swal.fire({
+          title: 'WALK SESSION COMPLETE!',
+          html: `
         <div style="text-align: center;">
           <p style="color: #00FF00; font-weight: bold;">✅ Great job!</p>
           <p>Steps: ${walkSession.steps}</p>
           <p>Earned: <span class="gold">${walkSession.earnings.toFixed(4)} ZWAP</span></p>
         </div>
       `,
-      background: '#111',
-      color: '#fff',
-      showConfirmButton: true,
-      confirmButtonText: 'Awesome!'
-    });
-  }
+          background: '#111',
+          color: '#fff',
+          showConfirmButton: true,
+          confirmButtonText: 'Awesome!'
+        });
+      }
 
-  closeSessionModal();
-}
+      closeSessionModal();
+    }
 
-function startDanceSession() {
-  danceSession.active = true;
-  danceSession.startTime = Date.now();
-  danceSession.duration = 0;
-  danceSession.earnings = 0;
-  
-  document.getElementById('danceCard').classList.add('active-session');
-  document.getElementById('startDanceBtn').textContent = 'Stop Dance Session';
+    function startDanceSession() {
+      danceSession.active = true;
+      danceSession.startTime = Date.now();
+      danceSession.duration = 0;
+      danceSession.earnings = 0;
 
-  // Show session modal
-  document.getElementById('sessionModal').style.display = 'flex';
-  document.getElementById('sessionTitle').textContent = 'Dance Session Active';
-  document.getElementById('sessionContent').innerHTML = `
+      document.getElementById('danceCard').classList.add('active-session');
+      document.getElementById('startDanceBtn').textContent = 'Stop Dance Session';
+
+      // Show session modal
+      document.getElementById('sessionModal').style.display = 'flex';
+      document.getElementById('sessionTitle').textContent = 'Dance Session Active';
+      document.getElementById('sessionContent').innerHTML = `
     <div class="session-stats">
       <div class="stat-item">
         <span class="stat-label">Duration:</span>
@@ -423,107 +432,107 @@ function startDanceSession() {
     <button onclick="closeSessionModal()" class="session-btn">End Session</button>
   `;
 
-  // Start dance simulation
-  simulateDanceSession();
-}
+      // Start dance simulation
+      simulateDanceSession();
+    }
 
-function stopDanceSession() {
-  danceSession.active = false;
-  document.getElementById('danceCard').classList.remove('active-session');
-  document.getElementById('startDanceBtn').textContent = 'Start Dance Session';
-  
-  // Update user balance
-  const userData = JSON.parse(localStorage.getItem('zwapUserStats') || '{}');
-  userData.totalEarnings = (userData.totalEarnings || 0) + danceSession.earnings;
-  localStorage.setItem('zwapUserStats', JSON.stringify(userData));
-  
-  // Show completion message
-  if (danceSession.earnings > 0) {
-    Swal.fire({
-      title: 'DANCE SESSION COMPLETE!',
-      html: `
+    function stopDanceSession() {
+      danceSession.active = false;
+      document.getElementById('danceCard').classList.remove('active-session');
+      document.getElementById('startDanceBtn').textContent = 'Start Dance Session';
+
+      // Update user balance
+      const userData = JSON.parse(localStorage.getItem('zwapUserStats') || '{}');
+      userData.totalEarnings = (userData.totalEarnings || 0) + danceSession.earnings;
+      localStorage.setItem('zwapUserStats', JSON.stringify(userData));
+
+      // Show completion message
+      if (danceSession.earnings > 0) {
+        Swal.fire({
+          title: 'DANCE SESSION COMPLETE!',
+          html: `
         <div style="text-align: center;">
           <p style="color: #00FF00; font-weight: bold;">✅ Amazing moves!</p>
           <p>Duration: ${Math.floor(danceSession.duration / 60)}:${(danceSession.duration % 60).toString().padStart(2, '0')}</p>
           <p>Earned: <span class="gold">${danceSession.earnings.toFixed(4)} ZWAP</span></p>
         </div>
       `,
-      background: '#111',
-      color: '#fff',
-      showConfirmButton: true,
-      confirmButtonText: 'Fantastic!'
-    });
-  }
+          background: '#111',
+          color: '#fff',
+          showConfirmButton: true,
+          confirmButtonText: 'Fantastic!'
+        });
+      }
 
-  closeSessionModal();
-}
+      closeSessionModal();
+    }
 
-function simulateWalkingSteps() {
-  if (!walkSession.active) return;
+    function simulateWalkingSteps() {
+      if (!walkSession.active) return;
 
-  // Simulate step counting
-  walkSession.steps += Math.floor(Math.random() * 3) + 1;
-  walkSession.earnings = walkSession.steps * 0.0001; // 0.0001 ZWAP per step
+      // Simulate step counting
+      walkSession.steps += Math.floor(Math.random() * 3) + 1;
+      walkSession.earnings = walkSession.steps * 0.0001; // 0.0001 ZWAP per step
 
-  // Update UI
-  document.getElementById('currentSteps').textContent = walkSession.steps;
-  document.getElementById('sessionEarnings').textContent = walkSession.earnings.toFixed(4) + ' ZWAP';
-  
-  const duration = Math.floor((Date.now() - walkSession.startTime) / 1000);
-  const minutes = Math.floor(duration / 60);
-  const seconds = duration % 60;
-  document.getElementById('sessionDuration').textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+      // Update UI
+      document.getElementById('currentSteps').textContent = walkSession.steps;
+      document.getElementById('sessionEarnings').textContent = walkSession.earnings.toFixed(4) + ' ZWAP';
 
-  setTimeout(simulateWalkingSteps, 2000); // Update every 2 seconds
-}
+      const duration = Math.floor((Date.now() - walkSession.startTime) / 1000);
+      const minutes = Math.floor(duration / 60);
+      const seconds = duration % 60;
+      document.getElementById('sessionDuration').textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 
-function simulateDanceSession() {
-  if (!danceSession.active) return;
+      setTimeout(simulateWalkingSteps, 2000); // Update every 2 seconds
+    }
 
-  const duration = Math.floor((Date.now() - danceSession.startTime) / 1000);
-  danceSession.duration = duration;
-  
-  // Calculate earnings based on duration and intensity
-  const intensityMultiplier = danceSession.intensity === 'high' ? 0.0003 : danceSession.intensity === 'medium' ? 0.0002 : 0.0001;
-  danceSession.earnings = duration * intensityMultiplier;
+    function simulateDanceSession() {
+      if (!danceSession.active) return;
 
-  // Update UI
-  const minutes = Math.floor(duration / 60);
-  const seconds = duration % 60;
-  document.getElementById('danceDuration').textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-  document.getElementById('danceEarnings').textContent = danceSession.earnings.toFixed(4) + ' ZWAP';
+      const duration = Math.floor((Date.now() - danceSession.startTime) / 1000);
+      danceSession.duration = duration;
 
-  setTimeout(simulateDanceSession, 1000); // Update every second
-}
+      // Calculate earnings based on duration and intensity
+      const intensityMultiplier = danceSession.intensity === 'high' ? 0.0003 : danceSession.intensity === 'medium' ? 0.0002 : 0.0001;
+      danceSession.earnings = duration * intensityMultiplier;
 
-function setDanceIntensity(level) {
-  danceSession.intensity = level;
-  
-  // Update intensity display
-  document.getElementById('danceIntensity').textContent = level.charAt(0).toUpperCase() + level.slice(1);
-  
-  // Update button states
-  document.querySelectorAll('.intensity-btn').forEach(btn => btn.classList.remove('active'));
-  event.target.classList.add('active');
-}
-</script>).innerHTML = `
-    <p>🚶‍♂️ Keep moving to earn ZWAP!</p>
-    <p>Steps: <span id="liveSteps">0</span></p>
-    <p>Earnings: <span id="liveEarnings">0.000</span> ZWAP</p>
+      // Update UI
+      const minutes = Math.floor(duration / 60);
+      const seconds = duration % 60;
+      document.getElementById('danceDuration').textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+      document.getElementById('danceEarnings').textContent = danceSession.earnings.toFixed(4) + ' ZWAP';
+
+      setTimeout(simulateDanceSession, 1000); // Update every second
+    }
+
+    function setDanceIntensity(level) {
+      danceSession.intensity = level;
+
+      // Update intensity display
+      document.getElementById('danceIntensity').textContent = level.charAt(0).toUpperCase() + level.slice(1);
+
+      // Update button states
+      document.querySelectorAll('.intensity-btn').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+    }
+  </script>).innerHTML = `
+  <p>🚶‍♂️ Keep moving to earn ZWAP!</p>
+  <p>Steps: <span id="liveSteps">0</span></p>
+  <p>Earnings: <span id="liveEarnings">0.000</span> ZWAP</p>
   `;
 
   // Simulate step counting
   simulateSteps();
-}
+  }
 
-function stopWalkSession() {
+  function stopWalkSession() {
   walkSession.active = false;
   document.getElementById('walkCard').classList.remove('active-session');
   document.getElementById('startWalkBtn').textContent = 'Start Walking Session';
   closeSessionModal();
-}
+  }
 
-function simulateSteps() {
+  function simulateSteps() {
   if (!walkSession.active) return;
 
   // Simulate step increments
@@ -544,18 +553,18 @@ function simulateSteps() {
   if (liveEarnings) liveEarnings.textContent = walkSession.earnings.toFixed(3);
 
   setTimeout(simulateSteps, 2000);
-}
-
-// Dance session functionality
-document.getElementById('startDanceBtn').addEventListener('click', function() {
-  if (!danceSession.active) {
-    startDanceSession();
-  } else {
-    stopDanceSession();
   }
-});
 
-function startDanceSession() {
+  // Dance session functionality
+  document.getElementById('startDanceBtn').addEventListener('click', function() {
+  if (!danceSession.active) {
+  startDanceSession();
+  } else {
+  stopDanceSession();
+  }
+  });
+
+  function startDanceSession() {
   danceSession.active = true;
   danceSession.startTime = Date.now();
   document.getElementById('danceCard').classList.add('active-session');
@@ -565,24 +574,24 @@ function startDanceSession() {
   document.getElementById('sessionModal').style.display = 'flex';
   document.getElementById('sessionTitle').textContent = 'Dance Session Active';
   document.getElementById('sessionContent').innerHTML = `
-    <p>💃 Keep dancing to earn ZWAP!</p>
-    <p>Duration: <span id="liveDuration">00:00</span></p>
-    <p>Intensity: <span id="liveIntensity">0</span>%</p>
-    <p>Earnings: <span id="liveDanceEarnings">0.000</span> ZWAP</p>
+  <p>💃 Keep dancing to earn ZWAP!</p>
+  <p>Duration: <span id="liveDuration">00:00</span></p>
+  <p>Intensity: <span id="liveIntensity">0</span>%</p>
+  <p>Earnings: <span id="liveDanceEarnings">0.000</span> ZWAP</p>
   `;
 
   // Simulate dance tracking
   simulateDance();
-}
+  }
 
-function stopDanceSession() {
+  function stopDanceSession() {
   danceSession.active = false;
   document.getElementById('danceCard').classList.remove('active-session');
   document.getElementById('startDanceBtn').textContent = 'Start Dance Session';
   closeSessionModal();
-}
+  }
 
-function simulateDance() {
+  function simulateDance() {
   if (!danceSession.active) return;
 
   // Calculate duration
@@ -614,95 +623,96 @@ function simulateDance() {
   if (liveDanceEarnings) liveDanceEarnings.textContent = danceSession.earnings.toFixed(3);
 
   setTimeout(simulateDance, 1000);
-}
+  }
 
-// Difficulty selection
-document.querySelectorAll('.difficulty-btn').forEach(btn => {
+  // Difficulty selection
+  document.querySelectorAll('.difficulty-btn').forEach(btn => {
   btn.addEventListener('click', function() {
-    document.querySelectorAll('.difficulty-btn').forEach(b => b.classList.remove('selected'));
-    this.classList.add('selected');
+  document.querySelectorAll('.difficulty-btn').forEach(b => b.classList.remove('selected'));
+  this.classList.add('selected');
   });
-});
-
-// Connect fitness tracker button
-document.getElementById('connectFitnessBtn').addEventListener('click', function() {
-  Swal.fire({
-    title: 'CONNECT FITNESS TRACKER',
-    html: `
-      <p>Connect your fitness tracker to automatically earn ZWAP for your daily activities!</p>
-      <div style="margin: 1rem 0;">
-        <button onclick="connectFitness('googlefit')" style="background: #4285f4; color: white; border: none; padding: 0.5rem 1rem; margin: 0.5rem; border-radius: 5px;">Google Fit</button>
-        <button onclick="connectFitness('apple')" style="background: #000; color: white; border: none; padding: 0.5rem 1rem; margin: 0.5rem; border-radius: 5px;">Apple Health</button>
-        <button onclick="connectFitness('fitbit')" style="background: #00B0B9; color: white; border: none; padding: 0.5rem 1rem; margin: 0.5rem; border-radius: 5px;">Fitbit</button>
-      </div>
-    `,
-    background: '#111',
-    color: '#fff',
-    showCloseButton: true,
-    showConfirmButton: false
   });
-});
 
-function connectFitness(provider) {
+  // Connect fitness tracker button
+  document.getElementById('connectFitnessBtn').addEventListener('click', function() {
   Swal.fire({
-    title: 'CONNECTING...',
-    text: `Connecting to ${provider}...`,
-    background: '#111',
-    color: '#fff',
-    timer: 2000,
-    showConfirmButton: false
+  title: 'CONNECT FITNESS TRACKER',
+  html: `
+  <p>Connect your fitness tracker to automatically earn ZWAP for your daily activities!</p>
+  <div class="fitness-connect-area">
+    <button onclick="connectFitness('googlefit')" class="fitness-btn google">Google Fit</button>
+    <button onclick="connectFitness('apple')" class="fitness-btn apple">Apple Health</button>
+    <button onclick="connectFitness('fitbit')" class="fitness-btn fitbit">Fitbit</button>
+  </div>
+  `,
+  background: '#111',
+  color: '#fff',
+  showCloseButton: true,
+  showConfirmButton: false
+  });
+  });
+
+  function connectFitness(provider) {
+  Swal.fire({
+  title: 'CONNECTING...',
+  text: `Connecting to ${provider}...`,
+  background: '#111',
+  color: '#fff',
+  timer: 2000,
+  showConfirmButton: false
   }).then(() => {
-    Swal.fire({
-      title: 'CONNECTED!',
-      text: `${provider} connected successfully!`,
-      background: '#111',
-      color: '#fff',
-      timer: 2000,
-      showConfirmButton: false
-    });
-  });
-}
-
-// Join dance challenge button
-document.getElementById('joinChallengeBtn').addEventListener('click', function() {
   Swal.fire({
-    title: 'DANCE CHALLENGES',
-    html: `
-      <div style="text-align: left;">
-        <h3>Available Challenges:</h3>
-        <div style="margin: 1rem 0; padding: 1rem; background: rgba(0,191,255,0.1); border-radius: 8px;">
-          <h4>Weekly Dance Battle</h4>
-          <p>Duration: 3 days remaining</p>
-          <p>Prize Pool: 100 ZWAP</p>
-          <p>Participants: 234</p>
-          <button onclick="joinChallenge('weekly')" style="background: #00BFFF; color: white; border: none; padding: 0.5rem 1rem; border-radius: 5px;">JOIN</button>
-        </div>
-        <div style="margin: 1rem 0; padding: 1rem; background: rgba(255,215,0,0.1); border-radius: 8px;">
-          <h4>Freestyle Friday</h4>
-          <p>Duration: 2 days remaining</p>
-          <p>Prize Pool: 50 ZWAP</p>
-          <p>Participants: 89</p>
-          <button onclick="joinChallenge('freestyle')" style="background: #FFD700; color: black; border: none; padding: 0.5rem 1rem; border-radius: 5px;">JOIN</button>
-        </div>
-      </div>
-    `,
-    background: '#111',
-    color: '#fff',
-    showCloseButton: true,
-    showConfirmButton: false
+  title: 'CONNECTED!',
+  text: `${provider} connected successfully!`,
+  background: '#111',
+  color: '#fff',
+  timer: 2000,
+  showConfirmButton: false
   });
-});
+  });
+  }
 
-function joinChallenge(challengeType) {
+  // Join dance challenge button
+  document.getElementById('joinChallengeBtn').addEventListener('click', function() {
   Swal.fire({
-    title: 'CHALLENGE JOINED!',
-    text: `You've joined the ${challengeType} challenge! Start dancing to compete.`,
-    background: '#111',
-    color: '#fff',
-    timer: 3000,
-    showConfirmButton: false
+  title: 'DANCE CHALLENGES',
+  html: `
+  <div class="challenge-area">
+    <h3>Available Challenges:</h3>
+    <div class="challenge-item weekly">
+      <h4>Weekly Dance Battle</h4>
+      <p>Duration: 3 days remaining</p>
+      <p>Prize Pool: 100 ZWAP</p>
+      <p>Participants: 234</p>
+      <button onclick="joinChallenge('weekly')" class="challenge-btn weekly">JOIN</button>
+    </div>
+    <div class="challenge-item freestyle">
+      <h4>Freestyle Friday</h4>
+      <p>Duration: 2 days remaining</p>
+      <p>Prize Pool: 50 ZWAP</p>
+      <p>Participants: 89</p>
+      <button onclick="joinChallenge('freestyle')" class="challenge-btn freestyle">JOIN</button>
+    </div>
+  </div>
+  `,
+  background: '#111',
+  color: '#fff',
+  showCloseButton: true,
+  showConfirmButton: false
   });
-}
-</script>
+  });
+
+  function joinChallenge(challengeType) {
+  Swal.fire({
+  title: 'CHALLENGE JOINED!',
+  text: `You've joined the ${challengeType} challenge! Start dancing to compete.`,
+  background: '#111',
+  color: '#fff',
+  timer: 3000,
+  showConfirmButton: false
+  });
+  }
+  </script>
 </body>
+
 </html>

@@ -1,392 +1,401 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
-<meta name="format-detection" content="telephone=no">
-<title>ZWAP! Leaderboard</title>
-<link rel="stylesheet" href="style.css">
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="https://unpkg.com/@walletconnect/web3-provider@1.8.0/dist/umd/index.min.js"></script>
-<style>
-.leaderboard-container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 2rem;
-}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta name="format-detection" content="telephone=no">
+  <title>ZWAP! Leaderboard</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://unpkg.com/@walletconnect/web3-provider@1.8.0/dist/umd/index.min.js"></script>
+  <style>
+    .leaderboard-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
 
-.leaderboard-tabs {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-bottom: 2rem;
-}
+    .leaderboard-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
 
-.tab-btn {
-  background: rgba(0, 191, 255, 0.1);
-  border: 2px solid rgba(0, 191, 255, 0.3);
-  color: #00BFFF;
-  padding: 0.8rem 1.5rem;
-  border-radius: 10px;
-  cursor: pointer;
-  font-family: 'Orbitron', sans-serif;
-  font-weight: 600;
-  text-transform: uppercase;
-  transition: all 0.3s ease;
-}
+    .tab-btn {
+      background: rgba(0, 191, 255, 0.1);
+      border: 2px solid rgba(0, 191, 255, 0.3);
+      color: #00BFFF;
+      padding: 0.8rem 1.5rem;
+      border-radius: 10px;
+      cursor: pointer;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 600;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+    }
 
-.tab-btn.active {
-  background: linear-gradient(135deg, rgba(0, 191, 255, 0.3), rgba(255, 0, 255, 0.2));
-  border-color: #00BFFF;
-  color: #FFFFFF;
-  text-shadow: 0 0 10px #00BFFF;
-}
+    .tab-btn.active {
+      background: linear-gradient(135deg, rgba(0, 191, 255, 0.3), rgba(255, 0, 255, 0.2));
+      border-color: #00BFFF;
+      color: #FFFFFF;
+      text-shadow: 0 0 10px #00BFFF;
+    }
 
-.tab-btn:hover {
-  background: rgba(0, 191, 255, 0.2);
-  transform: translateY(-2px);
-}
+    .tab-btn:hover {
+      background: rgba(0, 191, 255, 0.2);
+      transform: translateY(-2px);
+    }
 
-.leaderboard-section {
-  display: none;
-}
+    .leaderboard-section {
+      display: none;
+    }
 
-.leaderboard-section.active {
-  display: block;
-}
+    .leaderboard-section.active {
+      display: block;
+    }
 
-.leaderboard-table {
-  background: rgba(0, 0, 0, 0.8);
-  border: 2px solid rgba(0, 191, 255, 0.3);
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-}
+    .leaderboard-table {
+      background: rgba(0, 0, 0, 0.8);
+      border: 2px solid rgba(0, 191, 255, 0.3);
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    }
 
-.table-header {
-  background: linear-gradient(135deg, rgba(0, 191, 255, 0.2), rgba(255, 0, 255, 0.1));
-  padding: 1rem;
-  display: grid;
-  grid-template-columns: 60px 1fr 120px 120px;
-  gap: 1rem;
-  align-items: center;
-  border-bottom: 1px solid rgba(0, 191, 255, 0.3);
-}
+    .table-header {
+      background: linear-gradient(135deg, rgba(0, 191, 255, 0.2), rgba(255, 0, 255, 0.1));
+      padding: 1rem;
+      display: grid;
+      grid-template-columns: 60px 1fr 120px 120px;
+      gap: 1rem;
+      align-items: center;
+      border-bottom: 1px solid rgba(0, 191, 255, 0.3);
+    }
 
-.table-header span {
-  color: #00BFFF;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-size: 0.9rem;
-}
+    .table-header span {
+      color: #00BFFF;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.9rem;
+    }
 
-.leaderboard-entry {
-  padding: 1rem;
-  display: grid;
-  grid-template-columns: 60px 1fr 120px 120px;
-  gap: 1rem;
-  align-items: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  transition: all 0.3s ease;
-}
+    .leaderboard-entry {
+      padding: 1rem;
+      display: grid;
+      grid-template-columns: 60px 1fr 120px 120px;
+      gap: 1rem;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
 
-.leaderboard-entry:hover {
-  background: rgba(0, 191, 255, 0.05);
-}
+    .leaderboard-entry:hover {
+      background: rgba(0, 191, 255, 0.05);
+    }
 
-.leaderboard-entry:last-child {
-  border-bottom: none;
-}
+    .leaderboard-entry:last-child {
+      border-bottom: none;
+    }
 
-.rank {
-  text-align: center;
-  font-size: 1.2rem;
-  font-weight: 800;
-  color: #FFD700;
-  text-shadow: 0 0 8px #FFD700;
-}
+    .rank {
+      text-align: center;
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #FFD700;
+      text-shadow: 0 0 8px #FFD700;
+    }
 
-.rank.first {
-  color: #FFD700;
-  text-shadow: 0 0 15px #FFD700;
-}
+    .rank.first {
+      color: #FFD700;
+      text-shadow: 0 0 15px #FFD700;
+    }
 
-.rank.second {
-  color: #C0C0C0;
-  text-shadow: 0 0 10px #C0C0C0;
-}
+    .rank.second {
+      color: #C0C0C0;
+      text-shadow: 0 0 10px #C0C0C0;
+    }
 
-.rank.third {
-  color: #CD7F32;
-  text-shadow: 0 0 10px #CD7F32;
-}
+    .rank.third {
+      color: #CD7F32;
+      text-shadow: 0 0 10px #CD7F32;
+    }
 
-.player-info {
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-}
+    .player-info {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
 
-.player-avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #00BFFF, #FF00FF);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 800;
-  color: white;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
-}
+    .player-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #00BFFF, #FF00FF);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      color: white;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    }
 
-.player-name {
-  color: #FFFFFF;
-  font-weight: 600;
-  font-size: 1.1rem;
-}
+    .player-name {
+      color: #FFFFFF;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
 
-.player-wallet {
-  color: #888;
-  font-size: 0.8rem;
-  font-family: monospace;
-}
+    .player-wallet {
+      color: #888;
+      font-size: 0.8rem;
+      font-family: monospace;
+    }
 
-.score-value {
-  text-align: center;
-  color: #00BFFF;
-  font-weight: 700;
-  font-size: 1.1rem;
-}
+    .score-value {
+      text-align: center;
+      color: #00BFFF;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
 
-.earnings-value {
-  text-align: center;
-  color: #FFD700;
-  font-weight: 700;
-  font-size: 1.1rem;
-}
+    .earnings-value {
+      text-align: center;
+      color: #FFD700;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
 
-.your-stats {
-  background: linear-gradient(135deg, rgba(0, 191, 255, 0.1), rgba(255, 0, 255, 0.05));
-  border: 2px solid rgba(0, 191, 255, 0.3);
-  border-radius: 15px;
-  padding: 1.5rem;
-  margin-bottom: 2rem;
-  text-align: center;
-}
+    .your-stats {
+      background: linear-gradient(135deg, rgba(0, 191, 255, 0.1), rgba(255, 0, 255, 0.05));
+      border: 2px solid rgba(0, 191, 255, 0.3);
+      border-radius: 15px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
 
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 1rem;
-  margin-top: 1rem;
-}
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
 
-.stat-item {
-  background: rgba(0, 0, 0, 0.5);
-  padding: 1rem;
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
+    .stat-item {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 1rem;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
 
-.stat-label {
-  color: #888;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
+    .stat-label {
+      color: #888;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
 
-.stat-value {
-  color: #FFFFFF;
-  font-size: 1.4rem;
-  font-weight: 800;
-  margin-top: 0.3rem;
-}
+    .stat-value {
+      color: #FFFFFF;
+      font-size: 1.4rem;
+      font-weight: 800;
+      margin-top: 0.3rem;
+    }
 
-.stat-value.gold {
-  color: #FFD700;
-  text-shadow: 0 0 8px #FFD700;
-}
+    .stat-value.gold {
+      color: #FFD700;
+      text-shadow: 0 0 8px #FFD700;
+    }
 
-.stat-value.blue {
-  color: #00BFFF;
-  text-shadow: 0 0 8px #00BFFF;
-}
+    .stat-value.blue {
+      color: #00BFFF;
+      text-shadow: 0 0 8px #00BFFF;
+    }
 
-@media (max-width: 768px) {
-  .leaderboard-tabs {
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
+    @media (max-width: 768px) {
+      .leaderboard-tabs {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
 
-  .tab-btn {
-    padding: 0.6rem 1rem;
-    font-size: 0.8rem;
-  }
+      .tab-btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.8rem;
+      }
 
-  .table-header,
-  .leaderboard-entry {
-    grid-template-columns: 50px 1fr 80px 80px;
-    gap: 0.5rem;
-    padding: 0.8rem;
-  }
+      .table-header,
+      .leaderboard-entry {
+        grid-template-columns: 50px 1fr 80px 80px;
+        gap: 0.5rem;
+        padding: 0.8rem;
+      }
 
-  .table-header span {
-    font-size: 0.7rem;
-  }
+      .table-header span {
+        font-size: 0.7rem;
+      }
 
-  .player-avatar {
-    width: 35px;
-    height: 35px;
-  }
+      .player-avatar {
+        width: 35px;
+        height: 35px;
+      }
 
-  .player-name {
-    font-size: 0.9rem;
-  }
+      .player-name {
+        font-size: 0.9rem;
+      }
 
-  .score-value,
-  .earnings-value {
-    font-size: 0.9rem;
-  }
-}
-</style>
+      .score-value,
+      .earnings-value {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<header>
-<img id="bang" src="Zwap_bang_3d.PNG" alt="Bang Symbol">
-<div id="bangMenu" class="dropdown-menu">
-<button class="menu-btn" id="homeBtn">HOME</button>
-<button class="menu-btn" id="learnBtn">LEARN</button>
-<button class="menu-btn" id="earnBtn">EARN</button>
-<button class="menu-btn" id="leaderboardBtn">LEADERBOARD</button>
-<button class="menu-btn" id="contactBtn">CONTACT</button>
-</div>
-</header>
+  <header>
+    <div class="balance-display hidden" id="balanceDisplay">
+      <span class="balance-label gold">ZWAP:</span>
+      <span class="balance-value" id="zwapBalance">0.00</span>
+      <span class="balance-label zpts">Z PTS:</span>
+      <span class="balance-value" id="zBalance">0</span>
+    </div>
+    <img id="bang" src="Zwap_bang_3d.PNG" alt="Bang Symbol">
+    <div id="bangMenu" class="dropdown-menu">
+      <button class="menu-btn" id="homeBtn">HOME</button>
+      <button class="menu-btn" id="learnBtn">LEARN</button>
+      <button class="menu-btn" id="earnBtn">EARN</button>
+      <button class="menu-btn" id="leaderboardBtn">LEADERBOARD</button>
+      <button class="menu-btn" id="contactBtn">CONTACT</button>
+    </div>
+  </header>
 
-<main>
-<!-- Enterprise Navigation Menu -->
-<nav class="enterprise-nav">
-  <span class="nav-separator">|</span>
-  <button class="nav-item" onclick="window.location.href='move.html'">MOVE</button>
-  <span class="nav-separator">|</span>
-  <button class="nav-item" onclick="window.location.href='play.html'">PLAY</button>
-  <span class="nav-separator">|</span>
-  <button class="nav-item" onclick="window.location.href='Swap.html'">SWAP</button>
-  <span class="nav-separator">|</span>
-  <button class="nav-item" onclick="window.location.href='Credit.html'">CREDIT</button>
-  <span class="nav-separator">|</span>
-</nav>
+  <main>
+    <!-- Enterprise Navigation Menu -->
+    <nav class="enterprise-nav">
+      <span class="nav-separator">|</span>
+      <button class="nav-item" onclick="window.location.href='move.html'">MOVE</button>
+      <span class="nav-separator">|</span>
+      <button class="nav-item" onclick="window.location.href='play.html'">PLAY</button>
+      <span class="nav-separator">|</span>
+      <button class="nav-item" onclick="window.location.href='Swap.html'">SWAP</button>
+      <span class="nav-separator">|</span>
+      <button class="nav-item" onclick="window.location.href='Credit.html'">CREDIT</button>
+      <span class="nav-separator">|</span>
+    </nav>
 
-<div class="leaderboard-container">
-  <h1>🏆 LEADERBOARD</h1>
-  <p>Compete with players worldwide and climb the ranks!</p>
+    <div class="leaderboard-container">
+      <h1>🏆 LEADERBOARD</h1>
+      <p>Compete with players worldwide and climb the ranks!</p>
 
-  <!-- Your Stats Section -->
-  <div class="your-stats">
-    <h3>YOUR PERFORMANCE</h3>
-    <div class="stats-grid">
-      <div class="stat-item">
-        <div class="stat-label">Global Rank</div>
-        <div class="stat-value blue" id="userRank">--</div>
+      <!-- Your Stats Section -->
+      <div class="your-stats">
+        <h3>YOUR PERFORMANCE</h3>
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-label">Global Rank</div>
+            <div class="stat-value blue" id="userRank">--</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-label">Total Earnings</div>
+            <div class="stat-value gold" id="userEarnings">0.0000 ZWAP</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-label">Best Score</div>
+            <div class="stat-value" id="userBestScore">0</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-label">Games Played</div>
+            <div class="stat-value" id="userGamesPlayed">0</div>
+          </div>
+        </div>
       </div>
-      <div class="stat-item">
-        <div class="stat-label">Total Earnings</div>
-        <div class="stat-value gold" id="userEarnings">0.0000 ZWAP</div>
+
+      <!-- Leaderboard Tabs -->
+      <div class="leaderboard-tabs">
+        <button class="tab-btn active" data-tab="overall">Overall</button>
+        <button class="tab-btn" data-tab="cube">Cube</button>
+        <button class="tab-btn" data-tab="trivia">Trivia</button>
+        <button class="tab-btn" data-tab="blockcraft">BlockCraft</button>
+        <button class="tab-btn" data-tab="spin">Spin</button>
       </div>
-      <div class="stat-item">
-        <div class="stat-label">Best Score</div>
-        <div class="stat-value" id="userBestScore">0</div>
+
+      <!-- Overall Leaderboard -->
+      <div class="leaderboard-section active" id="overall">
+        <div class="leaderboard-table">
+          <div class="table-header">
+            <span>Rank</span>
+            <span>Player</span>
+            <span>Score</span>
+            <span>Earnings</span>
+          </div>
+          <div id="overallLeaderboard"></div>
+        </div>
       </div>
-      <div class="stat-item">
-        <div class="stat-label">Games Played</div>
-        <div class="stat-value" id="userGamesPlayed">0</div>
+
+      <!-- Game-specific Leaderboards -->
+      <div class="leaderboard-section" id="cube">
+        <div class="leaderboard-table">
+          <div class="table-header">
+            <span>Rank</span>
+            <span>Player</span>
+            <span>High Score</span>
+            <span>ZWAP Earned</span>
+          </div>
+          <div id="cubeLeaderboard"></div>
+        </div>
+      </div>
+
+      <div class="leaderboard-section" id="trivia">
+        <div class="leaderboard-table">
+          <div class="table-header">
+            <span>Rank</span>
+            <span>Player</span>
+            <span>High Score</span>
+            <span>ZWAP Earned</span>
+          </div>
+          <div id="triviaLeaderboard"></div>
+        </div>
+      </div>
+
+      <div class="leaderboard-section" id="blockcraft">
+        <div class="leaderboard-table">
+          <div class="table-header">
+            <span>Rank</span>
+            <span>Player</span>
+            <span>High Score</span>
+            <span>ZWAP Earned</span>
+          </div>
+          <div id="blockcraftLeaderboard"></div>
+        </div>
+      </div>
+
+      <div class="leaderboard-section" id="spin">
+        <div class="leaderboard-table">
+          <div class="table-header">
+            <span>Rank</span>
+            <span>Player</span>
+            <span>High Score</span>
+            <span>ZWAP Earned</span>
+          </div>
+          <div id="spinLeaderboard"></div>
+        </div>
       </div>
     </div>
-  </div>
+  </main>
 
-  <!-- Leaderboard Tabs -->
-  <div class="leaderboard-tabs">
-    <button class="tab-btn active" data-tab="overall">Overall</button>
-    <button class="tab-btn" data-tab="cube">Cube</button>
-    <button class="tab-btn" data-tab="trivia">Trivia</button>
-    <button class="tab-btn" data-tab="blockcraft">BlockCraft</button>
-    <button class="tab-btn" data-tab="spin">Spin</button>
-  </div>
-
-  <!-- Overall Leaderboard -->
-  <div class="leaderboard-section active" id="overall">
-    <div class="leaderboard-table">
-      <div class="table-header">
-        <span>Rank</span>
-        <span>Player</span>
-        <span>Score</span>
-        <span>Earnings</span>
-      </div>
-      <div id="overallLeaderboard"></div>
+  <footer>
+    <div class="footer-info">
+      <button id="connectBtn">CONNECT WALLET</button>
+      <p>© 2025 XOCLON INC. — All rights reserved</p>
     </div>
-  </div>
+  </footer>
 
-  <!-- Game-specific Leaderboards -->
-  <div class="leaderboard-section" id="cube">
-    <div class="leaderboard-table">
-      <div class="table-header">
-        <span>Rank</span>
-        <span>Player</span>
-        <span>High Score</span>
-        <span>ZWAP Earned</span>
-      </div>
-      <div id="cubeLeaderboard"></div>
-    </div>
-  </div>
-
-  <div class="leaderboard-section" id="trivia">
-    <div class="leaderboard-table">
-      <div class="table-header">
-        <span>Rank</span>
-        <span>Player</span>
-        <span>High Score</span>
-        <span>ZWAP Earned</span>
-      </div>
-      <div id="triviaLeaderboard"></div>
-    </div>
-  </div>
-
-  <div class="leaderboard-section" id="blockcraft">
-    <div class="leaderboard-table">
-      <div class="table-header">
-        <span>Rank</span>
-        <span>Player</span>
-        <span>High Score</span>
-        <span>ZWAP Earned</span>
-      </div>
-      <div id="blockcraftLeaderboard"></div>
-    </div>
-  </div>
-
-  <div class="leaderboard-section" id="spin">
-    <div class="leaderboard-table">
-      <div class="table-header">
-        <span>Rank</span>
-        <span>Player</span>
-        <span>High Score</span>
-        <span>ZWAP Earned</span>
-      </div>
-      <div id="spinLeaderboard"></div>
-    </div>
-  </div>
-</div>
-</main>
-
-<footer>
-<div class="footer-info">
-<button id="connectBtn">CONNECT WALLET</button>
-<p>© 2025 XOCLON INC. — All rights reserved</p>
-</div>
-</footer>
-
-<script src="script.js"></script>
-<script src="zebulon-oracle.js"></script>
-<script src="leaderboard.js"></script>
+  <script src="script.js"></script>
+  <script src="zebulon-oracle.js"></script>
+  <script src="leaderboard.js"></script>
 </body>
+
 </html>
