@@ -1,3 +1,78 @@
+// --- Persistent Carousel Ticker Logic ---
+const carouselTicker = document.getElementById('carousel-ticker');
+let currentMode = 'HOME';
+
+function setCarouselMode(mode) {
+  currentMode = mode;
+  switch (mode) {
+    case 'MOVE':
+      carouselTicker.innerHTML = `
+        <div class="ticker-move">
+          <span class="move-counter-label">Steps:</span>
+          <span id="move-counter" class="move-counter">0</span>
+        </div>
+      `;
+      break;
+    case 'PLAY':
+      carouselTicker.innerHTML = `
+        <div class="ticker-play">
+          <button class="play-control">&#9654; Play</button>
+          <button class="play-control">&#10073;&#10073; Pause</button>
+          <button class="play-control">&#9724; Stop</button>
+        </div>
+      `;
+      break;
+    case 'SHOP':
+      carouselTicker.innerHTML = `
+        <div class="ticker-shop">
+          <button class="shop-option">Buy ZWAP</button>
+          <button class="shop-option">Buy NFT</button>
+          <button class="shop-option">Buy Power-Up</button>
+        </div>
+      `;
+      break;
+    case 'SWAP':
+      carouselTicker.innerHTML = `
+        <div class="ticker-swap">
+          <label>Amount: <input type="number" class="swap-amount" min="0" step="0.01"></label>
+          <select class="swap-token">
+            <option>ZWAP</option>
+            <option>ETH</option>
+            <option>USDC</option>
+          </select>
+          <button class="swap-action">Swap</button>
+        </div>
+      `;
+      break;
+    case 'CREDIT':
+      carouselTicker.innerHTML = `
+        <div class="ticker-credit">
+          <label>Repair Input: <input type="text" class="credit-input" placeholder="Enter info..."></label>
+          <button class="credit-action">Submit</button>
+        </div>
+      `;
+      break;
+    default:
+      carouselTicker.innerHTML = `
+        <div class="ticker-default">
+          <span>Welcome to ZWAP! Explore features below.</span>
+        </div>
+      `;
+  }
+}
+
+// Example: Hook up navigation or feature buttons to setCarouselMode
+document.addEventListener('DOMContentLoaded', function() {
+  setCarouselMode('HOME'); // Default
+  // Example: Replace with your actual navigation logic
+  document.body.addEventListener('click', function(e) {
+    if (e.target.closest('.action-tile.move')) setCarouselMode('MOVE');
+    else if (e.target.closest('.action-tile.play')) setCarouselMode('PLAY');
+    else if (e.target.closest('.action-tile.shop')) setCarouselMode('SHOP');
+    else if (e.target.closest('.action-tile.swap')) setCarouselMode('SWAP');
+    else if (e.target.closest('.credit-repair-link')) setCarouselMode('CREDIT');
+  });
+});
 /**
  * ZWAP! Main Application Script
  * ©️ 2025 XOCLON HOLDINGS INC.™ - All Rights Reserved
@@ -5,64 +80,64 @@
  * Unauthorized copying, reproduction, or distribution is strictly prohibited.
  */
 document.addEventListener("DOMContentLoaded", () => {
-// Make bang icon navigate to home page
-const bang = document.getElementById('bang');
-if (bang) {
-bang.onclick = () => {
-window.location.href = 'index.html';
-};
-}
+  // Make bang icon navigate to home page
+  const bang = document.getElementById('bang');
+  if (bang) {
+    bang.onclick = () => {
+      window.location.href = 'index.html';
+    };
+  }
 
-// Connect wallet functionality
-const connectBtn = document.getElementById('connectBtn');
-if (connectBtn) {
-connectBtn.onclick = () => {
-showWalletModal();
-};
-}
+  // Connect wallet functionality
+  const connectBtn = document.getElementById('connectBtn');
+  if (connectBtn) {
+    connectBtn.onclick = () => {
+      showWalletModal();
+    };
+  }
 
-// Home button functionality
-const homeBtn = document.getElementById('homeBtn');
-if (homeBtn) {
-homeBtn.onclick = () => {
-window.location.href = 'index.html';
-};
-}
+  // Home button functionality
+  const homeBtn = document.getElementById('homeBtn');
+  if (homeBtn) {
+    homeBtn.onclick = () => {
+      window.location.href = 'index.html';
+    };
+  }
 
-// Learn button functionality
-const learnBtn = document.getElementById('learnBtn');
-if (learnBtn) {
-learnBtn.onclick = () => {
-showZPointsOverview();
-};
-}
+  // Learn button functionality
+  const learnBtn = document.getElementById('learnBtn');
+  if (learnBtn) {
+    learnBtn.onclick = () => {
+      showZPointsOverview();
+    };
+  }
 
-// Earn button functionality
-const earnBtn = document.getElementById('earnBtn');
-if (earnBtn) {
-earnBtn.onclick = () => {
-window.location.href = 'move.html';
-};
-}
+  // Earn button functionality
+  const earnBtn = document.getElementById('earnBtn');
+  if (earnBtn) {
+    earnBtn.onclick = () => {
+      window.location.href = 'move.html';
+    };
+  }
 
-// Leaderboard button functionality
-const leaderboardBtn = document.getElementById('leaderboardBtn');
-if (leaderboardBtn) {
-leaderboardBtn.onclick = () => {
-window.location.href = 'leaderboard.html';
-};
-}
+  // Leaderboard button functionality
+  const leaderboardBtn = document.getElementById('leaderboardBtn');
+  if (leaderboardBtn) {
+    leaderboardBtn.onclick = () => {
+      window.location.href = 'leaderboard.html';
+    };
+  }
 
-// Contact button functionality
-const contactBtn = document.getElementById('contactBtn');
-if (contactBtn) {
-contactBtn.onclick = () => {
-showContactModal();
-};
-}
+  // Contact button functionality
+  const contactBtn = document.getElementById('contactBtn');
+  if (contactBtn) {
+    contactBtn.onclick = () => {
+      showContactModal();
+    };
+  }
 
-// Initialize balances
-updateBalances();
+  // Initialize balances
+  updateBalances();
 });
 
 // Wallet connection system
@@ -70,9 +145,9 @@ let walletConnected = false;
 let userAddress = '';
 
 function showWalletModal() {
-Swal.fire({
-title: 'CONNECT WALLET',
-html: `
+  Swal.fire({
+    title: 'CONNECT WALLET',
+    html: `
 <div style="display: flex; flex-direction: column; gap: 1rem;">
 <button class="wallet-option large-btn" onclick="connectMetaMask()">
 🦊 MetaMask
@@ -88,117 +163,117 @@ html: `
 </button>
 </div>
 `,
-background: '#111',
-color: '#fff',
-showCloseButton: true,
-showConfirmButton: false,
-customClass: {
-popup: 'swal2-popup'
-}
-});
+    background: '#111',
+    color: '#fff',
+    showCloseButton: true,
+    showConfirmButton: false,
+    customClass: {
+      popup: 'swal2-popup'
+    }
+  });
 }
 
 async function connectMetaMask() {
-try {
-if (typeof window.ethereum !== 'undefined') {
-const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-if (accounts.length > 0) {
-userAddress = accounts[0];
-walletConnected = true;
-updateWalletUI();
-Swal.close();
-showConnectionSuccess('MetaMask');
-} else {
-throw new Error('No accounts found');
-}
-} else {
-throw new Error('MetaMask not installed');
-}
-} catch (error) {
-console.error('MetaMask connection failed:', error);
-Swal.fire({
-title: 'CONNECTION FAILED',
-text: 'MetaMask not found. Please install MetaMask browser extension.',
-background: '#111',
-color: '#fff',
-icon: 'error'
-});
-}
+  try {
+    if (typeof window.ethereum !== 'undefined') {
+      const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+      if (accounts.length > 0) {
+        userAddress = accounts[0];
+        walletConnected = true;
+        updateWalletUI();
+        Swal.close();
+        showConnectionSuccess('MetaMask');
+      } else {
+        throw new Error('No accounts found');
+      }
+    } else {
+      throw new Error('MetaMask not installed');
+    }
+  } catch (error) {
+    console.error('MetaMask connection failed:', error);
+    Swal.fire({
+      title: 'CONNECTION FAILED',
+      text: 'MetaMask not found. Please install MetaMask browser extension.',
+      background: '#111',
+      color: '#fff',
+      icon: 'error'
+    });
+  }
 }
 
 async function connectWalletConnect() {
-try {
-// Simulate WalletConnect
-await new Promise(resolve => setTimeout(resolve, 2000));
-userAddress = '0x742d35Cc6634C0532925a3b8D1de65c07c1e4BA2';
-walletConnected = true;
-updateWalletUI();
-Swal.close();
-showConnectionSuccess('WalletConnect');
-} catch (error) {
-console.error('WalletConnect failed:', error);
-}
+  try {
+    // Simulate WalletConnect
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    userAddress = '0x742d35Cc6634C0532925a3b8D1de65c07c1e4BA2';
+    walletConnected = true;
+    updateWalletUI();
+    Swal.close();
+    showConnectionSuccess('WalletConnect');
+  } catch (error) {
+    console.error('WalletConnect failed:', error);
+  }
 }
 
 async function connectCoinbase() {
-try {
-// Simulate Coinbase connection
-await new Promise(resolve => setTimeout(resolve, 1500));
-userAddress = '0x8ba1f109551bD432803012645Hac136c42c1e4BA2';
-walletConnected = true;
-updateWalletUI();
-Swal.close();
-showConnectionSuccess('Coinbase Wallet');
-} catch (error) {
-console.error('Coinbase connection failed:', error);
-}
+  try {
+    // Simulate Coinbase connection
+    await new Promise(resolve => setTimeout(resolve, 1500));
+    userAddress = '0x8ba1f109551bD432803012645Hac136c42c1e4BA2';
+    walletConnected = true;
+    updateWalletUI();
+    Swal.close();
+    showConnectionSuccess('Coinbase Wallet');
+  } catch (error) {
+    console.error('Coinbase connection failed:', error);
+  }
 }
 
 async function connectTrust() {
-try {
-// Simulate Trust Wallet connection
-await new Promise(resolve => setTimeout(resolve, 1500));
-userAddress = '0x9cb2f209651cD532925a4c8E2de75c08c2e5fBB3';
-walletConnected = true;
-updateWalletUI();
-Swal.close();
-showConnectionSuccess('Trust Wallet');
-} catch (error) {
-console.error('Trust Wallet connection failed:', error);
-}
+  try {
+    // Simulate Trust Wallet connection
+    await new Promise(resolve => setTimeout(resolve, 1500));
+    userAddress = '0x9cb2f209651cD532925a4c8E2de75c08c2e5fBB3';
+    walletConnected = true;
+    updateWalletUI();
+    Swal.close();
+    showConnectionSuccess('Trust Wallet');
+  } catch (error) {
+    console.error('Trust Wallet connection failed:', error);
+  }
 }
 
 function updateWalletUI() {
-const connectBtn = document.getElementById('connectBtn');
-if (connectBtn && walletConnected) {
-connectBtn.textContent = `${userAddress.substring(0, 6)}...${userAddress.substring(38)}`;
-connectBtn.classList.add('connected');
-connectBtn.onclick = () => showWalletInfo();
-}
-updateBalances();
+  const connectBtn = document.getElementById('connectBtn');
+  if (connectBtn && walletConnected) {
+    connectBtn.textContent = `${userAddress.substring(0, 6)}...${userAddress.substring(38)}`;
+    connectBtn.classList.add('connected');
+    connectBtn.onclick = () => showWalletInfo();
+  }
+  updateBalances();
 }
 
 function showConnectionSuccess(walletName) {
-Swal.fire({
-title: 'WALLET CONNECTED!',
-html: `
+  Swal.fire({
+    title: 'WALLET CONNECTED!',
+    html: `
 <div style="text-align: center;">
 <p style="color: #00FF00; font-weight: bold;">✅ Successfully connected to ${walletName}</p>
 <p>Address: ${userAddress.substring(0, 6)}...${userAddress.substring(38)}</p>
 <p style="color: #FFD700;">Welcome to ZWAP!</p>
 </div>
 `,
-background: '#111',
-color: '#fff',
-timer: 3000,
-showConfirmButton: false
-});
+    background: '#111',
+    color: '#fff',
+    timer: 3000,
+    showConfirmButton: false
+  });
 }
 
 function showWalletInfo() {
-Swal.fire({
-title: 'WALLET INFO',
-html: `
+  Swal.fire({
+    title: 'WALLET INFO',
+    html: `
 <div style="text-align: left;">
 <p><strong>Address:</strong><br/><span style="font-family: monospace;">${userAddress}</span></p>
 <p><strong>ZWAP Balance:</strong> ${(Math.random() * 100).toFixed(4)} ZWAP</p>
@@ -208,82 +283,82 @@ DISCONNECT WALLET
 </button>
 </div>
 `,
-background: '#111',
-color: '#fff',
-showCloseButton: true,
-showConfirmButton: false
-});
+    background: '#111',
+    color: '#fff',
+    showCloseButton: true,
+    showConfirmButton: false
+  });
 }
 
 function disconnectWallet() {
-walletConnected = false;
-userAddress = '';
-const connectBtn = document.getElementById('connectBtn');
-if (connectBtn) {
-connectBtn.textContent = 'CONNECT WALLET';
-connectBtn.classList.remove('connected');
-connectBtn.onclick = () => showWalletModal();
-}
-updateBalances();
-Swal.close();
-Swal.fire({
-title: 'WALLET DISCONNECTED',
-text: 'Your wallet has been disconnected successfully.',
-background: '#111',
-color: '#fff',
-timer: 2000,
-showConfirmButton: false
-});
+  walletConnected = false;
+  userAddress = '';
+  const connectBtn = document.getElementById('connectBtn');
+  if (connectBtn) {
+    connectBtn.textContent = 'CONNECT WALLET';
+    connectBtn.classList.remove('connected');
+    connectBtn.onclick = () => showWalletModal();
+  }
+  updateBalances();
+  Swal.close();
+  Swal.fire({
+    title: 'WALLET DISCONNECTED',
+    text: 'Your wallet has been disconnected successfully.',
+    background: '#111',
+    color: '#fff',
+    timer: 2000,
+    showConfirmButton: false
+  });
 }
 
 // Balance management
 function updateBalances() {
-const zwapBalance = document.getElementById('zwapBalance');
-const zBalance = document.getElementById('zBalance');
+  const zwapBalance = document.getElementById('zwapBalance');
+  const zBalance = document.getElementById('zBalance');
 
-if (walletConnected) {
-const savedBalance = parseFloat(localStorage.getItem('zwapZwapBalance') || '0');
-const savedZPoints = parseInt(localStorage.getItem('zwapZPoints') || '0');
+  if (walletConnected) {
+    const savedBalance = parseFloat(localStorage.getItem('zwapZwapBalance') || '0');
+    const savedZPoints = parseInt(localStorage.getItem('zwapZPoints') || '0');
 
-if (zwapBalance) zwapBalance.textContent = savedBalance.toFixed(4);
-if (zBalance) zBalance.textContent = savedZPoints.toString();
-} else {
-if (zwapBalance) zwapBalance.textContent = '0.00';
-if (zBalance) zBalance.textContent = '0';
-}
+    if (zwapBalance) zwapBalance.textContent = savedBalance.toFixed(4);
+    if (zBalance) zBalance.textContent = savedZPoints.toString();
+  } else {
+    if (zwapBalance) zwapBalance.textContent = '0.00';
+    if (zBalance) zBalance.textContent = '0';
+  }
 }
 
 // Z Points system
 function showZPointsOverview() {
-const zPointsContent = [
-{
-title: 'INTRODUCING Z POINTS',
-content: '<p style="text-align: center; color: #B8B8B8; font-size: 1.3rem; font-weight: bold; margin-bottom: 1.5rem;">Your Gateway to Premium ZWAP! Benefits</p><p><strong style="color: #B8B8B8;">🎯 What are Z Points?</strong><br/>Z Points are your achievement currency within the ZWAP! ecosystem. Unlike <span class="gold">$ZWAP</span> tokens, Z Points represent your engagement level and unlock exclusive platform privileges.</p>'
-},
-{
-title: 'PREMIUM BENEFITS',
-content: '<p><strong style="color: #B8B8B8;">💎 Premium Membership Benefits:</strong><br/>• Remove faucet cooldowns for instant gameplay<br/>• Increase credit-building multipliers (earn credit faster)<br/>• Early access to marketplace discounts and premium features<br/>• Priority customer support and exclusive content</p>'
-},
-{
-title: 'EARNING Z POINTS',
-content: '<p><strong style="color: #B8B8B8;">🔄 How to Earn Z Points:</strong><br/>• Daily login streaks (Day 1: +2, Day 2: +4, Day 5: +10)<br/>• Completing games and challenges<br/>• Referring active users to the platform<br/>• Maintaining consistent engagement across MOVE and PLAY</p>'
-},
-{
-title: 'LEADERBOARD SYSTEM',
-content: '<p><strong style="color: #B8B8B8;">🏆 Leaderboard Integration:</strong><br/>Track your Z Points ranking against other users, view your achievement progress, and compete for additional rewards through our comprehensive leaderboard system.</p>'
-}
-];
+  const zPointsContent = [
+    {
+      title: 'INTRODUCING Z POINTS',
+      content: '<p style="text-align: center; color: #B8B8B8; font-size: 1.3rem; font-weight: bold; margin-bottom: 1.5rem;">Your Gateway to Premium ZWAP! Benefits</p><p><strong style="color: #B8B8B8;">🎯 What are Z Points?</strong><br/>Z Points are your achievement currency within the ZWAP! ecosystem. Unlike <span class="gold">$ZWAP</span> tokens, Z Points represent your engagement level and unlock exclusive platform privileges.</p>'
+    },
+    {
+      title: 'PREMIUM BENEFITS',
+      content: '<p><strong style="color: #B8B8B8;">💎 Premium Membership Benefits:</strong><br/>• Remove faucet cooldowns for instant gameplay<br/>• Increase credit-building multipliers (earn credit faster)<br/>• Early access to marketplace discounts and premium features<br/>• Priority customer support and exclusive content</p>'
+    },
+    {
+      title: 'EARNING Z POINTS',
+      content: '<p><strong style="color: #B8B8B8;">🔄 How to Earn Z Points:</strong><br/>• Daily login streaks (Day 1: +2, Day 2: +4, Day 5: +10)<br/>• Completing games and challenges<br/>• Referring active users to the platform<br/>• Maintaining consistent engagement across MOVE and PLAY</p>'
+    },
+    {
+      title: 'LEADERBOARD SYSTEM',
+      content: '<p><strong style="color: #B8B8B8;">🏆 Leaderboard Integration:</strong><br/>Track your Z Points ranking against other users, view your achievement progress, and compete for additional rewards through our comprehensive leaderboard system.</p>'
+    }
+  ];
 
-showZPointsPaginatedModal(zPointsContent, 0);
+  showZPointsPaginatedModal(zPointsContent, 0);
 }
 
 function showZPointsPaginatedModal(content, currentIndex) {
-const current = content[currentIndex];
-const isLast = currentIndex === content.length - 1;
+  const current = content[currentIndex];
+  const isLast = currentIndex === content.length - 1;
 
-Swal.fire({
-title: current.title,
-html: `
+  Swal.fire({
+    title: current.title,
+    html: `
 <div style="text-align: left; line-height: 1.8;">
 ${current.content}
 </div>
@@ -291,41 +366,41 @@ ${current.content}
 ${!isLast ? '<button class="large-btn" onclick="nextZPointsPage()">NEXT →</button>' : '<button class="large-btn" onclick="proceedToLeaderboard()">VIEW LEADERBOARD</button>'}
 </div>
 `,
-background: 'transparent',
-color: '#fff',
-showCloseButton: true,
-showConfirmButton: false,
-customClass: { 
-popup: 'swal2-popup',
-title: 'swal2-title',
-htmlContainer: 'swal2-html-container',
-closeButton: 'swal2-close'
-},
-backdrop: true,
-allowOutsideClick: true,
-allowEscapeKey: true,
-showClass: {
-popup: 'swal2-show'
-},
-didOpen: () => {
-window.nextZPointsPage = () => {
-if (currentIndex < content.length - 1) {
-showZPointsPaginatedModal(content, currentIndex + 1);
-}
-};
-window.proceedToLeaderboard = () => {
-localStorage.setItem('zwapShowLeaderboard', 'true');
-window.location.href = 'leaderboard.html';
-};
-}
-});
+    background: 'transparent',
+    color: '#fff',
+    showCloseButton: true,
+    showConfirmButton: false,
+    customClass: {
+      popup: 'swal2-popup',
+      title: 'swal2-title',
+      htmlContainer: 'swal2-html-container',
+      closeButton: 'swal2-close'
+    },
+    backdrop: true,
+    allowOutsideClick: true,
+    allowEscapeKey: true,
+    showClass: {
+      popup: 'swal2-show'
+    },
+    didOpen: () => {
+      window.nextZPointsPage = () => {
+        if (currentIndex < content.length - 1) {
+          showZPointsPaginatedModal(content, currentIndex + 1);
+        }
+      };
+      window.proceedToLeaderboard = () => {
+        localStorage.setItem('zwapShowLeaderboard', 'true');
+        window.location.href = 'leaderboard.html';
+      };
+    }
+  });
 }
 
 // Contact modal
 function showContactModal() {
-Swal.fire({
-title: 'CONTACT SUPPORT',
-html: `
+  Swal.fire({
+    title: 'CONTACT SUPPORT',
+    html: `
 <div style="text-align: left;">
 <p><strong>📧 Email Support:</strong><br/>
 <a href="mailto:support@xoclon.online" style="color: #00BFFF;">support@xoclon.online</a></p>
@@ -344,33 +419,33 @@ Monday - Friday: 9 AM - 6 PM EST<br/>
 Response time: Within 24 hours</p>
 </div>
 `,
-background: '#111',
-color: '#fff',
-showCloseButton: true,
-showConfirmButton: false,
-customClass: {
-popup: 'swal2-popup'
-}
-});
+    background: '#111',
+    color: '#fff',
+    showCloseButton: true,
+    showConfirmButton: false,
+    customClass: {
+      popup: 'swal2-popup'
+    }
+  });
 }
 
 // Game functionality
 function comingSoon() {
-Swal.fire({
-title: 'COMING SOON!',
-text: 'This game is currently in development. Stay tuned for updates!',
-background: '#111',
-color: '#fff',
-timer: 3000,
-showConfirmButton: false
-});
+  Swal.fire({
+    title: 'COMING SOON!',
+    text: 'This game is currently in development. Stay tuned for updates!',
+    background: '#111',
+    color: '#fff',
+    timer: 3000,
+    showConfirmButton: false
+  });
 }
 
 // Friends functionality for play.html
 function inviteFriends() {
-Swal.fire({
-title: 'INVITE FRIENDS',
-html: `
+  Swal.fire({
+    title: 'INVITE FRIENDS',
+    html: `
 <div style="text-align: left;">
 <p>Share your referral link with friends to earn bonus rewards!</p>
 <div style="background: #000; padding: 1rem; border-radius: 8px; margin: 1rem 0;">
@@ -380,17 +455,17 @@ style="width: 100%; background: transparent; border: none; color: #00BFFF; font-
 <button class="large-btn" onclick="copyReferralLink()">COPY LINK</button>
 </div>
 `,
-background: '#111',
-color: '#fff',
-showCloseButton: true,
-showConfirmButton: false
-});
+    background: '#111',
+    color: '#fff',
+    showCloseButton: true,
+    showConfirmButton: false
+  });
 }
 
 function createChallenge() {
-Swal.fire({
-title: 'CREATE CHALLENGE',
-html: `
+  Swal.fire({
+    title: 'CREATE CHALLENGE',
+    html: `
 <div style="text-align: left;">
 <p>Create a custom challenge for your friends!</p>
 <div style="margin: 1rem 0;">
@@ -404,17 +479,17 @@ html: `
 <button class="large-btn" onclick="launchChallenge()">CREATE CHALLENGE</button>
 </div>
 `,
-background: '#111',
-color: '#fff',
-showCloseButton: true,
-showConfirmButton: false
-});
+    background: '#111',
+    color: '#fff',
+    showCloseButton: true,
+    showConfirmButton: false
+  });
 }
 
 function joinChallenge() {
-Swal.fire({
-title: 'JOIN CHALLENGE',
-html: `
+  Swal.fire({
+    title: 'JOIN CHALLENGE',
+    html: `
 <div style="text-align: left;">
 <p>Enter a challenge code to join:</p>
 <input type="text" placeholder="Enter challenge code..." 
@@ -422,145 +497,145 @@ style="width: 100%; padding: 0.8rem; background: #000; color: #fff; border: 1px 
 <button class="large-btn" onclick="joinChallengeWithCode()">JOIN CHALLENGE</button>
 </div>
 `,
-background: '#111',
-color: '#fff',
-showCloseButton: true,
-showConfirmButton: false
-});
+    background: '#111',
+    color: '#fff',
+    showCloseButton: true,
+    showConfirmButton: false
+  });
 }
 
 function copyReferralLink() {
-navigator.clipboard.writeText('https://zwap.app/play?ref=ABC123');
-Swal.fire({
-title: 'COPIED!',
-text: 'Referral link copied to clipboard',
-background: '#111',
-color: '#fff',
-timer: 2000,
-showConfirmButton: false
-});
+  navigator.clipboard.writeText('https://zwap.app/play?ref=ABC123');
+  Swal.fire({
+    title: 'COPIED!',
+    text: 'Referral link copied to clipboard',
+    background: '#111',
+    color: '#fff',
+    timer: 2000,
+    showConfirmButton: false
+  });
 }
 
 function launchChallenge() {
-Swal.fire({
-title: 'CHALLENGE CREATED!',
-text: 'Your challenge has been created. Share the code: ZWAP2025',
-background: '#111',
-color: '#fff',
-timer: 3000,
-showConfirmButton: false
-});
+  Swal.fire({
+    title: 'CHALLENGE CREATED!',
+    text: 'Your challenge has been created. Share the code: ZWAP2025',
+    background: '#111',
+    color: '#fff',
+    timer: 3000,
+    showConfirmButton: false
+  });
 }
 
 function joinChallengeWithCode() {
-Swal.fire({
-title: 'CHALLENGE JOINED!',
-text: 'You have successfully joined the challenge!',
-background: '#111',
-color: '#fff',
-timer: 3000,
-showConfirmButton: false
-});
+  Swal.fire({
+    title: 'CHALLENGE JOINED!',
+    text: 'You have successfully joined the challenge!',
+    background: '#111',
+    color: '#fff',
+    timer: 3000,
+    showConfirmButton: false
+  });
 }
 
 // Referral System
 class ReferralSystem {
-constructor() {
-this.referralData = JSON.parse(localStorage.getItem('zwapReferralData') || '{}');
-this.userStats = JSON.parse(localStorage.getItem('zwapUserStats') || '{}');
-this.initializeReferralTracking();
-}
+  constructor() {
+    this.referralData = JSON.parse(localStorage.getItem('zwapReferralData') || '{}');
+    this.userStats = JSON.parse(localStorage.getItem('zwapUserStats') || '{}');
+    this.initializeReferralTracking();
+  }
 
-initializeReferralTracking() {
-const urlParams = new URLSearchParams(window.location.search);
-const referralCode = urlParams.get('ref');
+  initializeReferralTracking() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const referralCode = urlParams.get('ref');
 
-if (referralCode && !this.referralData.usedReferralCode) {
-this.referralData.referredBy = referralCode;
-this.referralData.usedReferralCode = true;
-this.saveReferralData();
-}
-}
+    if (referralCode && !this.referralData.usedReferralCode) {
+      this.referralData.referredBy = referralCode;
+      this.referralData.usedReferralCode = true;
+      this.saveReferralData();
+    }
+  }
 
-generateReferralCode() {
-const connectBtn = document.getElementById('connectBtn');
-if (!connectBtn || connectBtn.textContent === 'CONNECT WALLET') return null;
+  generateReferralCode() {
+    const connectBtn = document.getElementById('connectBtn');
+    if (!connectBtn || connectBtn.textContent === 'CONNECT WALLET') return null;
 
-const walletAddress = this.extractWalletFromButton(connectBtn.textContent);
-if (!walletAddress) return null;
+    const walletAddress = this.extractWalletFromButton(connectBtn.textContent);
+    if (!walletAddress) return null;
 
-return walletAddress.substring(0, 8).toUpperCase();
-}
+    return walletAddress.substring(0, 8).toUpperCase();
+  }
 
-extractWalletFromButton(buttonText) {
-const match = buttonText.match(/^([a-fA-F0-9]{6})\.\.\.([a-fA-F0-9]{4})$/);
-return match ? `0x${match[1]}${match[2]}` : null;
-}
+  extractWalletFromButton(buttonText) {
+    const match = buttonText.match(/^([a-fA-F0-9]{6})\.\.\.([a-fA-F0-9]{4})$/);
+    return match ? `0x${match[1]}${match[2]}` : null;
+  }
 
-getUserEarnings() {
-return this.userStats.totalEarnings || 0;
-}
+  getUserEarnings() {
+    return this.userStats.totalEarnings || 0;
+  }
 
-getDaysActive() {
-const streakData = JSON.parse(localStorage.getItem('zwapStreakData') || '{}');
-return streakData.totalDaysActive || 0;
-}
+  getDaysActive() {
+    const streakData = JSON.parse(localStorage.getItem('zwapStreakData') || '{}');
+    return streakData.totalDaysActive || 0;
+  }
 
-saveReferralData() {
-localStorage.setItem('zwapReferralData', JSON.stringify(this.referralData));
-}
+  saveReferralData() {
+    localStorage.setItem('zwapReferralData', JSON.stringify(this.referralData));
+  }
 }
 
 // Daily Streak System
 class DailyStreakSystem {
-constructor() {
-this.streakData = JSON.parse(localStorage.getItem('zwapStreakData') || '{}');
-this.checkDailyLogin();
-}
+  constructor() {
+    this.streakData = JSON.parse(localStorage.getItem('zwapStreakData') || '{}');
+    this.checkDailyLogin();
+  }
 
-checkDailyLogin() {
-const today = new Date().toDateString();
-const lastLogin = this.streakData.lastLogin;
+  checkDailyLogin() {
+    const today = new Date().toDateString();
+    const lastLogin = this.streakData.lastLogin;
 
-if (lastLogin !== today) {
-this.handleDailyLogin(today);
-}
-}
+    if (lastLogin !== today) {
+      this.handleDailyLogin(today);
+    }
+  }
 
-handleDailyLogin(today) {
-const yesterday = new Date();
-yesterday.setDate(yesterday.getDate() - 1);
-const yesterdayString = yesterday.toDateString();
+  handleDailyLogin(today) {
+    const yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+    const yesterdayString = yesterday.toDateString();
 
-if (this.streakData.lastLogin === yesterdayString) {
-this.streakData.currentStreak = (this.streakData.currentStreak || 0) + 1;
-} else {
-this.streakData.currentStreak = 1;
-}
+    if (this.streakData.lastLogin === yesterdayString) {
+      this.streakData.currentStreak = (this.streakData.currentStreak || 0) + 1;
+    } else {
+      this.streakData.currentStreak = 1;
+    }
 
-this.streakData.lastLogin = today;
-this.streakData.totalDaysActive = (this.streakData.totalDaysActive || 0) + 1;
+    this.streakData.lastLogin = today;
+    this.streakData.totalDaysActive = (this.streakData.totalDaysActive || 0) + 1;
 
-const zPointsEarned = this.calculateStreakBonus();
-this.awardZPoints(zPointsEarned);
+    const zPointsEarned = this.calculateStreakBonus();
+    this.awardZPoints(zPointsEarned);
 
-localStorage.setItem('zwapStreakData', JSON.stringify(this.streakData));
-}
+    localStorage.setItem('zwapStreakData', JSON.stringify(this.streakData));
+  }
 
-calculateStreakBonus() {
-const streak = this.streakData.currentStreak;
-if (streak >= 7) return 20;
-if (streak >= 5) return 10;
-if (streak >= 3) return 6;
-if (streak >= 2) return 4;
-return 2;
-}
+  calculateStreakBonus() {
+    const streak = this.streakData.currentStreak;
+    if (streak >= 7) return 20;
+    if (streak >= 5) return 10;
+    if (streak >= 3) return 6;
+    if (streak >= 2) return 4;
+    return 2;
+  }
 
-awardZPoints(amount) {
-const currentZPoints = parseInt(localStorage.getItem('zwapZPoints') || '0');
-localStorage.setItem('zwapZPoints', (currentZPoints + amount).toString());
-updateBalances();
-}
+  awardZPoints(amount) {
+    const currentZPoints = parseInt(localStorage.getItem('zwapZPoints') || '0');
+    localStorage.setItem('zwapZPoints', (currentZPoints + amount).toString());
+    updateBalances();
+  }
 }
 
 // Initialize systems
@@ -568,14 +643,14 @@ const referralSystem = new ReferralSystem();
 const dailyStreakSystem = new DailyStreakSystem();
 
 // Global error handler
-window.addEventListener('error', function(e) {
-console.error('JavaScript Error:', e.error);
-// Prevent further errors from cascading
-e.preventDefault();
+window.addEventListener('error', function (e) {
+  console.error('JavaScript Error:', e.error);
+  // Prevent further errors from cascading
+  e.preventDefault();
 });
 
 // Service validation
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   // Ensure zwapSwapService is available
   if (!window.zwapSwapService) {
     console.warn('ZwapSwapService not available, creating fallback');
@@ -590,54 +665,54 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Export for other modules
 window.zwapWallet = {
-connected: () => walletConnected,
-address: () => userAddress,
-connect: showWalletModal,
-disconnect: disconnectWallet
+  connected: () => walletConnected,
+  address: () => userAddress,
+  connect: showWalletModal,
+  disconnect: disconnectWallet
 };
 
 // Learn button functionality
 const learnBtnElement = document.getElementById('learnBtn');
 if (learnBtnElement) {
-learnBtnElement.onclick = () => {
-showLearnModal();
-};
+  learnBtnElement.onclick = () => {
+    showLearnModal();
+  };
 }
 
 function showLearnModal() {
-const learnContent = [
-{
-title: 'WHAT IS ZWAP?',
-content: '<p><strong>ZWAP!</strong> represents the next generation of decentralized reward infrastructure, seamlessly integrating wellness optimization, creative expression, and gamified earning mechanisms.</p>'
-},
-{
-title: 'STRATEGIC VISION',
-content: '<p><strong>🎯 Strategic Vision:</strong><br/>We are pioneering a paradigm shift in incentive-based lifestyle optimization. Our platform leverages advanced blockchain architecture to transform everyday wellness activities into quantifiable value creation opportunities.</p>'
-},
-{
-title: 'REVENUE GENERATION',
-content: '<p><strong>💰 Revenue Generation Streams:</strong><br/>• Kinetic Energy Monetization (Movement-to-Earn Protocol)<br/>• Gamified Cognitive Engagement Rewards<br/>• Creative Content Monetization Framework<br/>• Credit Optimization Incentive Programs<br/>• Exclusive Marketplace Access Rights</p>'
-},
-{
-title: 'BLOCKCHAIN TECHNOLOGY',
-content: '<p><strong>🔗 Distributed Ledger Technology:</strong><br/>Our enterprise-grade blockchain infrastructure ensures complete transparency, immutable transaction records, and decentralized governance. Smart contract automation guarantees fair and immediate reward distribution across all ecosystem participants.</p>'
-},
-{
-title: 'PLATFORM ANALYTICS',
-content: '<p><strong>📊 Platform Analytics:</strong><br/>Real-time performance metrics, advanced earning optimization algorithms, and institutional-grade security protocols position ZWAP! as the premier choice for forward-thinking individuals seeking to maximize their lifestyle ROI.</p><p style="text-align: center; margin-top: 1.5rem;"><a href="#" style="color:#FFD700; font-weight: bold;">📄 Access Technical Documentation</a></p>'
-}
-];
+  const learnContent = [
+    {
+      title: 'WHAT IS ZWAP?',
+      content: '<p><strong>ZWAP!</strong> represents the next generation of decentralized reward infrastructure, seamlessly integrating wellness optimization, creative expression, and gamified earning mechanisms.</p>'
+    },
+    {
+      title: 'STRATEGIC VISION',
+      content: '<p><strong>🎯 Strategic Vision:</strong><br/>We are pioneering a paradigm shift in incentive-based lifestyle optimization. Our platform leverages advanced blockchain architecture to transform everyday wellness activities into quantifiable value creation opportunities.</p>'
+    },
+    {
+      title: 'REVENUE GENERATION',
+      content: '<p><strong>💰 Revenue Generation Streams:</strong><br/>• Kinetic Energy Monetization (Movement-to-Earn Protocol)<br/>• Gamified Cognitive Engagement Rewards<br/>• Creative Content Monetization Framework<br/>• Credit Optimization Incentive Programs<br/>• Exclusive Marketplace Access Rights</p>'
+    },
+    {
+      title: 'BLOCKCHAIN TECHNOLOGY',
+      content: '<p><strong>🔗 Distributed Ledger Technology:</strong><br/>Our enterprise-grade blockchain infrastructure ensures complete transparency, immutable transaction records, and decentralized governance. Smart contract automation guarantees fair and immediate reward distribution across all ecosystem participants.</p>'
+    },
+    {
+      title: 'PLATFORM ANALYTICS',
+      content: '<p><strong>📊 Platform Analytics:</strong><br/>Real-time performance metrics, advanced earning optimization algorithms, and institutional-grade security protocols position ZWAP! as the premier choice for forward-thinking individuals seeking to maximize their lifestyle ROI.</p><p style="text-align: center; margin-top: 1.5rem;"><a href="#" style="color:#FFD700; font-weight: bold;">📄 Access Technical Documentation</a></p>'
+    }
+  ];
 
-showPaginatedModal(learnContent, 0);
+  showPaginatedModal(learnContent, 0);
 }
 
 function showPaginatedModal(content, currentIndex) {
-const current = content[currentIndex];
-const isLast = currentIndex === content.length - 1;
+  const current = content[currentIndex];
+  const isLast = currentIndex === content.length - 1;
 
-Swal.fire({
-title: current.title,
-html: `
+  Swal.fire({
+    title: current.title,
+    html: `
 <div style="text-align: left; line-height: 1.8;">
 ${current.content}
 </div>
@@ -645,62 +720,62 @@ ${current.content}
 ${!isLast ? '<button class="large-btn" onclick="nextPage()">NEXT →</button>' : ''}
 </div>
 `,
-background: 'transparent',
-color: '#fff',
-showCloseButton: true,
-showConfirmButton: false,
-customClass: { 
-popup: 'swal2-popup',
-title: 'swal2-title',
-htmlContainer: 'swal2-html-container',
-closeButton: 'swal2-close'
-},
-backdrop: true,
-allowOutsideClick: true,
-allowEscapeKey: true,
-showClass: {
-popup: 'swal2-show'
-},
-didOpen: () => {
-window.nextPage = () => {
-if (currentIndex < content.length - 1) {
-showPaginatedModal(content, currentIndex + 1);
-}
-};
-}
-});
+    background: 'transparent',
+    color: '#fff',
+    showCloseButton: true,
+    showConfirmButton: false,
+    customClass: {
+      popup: 'swal2-popup',
+      title: 'swal2-title',
+      htmlContainer: 'swal2-html-container',
+      closeButton: 'swal2-close'
+    },
+    backdrop: true,
+    allowOutsideClick: true,
+    allowEscapeKey: true,
+    showClass: {
+      popup: 'swal2-show'
+    },
+    didOpen: () => {
+      window.nextPage = () => {
+        if (currentIndex < content.length - 1) {
+          showPaginatedModal(content, currentIndex + 1);
+        }
+      };
+    }
+  });
 }
 
 const earnBtnElement = document.getElementById('earnBtn');
 if (earnBtnElement) {
-earnBtnElement.onclick = () => {
-showModal('EARN <span class="gold">$ZWAP</span>', `
+  earnBtnElement.onclick = () => {
+    showModal('EARN <span class="gold">$ZWAP</span>', `
 <p>Choose how you want to earn <span class="gold">$ZWAP</span> rewards:</p>
 <div style="display:flex; justify-content:center; gap:1rem; margin-top:1rem;">
 <button class="large-btn" onclick="window.location.href='move.html'">MOVE</button>
 <button class="large-btn" onclick="window.location.href='play.html'">PLAY</button>
 </div>
 `);
-};
+  };
 }
 
 const leaderboardBtnElement = document.getElementById('leaderboardBtn');
 if (leaderboardBtnElement) {
-leaderboardBtnElement.onclick = () => {
-// Check if user has seen Z Points overview before
-const hasSeenZPointsOverview = localStorage.getItem('zwapZPointsOverviewSeen');
-if (!hasSeenZPointsOverview) {
-showZPointsOverview();
-} else {
-window.location.href = 'leaderboard.html';
-}
-};
+  leaderboardBtnElement.onclick = () => {
+    // Check if user has seen Z Points overview before
+    const hasSeenZPointsOverview = localStorage.getItem('zwapZPointsOverviewSeen');
+    if (!hasSeenZPointsOverview) {
+      showZPointsOverview();
+    } else {
+      window.location.href = 'leaderboard.html';
+    }
+  };
 }
 
 const contactBtnElement = document.getElementById('contactBtn');
 if (contactBtnElement) {
-contactBtnElement.onclick = () => {
-showModal('ENTERPRISE RELATIONS', `
+  contactBtnElement.onclick = () => {
+    showModal('ENTERPRISE RELATIONS', `
 <div style="text-align: left;">
 <p style="margin-bottom: 1.5rem; text-align: center; color: #CCCCCC;">
 Connect with our executive team for strategic partnerships, institutional inquiries, and enterprise-level integration opportunities.
@@ -725,7 +800,7 @@ Connect with our executive team for strategic partnerships, institutional inquir
 </div>
 </div>
 `);
-};
+  };
 }
 
 // Track which buttons have shown info
@@ -733,9 +808,9 @@ const buttonStates = {};
 
 // Action button descriptions
 const actionInfo = {
-moveBtn: {
-title: 'MOVE TO EARN',
-content: `
+  moveBtn: {
+    title: 'MOVE TO EARN',
+    content: `
 <div style="text-align: left; line-height: 1.6;">
 <p><strong>Transform your daily movement into <span class="gold">$ZWAP</span> rewards!</strong></p>
 
@@ -753,10 +828,10 @@ Start moving today and watch your <span class="gold">$ZWAP</span> balance grow!
 </p>
 </div>
 `
-},
-playBtn: {
-title: 'PLAY TO EARN',
-content: `
+  },
+  playBtn: {
+    title: 'PLAY TO EARN',
+    content: `
 <div style="text-align: left; line-height: 1.6;">
 <p><strong>Dive into our gaming ecosystem and earn <span class="gold">$ZWAP</span> while having fun!</strong></p>
 
@@ -779,10 +854,10 @@ Connect your wallet and start earning up to 0.015 <span class="gold">$ZWAP</span
 </p>
 </div>
 `
-},
-swapBtn: {
-title: 'DECENTRALIZED SWAP',
-content: `
+  },
+  swapBtn: {
+    title: 'DECENTRALIZED SWAP',
+    content: `
 <div style="text-align: left; line-height: 1.6;">
 <p><strong>Exchange your <span class="gold">$ZWAP</span> tokens with our secure, decentralized swap platform!</strong></p>
 
@@ -808,10 +883,10 @@ SWAP →
 </div>
 </div>
 `
-},
-shopBtn: {
-title: 'EXCLUSIVE MARKETPLACE',
-content: `
+  },
+  shopBtn: {
+    title: 'EXCLUSIVE MARKETPLACE',
+    content: `
 <div style="text-align: left; line-height: 1.6;">
 <p><strong>Spend your <span class="gold">$ZWAP</span> tokens in our exclusive marketplace!</strong></p>
 
@@ -838,90 +913,90 @@ Start earning <span class="gold">$ZWAP</span> now to be ready for marketplace la
 </p>
 </div>
 `
-}
+  }
 };
 
 // Handle action button clicks
 document.querySelectorAll('.action-btn').forEach(btn => {
-// Skip EARN button as it has its own dedicated handler
-if (btn.id === 'earnBtn') return;
+  // Skip EARN button as it has its own dedicated handler
+  if (btn.id === 'earnBtn') return;
 
-btn.onclick = (e) => {
-e.preventDefault();
-const btnId = btn.id;
-const page = btn.dataset.page;
+  btn.onclick = (e) => {
+    e.preventDefault();
+    const btnId = btn.id;
+    const page = btn.dataset.page;
 
-if (!buttonStates[btnId]) {
-// First tap - show info
-buttonStates[btnId] = true;
-btn.classList.add('info-shown');
+    if (!buttonStates[btnId]) {
+      // First tap - show info
+      buttonStates[btnId] = true;
+      btn.classList.add('info-shown');
 
-const info = actionInfo[btnId];
-showModal(info.title, info.content);
+      const info = actionInfo[btnId];
+      showModal(info.title, info.content);
 
-// Reset state after 5 seconds
-setTimeout(() => {
-buttonStates[btnId] = false;
-btn.classList.remove('info-shown');
-}, 5000);
+      // Reset state after 5 seconds
+      setTimeout(() => {
+        buttonStates[btnId] = false;
+        btn.classList.remove('info-shown');
+      }, 5000);
 
-} else {
-// Second tap - navigate to page
-if (btnId === 'shopBtn') {
-shopComingSoon();
-} else if (page && page !== '#') {
-window.location.href = page;
-}
-}
-};
+    } else {
+      // Second tap - navigate to page
+      if (btnId === 'shopBtn') {
+        shopComingSoon();
+      } else if (page && page !== '#') {
+        window.location.href = page;
+      }
+    }
+  };
 });
 
-window.shopComingSoon = function() {
-Swal.fire({
-title: 'COMING SOON',
-text: 'Shop marketplace coming soon for $ZWAP holders!',
-background: '#111',
-color: '#fff',
-showCloseButton: true,
-showConfirmButton: false,
-});
+window.shopComingSoon = function () {
+  Swal.fire({
+    title: 'COMING SOON',
+    text: 'Shop marketplace coming soon for $ZWAP holders!',
+    background: '#111',
+    color: '#fff',
+    showCloseButton: true,
+    showConfirmButton: false,
+  });
 }
 
 const miniPopups = {
-swapCol: 'Swap your <span class="gold">$ZWAP</span> for other assets easily.',
-moveCol: 'Move includes Walk-for-<span class="gold">$ZWAP</span> and Dance-for-<span class="gold">$ZWAP</span> opportunities.',
-playCol: 'Play faucet games to earn daily <span class="gold">$ZWAP</span> rewards.',
-shopCol: 'Shop marketplace coming soon for <span class="gold">$ZWAP</span> holders.'
+  swapCol: 'Swap your <span class="gold">$ZWAP</span> for other assets easily.',
+  moveCol: 'Move includes Walk-for-<span class="gold">$ZWAP</span> and Dance-for-<span class="gold">$ZWAP</span> opportunities.',
+  playCol: 'Play faucet games to earn daily <span class="gold">$ZWAP</span> rewards.',
+  shopCol: 'Shop marketplace coming soon for <span class="gold">$ZWAP</span> holders.'
 };
 
 Object.keys(miniPopups).forEach(id => {
-const el = document.getElementById(id);
-if (el) {
-el.onclick = () => {
-showModal(id.replace('Col','').toUpperCase(), `<p>${miniPopups[id]}</p>`);
-};
-}
+  const el = document.getElementById(id);
+  if (el) {
+    el.onclick = () => {
+      showModal(id.replace('Col', '').toUpperCase(), `<p>${miniPopups[id]}</p>`);
+    };
+  }
 });
 
 function showModal(title, htmlContent) {
-Swal.fire({
-title: title,
-html: htmlContent,
-background: 'transparent',
-color: '#fff',
-showCloseButton: true,
-showConfirmButton: false,
-customClass: { 
-popup: 'swal2-popup',
-title: 'swal2-title',
-htmlContainer: 'swal2-html-container',
-closeButton: 'swal2-close'
-},
-backdrop: true,
-allowOutsideClick: true,
-allowEscapeKey: true,
-showClass: {
-popup: 'swal2-show'
-}
-});
+  Swal.fire({
+    title: title,
+    html: htmlContent,
+    background: 'transparent',
+    color: '#fff',
+    showCloseButton: true,
+    showConfirmButton: false,
+    customClass: {
+      popup: 'swal2-popup',
+      title: 'swal2-title',
+      htmlContainer: 'swal2-html-container',
+      closeButton: 'swal2-close'
+    },
+    backdrop: true,
+    allowOutsideClick: true,
+    allowEscapeKey: true,
+    showClass: {
+      popup: 'swal2-show'
+    }
+  });
 }

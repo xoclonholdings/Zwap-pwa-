@@ -60,7 +60,7 @@ class ZwapSwapService {
     this.marketData = {};
     this.slippageTolerance = 0.5; // 0.5%
     this.gasPrices = {};
-    
+
     this.initializePrices();
   }
 
@@ -91,7 +91,7 @@ class ZwapSwapService {
         data.price = data.price * (1 + fluctuation);
         data.change24h += (Math.random() - 0.5) * 0.5;
       });
-      
+
       console.log('Prices updated successfully');
       return true;
     } catch (error) {
@@ -131,21 +131,21 @@ class ZwapSwapService {
   calculateSwapAmount(fromToken, toToken, fromAmount) {
     const fromPrice = this.getTokenPrice(fromToken);
     const toPrice = this.getTokenPrice(toToken);
-    
+
     if (!fromPrice || !toPrice || fromAmount <= 0) {
       throw new Error('Invalid swap parameters');
     }
 
     // Calculate base swap amount
     const baseToAmount = (fromAmount * fromPrice) / toPrice;
-    
+
     // Apply slippage
     const slippageMultiplier = (100 - this.slippageTolerance) / 100;
     const toAmount = baseToAmount * slippageMultiplier;
-    
+
     // Calculate price impact (simplified)
     const priceImpact = Math.min(fromAmount * fromPrice / 100000, 2.0); // Max 2% impact
-    
+
     return {
       toAmount: toAmount,
       priceImpact: priceImpact.toFixed(2),
@@ -159,12 +159,12 @@ class ZwapSwapService {
     const baseGas = 150000; // Base gas for swap
     const complexityMultiplier = fromToken === 'ETH' || toToken === 'ETH' ? 1.0 : 1.2;
     const estimatedGas = Math.floor(baseGas * complexityMultiplier);
-    
+
     const gasPrice = this.gasPrices.standard.gwei;
     const gasCostEth = (estimatedGas * gasPrice) / 1e9;
     const ethPrice = this.getTokenPrice('ETH');
     const gasCostUsd = (gasCostEth * ethPrice).toFixed(2);
-    
+
     return {
       gasLimit: estimatedGas,
       gasPrice: gasPrice,
@@ -192,31 +192,31 @@ class ZwapSwapService {
 
       // Simulate swap execution delay
       await new Promise(resolve => setTimeout(resolve, 2000 + Math.random() * 3000));
-      
+
       // Calculate swap details
       const swapDetails = this.calculateSwapAmount(fromToken, toToken, fromAmount);
-      
+
       // Generate mock transaction hash
-      const txHash = '0x' + Array.from({length: 64}, () => 
+      const txHash = '0x' + Array.from({ length: 64 }, () =>
         Math.floor(Math.random() * 16).toString(16)).join('');
-      
+
       // Update balances in localStorage (mock)
       const currentFromBalance = await this.getTokenBalance(fromToken);
       const currentToBalance = await this.getTokenBalance(toToken);
-      
+
       // Simulate balance updates
-      localStorage.setItem(`zwap_balance_${fromToken}`, 
+      localStorage.setItem(`zwap_balance_${fromToken}`,
         (currentFromBalance - fromAmount).toString());
-      localStorage.setItem(`zwap_balance_${toToken}`, 
+      localStorage.setItem(`zwap_balance_${toToken}`,
         (currentToBalance + swapDetails.toAmount).toString());
-      
+
       return {
         success: true,
         txHash: txHash,
         swapDetails: swapDetails,
         timestamp: new Date().toISOString()
       };
-      
+
     } catch (error) {
       throw new Error(`Swap failed: ${error.message}`);
     }
@@ -264,12 +264,12 @@ class ZwapSwapService {
       id: Date.now(),
       timestamp: new Date().toISOString()
     });
-    
+
     // Keep only last 100 swaps
     if (history.length > 100) {
       history.splice(0, history.length - 100);
     }
-    
+
     localStorage.setItem('zwap_swap_history', JSON.stringify(history));
   }
 }
