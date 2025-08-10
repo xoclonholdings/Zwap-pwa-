@@ -1,0 +1,696 @@
+/* --- Futuristic Tech, Chic, Polished UI Overhaul --- */
+
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Montserrat:wght@400;700&family=Rajdhani:wght@700&family=Exo:wght@700;900&family=Share+Tech+Mono&display=swap');
+
+body {
+    font-family: 'Orbitron', 'Exo', 'Montserrat', 'Rajdhani', 'Share Tech Mono', Arial, sans-serif;
+    background: radial-gradient(ellipse at 60% 0%, #181a2a 0%, #10111a 70%, #05050a 100%);
+    color: #bfc9d1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    min-width: 100vw;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    box-sizing: border-box;
+    padding: 0;
+    /* Subtle blue/purple glow around card */
+    background-color: #0a0a1a;
+    /* removed stray closing brace */
+    /* removed stray closing brace */
+
+    .zwap-app-shell {
+        min-height: 92vh;
+        max-height: 92vh;
+        height: 92vh;
+        width: 92vw;
+        max-width: 400px;
+        min-width: 300px;
+        margin: 4vh auto 2vh auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        overflow: visible;
+        box-sizing: border-box;
+        padding: 0.7rem 0.7rem 3.5rem 0.7rem;
+        /* Extra bottom padding for ticker */
+        background: linear-gradient(135deg, #10111a 80%, #181a2a 100%);
+        border-radius: 32px;
+        border: 2.5px solid;
+        border-image: linear-gradient(120deg, #00BFFF 10%, #FF00FF 90%) 1;
+        box-shadow: 0 0 40px #00BFFF44, 0 0 80px #FF00FF22, 0 0 0 6px #2323ff44, 0 2px 24px #181a2a inset;
+        position: relative;
+    }
+
+    /* ...existing code... */
+    /* removed stray closing brace */
+
+    .steps-status-bar,
+    .steps-status-bar-bg {
+        background: #23234a !important;
+        border-radius: 8px !important;
+        border: 1.5px solid #23234a !important;
+        box-shadow: none !important;
+        /* removed stray closing brace */
+
+        .steps-status-bar-fill {
+            background: linear-gradient(90deg, #3fdfff 0%, #23234a 100%) !important;
+            border-radius: 8px !important;
+            box-shadow: none !important;
+            /* removed stray closing brace */
+
+            /* .balance-main, .steps-main styles should be inside a selector, not orphaned */
+            /* removed stray closing brace */
+
+            /* .balance-digit styles should be inside a selector, not orphaned */
+            /* removed stray closing brace */
+
+            /* .balance-decimal styles should be inside a selector, not orphaned */
+            /* removed stray closing brace */
+
+            /* Remove excessive glow from icons */
+            .action-icon,
+            .action-icon svg {
+                filter: none !important;
+                background: #0a0a0a;
+                box-shadow: none !important;
+                /* removed stray closing brace */
+
+                /* Subtle hover for buttons */
+
+                /* Subtle hover for buttons */
+                /* .scratch-btn styles should be inside a selector, not orphaned */
+            }
+
+            /* ...existing code... */
+
+            /* .scratch-btn:hover styles should be inside a selector, not orphaned */
+        }
+
+        /* Carousel Styles */
+        .zwap-carousel {
+            width: 100%;
+            margin: 1.2rem 0 0.5rem 0;
+            display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            justify-content: center;
+            position: relative;
+            min-height: 120px;
+            background: linear-gradient(135deg, #181a2a 60%, #2323ff 100%);
+            border-radius: 22px;
+            border: 2.5px solid #bfc9d1;
+            box-shadow: 0 0 24px #00BFFF, 0 0 36px #FF00FF44;
+            overflow: hidden;
+        }
+
+        /* .carousel-slide styles should be inside a selector, not orphaned */
+    }
+
+    /* Carousel description */
+    /* .carousel-desc styles should be inside a selector, not orphaned */
+}
+
+margin: 2vh auto 2vh auto;
+padding: 7.2rem 1.2rem 1.2rem 1.2rem;
+
+/* Carousel scratch left and win */
+.scratch-left {
+    font-size: 1.2rem;
+    color: #fff;
+    margin-bottom: 0.3rem;
+    text-shadow: 0 0 8px #00BFFF, 0 0 12px #FF00FF;
+}
+
+.scratch-win {
+    color: #00fff0;
+    font-size: 1.5rem;
+    font-weight: 900;
+    text-shadow: 0 0 16px #00fff0, 0 0 24px #FF00FF;
+    font-family: 'Exo', 'Rajdhani', 'Orbitron', 'Montserrat', 'Share Tech Mono', Arial, sans-serif;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Montserrat:wght@400;700&display=swap');
+/* removed orphaned font-family declaration */
+
+body {
+    font-family: 'Montserrat', 'Orbitron', Arial, sans-serif;
+    background: linear-gradient(135deg, #23234a 60%, #0a0a0a 100%);
+    /* Subtle metallic texture overlay */
+    background-image: linear-gradient(135deg, #23234a 60%, #0a0a0a 100%),
+        repeating-linear-gradient(120deg, rgba(255, 255, 255, 0.04) 0px, rgba(255, 255, 255, 0.04) 2px, transparent 2px, transparent 8px);
+    color: #fff;
+    margin: 0;
+    min-height: 100vh;
+    letter-spacing: 0.01em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.zwap-app-shell {
+    font-family: 'Exo', 'Rajdhani', 'Orbitron', 'Montserrat', 'Share Tech Mono', monospace;
+    margin: 1.2rem auto 0 auto;
+    background: rgba(10, 10, 30, 0.98);
+    border-radius: 28px;
+    border: 2.5px solid;
+    border-image: linear-gradient(120deg, #00BFFF 10%, #FF00FF 90%) 1;
+    box-shadow: 0 0 40px #00BFFF66, 0 0 80px #FF00FF33, 0 0 0 6px #bfc9d1cc, 0 2px 24px #bfc9d1cc inset;
+    padding: 0.7rem 0.2rem 1.1rem 0.2rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+}
+
+.zwap-header-new {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.7rem;
+    padding: 0.1rem 0.2rem 0 0.2rem;
+    gap: 0.5rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 200;
+    max-width: 100vw;
+    height: 72px;
+}
+
+.zwap-avatar-upload {
+    padding: 0.5vw 0.5vw 0.5vw 0.5vw;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-left: 0.5rem;
+    margin-top: 0.2rem;
+}
+
+.zwap-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 2px solid #3fdfff;
+    box-shadow: 0 0 10px #00BFFF, 0 0 16px #FF00FF44;
+    background: linear-gradient(135deg, #181a2a 60%, #2323ff 100%);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    vertical-align: middle;
+    transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+.zwap-avatar-large {
+    width: 76px !important;
+    height: 76px !important;
+    border-width: 3.5px !important;
+    box-shadow: 0 0 32px #00BFFF, 0 0 48px #FF00FF99;
+}
+
+.zwap-avatar:hover {
+    box-shadow: 0 0 32px #00BFFF, 0 0 48px #FF00FF;
+    border-color: #00fff0;
+}
+
+.zwap-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+}
+
+.zwap-logo-mini {
+    width: 48px;
+    height: 48px;
+    border-radius: 18px;
+    border: 2px solid #3fdfff;
+    box-shadow: 0 0 10px #00BFFF, 0 0 16px #FF00FF44;
+    background: linear-gradient(135deg, #181a2a 60%, #2323ff 100%);
+    object-fit: contain;
+    display: inline-block;
+    vertical-align: middle;
+    filter: drop-shadow(0 0 8px #00BFFF) drop-shadow(0 0 12px #FF00FF);
+    background: linear-gradient(135deg, #bfc9d1 10%, #2323ff 80%);
+    border: 2.5px solid #bfc9d1;
+    box-shadow: 0 0 18px #bfc9d1, 0 0 24px #00BFFF44;
+}
+
+
+/* Enhanced balance bubble with 4 digital slots and adaptive decimal */
+.zwap-balance-bubble {
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, #23234a 10%, #2323ff 80%);
+    border: 3.5px solid #2323ff;
+    border-radius: 22px;
+    box-shadow: 0 0 24px #00BFFF44, 0 0 32px #2323ff44;
+    padding: 0.18rem 0.7rem 0.18rem 0.38rem;
+    min-width: 0;
+    margin-left: 0.1rem;
+    gap: 0.32rem;
+    min-width: 180px;
+    max-width: 260px;
+    justify-content: flex-start;
+}
+
+.balance-main {
+    display: flex;
+    align-items: center;
+    font-size: 2.3rem;
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: 2px;
+    text-shadow: 0 0 24px #00BFFF, 0 0 40px #FF00FF;
+    line-height: 1.1;
+}
+
+.balance-digit {
+    display: inline-block;
+    min-width: 1.5ch;
+    padding: 0 0.1ch;
+    background: rgba(0, 191, 255, 0.12);
+    border-radius: 6px;
+    margin: 0 0.04ch;
+    font-family: 'Orbitron', monospace;
+    font-size: 2.3rem;
+    font-weight: 900;
+    color: #fff;
+    box-shadow: 0 0 8px #00BFFF44;
+}
+
+.balance-decimal {
+    font-size: 1.5rem;
+    color: #3fdfff;
+    margin: 0 0.1ch;
+    vertical-align: middle;
+}
+
+.bubble-balance-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.balance-main {
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: 2px;
+    text-shadow: 0 0 24px #00BFFF, 0 0 40px #FF00FF;
+    line-height: 1.1;
+}
+
+.balance-label {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #3fdfff;
+    letter-spacing: 1.2px;
+    margin-top: 0.1rem;
+}
+
+.zwap-steps-status-bubble {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(135deg, #10111a 60%, #2323ff 100%);
+    border: 2.5px solid #2323ff;
+    border-radius: 28px;
+    box-shadow: 0 0 24px #00BFFF44, 0 0 32px #2323ff44;
+    padding: 0.3rem 1.1rem 0.3rem 0.7rem;
+    margin-bottom: 0.5rem;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+    min-width: 0;
+    max-width: 100%;
+    overflow-x: auto;
+    box-sizing: border-box;
+    position: fixed;
+    top: 64px;
+    left: 0;
+    right: 0;
+    z-index: 199;
+    height: 64px;
+}
+
+.steps-status-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    min-width: 0;
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+html,
+body {
+    height: 100%;
+    min-height: 100vh;
+    max-height: 100vh;
+    overflow: hidden;
+    background: #0a0a0a;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    min-height: 100vh;
+    padding: 7.2rem 1.2rem 1.2rem 1.2rem;
+    overflow: hidden;
+    box-sizing: border-box;
+    padding: 2.5vw 2vw 2.5vw 2vw;
+    border: 8px solid #bfc9d1;
+    border-radius: 32px;
+    box-shadow: 0 0 0 8px #2323ff44, 0 0 0 16px #00BFFF22, 0 0 80px 0 #00BFFF44, 0 0 120px 0 #FF00FF22, 0 0 0 24px #181a2a inset;
+    background: linear-gradient(135deg, #181a2a 80%, #0a0a0a 100%), repeating-linear-gradient(120deg, rgba(255, 255, 255, 0.04) 0px, rgba(255, 255, 255, 0.04) 2px, transparent 2px, transparent 8px);
+}
+
+/* removed orphaned box-shadow declaration */
+}
+
+.steps-status-bar-bg {
+    width: 100%;
+    height: 14px;
+    background: linear-gradient(90deg, #bfc9d1 0%, #23234a 100%);
+    border-radius: 8px;
+    box-shadow: 0 0 12px #bfc9d1cc, 0 0 16px #00BFFF44;
+    border: 2px solid #bfc9d1;
+    overflow: hidden;
+}
+
+.steps-status-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #00BFFF 40%, #bfc9d1 100%);
+    border-radius: 8px;
+    box-shadow: 0 0 18px #00BFFF, 0 0 24px #bfc9d1;
+    transition: width 0.4s;
+}
+
+.zwap-earn-text {
+    color: #fff;
+    font-size: 1.15rem;
+    font-weight: 700;
+    text-align: center;
+    margin: 0.3rem 0 0.7rem 0;
+    text-shadow: 0 0 12px #00BFFF, 0 0 18px #FF00FF;
+    letter-spacing: 0.5px;
+}
+
+.zwap-actions-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.4rem 0.4rem;
+    width: 100%;
+    padding: 0.15rem 0.15rem 0.15rem 0.15rem;
+    margin-top: 80px;
+    margin-bottom: 0.4rem;
+    box-sizing: border-box;
+}
+
+.action-tile {
+    background: linear-gradient(145deg, #bfc9d1 10%, #23234a 60%, #181a2a 100%);
+    border: 2.5px solid #2323ff;
+    border-radius: 14px;
+    box-shadow: 0 8px 32px 0 #00BFFF44, 0 2px 12px 0 #FF00FF22, 0 1.5px 0 #2323ff44 inset, 0 12px 32px 0 #181a2a inset, 0 0 0 4px #2323ff44 inset;
+    padding: 0.55rem 0.25rem 0.55rem 0.25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #fff;
+    transition: transform 0.18s, box-shadow 0.18s;
+    min-width: 0;
+    font-family: 'Montserrat', 'Orbitron', Arial, sans-serif;
+    position: relative;
+    overflow: hidden;
+    outline: 2.5px solid #3fdfff;
+    outline-offset: -2.5px;
+    background-clip: padding-box;
+    animation: none !important;
+    margin: 0;
+}
+
+.action-tile:hover {
+    box-shadow: 0 0 48px #00BFFF, 0 0 36px #FF00FF, 0 2px 0 #222 inset, 0 16px 40px 0 #181a2a inset, 0 0 0 6px #2323ff66 inset;
+    outline-color: #fff;
+}
+
+.action-icon {
+    width: 38px;
+    height: 38px;
+    margin-bottom: 0.5rem;
+    filter: drop-shadow(0 0 8px #00BFFF) drop-shadow(0 0 12px #FF00FF);
+}
+
+.action-title {
+    font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
+    font-size: 1.15rem;
+    font-weight: 900;
+    letter-spacing: 1.2px;
+    margin-bottom: 0.2rem;
+    color: #fff;
+    text-shadow: 0 0 8px #00BFFF, 0 0 12px #FF00FF;
+}
+
+.action-desc {
+    font-size: 1.02rem;
+    font-weight: 500;
+    color: #3fdfff;
+    margin-top: 0.1rem;
+}
+
+/* Neon borders for action buttons */
+.action-tile.move {
+    border: 2.5px solid #00BFFF;
+    box-shadow: 0 0 24px #00BFFF, 0 0 36px #3fdfff, 0 0 0 2px #2323ff inset;
+}
+
+.action-tile.play {
+    border: 2.5px solid #00fff0;
+    box-shadow: 0 0 24px #00fff0, 0 0 36px #3fdfff, 0 0 0 2px #2323ff inset;
+}
+
+.action-tile.shop {
+    border: 2.5px solid #ff00ff;
+    box-shadow: 0 0 24px #ff00ff, 0 0 36px #ff99ff, 0 0 0 2px #2323ff inset;
+}
+
+.action-tile.swap {
+    border: 2.5px solid #00BFFF;
+    box-shadow: 0 0 24px #00BFFF, 0 0 36px #3fdfff, 0 0 0 2px #2323ff inset;
+}
+
+/* SVG icon styles for action tiles */
+.action-icon svg {
+    width: 38px;
+    height: 38px;
+    display: block;
+    margin: 0 auto;
+    filter: drop-shadow(0 0 8px #00BFFF) drop-shadow(0 0 12px #FF00FF);
+}
+
+/* MOVE icon: neon blue running shoe */
+.action-tile.move .action-icon svg {
+    filter: drop-shadow(0 0 10px #00BFFF) drop-shadow(0 0 18px #3fdfff);
+    stroke: #00BFFF;
+    fill: none;
+    stroke-width: 2.5;
+}
+
+/* PLAY icon: neon cyan cube */
+.action-tile.play .action-icon svg {
+    filter: drop-shadow(0 0 10px #00fff0) drop-shadow(0 0 18px #3fdfff);
+    stroke: #00fff0;
+    fill: none;
+    stroke-width: 2.5;
+}
+
+/* SHOP icon: neon magenta shopping bag */
+.action-tile.shop .action-icon svg {
+    filter: drop-shadow(0 0 10px #ff00ff) drop-shadow(0 0 18px #ff99ff);
+    stroke: #ff00ff;
+    fill: none;
+    stroke-width: 2.5;
+}
+
+/* SWAP icon: neon blue circular arrows */
+.action-tile.swap .action-icon svg {
+    filter: drop-shadow(0 0 10px #00BFFF) drop-shadow(0 0 18px #3fdfff);
+    stroke: #00BFFF;
+    fill: none;
+    stroke-width: 2.5;
+}
+
+@media (max-width: 600px) {
+    .zwap-app-shell {
+        max-width: 100vw;
+        border-radius: 0;
+        padding: 0.3rem 0.05rem 0.7rem 0.05rem;
+    }
+
+    .zwap-header-new {
+        gap: 0.2rem;
+        margin-bottom: 0.3rem;
+    }
+
+    /* More prominent and legible logo inset */
+    .zwap-logo-mini {
+        width: 62px;
+        height: 62px;
+        border-radius: 22px;
+        border: 3.5px solid #3fdfff;
+        box-shadow: 0 0 24px #00BFFF, 0 0 32px #FF00FF99, 0 0 0 8px #2323ff33;
+        background: linear-gradient(135deg, #2323ff 60%, #181a2a 100%);
+        object-fit: contain;
+        display: inline-block;
+        vertical-align: middle;
+        filter: drop-shadow(0 0 16px #00BFFF) drop-shadow(0 0 24px #FF00FF);
+        transition: box-shadow 0.2s, border-color 0.2s;
+    }
+
+    .zwap-logo-mini:hover {
+        box-shadow: 0 0 40px #00BFFF, 0 0 48px #FF00FF, 0 0 0 12px #2323ff55;
+        border-color: #fff;
+    }
+
+    .bubble-balance-info .balance-main {
+        font-size: 1.1rem;
+    }
+
+    .steps-main {
+        font-size: 1.1rem;
+    }
+
+    .steps-status-bar {
+        max-width: 60px;
+    }
+}
+
+/* --- One-Screen, No-Scroll, Fully Responsive Layout --- */
+html,
+body {
+    height: 100%;
+    min-height: 100vh;
+    max-height: 100vh;
+    overflow: hidden;
+}
+
+/* ...existing code... */
+
+/* ...existing code... */
+
+/* Responsive adjustments for all main sections */
+.zwap-header-new,
+.zwap-steps-status-bubble,
+.zwap-actions-grid,
+.zwap-carousel {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    padding-left: 0.7rem;
+    padding-right: 0.7rem;
+}
+
+.zwap-header-new {
+    background: linear-gradient(135deg, #10111a 60%, #2323ff 100%);
+    border-radius: 22px;
+    border: 2.5px solid #2323ff;
+    box-shadow: 0 0 24px #00BFFF44, 0 0 36px #2323ff44;
+
+    .zwap-steps-status-bubble {
+        flex-shrink: 0;
+        margin-bottom: 0.3rem;
+    }
+
+    .zwap-actions-grid {
+        flex-shrink: 0;
+        margin-bottom: 0.3rem;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.5rem;
+    }
+
+
+    .zwap-carousel-ticker {
+        position: fixed;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 0;
+        width: 92vw;
+        max-width: 400px;
+        min-width: 300px;
+        min-height: 48px;
+        height: 48px;
+        background: linear-gradient(90deg, #1a102a 60%, #6c1aff 100%);
+        border-top: 2.5px solid #a020f0;
+        border-bottom-left-radius: 32px;
+        border-bottom-right-radius: 32px;
+        box-shadow: 0 -4px 32px #a020f044, 0 -2px 12px #ff00ff22;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        padding: 0.5rem 1.2rem;
+        font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
+        color: #fff;
+        transition: background 0.3s;
+        box-sizing: border-box;
+        outline: 2.5px solid #00BFFF;
+        outline-offset: -2.5px;
+    }
+
+    @media (max-width: 600px) {
+        .zwap-carousel-ticker {
+            min-height: 48px;
+            font-size: 0.98rem;
+            padding: 0.3rem 0.5rem;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .zwap-app-shell {
+            min-height: 98vh;
+            max-height: 98vh;
+            height: 98vh;
+            width: 98vw;
+            max-width: 98vw;
+            min-width: 98vw;
+            margin: 1vh auto 1vh auto;
+            padding: 0.2rem 0.2rem 3.5rem 0.2rem;
+            /* Extra bottom padding for ticker */
+        }
+
+        .zwap-carousel-ticker {
+            width: 98vw;
+            max-width: 98vw;
+            min-width: 98vw;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 0;
+            min-height: 48px;
+            height: 48px;
+            border-bottom-left-radius: 28px;
+            border-bottom-right-radius: 28px;
+            outline: 2.5px solid #00BFFF;
+            outline-offset: -2.5px;
+        }
+    }

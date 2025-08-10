@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZWAP! Main Interface (UpgradeUI)</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+    <div class="zwap-app-shell">
+        <div class="zwap-header-new">
+            <label class="zwap-avatar-upload">
+                <input type="file" accept="image/*" style="display:none" id="profile-upload" />
+                <span class="zwap-avatar zwap-avatar-large" id="profile-avatar">
+                    <svg id="profile-img" viewBox="0 0 48 48" width="100%" height="100%" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="24" cy="24" r="22" stroke="#3fdfff" stroke-width="2.5" fill="#181a2a" />
+                        <!-- Blank profile icon -->
+                        <circle cx="24" cy="20" r="7" fill="#2323ff" fill-opacity=".3" />
+                        <rect x="14" y="30" width="20" height="8" rx="4" fill="#2323ff" fill-opacity=".15" />
+                    </svg>
+                </span>
+            </label>
+            <div class="zwap-balance-bubble">
+                <img class="zwap-logo-mini" src="../Zwap_logo_full.png" alt="ZWAP Logo" />
+                <div class="bubble-balance-info">
+                    <span class="balance-main">
+                        <span class="balance-digit">0</span>
+                        <span class="balance-digit">0</span>
+                        <span class="balance-digit">0</span>
+                        <span class="balance-digit">0</span>
+                        <span class="balance-decimal">.</span>
+                        <span class="balance-digit">0</span>
+                        <span class="balance-digit">0</span>
+                    </span>
+                    <span class="balance-label"></span>
+                </div>
+            </div>
+        </div>
+        <div class="zwap-steps-status-bubble">
+            <div class="steps-status-info">
+                <span class="steps-main">000</span>
+                <span class="steps-label">Steps</span>
+            </div>
+            <div class="steps-status-bar">
+                <div class="steps-status-bar-bg">
+                    <div class="steps-status-bar-fill" style="width:60%"></div>
+                </div>
+            </div>
+        </div>
+        <div class="zwap-actions-grid">
+            <a href="#move" class="action-tile move">
+                <div class="action-icon">
+                    <svg>
+                        <use href="icons.svg#icon-shoe" />
+                    </svg>
+                </div>
+                <div class="action-title">MOVE</div>
+                <div class="action-desc">Walk and Earn</div>
+            </a>
+            <a href="#play" class="action-tile play">
+                <div class="action-icon">
+                    <svg>
+                        <use href="icons.svg#icon-cube" />
+                    </svg>
+                </div>
+                <div class="action-title">PLAY</div>
+                <div class="action-desc">Play and Earn</div>
+            </a>
+            <a href="#shop" class="action-tile shop">
+                <div class="action-icon">
+                    <svg>
+                        <use href="icons.svg#icon-bag" />
+                    </svg>
+                </div>
+                <div class="action-title">SHOP</div>
+                <div class="action-desc">Zupreme Imports</div>
+            </a>
+            <a href="#swap" class="action-tile swap">
+                <div class="action-icon">
+                    <svg>
+                        <use href="icons.svg#icon-swap" />
+                    </svg>
+                </div>
+                <div class="action-title">SWAP</div>
+                <div class="action-desc">Exchange Tokens</div>
+            </a>
+        </div>
+        <div id="carousel-ticker" class="zwap-carousel-ticker"></div>
+    </div>
+</body>
+
+<script>
+    // Profile photo upload logic
+    const uploadInput = document.getElementById('profile-upload');
+    const profileImg = document.getElementById('profile-img');
+    const avatar = document.getElementById('profile-avatar');
+    avatar.onclick = () => uploadInput.click();
+    uploadInput.onchange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (ev) => {
+                profileImg.src = ev.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
+    // New carousel ticker logic
+    document.addEventListener('DOMContentLoaded', function() {
+      if (typeof setCarouselMode === 'function') {
+        setCarouselMode('HOME');
+      }
+      document.body.addEventListener('click', function(e) {
+        if (e.target.closest('.action-tile.move')) setCarouselMode('MOVE');
+        else if (e.target.closest('.action-tile.play')) setCarouselMode('PLAY');
+        else if (e.target.closest('.action-tile.shop')) setCarouselMode('SHOP');
+        else if (e.target.closest('.action-tile.swap')) setCarouselMode('SWAP');
+        else if (e.target.closest('.credit-repair-link')) setCarouselMode('CREDIT');
+      });
+    });
+</script>
+
+</html>
